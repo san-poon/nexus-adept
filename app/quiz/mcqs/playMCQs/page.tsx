@@ -14,18 +14,21 @@ export default function PlayMCQs() {
     }
 
     return (
-        <div>
-            {currentQuizIndex < mcqs.length ? (
-                <section>
-                    <Quiz quiz={mcqs[currentQuizIndex]} />
-                    <br />
-                    <button onClick={goToNextQuestion} disabled={!hasMoreQuestions} className='text-gray-200 bg-emerald-800 mx-6 px-4 py-1'>
-                        Next
-                    </button>
-                </section>
-            ) : (
-                <p>You have finished the quiz.</p>
-            )}
+        <div className='flex justify-center items-center h-screen'>
+            <div className="bg-neutral-900 max-w-4xl mx-2 my-8 p-6 shadow-lg rounded-lg overflow-hidden">
+                <h3 className="text-center my-2">JavaScript Quizzes</h3>
+                {currentQuizIndex < mcqs.length ? (
+                    <section>
+                        <Quiz quiz={mcqs[currentQuizIndex]} />
+                        <br />
+                        <button onClick={goToNextQuestion} disabled={!hasMoreQuestions} className='text-gray-200 bg-emerald-800 mx-6 px-4 py-1'>
+                            Next
+                        </button>
+                    </section>
+                ) : (
+                    <p>You have finished the quiz.</p>
+                )}
+            </div>
         </div>
     );
 
