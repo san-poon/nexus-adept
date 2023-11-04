@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import mcqs from './data.json';
 import Quiz from './quiz';
+import Button from '@/app/components/Button';
 
 export default function PlayMCQs() {
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
@@ -14,21 +15,22 @@ export default function PlayMCQs() {
     }
 
     return (
-        <div className='flex justify-center items-center h-screen'>
-            <div className="bg-neutral-900 max-w-4xl mx-2 my-8 p-6 shadow-lg rounded-lg overflow-hidden">
+        <div className='flex justify-center items-center pt-4'>
+            <div className="bg-neutral-900 mx-2 my-8 p-6 shadow-lg rounded-lg overflow-auto w-full sm:w-9/12 md:w-9/12">
                 <h3 className="text-center my-2">JavaScript Quizzes</h3>
                 {currentQuizIndex < mcqs.length ? (
                     <section>
                         <Quiz quiz={mcqs[currentQuizIndex]} />
-                        <br />
-                        <button onClick={goToNextQuestion} disabled={!hasMoreQuestions} className='text-gray-200 bg-emerald-800 mx-6 px-4 py-1'>
-                            Next
-                        </button>
+
                     </section>
                 ) : (
                     <p>You have finished the quiz.</p>
                 )}
             </div>
+            <Button onClick={goToNextQuestion} disabled={!hasMoreQuestions}>
+                Next
+            </Button>
+
         </div>
     );
 

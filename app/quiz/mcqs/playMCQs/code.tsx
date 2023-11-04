@@ -14,7 +14,7 @@ export default function Code({ code }) {
     }, [code]);
 
     return (
-        <pre className="bg-slate-900 text-white p-4 text-sm overflow-x-auto rounded-md">
+        <pre className="bg-slate-900 text-white p-4 text-sm rounded-md">
             <code className="language-typescript">
                 {code}
             </code>
