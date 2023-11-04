@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { mcqs } from './data';
+import mcqs from './data.json';
 import Quiz from './quiz';
 
 export default function PlayMCQs() {
