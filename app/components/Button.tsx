@@ -1,4 +1,10 @@
-export default function Button({ children, onClick, ...rest }) {
+type ButtonProps = {
+    children: React.ReactNode;
+    onClick: any;
+}
+
+
+export default function Button({ children, onClick, ...rest }: ButtonProps) {
     return (
         <button
             {...rest}

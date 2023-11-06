@@ -5,16 +5,22 @@ import Code from './code';
 
 type QuizProps = {
     quiz: {
-        id: number;
-        question: string;
-        code: string;
-        options: object[];
+        id: number,
+        question: string,
+        code: string,
+        options: optionType[];
     }
+}
+
+interface optionType {
+    correct: boolean;
+    value: string;
+    option: string;
 }
 
 export default function Quiz({ quiz }: QuizProps) {
     const [message, setMessage] = useState<string>("");
-    const [shuffledOptions, setShuffledOptions] = useState<object[]>([]);
+    const [shuffledOptions, setShuffledOptions] = useState<optionType[]>([]);
 
     useEffect(() => {
         setShuffledOptions(shuffleArray(quiz.options));
@@ -27,7 +33,7 @@ export default function Quiz({ quiz }: QuizProps) {
 
 
     // Handler for when a choice is selected
-    const handleChoiceSelection = useCallback((option: { correct: boolean; value: string; option: string }) => {
+    const handleChoiceSelection = useCallback((option: optionType) => {
         setMessage(option.correct === true ? "Correct" : 'Try again!');
     }, []);
     return (
@@ -35,10 +41,10 @@ export default function Quiz({ quiz }: QuizProps) {
             <p className='text-gray-200 font-medium mb-4'>{quiz.question}</p>
             <Code code={quiz.code} />
             <ul>
-                {shuffledOptions.map((option) => (
-                    <li key={option.id} className="my-2">
-                        <button onClick={() => handleChoiceSelection(option)} className="w-full text-left transition duration-150 ease-in-out transform hover:scale-105 active:scale-95 bg-neutral-800 hover:bg-neutral-600 text-white rounded-md py-2 px-4">
-                            {option.value}
+                {shuffledOptions.map((choice: optionType) => (
+                    <li key={choice.option} className="my-2">
+                        <button onClick={() => handleChoiceSelection(choice)} className="w-full text-left transition duration-150 ease-in-out transform hover:scale-105 active:scale-95 bg-neutral-800 hover:bg-neutral-600 text-white rounded-md py-2 px-4">
+                            {choice.value}
                         </button>
                     </li>
                 ))}
@@ -49,7 +55,7 @@ export default function Quiz({ quiz }: QuizProps) {
 }
 
 // Returns a new shuffled array without mutating the original array
-const shuffleArray = (array: object[]) => {
+const shuffleArray = (array: optionType[]): optionType[] => {
     let shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

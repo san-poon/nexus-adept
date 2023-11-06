@@ -5,7 +5,11 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/themes/prism-okaidia.css';
 
-export default function Code({ code }) {
+type CodeProps = {
+    code: string;
+}
+
+export default function Code({ code }: CodeProps) {
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
