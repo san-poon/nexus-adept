@@ -8,9 +8,7 @@ import 'prismjs/themes/prism-okaidia.css';
 type CodeProps = {
     code: string;
 }
-
 export default function Code({ code }: CodeProps) {
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             Prism.highlightAll();
