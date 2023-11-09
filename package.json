@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.5.1",
     "next": "14.0.1",
     "prismjs": "^1.29.0",
     "react": "^18",
