@@ -7,10 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "seed": "node -r dotenv/config ./scripts/seedMCQs.js"
   },
   "dependencies": {
     "@vercel/postgres": "^0.5.1",
+    "dotenv": "^16.3.1",
     "next": "14.0.1",
     "prismjs": "^1.29.0",
     "react": "^18",

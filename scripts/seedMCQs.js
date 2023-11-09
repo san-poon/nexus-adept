@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { sql } = require('@vercel/postgres');
 const { mcqs } = require('../app/quiz/mcqs/playMCQs/data.json')
 
