@@ -1,11 +1,11 @@
 require('dotenv').config();
 
-const { sql } = require('@vercel/postgres');
-const { mcqs } = require('../app/quiz/mcqs/playMCQs/data.json')
+import { sql } from '@vercel/postgres';
+import { mcqs } from '../app/quiz/mcqs/playMCQs/data.json';
 
 async function seedMCQs() {
     try {
-        // Create the "mcqs" table if it doesn't exits
+        // Create the "mcqs" table if it doesn't exist
         const createTable = await sql`
         CREATE TABLE IF NOT EXISTS mcqs (
             id SERIAL PRIMARY KEY,
@@ -40,7 +40,7 @@ async function seedMCQs() {
 
         // Insert MCQ data into table
         for (const mcq of mcqs) {
-            const insertQuestionQuery = `INSERT INTO mcqs (question, code) VALUES ($1, $2)`
+            const insertQuestionQuery = `INSERT INTO mcqs (question, code) VALUES ($1, $2) RETURNING id`
             await client.sql(insertQuestionQuery, [mcq.question, mcq.code]);
             const mcqId = await client.query(`SELECT id FROM mcqs ORDER BY id DESC LIMIT 1`);
 
