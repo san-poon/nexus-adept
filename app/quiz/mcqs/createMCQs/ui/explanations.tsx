@@ -11,8 +11,7 @@ export default function ExplanationInput() {
 
     return (
         <div className="mb-4">
-            <label className="text-white font-semibold mb-2 block">Explanation</label>
-            <textarea className="bg-inherit text-inherit"
+            <textarea className="w-full h-auto"
                 placeholder="Explain..."
                 value={explanationText}
                 onChange={handleTextChange}

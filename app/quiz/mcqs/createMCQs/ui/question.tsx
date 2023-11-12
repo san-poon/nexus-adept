@@ -11,10 +11,9 @@ export default function QuestionInput() {
 
     return (
         <div className="mb-4">
-            <label className="text-white font-semibold mb-2 block">Question</label>
             <input
                 type="text"
-                className="bg-inherit text-inherit"
+                className="w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Question..."
                 value={questionText}
                 onChange={handleQuestionChange}

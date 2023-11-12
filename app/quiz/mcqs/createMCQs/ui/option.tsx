@@ -19,7 +19,7 @@ export default function OptionInput({ optionNumber }: OptionInputProps): JSX.Ele
     };
 
     return (
-        <div className="flex items-center bg-gray-800 text-white p-4 rounded-md shadow-md md:w-1/2 lg:w-1/3 xl:w-1/4">
+        <div className="mb-4 flex items-center p-4 rounded-md shadow-md">
             <input
                 className="form-checkbox h-6 w-6 text-indigo-600"
                 type="checkbox"
@@ -27,8 +27,8 @@ export default function OptionInput({ optionNumber }: OptionInputProps): JSX.Ele
                 onChange={handleCorrectnessChange}
             />
             <input type="text"
-                className="bg-transparent text-white w-full ml-2 p-2 placeolder-gray-500 focus:outline-none"
-                placeholder={`Option ${optionNumber}`}
+                className="w-full ml-2 p-2 placeolder-gray-500 focus:outline-none"
+                placeholder={`Option ${optionNumber}...`}
                 value={optionText}
                 onChange={handleTextChange}
             />
