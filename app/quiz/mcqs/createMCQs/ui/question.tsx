@@ -13,7 +13,7 @@ export default function QuestionInput() {
         <div className="mb-4">
             <input
                 type="text"
-                className="w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                className="w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 dark:text-slate-200 dark:bg-slate-900"
                 placeholder="Question..."
                 value={questionText}
                 onChange={handleQuestionChange}

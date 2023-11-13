@@ -11,7 +11,7 @@ export default function ExplanationInput() {
 
     return (
         <div className="mb-4">
-            <textarea className="w-full h-auto"
+            <textarea className="w-full h-auto dark:text-slate-200 dark:bg-slate-900"
                 placeholder="Explain..."
                 value={explanationText}
                 onChange={handleTextChange}

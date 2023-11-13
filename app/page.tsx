@@ -1,7 +1,9 @@
 import Link from 'next/link';
+// import ThemeToggler from './toggleTheme';
 export default function Home() {
   return (
     <main>
+      {/* <ThemeToggler /> */}
       <div className="grid gap-0 h-screen w-screen lg:grid-cols-5 grid-cols-1">
         <div className="bg-neutral-800 p-4 text-center hidden lg:block">
           Column 1 (Hidden on medium & small screens)
