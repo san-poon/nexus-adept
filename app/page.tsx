@@ -1,7 +1,7 @@
 import Link from 'next/link';
 export default function Home() {
   return (
-    <main className="mt-16">
+    <main className="">
       <div className="grid gap-0 h-screen w-screen lg:grid-cols-5 grid-cols-1">
         <div className="dark:bg-slate-600 p-4 text-center hidden lg:block">
           Column 1 (Hidden on medium & small screens)
