@@ -8,8 +8,8 @@ export default function Home() {
         </div>
         <div className="p-4 text-center lg:col-span-3">
           <div className="flex flex-col m-2">
-            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/playMCQs">Play Quiz</Link></div>
-            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/createMCQs">Create Quiz</Link></div>
+            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/playMCQs" title="Play Javascript quizzes">Play Quiz</Link></div>
+            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/createMCQs title" title="Create quiz, play and learn">Create Quiz</Link></div>
           </div>
         </div>
         <div className="p-4 text-center hidden lg:block">
