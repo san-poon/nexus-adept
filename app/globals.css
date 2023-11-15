@@ -4,27 +4,23 @@
 
 :root {
     --foreground-color: #000000;
-    /* Black */
+    --background-color: #ffffff;
     --background-start-color: #d6dbdc;
-    /* Light Gray */
     --background-end-color: #ffffff;
-    /* White */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        /* White */
         --foreground-color: #ffffff;
-        /* Dark Gray - more vibrant */
+        --background-color: #1d1d1d;
         --background-start-color: #202020;
-        /* Darker Gray - more vibrant */
         --background-end-color: #202020;
     }
 }
 
 body {
     color: var(--foreground-color);
-    background: #1d1d1d;
+    background: var(--background-color);
     /* background: linear-gradient(to bottom,
             transparent,
             var(--background-end-color)) var(--background-start-color); */

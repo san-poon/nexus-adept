@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <div className="p-4 text-center lg:col-span-3">
           <div className="flex flex-col m-2">
             <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/playMCQs" title="Play Javascript quizzes">Play Quiz</Link></div>
-            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/createMCQs title" title="Create quiz, play and learn">Create Quiz</Link></div>
+            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/createMCQs" title="Create quiz, play and learn">Create Quiz</Link></div>
           </div>
         </div>
         <div className="p-4 text-center hidden lg:block">
