@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <header className="p-4 shadow-md dark:shadow-neutral-950 shadow-neutral-50">
             <div className="container mx-auto flex items-center justify-between">
-                <Link href="/" title="Play & learn Learn & create Create & learn">
+                <Link href="/" title="Play & learn, Learn & create, Create & learn">
                     <div className="flex items-center justify-center space-x-0 bg-neutral-900 rounded-lg hover:bg-neutral-800 transition duration-300 p-1">
                         {/* Logo */}
                         <svg
@@ -53,7 +53,7 @@ export default function Header() {
                 {/* Mobile menu button */}
                 <div className="md:hidden text-teal-500 hover:text-teal-300" onClick={() => { console.log('Mobile menu clicked') }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
 
                 </div>
