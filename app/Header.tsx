@@ -19,7 +19,7 @@ export default function Header() {
         <header className={`w-full z-10 top-0 transition-all ease-in-out duration-300 ${isScrolled ? '-translate-y-full opacity-0' : "translate-y-0 opacity-100"} p-4 shadow-md dark:shadow-neutral-950 shadow-neutral-50`}>
             <div className="container mx-auto flex items-center justify-between my-1">
                 <Link href="/" title="Play & learn, Learn & create, Create & learn">
-                    <div className="flex items-center justify-center space-x-0 bg-neutral-900 rounded-lg hover:bg-neutral-800 transition duration-300 p-1">
+                    <div className="flex items-center justify-center space-x-0 bg-neutral-50 dark:bg-neutral-900 rounded-lg dark:hover:bg-neutral-800 transition duration-300 p-1">
                         {/* Logo */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

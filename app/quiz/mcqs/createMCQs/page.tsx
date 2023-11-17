@@ -6,6 +6,9 @@ export default function CreateMCQs() {
         <div>
             <QuestionInput />
             <OptionInput optionNumber={1} />
+            <OptionInput optionNumber={2} />
+            <OptionInput optionNumber={3} />
+            <OptionInput optionNumber={4} />
             <ExplanationInput />
         </div>
     )

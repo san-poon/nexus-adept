@@ -12,7 +12,7 @@ export default function QuestionInput() {
     return (
         <div className="mb-4">
             <textarea
-                className="w-full min-h-fit py-2 px-3 rounded-lg shadow-neutral-900 shadow-md focus:outline-none dark:bg-inherit"
+                className="w-full h-24 md:h-32 py-2 px-3 rounded-lg shadow-md focus:outline-none dark:bg-neutral-800"
                 placeholder="Question..."
                 value={questionText}
                 onChange={handleQuestionChange}

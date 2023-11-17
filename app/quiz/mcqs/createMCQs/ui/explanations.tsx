@@ -10,13 +10,11 @@ export default function ExplanationInput() {
     }
 
     return (
-        <div className="mb-4">
-            <textarea
-                className="w-full min-h-fit dark:bg-inherit shadow-md shadow-neutral-900 focus:outline-none rounded-lg"
-                placeholder="Explain..."
-                value={explanationText}
-                onChange={handleTextChange}
-            />
-        </div>
+        <textarea
+            className={`w-full h-32 md:h-60 shadow-md focus:outline-none rounded-lg dark:bg-neutral-800 p-4`}
+            placeholder="Explain..."
+            value={explanationText}
+            onChange={handleTextChange}
+        />
     );
 };
