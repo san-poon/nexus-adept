@@ -1,7 +1,11 @@
+/**
+ * While seeding, use seperate functions to seed each table. And use batch processing for there will be unstable database connection.
+ */
+
 const { sql } = require('@vercel/postgres');
 const mcqs = require("../app/quiz/mcqs/playMCQs/data.json");
 
-async function seedMcqs() {
+async function seedMcqQuestions() {
     try {
         // Create the 'mcq_questions' table if it doesn't exist
         const createQuestionTable = await sql`
@@ -17,6 +21,9 @@ async function seedMcqs() {
         // Insert data into the 'mcq_questions' table
         const insertedQuestions = await Promise.all(
             mcqs.map(async (mcq) => {
+                // Validate the MCQ data
+                validateMcqData(mcq);
+
                 return sql`
                     INSERT INTO mcq_questions (question, code, explanation)
                     VALUES (${mcq.question}, ${mcq.code}, ${mcq.explanation})
@@ -24,9 +31,28 @@ async function seedMcqs() {
                 `;
             }),
         );
-        console.log(`Seeded ${insertedQuestions.length} questions`);
+        console.log(`Seeded ${insertedQuestions.length} questions.`);
 
-        //Create the 'mcq_options' table if it doesn't exist
+        return {
+            createQuestionTable,
+            questions: insertedQuestions,
+        };
+    } catch (error) {
+        console.error(`Error seeding MCQ questions`, error);
+        // Log more details about the error
+        if (error.code === 'UND_ERR_CONNECT_TIMEOUT') {
+            console.error('Connection timeout. Check network and database server status.');
+        } else if (error.code === '23502') {
+            console.error('Duplicate entry. Check for unique constraints.');
+        } else {
+            console.error('Unknown error. Check database connection details.');
+        }
+    }
+}
+
+async function seedMcqOptions() {
+    try {
+        // Create the 'mcq_options' table if it doesn't exist
         const createOptionsTable = await sql`
             CREATE TABLE IF NOT EXISTS mcq_options (
                 id SERIAL PRIMARY KEY,
@@ -38,39 +64,90 @@ async function seedMcqs() {
         `;
         console.log(`Created 'mcq_options' table`);
 
-        // Insert data into the 'mcq_options' table
-        const insertedOptions = await Promise.all(
-            mcqs.map(async (mcq) => {
-                return Promise.all(
-                    mcq.options.map(async (choice) => {
-                        await sql`
-                                INSERT INTO mcq_options(question_id, option_letter, value, is_correct)
-                                VALUES (${mcq.id}, ${choice.option}, ${choice.value}, ${choice.correct})
-                            `;
-                    }),
-                );
-            }),
-        );
-        console.log(`Seeded ${insertedOptions.flat().length} MCQs options`);
+        // Batch processing for 'mcq_options'
+        const batchSize = 50; // Adjust the batch size as needed
+        const totalRows = mcqs.length;
+
+        for (let i = 0; i < totalRows; i += batchSize) {
+            const batch = mcqs.slice(i, i + batchSize);
+            await seedMcqOptionsBatch(batch);
+        }
 
         return {
-            createQuestionTable,
             createOptionsTable,
-            questions: insertedQuestions,
-            options: insertedOptions.flat(),
         };
-
-    }
-    catch (error) {
-        console.error(`Error seeding MCQ questions and options`, error);
+    } catch (error) {
+        console.error(`Error seeding MCQ options`, error);
         // Log more details about the error
         if (error.code === 'UND_ERR_CONNECT_TIMEOUT') {
             console.error('Connection timeout. Check network and database server status.');
+        } else if (error.code === '23502') {
+            console.error('Duplicate entry. Check for unique constraints.');
         } else {
             console.error('Unknown error. Check database connection details.');
         }
     }
 }
 
-// Execute the function to seed data
-(async () => { seedMcqs(); })();
+async function seedMcqOptionsBatch(mcqs) {
+    const insertedOptions = [];
+
+    for (const mcq of mcqs) {
+        const questionId = mcq.id;
+
+        await Promise.all(
+            mcq.options.map(async (choice) => {
+                // Validate the MCQ option data
+                validateMcqOptionData(choice);
+                const insertedOption = await sql`
+                    INSERT INTO mcq_options (question_id, option_letter, value, is_correct)
+                    VALUES (${questionId}, ${choice.option}, ${choice.value}, ${choice.correct})
+                    RETURNING id;
+                `;
+                insertedOptions.push(insertedOption);
+            }),
+        );
+    }
+
+    console.log(`Seeded ${insertedOptions.length} MCQ options.`);
+}
+
+
+(async () => {
+    await seedMcqQuestions();
+    await seedMcqOptions();
+})();
+
+
+async function validateMcqData(mcq) {
+    // Check if question is present
+    if (!mcq.question) {
+        throw new Error('Missing question');
+    }
+    // Check if code is present
+    if (!mcq.options || !mcq.options.length) {
+        throw new Error('Missing options');
+    }
+
+    // Check if at least one option is marked as correct
+    const correctOptionFound = mcq.options.some((option) => option.correct);
+    if (!correctOptionFound) {
+        throw new Error('No correct option marked');
+    }
+}
+
+async function validateMcqOptionData(option) {
+    // Check if option letter is present
+    if (!option.option) {
+        throw new Error('Missing option letter');
+    }
+    // Check if option value is present
+    if (!option.value) {
+        throw new Error('Missing option value');
+    }
+
+    // Check if option correctness is a boolean
+    if (typeof option.correct !== 'boolean') {
+        throw new Error('Invalid option correctness');
+    }
+}
