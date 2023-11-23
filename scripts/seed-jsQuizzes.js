@@ -8,7 +8,7 @@ async function seedMcqs() {
             CREATE TABLE IF NOT EXISTS mcq_questions (
                 id SERIAL PRIMARY KEY,
                 question TEXT NOT NULL,
-                code TEXT
+                code TEXT,
                 explanation TEXT NOT NULL
             );
         `;
@@ -43,10 +43,10 @@ async function seedMcqs() {
             mcqs.map(async (mcq) => {
                 return Promise.all(
                     mcq.options.map(async (choice) => {
-                        return sql`
-                            INSERT INTO mcq_options(question_id, option_letter,value, is_correct)
-                            VALUES (${mcq.id}, ${choice.option}, ${choice.value}, ${choice.correct})
-                        `;
+                        await sql`
+                                INSERT INTO mcq_options(question_id, option_letter, value, is_correct)
+                                VALUES (${mcq.id}, ${choice.option}, ${choice.value}, ${choice.correct})
+                            `;
                     }),
                 );
             }),
@@ -63,8 +63,14 @@ async function seedMcqs() {
     }
     catch (error) {
         console.error(`Error seeding MCQ questions and options`, error);
+        // Log more details about the error
+        if (error.code === 'UND_ERR_CONNECT_TIMEOUT') {
+            console.error('Connection timeout. Check network and database server status.');
+        } else {
+            console.error('Unknown error. Check database connection details.');
+        }
     }
 }
 
 // Execute the function to seed data
-seedMcqs();
+(async () => { seedMcqs(); })();
