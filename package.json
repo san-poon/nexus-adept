@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seedMCQs.js"
+    "seed": "node -r dotenv/config ./scripts/seed-jsQuizzes.js"
   },
   "dependencies": {
     "@vercel/postgres": "^0.5.1",
