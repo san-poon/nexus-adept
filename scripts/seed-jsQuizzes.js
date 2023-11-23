@@ -44,7 +44,7 @@ async function seedMcqs() {
                 return Promise.all(
                     mcq.options.map(async (choice) => {
                         return sql`
-                            INSERT INTO mcq_options(question_id, option_letter, is_correct)
+                            INSERT INTO mcq_options(question_id, option_letter,value, is_correct)
                             VALUES (${mcq.id}, ${choice.option}, ${choice.value}, ${choice.correct})
                         `;
                     }),
