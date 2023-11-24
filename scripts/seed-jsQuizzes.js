@@ -3,7 +3,7 @@
  */
 
 const { sql } = require('@vercel/postgres');
-const mcqs = require("../app/quiz/mcqs/playMCQs/data.json");
+const mcqs = require("../app/lib/data.json");
 
 async function seedMcqQuestions() {
     try {
@@ -11,6 +11,7 @@ async function seedMcqQuestions() {
         const createQuestionTable = await sql`
             CREATE TABLE IF NOT EXISTS mcq_questions (
                 id SERIAL PRIMARY KEY,
+                quiz_id INT NOT NULL,
                 question TEXT NOT NULL,
                 code TEXT,
                 explanation TEXT NOT NULL
@@ -25,8 +26,8 @@ async function seedMcqQuestions() {
                 validateMcqData(mcq);
 
                 return sql`
-                    INSERT INTO mcq_questions (question, code, explanation)
-                    VALUES (${mcq.question}, ${mcq.code}, ${mcq.explanation})
+                    INSERT INTO mcq_questions (quiz_id, question, code, explanation)
+                    VALUES (${mcq.id}, ${mcq.question}, ${mcq.code}, ${mcq.explanation})
                     RETURNING id;
                 `;
             }),
@@ -56,7 +57,7 @@ async function seedMcqOptions() {
         const createOptionsTable = await sql`
             CREATE TABLE IF NOT EXISTS mcq_options (
                 id SERIAL PRIMARY KEY,
-                question_id INT REFERENCES mcq_questions(id),
+                quiz_id INT REFERENCES mcq_questions(id),
                 option_letter CHAR(1) NOT NULL,
                 value TEXT NOT NULL,
                 is_correct BOOLEAN NOT NULL
@@ -93,15 +94,15 @@ async function seedMcqOptionsBatch(mcqs) {
     const insertedOptions = [];
 
     for (const mcq of mcqs) {
-        const questionId = mcq.id;
+        const quizId = mcq.id;
 
         await Promise.all(
             mcq.options.map(async (choice) => {
                 // Validate the MCQ option data
                 validateMcqOptionData(choice);
                 const insertedOption = await sql`
-                    INSERT INTO mcq_options (question_id, option_letter, value, is_correct)
-                    VALUES (${questionId}, ${choice.option}, ${choice.value}, ${choice.correct})
+                    INSERT INTO mcq_options (quiz_id, option_letter, value, is_correct)
+                    VALUES (${quizId}, ${choice.option}, ${choice.value}, ${choice.correct})
                     RETURNING id;
                 `;
                 insertedOptions.push(insertedOption);

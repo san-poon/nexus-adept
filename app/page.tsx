@@ -9,8 +9,8 @@ export default function Home() {
         </div>
         <div className="p-4 text-center lg:col-span-3">
           <div className="flex flex-col m-2">
-            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/playMCQs" title="Play Javascript quizzes">Play Quiz</Link></div>
-            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/createMCQs" title="Create quiz, play and learn">Create Quiz</Link>
+            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/play" title="Play Javascript quizzes">Play Quiz</Link></div>
+            <div className="rounded-md my-4 py-4"><Link href="/quiz/mcqs/create" title="Create quiz, play and learn">Create Quiz</Link>
               <br /><br /> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem est natus repellat reprehenderit mollitia voluptatem cumque minima eligendi expedita laudantium porro dolore, quasi voluptatum amet sit sapiente quam ipsam. Aut.</p>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nostrum laudantium sit nihil perferendis voluptates quae nemo exercitationem nulla, architecto veritatis obcaecati aliquam, expedita iste itaque, velit non corrupti beatae.</p>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate, quibusdam officiis illum nesciunt tenetur dolore cumque ea numquam dolores ullam eveniet reprehenderit labore facere quis. Recusandae tempora accusamus quasi tempore?</p>
