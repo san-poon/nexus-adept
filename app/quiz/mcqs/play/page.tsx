@@ -2,6 +2,8 @@ import mcqs from '@/app/lib/data.json';
 import PlayMcq from './components/playMcq';
 import { fetchMcqs } from '@/app/lib/data';
 
+import { QuizData } from '@/app/lib/definitions';
+
 export default async function Page() {
     const quizzes = await fetchMcqs();
     return (
