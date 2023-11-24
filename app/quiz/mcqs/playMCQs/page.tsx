@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import mcqs from './data.json';
-import Quiz from './quiz';
-import Button from '@/app/components/Button';
+import mcqs from '@/app/lib/data.json';
+import Quiz from './components/quiz';
+import { Button } from '@/app/components/Button';
 
 export default function PlayMCQs() {
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);

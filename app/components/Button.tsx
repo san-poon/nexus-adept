@@ -1,16 +1,19 @@
-type ButtonProps = {
+import clsx from 'clsx';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    onClick: any;
-    disabled: boolean;
 }
 
-
-export default function Button({ children, onClick, ...rest }: ButtonProps) {
+export function Button({ children, className, ...rest }: ButtonProps) {
     return (
         <button
             {...rest}
-            onClick={onClick}
-        // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-        >{children}</button>
-    )
+            className={clsx(
+                'flex h-10 items-center rounded-lg px-4 text-sm font-medium  transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+                className,
+            )}
+        >
+            {children}
+        </button>
+    );
 }

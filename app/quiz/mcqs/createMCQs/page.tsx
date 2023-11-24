@@ -1,6 +1,6 @@
-import QuestionInput from "./ui/question";
-import OptionInput from "./ui/option";
-import ExplanationInput from "./ui/explanations";
+import QuestionInput from "./components/question";
+import OptionInput from "./components/option";
+import ExplanationInput from "./components/explanations";
 export default function CreateMCQs() {
     return (
         <div>
