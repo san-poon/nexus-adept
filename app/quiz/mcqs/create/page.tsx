@@ -1,7 +1,7 @@
 import QuestionInput from "./components/question";
 import OptionInput from "./components/option";
 import ExplanationInput from "./components/explanations";
-export default function CreateMCQs() {
+export default function Page() {
     return (
         <div>
             <QuestionInput />
