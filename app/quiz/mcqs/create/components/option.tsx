@@ -27,6 +27,7 @@ export default function OptionInput({ optionNumber }: OptionInputProps): JSX.Ele
                 onChange={handleCorrectnessChange}
             />
             <input type="text"
+                name="options"
                 className="w-full ml-2 p-2 placeolder-gray-500 focus:outline-none dark:bg-neutral-800"
                 placeholder={`Option ${optionNumber}...`}
                 value={optionText}

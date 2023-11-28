@@ -11,6 +11,7 @@ export default function ExplanationInput() {
 
     return (
         <textarea
+            name="explanation"
             className={`w-full h-32 md:h-60 shadow-md focus:outline-none rounded-lg dark:bg-neutral-800 p-4`}
             placeholder="Explain..."
             value={explanationText}
