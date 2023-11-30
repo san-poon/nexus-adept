@@ -33,7 +33,7 @@ export default function Header() {
                 <nav className="hidden md:flex space-x-4">
                     <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Create</Link>
                     <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Play</Link>
-                    <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Portfolio</Link>
+                    <Link href="/portfolio" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Portfolio</Link>
                 </nav>
 
                 {/* Theme Toggler */}
@@ -44,7 +44,6 @@ export default function Header() {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
-
                 </div>
 
             </div>
