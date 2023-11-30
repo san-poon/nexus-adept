@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from '@/app/images/logo.png';
-import { Button } from '@/app/components/Button'
+import { Button } from "@/app/components/Button";
+
 const HeroComponent = () => {
     return (
         <section className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-16">
@@ -14,12 +15,15 @@ const HeroComponent = () => {
                 <p className="text-lg mb-8">
                     Welcome to the vibrant town square of learning and creation.
                 </p>
-                <button className="bg-white text-blue-500 px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition duration-300">
-                    Start Your Journey
-                </button>
-                <div className="flex flex-col m-2 items-center">
-                    <Link href="/quiz/mcqs/play" title="Play Javascript quizzes"><Button>Play Quiz</Button></Link>
-                    <Link href="/quiz/mcqs/create" title="Create quiz, play and learn">Create Quiz</Link>
+                <div className="flex flex-col items-center mb-4">
+                    <Link href="/quiz/mcqs/create" title="Create quiz, play and learn">
+                        <Button className="bg-white dark:bg-neutral-800 text-blue-500 px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition duration-300">
+                            Create
+                        </Button>
+                    </Link>
+                    <Link href="/quiz/mcqs/play" title="Play Javascript quizzes">
+                        <Button className="mt-4 bg-white dark:bg-neutral-800 text-blue-500 px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition duration-300">Play</Button>
+                    </Link>
                 </div>
             </div>
         </section>

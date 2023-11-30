@@ -1,5 +1,5 @@
 'use client';
-import HeroComponent from './components/hero';
+import HeroComponent from './components/hero-section';
 
 export default function Home() {
   return (
