@@ -1,10 +1,8 @@
-'use client';
 
 import QuestionInput from "./question";
 import OptionInput from "./option";
 import ExplanationInput from "./explanations";
 import { createQuiz } from "@/app/lib/action";
-import { Button } from "@/app/components/Button";
 import SubmitButton from "@/app/components/SubmitButton";
 
 export default function CreateForm() {

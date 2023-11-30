@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ModeToggle from "./theme-toggler";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -60,7 +61,7 @@ export default function Header() {
                     <Link href="#" className="">Categories</Link>
                     <Link href="#" className="">About</Link>
                 </nav>
-
+                <ModeToggle />
 
 
                 {/* Mobile menu button */}
