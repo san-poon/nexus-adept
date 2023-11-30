@@ -34,8 +34,8 @@ export default function Header() {
                     <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Create</Link>
                     <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Play</Link>
                     <Link href="#" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300">Portfolio</Link>
-
                 </nav>
+
                 {/* Theme Toggler */}
                 <ModeToggle />
 
