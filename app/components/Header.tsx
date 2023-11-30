@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ModeToggle from "./theme-toggler";
+import Logo from "./logo";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -22,35 +23,7 @@ export default function Header() {
                 <Link href="/" title="Play & learn, Learn & create, Create & learn">
                     <div className="flex items-center justify-center space-x-0 bg-neutral-50 dark:bg-neutral-900 rounded-lg dark:hover:bg-neutral-800 transition duration-300 p-1">
                         {/* Logo */}
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="h-8 w-8"
-                        >
-                            {/* <!-- Play button icon --> */}
-                            <path
-                                d="M5 3l14 9-14 9V3z"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-blue-500"
-                            />
-                            {/* <!-- Book icon --> */}
-                            <path
-                                d="M8 5.999V18a2 2 0 002 2h6a2 2 0 002-2V5.999M8 5.999h0a2 2 0 012-2h6a2 2 0 012 2h0M8 5.999h0a2 2 0 012-2h6a2 2 0 012 2h0"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-green-500"
-                            />
-                            {/* Paintbrush icon */}
-                            <path
-                                d="M21 17a2 2 0 01-2 2h-3.879a2 2 0 01-1.414-.586l-4.586-4.586a1 1 0 00-1.414 0l-2.586 2.586a1 1 0 01-1.414 0l-4-4"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-purple-500"
-                            />
-                        </svg>
+                        <Logo />
                         <span className="font-bold">
                             Autodidact
                         </span>
@@ -61,8 +34,9 @@ export default function Header() {
                     <Link href="#" className="">Categories</Link>
                     <Link href="#" className="">About</Link>
                 </nav>
-                <ModeToggle />
 
+                {/* Theme Toggler */}
+                <ModeToggle />
 
                 {/* Mobile menu button */}
                 <div className="md:hidden text-teal-500 hover:text-teal-300 cursor-pointer" onClick={() => { console.log('Mobile menu clicked') }}>
