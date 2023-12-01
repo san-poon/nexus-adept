@@ -8,7 +8,7 @@ const HeroComponent = () => {
         <section className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-16">
             <div className="container mx-auto text-center">
                 {/* Logo Image */}
-                <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4" />
+                <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                     Forge Your Knowledge, Play Your Way!
                 </h1>

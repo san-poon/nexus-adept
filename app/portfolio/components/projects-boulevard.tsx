@@ -22,7 +22,7 @@ export default function ProjectsBoulevard() {
                                 <Image
                                     src={project.imageSrc}
                                     alt={project.name}
-                                    className="rounded-md w-auto h-full p-2 transition-transform transform hover:scale-105"
+                                    className="rounded-full w-auto h-full p-2 transition-transform transform hover:scale-105"
                                 />
                             </Link>
                         </div>
