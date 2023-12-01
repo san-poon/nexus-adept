@@ -13,16 +13,16 @@ export default function ProjectsBoulevard() {
 
     return (
         <div className="p-2 mt-6">
-            <h2 className="text-2xl font-bold dark:text-gray-200 mb-4">Projects</h2>
+            <h2 className="text-2xl font-bold dark:text-gray-200 mb-4">Projects Boulevard</h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectClass}`}>
                 {projects.map((project) => (
-                    <div className={`rounded-lg overflow-hidden shadow-md dark:bg-gray-800 dark:text-white ${projectClass}`} key={project.name}>
+                    <div className={`rounded-lg overflow-hidden shadow-md bg-gradient-to-r dark:from-gray-800 dark:to-gray-600 from-gray-300 to-gray-500 ${projectClass}`} key={project.name}>
                         <div className="relative h-40">
                             <Link href={project.projectUrl}>
                                 <Image
                                     src={project.imageSrc}
                                     alt={project.name}
-                                    className="rounded-full w-auto h-full p-2 transition-transform transform hover:scale-105"
+                                    className="rounded-full w-auto h-full p-2 transition-transform hover:scale-105"
                                 />
                             </Link>
                         </div>
