@@ -7,7 +7,7 @@ Welcome to PlayLearnForge – where learning meets excitement!
 PlayLearnForge is not just a platform; it's a dynamic learning wonderland! Picture a lively town square where learners unite, exchange ideas, and embark on journeys of discovery together. Play, Learn, and Forge – the triple threat that defines our mission!
 
 ### 🎮 Play
-Immerse yourself in captivating quizzes featuring Multiple Choice Questions (MCQs) that turn learning into a game. Ready to level up your knowledge?
+Immerse yourself in captivating courses featuring Multiple Choice Questions (MCQs) that turn learning into a game. Ready to level up your knowledge?
 
 ### 📚 Learn
 Experience a unique learning journey with quizzes enriched with dedicated explanations and bite-sized lessons. Text, images, and interactive quizzes – we've got it all to make learning a joy.
@@ -40,7 +40,3 @@ We believe learning should be thrilling, interactive, and community-driven. Here
 PlayLearnForge is more than a platform; it's a movement. Join us as we redefine the learning experience. Together, we'll turn every quiz into a quest, every lesson into an exploration, and every learner into a co-creator.
 
 Ready to Play, Learn, and Forge? The adventure awaits! 🚀✨
-
----
-
-*Note: Feel free to copy, paste, and modify this markdown content for your GitHub README.*
