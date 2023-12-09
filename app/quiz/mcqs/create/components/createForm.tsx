@@ -1,9 +1,10 @@
 
 import QuestionInput from "./question";
 import OptionInput from "./option";
-import ExplanationInput from "./explanations";
+import ExplanationInput from "./explanation";
 import { createQuiz } from "@/app/lib/action";
 import SubmitButton from "@/app/components/SubmitButton";
+import ShowCategoryInput from "./category";
 
 export default function CreateForm() {
     return (
@@ -19,6 +20,7 @@ export default function CreateForm() {
             </div>
             <ExplanationInput />
             <SubmitButton>Save</SubmitButton>
+            <ShowCategoryInput />
         </form>
     );
 }
