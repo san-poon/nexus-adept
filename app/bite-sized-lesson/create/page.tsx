@@ -1,18 +1,35 @@
 // CreatePage.js
-
+'use client';
 import { Button } from '@/app/components/Button';
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 const CreatePage = () => {
+    const [isFixed, setIsFixed] = useState(false);
+    const headerHeightPercentage = 29;
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const viewportHeight = window.innerHeight;
+            const headerHeight = (viewportHeight * headerHeightPercentage) / 100;
+            setIsFixed(window.scrollY > headerHeight);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [headerHeightPercentage]);
+
     return (
         <>
             <div className="md:w-2/3 mx-auto p-4">
                 {/* Title Input */}
                 <TitleInput />
             </div>
-            <div className="flex flex-col md:flex-row h-screen">
+            <div className={`flex flex-col md:flex-row h-screen`}>
                 {/* Left Side - Content Buttons */}
-                <div className="w-full md:w-1/3 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow">
+                <div className={`w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow transition ${isFixed ? 'sticky top-2 md:top-4' : 'relative'}`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col space-y-4 space-x-2 justify-center items-baseline">
                         <TextModalButton />
@@ -23,12 +40,10 @@ const CreatePage = () => {
                 </div>
 
                 {/* Right Side - Live Preview */}
-                <div className="flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto">
+                <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto ${isFixed ? '' : ''}`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-gray-700 p-4 rounded shadow h-full">
-                        {/* Live Preview Content */}
-                        <p className="text-lg font-bold mb-2">Live Preview</p>
-                        {/* Add your live preview content here */}
+                        <LessonPreview />
                     </div>
                 </div>
             </div>
@@ -37,7 +52,15 @@ const CreatePage = () => {
 };
 
 
-
+const LessonPreview = () => {
+    return (
+        <>
+            {/* Live Preview Content */}
+            <p className="text-lg font-bold mb-2">Live Preview</p>
+            {/* Add your live preview content here */}
+        </>
+    )
+}
 
 const TitleInput = () => {
     return (
