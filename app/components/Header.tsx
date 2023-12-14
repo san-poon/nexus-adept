@@ -1,6 +1,5 @@
 'use client';
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import ModeToggle from "./theme-toggler";
 import Logo from "./logo";
 import { Button } from "./Button";
