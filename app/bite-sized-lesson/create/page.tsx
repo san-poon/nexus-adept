@@ -1,6 +1,5 @@
 
 import { Button } from '@/app/components/Button';
-import { useState, useEffect } from 'react';
 
 const CreatePage = () => {
     return (
