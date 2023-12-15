@@ -1,26 +1,8 @@
-// CreatePage.js
-'use client';
+
 import { Button } from '@/app/components/Button';
 import { useState, useEffect } from 'react';
 
 const CreatePage = () => {
-    const [isFixed, setIsFixed] = useState(false);
-    const headerHeightPercentage = 28;
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const viewportHeight = window.innerHeight;
-            const headerHeight = (viewportHeight * headerHeightPercentage) / 100;
-            setIsFixed(window.scrollY > headerHeight);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [headerHeightPercentage]);
-
     return (
         <>
             <div className="md:w-2/3 mx-auto p-4">
@@ -29,9 +11,9 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row h-screen`}>
                 {/* Left Side - Content Buttons */}
-                <div className={`w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow transition ${isFixed ? 'sticky top-2 md:top-4' : 'relative'}`}>
+                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow transition sticky top-0 md:top-4`}>
                     {/* Content Buttons */}
-                    <div className="flex md:flex-col space-y-4 space-x-2 justify-center items-baseline">
+                    <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
                         <TextModalButton />
                         <ImageModalButton />
                         <QuizModalButton />
