@@ -1,11 +1,11 @@
 'use client';
 import { Button } from '@/app/components/Button';
 import { useState } from 'react';
-import ContentModal, { ImageModal, TextModal } from './content-modal';
+import { ImageModal, TextModal } from './content-modal';
 
 const CreatePage = () => {
-    const [lessonTitle, setLessonTitle] = useState('');
     const [isModalOpen, setModalOpen] = useState(false);
+    const [lessonTitle, setLessonTitle] = useState('');
     const [text, setText] = useState('');
     const [selectedImage, setSelectedImage] = useState<any>(null);
 
