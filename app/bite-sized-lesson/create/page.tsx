@@ -1,10 +1,8 @@
 'use client';
 import { Button } from '@/app/components/Button';
 import { useState } from 'react';
-import { ImageModal, TextModal } from './content-modal';
 
 const CreatePage = () => {
-    const [isModalOpen, setModalOpen] = useState(false);
     const [lessonTitle, setLessonTitle] = useState('');
     const [text, setText] = useState('');
     const [selectedImage, setSelectedImage] = useState<any>(null);
@@ -25,9 +23,6 @@ const CreatePage = () => {
         }
     }
 
-
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
 
     const handleTitleChange = (event: any) => {
         event.preventDefault();
@@ -50,18 +45,18 @@ const CreatePage = () => {
                 <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow transition sticky top-0 md:top-4`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
-                        <TextModalButton isOpen={isModalOpen} openModal={openModal} onClose={closeModal} onTextareaChange={handleTextareaChange} />
-                        <ImageModalButton isOpen={isModalOpen} openModal={openModal} onClose={closeModal} onImageUpload={handleImageChange} selectedImage={selectedImage} />
-                        <QuizModalButton />
-                        <CodeSandboxModalButton />
+                        <TextBlockButton />
+                        <ImageBlockButton />
+                        <QuizBlockButton />
+                        <CodeSandboxBlockButton />
                     </div>
                 </div>
 
                 {/* Right Side - Live Preview */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-                    <div className="bg-white dark:bg-gray-700 p-4 rounded shadow h-full">
-                        <LessonPreview title={lessonTitle} text={text} />
+                    <div className="bg-white dark:bg-neutral-700 p-4 rounded shadow h-full">
+                        <LessonPreview />
                     </div>
                 </div>
             </div>
@@ -70,11 +65,11 @@ const CreatePage = () => {
 };
 
 
-const LessonPreview = ({ title, text }: { title: string, text: string }) => {
+const LessonPreview = () => {
     return (
         <>
-            <h1 className="text-4xl">{title}</h1>
-            <p>{text}</p>
+            <h1 className="text-4xl">Lesson Canvas</h1>
+            <p>Your Lesson</p>
         </>
     )
 }
@@ -96,11 +91,11 @@ const TitleInput = ({ title, onTitleChange }: any) => {
 }
 
 
-const TextModalButton = ({ isOpen, openModal, onClose, onTextareaChange }: any) => {
+const TextBlockButton = () => {
     return (
         <>
             {/* Text Button */}
-            <Button className="" onClick={openModal}>
+            <Button className="">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -119,29 +114,26 @@ const TextModalButton = ({ isOpen, openModal, onClose, onTextareaChange }: any) 
                 {/* show button name, except on small screens */}
                 <span className='hidden sm:inline md:inline ms-1'>Text</span>
             </Button>
-
-            {isOpen && <TextModal onClose={onClose} onTextareaChange={onTextareaChange} />}
         </>
     )
 }
 
-const ImageModalButton = ({ isOpen, openModal, onClose, onImageUpload, selectedImage }: any) => {
+const ImageBlockButton = () => {
     return (
         <>
             {/* Images Button */}
-            <Button className="" onClick={openModal}>
+            <Button className="">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                 </svg>
                 {/* show button name, except on small screens */}
                 <span className='hidden sm:inline md:inline ms-2'>Image</span>
             </Button>
-            {isOpen && <ImageModal onClose={onClose} onImageUpload={onImageUpload} selectedImage={selectedImage} />}
         </>
     )
 }
 
-const QuizModalButton = () => {
+const QuizBlockButton = () => {
     return (
         <>
             {/* Quizzes Button */}
@@ -157,7 +149,7 @@ const QuizModalButton = () => {
 }
 
 
-const CodeSandboxModalButton = () => {
+const CodeSandboxBlockButton = () => {
     return (
         <>
             {/* Code Sandbox Button */}
