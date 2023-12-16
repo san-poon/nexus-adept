@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@/app/components/Button';
 import { useState } from 'react';
+import { TextBlock } from './content-blocks';
 
 const CreatePage = () => {
     const [lessonTitle, setLessonTitle] = useState('');
@@ -42,7 +43,7 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row h-screen`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-800 rounded shadow transition sticky top-0 md:top-4`}>
+                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
                         <TextBlockButton />
@@ -55,7 +56,7 @@ const CreatePage = () => {
                 {/* Right Side - Live Preview */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-                    <div className="bg-white dark:bg-neutral-700 p-4 rounded shadow h-full">
+                    <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
                         <LessonPreview />
                     </div>
                 </div>
@@ -70,6 +71,7 @@ const LessonPreview = () => {
         <>
             <h1 className="text-4xl">Lesson Canvas</h1>
             <p>Your Lesson</p>
+            <TextBlock />
         </>
     )
 }
