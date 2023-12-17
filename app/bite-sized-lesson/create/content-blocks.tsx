@@ -2,10 +2,14 @@
 
 export const TextBlock = () => {
     return (
-        <div className="border-zinc-200 bg-slate-300 rounded shadow">
-            <textarea className=" h-40 w-full rounded shadow">
-                Your text content
+        <>
+            <textarea
+                className=" w-full rounded shadow p-2 md:p-4 bg-inherit hover:dark:bg-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-zinc-200"
+                placeholder="Your text content"
+            >
+
             </textarea>
-        </div>
+        </>
+
     )
 }
