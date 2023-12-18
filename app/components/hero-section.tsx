@@ -16,9 +16,14 @@ const HeroComponent = () => {
                     Welcome to the vibrant town square of learning and creation.
                 </p>
                 <div className="flex flex-col items-center mb-4">
-                    <Link href="/quiz/mcqs/create" title="Create quiz, play and learn">
+                    <Link href="/quiz/mcqs/create" title="Create quizz">
                         <Button className="bg-white dark:bg-neutral-800 text-blue-500 px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition duration-300">
-                            Create
+                            Create Quiz
+                        </Button>
+                    </Link>
+                    <Link href="/bite-sized-lesson/create" title="Create course lesson and get paid">
+                        <Button className="bg-white dark:bg-neutral-800 text-blue-500 px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 hover:text-white transition duration-300">
+                            Create Lesson
                         </Button>
                     </Link>
                     <Link href="/quiz/mcqs/play" title="Play Javascript quizzes">
