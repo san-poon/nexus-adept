@@ -1,10 +1,6 @@
 import { Button } from "@/app/components/Button";
 
-const ContentModal = ({ isOpen, onClose, modalType, ...rest }: any) => {
-    if (!isOpen) {
-        return null;
-    }
-
+const Modal = ({ onClose, children }: any) => {
     return (
         <>
             <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-75 flex">
@@ -19,6 +15,7 @@ const ContentModal = ({ isOpen, onClose, modalType, ...rest }: any) => {
 
                     {/* Content */}
                     <div>
+                        {children}
                     </div>
 
                     {/* Footer */}
@@ -31,13 +28,18 @@ const ContentModal = ({ isOpen, onClose, modalType, ...rest }: any) => {
     )
 }
 
-export const TextModal = () => {
+export const TextModal = ({ onClose }: any) => {
     return (
-        <>
-            <textarea>This is a textarea that is going to be lit on fire {text}</textarea>
-        </>
+        <Modal onClose={onClose}>
+            <textarea />
+        </Modal>
     )
 }
 
-
-export default ContentModal;
+export const ImageModal = ({ onClose }: any) => {
+    return (
+        <Modal onClose={onClose}>
+            <h3>This is where Image input will be implemented</h3>
+        </Modal>
+    )
+}
