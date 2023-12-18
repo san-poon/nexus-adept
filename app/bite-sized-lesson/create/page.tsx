@@ -119,8 +119,7 @@ const TextModalButton = ({ isOpen, openModal, onClose, onTextareaChange }: any) 
                 {/* show button name, except on small screens */}
                 <span className='hidden sm:inline md:inline ms-1'>Text</span>
             </Button>
-
-            {isOpen && <TextModal onClose={onClose} onTextareaChange={onTextareaChange} />}
+            <TextModal isOpen={isOpen} openModal={openModal} onClose={onClose} onTextareaChange={onTextareaChange} />
         </>
     )
 }
@@ -136,7 +135,7 @@ const ImageModalButton = ({ isOpen, openModal, onClose, onImageUpload, selectedI
                 {/* show button name, except on small screens */}
                 <span className='hidden sm:inline md:inline ms-2'>Image</span>
             </Button>
-            {isOpen && <ImageModal onClose={onClose} onImageUpload={onImageUpload} selectedImage={selectedImage} />}
+            <ImageModal isOpen={isOpen} openModal={openModal} onClose={onClose} onImageUpload={onImageUpload} selectedImage={selectedImage} />
         </>
     )
 }

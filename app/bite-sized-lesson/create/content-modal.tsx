@@ -1,7 +1,11 @@
 import { Button } from "@/app/components/Button";
 import Image from "next/image";
 
-const ContentModal = ({ onClose, children }: any) => {
+const ContentModal = ({ isOpen, onClose, children }: any) => {
+    if (!isOpen) {
+        return null;
+    }
+
     return (
         <>
             <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-75 flex">
@@ -29,20 +33,20 @@ const ContentModal = ({ onClose, children }: any) => {
     )
 }
 
-export const TextModal = ({ onClose, onTextareaChange }: any) => {
+export const TextModal = ({ isOpen, onClose, onTextareaChange }: any) => {
     return (
         <>
-            <ContentModal onClose={onClose}>
+            <ContentModal onClose={onClose} isOpen={isOpen}>
                 <textarea onChange={onTextareaChange}>This is a textarea that is going to be lit</textarea>
             </ContentModal>
         </>
     )
 }
 
-export const ImageModal = ({ onClose, onImageUpload, selectedImage }: any) => {
+export const ImageModal = ({ isOpen, onClose, onImageUpload, selectedImage }: any) => {
 
     return (
-        <ContentModal onClose={onClose}>
+        <ContentModal onClose={onClose} isOpen={isOpen}>
             {/* Image Upload Form */}
             <div className="flex flex-col items-center space-y-4">
                 {/* Image Preview */}
