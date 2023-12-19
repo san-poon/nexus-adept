@@ -1,4 +1,12 @@
+'use client';
+
 import { Button } from "@/app/components/Button";
+import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+
+const generateUniqueId = () => {
+    return uuidv4();
+}
 
 const Modal = ({ onClose, children }: any) => {
     return (
@@ -29,9 +37,25 @@ const Modal = ({ onClose, children }: any) => {
 }
 
 export const TextModal = ({ onClose }: any) => {
+    const [inputText, setInputText] = useState('');
+
+    const handleTextInputChange = (e: any) => {
+        e.preventDefault();
+        setInputText(e.target.value);
+    }
+
+    const updatedContent = {
+        id: generateUniqueId(),
+        contentType: 'text',
+        content: inputText
+    };
+
+    const handleSaveClick = () => {
+        onClose(updatedContent);
+    }
     return (
-        <Modal onClose={onClose}>
-            <textarea />
+        <Modal onClose={handleSaveClick}>
+            <textarea onChange={handleTextInputChange} />
         </Modal>
     )
 }

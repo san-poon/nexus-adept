@@ -20,8 +20,14 @@ const CreatePage = () => {
     const handleModalButtonClick = (modalType: any) => {
         setActiveModal(modalType);
     }
-    // Function to close the active modal
-    const closeModal = () => {
+    // Function to close the active modal and save the user input
+    const closeModal = (updatedContent: any) => {
+        // Save user input first
+        setLessonContent([
+            ...lessonContent,
+            updatedContent
+        ]);
+        // Close the modal
         setActiveModal(null);
     }
 
@@ -61,7 +67,7 @@ const CreatePage = () => {
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-gray-700 p-4 rounded shadow h-full">
-                        <LessonPreview title={lessonTitle} />
+                        <LessonPreview title={lessonTitle} lessonContent={lessonContent} />
                     </div>
                 </div>
             </div>
@@ -70,10 +76,15 @@ const CreatePage = () => {
 };
 
 
-const LessonPreview = ({ title }: { title: string }) => {
+const LessonPreview = ({ title, lessonContent }: { title: string, lessonContent: any }) => {
     return (
         <>
-            <h1 className="text-4xl">{title}</h1>
+            <h1 className="text-2xl md:text-4xl">{title}</h1>
+            {lessonContent.map((item: any) => (
+                <div key={item.id}>
+                    {item.content}
+                </div>
+            ))}
         </>
     )
 }
