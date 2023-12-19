@@ -3,6 +3,11 @@ import { useState } from 'react';
 import { TextModalButton, ImageModalButton, QuizModalButton, CodeSandboxModalButton } from './components/modal-buttons';
 import { TitleInput } from './components/lesson-title';
 import { ImageModal, TextModal } from './content-modal';
+import { v4 as uuidv4 } from 'uuid';
+
+const generateUniqueId = () => {
+    return uuidv4();
+}
 
 const CreatePage = () => {
     const [lessonContent, setLessonContent] = useState([
@@ -20,7 +25,7 @@ const CreatePage = () => {
     const handleModalButtonClick = (modalType: any) => {
         setActiveModal(modalType);
     }
-    // Function to close the active modal and save the user input
+    // Function to close the active modal and save the user input through new creatio/update
     const closeModal = (updatedContent: any) => {
         // Save user input first
         setLessonContent([
@@ -37,7 +42,11 @@ const CreatePage = () => {
         setLessonTitle(event.target.value);
     }
 
-
+    const newTextContent = {
+        id: generateUniqueId(),
+        type: 'text',
+        content: ''
+    };
 
     return (
         <>
@@ -56,7 +65,7 @@ const CreatePage = () => {
                         <CodeSandboxModalButton />
                     </div>
 
-                    {activeModal === 'text' && <TextModal onClose={closeModal} />}
+                    {activeModal === 'text' && <TextModal onClose={closeModal} content={newTextContent} />}
                     {activeModal === 'image' && <ImageModal onClose={closeModal} />}
                     {activeModal === 'code'}
                     {activeModal === 'quiz'}
@@ -81,8 +90,8 @@ const LessonPreview = ({ title, lessonContent }: { title: string, lessonContent:
         <>
             <h1 className="text-2xl md:text-4xl">{title}</h1>
             {lessonContent.map((item: any) => (
-                <div key={item.id}>
-                    {item.content}
+                <div key={item.id} onClick={() => <TextModal />}>
+                    {item.content}{item.contentType}
                 </div>
             ))}
         </>

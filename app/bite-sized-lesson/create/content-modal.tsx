@@ -36,7 +36,7 @@ const Modal = ({ onClose, children }: any) => {
     )
 }
 
-export const TextModal = ({ onClose }: any) => {
+export const TextModal = ({ onClose, newContent }: any) => {
     const [inputText, setInputText] = useState('');
 
     const handleTextInputChange = (e: any) => {
@@ -44,14 +44,8 @@ export const TextModal = ({ onClose }: any) => {
         setInputText(e.target.value);
     }
 
-    const updatedContent = {
-        id: generateUniqueId(),
-        contentType: 'text',
-        content: inputText
-    };
-
     const handleSaveClick = () => {
-        onClose(updatedContent);
+        onClose({ ...newContent, content: inputText });
     }
     return (
         <Modal onClose={handleSaveClick}>
