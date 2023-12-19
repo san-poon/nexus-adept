@@ -5,10 +5,16 @@ import { TitleInput } from './components/lesson-title';
 import { ImageModal, TextModal } from './content-modal';
 
 const CreatePage = () => {
+    const [lessonContent, setLessonContent] = useState([
+        {
+            id: 0,
+            contentType: '',
+            content: ''
+        }
+    ]);
 
     const [activeModal, setActiveModal] = useState(null);
     const [lessonTitle, setLessonTitle] = useState('');
-
 
     // Function to handle button click to set the active modal
     const handleModalButtonClick = (modalType: any) => {
