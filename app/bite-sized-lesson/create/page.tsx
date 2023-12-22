@@ -12,7 +12,11 @@ interface lessonContentItem {
 
 const CreatePage = () => {
     const [lessonTitle, setLessonTitle] = useState('');
-    const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([]);
+    const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
+        id: 1,
+        contentType: 'text',
+        value: 'Introduction here'
+    }]);
 
     // Image handlers
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -70,7 +74,7 @@ const CreatePage = () => {
                 {/* Title Input */}
                 <TitleInput title={lessonTitle} onTitleChange={handleTitleChange} />
             </div>
-            <div className={`flex flex-col md:flex-row h-screen`}>
+            <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
                 <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
                     {/* Content Buttons */}
@@ -92,7 +96,7 @@ const CreatePage = () => {
                 {/* Right Side - Live Preview */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-                    <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
+                    <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
                             <div key={item.id} className=" relative group m-2 z-40">
