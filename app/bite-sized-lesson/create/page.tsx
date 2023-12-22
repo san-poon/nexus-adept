@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton } from './components/button-with-logo';
 import { Button } from '@/app/components/Button';
 import Image from 'next/image';
+import Textarea from './components/textarea';
 
 interface lessonContentItem {
     id: number;
@@ -101,7 +102,7 @@ const CreatePage = () => {
                         {lessonContent.map((item) => (
                             <div key={item.id} className=" relative group md:m-2 z-40">
                                 {item.contentType === 'text' && (
-                                    <textarea
+                                    <Textarea
                                         rows={4}
                                         className="h-auto rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none"
                                         placeholder='Your paragraph or... Choose from menu'
