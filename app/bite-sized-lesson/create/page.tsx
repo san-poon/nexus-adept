@@ -1,13 +1,39 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeSandboxBlockButton, QuizBlockButton } from './components/button-with-logo';
 import { Button } from '@/app/components/Button';
+import Image from 'next/image';
+
+interface lessonContentItem {
+    id: number;
+    contentType: 'text' | 'quiz' | 'image' | 'code';
+    value: string | object | any[];
+}
 
 const CreatePage = () => {
     const [lessonTitle, setLessonTitle] = useState('');
-    const [lessonContent, setLessonContent] = useState([
-        { id: 1, contentType: 'text', value: '' }
-    ]);
+    const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([]);
+
+    // Image handlers
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageUpload = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            let id = lessonContent.length + 1;
+            setLessonContent([
+                ...lessonContent,
+                { id: id, contentType: 'image', value: imageUrl }
+            ]);
+        }
+    };
 
     // Handle changes in lesson title input
     const handleTitleChange = (event: any) => {
@@ -16,10 +42,10 @@ const CreatePage = () => {
     }
 
     // Handle update in lessonContent
-    const handleAddContentField = (contentType: string) => {
+    const handleAddContentField = () => {
         const newField = {
             id: lessonContent.length + 1,
-            contentType: contentType,
+            contentType: 'text',
             value: ''
         }
 
@@ -50,7 +76,13 @@ const CreatePage = () => {
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
                         <TextBlockButton onClick={handleAddContentField} />
-                        <ImageBlockButton />
+                        <ImageBlockButton onClick={handleImageUpload} />
+                        <input
+                            type='file'
+                            accept='image/*'
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            className=" hidden" />
                         <QuizBlockButton />
                         <CodeSandboxBlockButton />
                     </div>
@@ -61,17 +93,23 @@ const CreatePage = () => {
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
                         <TitlePreview title={lessonTitle} />
-                        {lessonContent.map((field) => (
-                            <div key={field.id} className=" relative group m-2">
-                                <textarea
-                                    className=" max-h-32 h-24 rounded w-full p-2"
-                                    id={field.contentType}
-                                    name={field.contentType}
-                                    value={field.value}
-                                    onChange={(e) => handleUpdateContent(field.id, e.target.value)}
-                                />
+                        {lessonContent.map((item) => (
+                            <div key={item.id} className=" relative group m-2">
+                                {item.contentType === 'text' && (
+                                    <textarea
+                                        className=" max-h-32 h-24 rounded w-full p-2"
+                                        id={item.contentType}
+                                        placeholder='Write here'
+                                        name={item.contentType}
+                                        value={item.value}
+                                        onChange={(e) => handleUpdateContent(item.id, e.target.value)}
+                                    />
+                                )}
+                                {item.contentType === 'image' && (
+                                    <Image src={item.value} width={350} height={350} alt='image' />
+                                )}
                                 <Button className='absolute top-0 right-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100'
-                                    onClick={() => handleDeleteContent(field.id)}>
+                                    onClick={() => handleDeleteContent(item.id)}>
                                     x
                                 </Button>
                             </div>
