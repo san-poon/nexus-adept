@@ -26,7 +26,7 @@ const CreatePage = () => {
         setLessonContent([...lessonContent, newField]);
     }
 
-    const handleUpdateContent = (id, value) => {
+    const handleUpdateContent = (id: number, value: any) => {
         setLessonContent((prevContent) =>
             prevContent.map((field) =>
                 field.id === id ? { ...field, value } : field
@@ -62,7 +62,7 @@ const CreatePage = () => {
                     <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((field) => (
-                            <div key={field.id} className="relative group m-2">
+                            <div key={field.id} className=" relative group m-2">
                                 <textarea
                                     className=" max-h-32 h-24 rounded w-full p-2"
                                     id={field.contentType}
