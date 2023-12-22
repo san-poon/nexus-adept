@@ -88,7 +88,7 @@ const CreatePage = () => {
                             onChange={handleFileChange}
                             className=" hidden" />
                         <QuizBlockButton />
-                        <CodeSandboxBlockButton />
+                        <CodeBlockButton />
                     </div>
 
                 </div>
