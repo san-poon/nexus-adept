@@ -58,7 +58,7 @@ export const QuizBlockButton = () => {
 }
 
 
-export const CodeSandboxBlockButton = () => {
+export const CodeBlockButton = () => {
     return (
         <>
             {/* Code Sandbox Button */}

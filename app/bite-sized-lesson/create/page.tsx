@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeSandboxBlockButton, QuizBlockButton } from './components/button-with-logo';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton } from './components/button-with-logo';
 import { Button } from '@/app/components/Button';
 import Image from 'next/image';
 
@@ -93,7 +93,7 @@ const CreatePage = () => {
 
                 </div>
 
-                {/* Right Side - Live Preview */}
+                {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow">
