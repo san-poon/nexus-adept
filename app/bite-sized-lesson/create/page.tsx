@@ -15,7 +15,7 @@ const CreatePage = () => {
     const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
         id: 1,
         contentType: 'text',
-        value: 'Introduction here'
+        value: 'Introduce...Why this lesson exist.'
     }]);
 
     // Image handlers
@@ -96,15 +96,15 @@ const CreatePage = () => {
                 {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-                    <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow">
+                    <div className="bg-white dark:bg-neutral-800 md:p-2 rounded shadow">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
-                            <div key={item.id} className=" relative group m-2 z-40">
+                            <div key={item.id} className=" relative group md:m-2 z-40">
                                 {item.contentType === 'text' && (
                                     <textarea
-                                        className=" max-h-32 h-24 rounded w-full p-2"
-                                        id={item.contentType}
-                                        placeholder='Write here'
+                                        rows={4}
+                                        className="h-auto rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none"
+                                        placeholder='Your paragraph or... Choose from menu'
                                         name={item.contentType}
                                         value={item.value}
                                         onChange={(e) => handleUpdateContent(item.id, e.target.value)}
