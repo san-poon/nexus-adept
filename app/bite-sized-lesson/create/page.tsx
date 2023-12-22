@@ -7,7 +7,7 @@ import Image from 'next/image';
 interface lessonContentItem {
     id: number;
     contentType: 'text' | 'quiz' | 'image' | 'code';
-    value: string | object | any[];
+    value: any;
 }
 
 const CreatePage = () => {
@@ -43,7 +43,7 @@ const CreatePage = () => {
 
     // Handle update in lessonContent
     const handleAddContentField = () => {
-        const newField = {
+        const newField: lessonContentItem = {
             id: lessonContent.length + 1,
             contentType: 'text',
             value: ''
@@ -72,7 +72,7 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row h-screen`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4`}>
+                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
                         <TextBlockButton onClick={handleAddContentField} />
@@ -95,7 +95,7 @@ const CreatePage = () => {
                     <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
-                            <div key={item.id} className=" relative group m-2">
+                            <div key={item.id} className=" relative group m-2 z-40">
                                 {item.contentType === 'text' && (
                                     <textarea
                                         className=" max-h-32 h-24 rounded w-full p-2"
