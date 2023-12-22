@@ -1,44 +1,4 @@
 'use client';
-<<<<<<< HEAD
-import { useState } from 'react';
-import { TextModalButton, ImageModalButton, QuizModalButton, CodeSandboxModalButton } from './components/modal-buttons';
-import { TitleInput } from './components/lesson-title';
-import { ImageModal, TextModal } from './content-modal';
-import { v4 as uuidv4 } from 'uuid';
-
-const generateUniqueId = () => {
-    return uuidv4();
-}
-
-const CreatePage = () => {
-    const [lessonContent, setLessonContent] = useState([
-        {
-            id: 0,
-            contentType: '',
-            content: ''
-        }
-    ]);
-
-    const [activeModal, setActiveModal] = useState(null);
-    const [lessonTitle, setLessonTitle] = useState('');
-
-    // Function to handle button click to set the active modal
-    const handleModalButtonClick = (modalType: any) => {
-        setActiveModal(modalType);
-    }
-    // Function to close the active modal and save the user input through new creatio/update
-    const closeModal = (updatedContent: any) => {
-        // Save user input first
-        setLessonContent([
-            ...lessonContent,
-            updatedContent
-        ]);
-        // Close the modal
-        setActiveModal(null);
-    }
-
-    // function to handle changes in lesson title
-=======
 import { useState, useRef } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeSandboxBlockButton, QuizBlockButton } from './components/button-with-logo';
 import { Button } from '@/app/components/Button';
@@ -76,19 +36,11 @@ const CreatePage = () => {
     };
 
     // Handle changes in lesson title input
->>>>>>> feature/create-lesson-ui-interactive
     const handleTitleChange = (event: any) => {
         event.preventDefault();
         setLessonTitle(event.target.value);
     }
 
-<<<<<<< HEAD
-    const newTextContent = {
-        id: generateUniqueId(),
-        type: 'text',
-        content: ''
-    };
-=======
     // Handle update in lessonContent
     const handleAddContentField = () => {
         const newField = {
@@ -111,7 +63,6 @@ const CreatePage = () => {
     const handleDeleteContent = (id: number) => {
         setLessonContent((prevContent) => prevContent.filter((item) => item.id !== id));
     }
->>>>>>> feature/create-lesson-ui-interactive
 
     return (
         <>
@@ -124,12 +75,6 @@ const CreatePage = () => {
                 <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
-<<<<<<< HEAD
-                        <TextModalButton onClick={() => handleModalButtonClick('text')} />
-                        <ImageModalButton onClick={() => handleModalButtonClick('image')} />
-                        <QuizModalButton />
-                        <CodeSandboxModalButton />
-=======
                         <TextBlockButton onClick={handleAddContentField} />
                         <ImageBlockButton onClick={handleImageUpload} />
                         <input
@@ -140,23 +85,13 @@ const CreatePage = () => {
                             className=" hidden" />
                         <QuizBlockButton />
                         <CodeSandboxBlockButton />
->>>>>>> feature/create-lesson-ui-interactive
                     </div>
-
-                    {activeModal === 'text' && <TextModal onClose={closeModal} content={newTextContent} />}
-                    {activeModal === 'image' && <ImageModal onClose={closeModal} />}
-                    {activeModal === 'code'}
-                    {activeModal === 'quiz'}
 
                 </div>
 
                 {/* Right Side - Live Preview */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-<<<<<<< HEAD
-                    <div className="bg-white dark:bg-gray-700 p-4 rounded shadow h-full">
-                        <LessonPreview title={lessonTitle} lessonContent={lessonContent} />
-=======
                     <div className="bg-white dark:bg-neutral-800 p-4 rounded shadow h-full">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
@@ -180,7 +115,6 @@ const CreatePage = () => {
                                 </Button>
                             </div>
                         ))}
->>>>>>> feature/create-lesson-ui-interactive
                     </div>
                 </div>
             </div>
@@ -189,29 +123,14 @@ const CreatePage = () => {
 };
 
 
-<<<<<<< HEAD
-const LessonPreview = ({ title, lessonContent }: { title: string, lessonContent: any }) => {
-    return (
-        <>
-            <h1 className="text-2xl md:text-4xl">{title}</h1>
-            {lessonContent.map((item: any) => (
-                <div key={item.id} onClick={() => <TextModal />}>
-                    {item.content}{item.contentType}
-                </div>
-            ))}
-=======
 const TitlePreview = ({ title }: any) => {
     return (
         <>
             <h1 className=" text-2xl lg:text-4xl">{title}</h1>
->>>>>>> feature/create-lesson-ui-interactive
         </>
     )
 }
 
-<<<<<<< HEAD
-
-=======
 const TitleInput = ({ title, onTitleChange }: any) => {
     return (
         <>
@@ -227,7 +146,6 @@ const TitleInput = ({ title, onTitleChange }: any) => {
         </>
     );
 }
->>>>>>> feature/create-lesson-ui-interactive
 
 
 export default CreatePage;
