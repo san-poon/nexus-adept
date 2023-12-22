@@ -10,9 +10,13 @@
     "seed": "node -r dotenv/config ./scripts/seed-jsQuizzes.js"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@types/mdx": "^2.0.10",
     "@types/uuid": "^9.0.7",
     "@vercel/postgres": "^0.5.1",
     "class-variance-authority": "^0.7.0",
