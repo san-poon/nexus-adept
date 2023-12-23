@@ -97,14 +97,14 @@ const CreatePage = () => {
                 {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
                     {/* Live Preview Goes Here */}
-                    <div className="bg-white dark:bg-neutral-800 md:p-2 rounded shadow">
+                    <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
-                            <div key={item.id} className=" relative group md:m-2 z-40">
+                            <div key={item.id} className=" relative group md:m-2 z-40 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                 {item.contentType === 'text' && (
                                     <Textarea
                                         rows={5}
-                                        className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none"
+                                        className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                         placeholder='Your paragraph or... Choose from menu'
                                         name={item.contentType}
                                         value={item.value}
@@ -114,10 +114,11 @@ const CreatePage = () => {
                                 {item.contentType === 'image' && (
                                     <Image src={item.value} width={350} height={350} alt='image' />
                                 )}
-                                <Button className='absolute top-0 right-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 m-1'
+                                <Button className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-sm h-6 px-2 py-2 m-1'
                                     onClick={() => handleDeleteContent(item.id)}>
                                     x
                                 </Button>
+
                             </div>
                         ))}
                     </div>
