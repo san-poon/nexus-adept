@@ -100,7 +100,7 @@ const CreatePage = () => {
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
-                            <div key={item.id} className=" relative group md:m-2 z-40 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
+                            <div key={item.id} className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                 {item.contentType === 'text' && (
                                     <Textarea
                                         rows={5}
@@ -114,11 +114,16 @@ const CreatePage = () => {
                                 {item.contentType === 'image' && (
                                     <Image src={item.value} width={350} height={350} alt='image' />
                                 )}
-                                <Button className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-sm h-6 px-2 py-2 m-1'
-                                    onClick={() => handleDeleteContent(item.id)}>
-                                    x
-                                </Button>
+                                <div className='relative group/toolbar'>
+                                    <Button className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
+                                        onClick={() => handleDeleteContent(item.id)}>
+                                        x
+                                    </Button>
+                                    <div className='opacity-0 text-xs rounded-md p-1 absolute -bottom-6 -right-6 transform -translate-x-1/2 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10'>
+                                        Delete
+                                    </div>
 
+                                </div>
                             </div>
                         ))}
                     </div>
