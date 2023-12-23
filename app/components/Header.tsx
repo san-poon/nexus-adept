@@ -19,7 +19,7 @@ export default function Header() {
                 </Link>
                 {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
-                    <Link href="/quiz/mcqs/create" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Create</Button></Link>
+                    <Link href="/bite-sized-lesson/create" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Create</Button></Link>
                     <Link href="/quiz/mcqs/play" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Play</Button></Link>
                     <Link href="/portfolio" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Portfolio</Button></Link>
                 </nav>
