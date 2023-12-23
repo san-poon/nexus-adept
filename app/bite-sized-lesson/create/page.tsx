@@ -41,7 +41,7 @@ const CreatePage = () => {
     };
 
     // Handle changes in lesson title input
-    const handleTitleChange = (event: any) => {
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         setLessonTitle(event.target.value);
     }
@@ -108,7 +108,7 @@ const CreatePage = () => {
                                         placeholder='Your paragraph or... Choose from menu'
                                         name={item.contentType}
                                         value={item.value}
-                                        onChange={(e) => handleUpdateContent(item.id, e.target.value)}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
                                     />
                                 )}
                                 {item.contentType === 'image' && (
