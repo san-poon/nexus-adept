@@ -1,7 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton } from './components/button-with-logo';
-import { Button } from '@/app/components/Button';
 import Image from 'next/image';
 import Textarea from './components/textarea';
 
@@ -46,8 +45,8 @@ const CreatePage = () => {
         setLessonTitle(event.target.value);
     }
 
-    // Handle update in lessonContent
-    const handleAddContentField = () => {
+    // Handle text content addition in lessonContent
+    const handleAddTextField = () => {
         const newField: lessonContentItem = {
             id: lessonContent.length + 1,
             contentType: 'text',
@@ -77,10 +76,10 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/3 md:h-3/4 p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
+                <div className={` flex justify-center items-center w-full md:w-1/5 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
-                        <TextBlockButton onClick={handleAddContentField} />
+                        <TextBlockButton onClick={handleAddTextField} />
                         <ImageBlockButton onClick={handleImageUpload} />
                         <input
                             type='file'
@@ -95,7 +94,7 @@ const CreatePage = () => {
                 </div>
 
                 {/* Right Side - Input Fields/Forms */}
-                <div className={`flex-shrink-0 w-full md:w-2/3 px-4 overflow-y-auto`}>
+                <div className={`flex-shrink-0 w-full md:w-4/5 lg:w-2/3 px-4`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
@@ -103,7 +102,7 @@ const CreatePage = () => {
                             <div key={item.id} className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                 {item.contentType === 'text' && (
                                     <Textarea
-                                        rows={5}
+                                        rows={6}
                                         className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                         placeholder='Your paragraph or... Choose from menu'
                                         name={item.contentType}
