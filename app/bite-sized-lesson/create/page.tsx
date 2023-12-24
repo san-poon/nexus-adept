@@ -76,9 +76,9 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/5 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
+                <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
                     {/* Content Buttons */}
-                    <div className="flex md:flex-col  spacek-y-2 md:space-y-6 space-x-2 justify-center items-baseline">
+                    <div className="flex md:flex-col md:space-y-6 justify-center">
                         <TextBlockButton onClick={handleAddTextField} />
                         <ImageBlockButton onClick={handleImageUpload} />
                         <input
@@ -94,7 +94,7 @@ const CreatePage = () => {
                 </div>
 
                 {/* Right Side - Input Fields/Forms */}
-                <div className={`flex-shrink-0 w-full md:w-4/5 lg:w-2/3 px-4`}>
+                <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
@@ -116,7 +116,7 @@ const CreatePage = () => {
                                 <div className='relative group/toolbar'>
                                     <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
                                         onClick={() => handleDeleteContent(item.id)} />
-                                    <div className='opacity-0 text-xs rounded-md p-1 absolute -bottom-6 -right-6 transform -translate-x-1/2 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10'>
+                                    <div className='opacity-0 text-xs p-1 absolute -bottom-6 -right-0 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>
                                         Delete
                                     </div>
 
