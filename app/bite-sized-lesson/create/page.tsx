@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton } from './components/button-with-logo';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton } from './components/button-with-logo';
 import { Button } from '@/app/components/Button';
 import Image from 'next/image';
 import Textarea from './components/textarea';
@@ -115,10 +115,8 @@ const CreatePage = () => {
                                     <Image src={item.value} width={350} height={350} alt='image' />
                                 )}
                                 <div className='relative group/toolbar'>
-                                    <Button className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
-                                        onClick={() => handleDeleteContent(item.id)}>
-                                        x
-                                    </Button>
+                                    <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
+                                        onClick={() => handleDeleteContent(item.id)} />
                                     <div className='opacity-0 text-xs rounded-md p-1 absolute -bottom-6 -right-6 transform -translate-x-1/2 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10'>
                                         Delete
                                     </div>
