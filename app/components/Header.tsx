@@ -3,8 +3,14 @@ import Link from "next/link";
 import ModeToggle from "./theme-toggler";
 import Logo from "./logo";
 import { Button } from "./Button";
+import { useState } from "react";
 
 export default function Header() {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+
+    const handleMenuClick = () => {
+        setMenuOpen(!isMenuOpen);
+    }
     return (
         <header className={`w-full z-10 top-0 p-4`}>
             <div className="container mx-auto flex items-center justify-between my-1">
@@ -28,11 +34,23 @@ export default function Header() {
                 <ModeToggle />
 
                 {/* Mobile menu button */}
-                <div className="md:hidden text-teal-500 hover:text-teal-300 cursor-pointer" onClick={() => { console.log('Mobile menu clicked') }}>
+                <div
+                    className="md:hidden text-teal-500 hover:text-teal-300 cursor-pointer relative"
+                    onClick={handleMenuClick}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
+                    {isMenuOpen && (
+                        <div className={`flex flex-col border-2 border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 rounded-lg p-2 px-4 absolute end-0 -bottom-24 z-10 transition-opacity duration-300
+                            ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+                        `}>
+                            <Link href="/bite-sized-lesson/create" className="">Create</Link>
+                            <Link href="/quiz/mcqs/play" className="">Play</Link>
+                            <Link href="/portfolio" className="">Portfolio</Link>
+                        </div>
+                    )}
                 </div>
+
 
             </div>
         </header >
