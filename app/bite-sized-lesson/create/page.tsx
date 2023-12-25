@@ -11,12 +11,18 @@ interface lessonContentItem {
 }
 
 const CreatePage = () => {
+    const [currentId, setCurrentId] = useState(1);
     const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
-        id: 1,
+        id: 0,
         contentType: 'text',
         value: 'Introduce...Why this lesson exist.'
     }]);
+
+    const generateUId = () => {
+        setCurrentId((prevID) => prevID + 1);
+        return currentId;
+    }
 
     // Image handlers
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +54,7 @@ const CreatePage = () => {
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
         const newField: lessonContentItem = {
-            id: lessonContent.length + 1,
+            id: generateUId(),
             contentType: 'text',
             value: ''
         }
