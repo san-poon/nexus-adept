@@ -2,8 +2,8 @@
 
 export default function Footer() {
     return (
-        <footer className="p-4">
-            <div className="container mx-auto text-center dark:bg-neutral-800 rounded-md p-4 z-50">
+        <footer className="">
+            <div className="container text-center dark:bg-neutral-900 border-t-2 dark:border-neutral-800 py-2">
                 <p className="text-xs">
                     &copy; 2023 PlayLearnForge.
                 </p>
