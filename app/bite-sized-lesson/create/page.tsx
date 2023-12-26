@@ -3,28 +3,26 @@ import { useState, useRef, useEffect } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton } from './components/button-with-logo';
 import Image from 'next/image';
 import Textarea from './components/textarea';
-import { Button } from '@/app/components/Button';
+import { v4 as uuidv4 } from 'uuid';
 
 interface lessonContentItem {
-    id: number;
+    id: string;
     contentType: 'text' | 'quiz' | 'image' | 'code';
     value: any;
 }
 
 const CreatePage = () => {
-    const [currentId, setCurrentId] = useState(1);
-    const [menuState, setMenuState] = useState<null | number>(null);
+    const [menuState, setMenuState] = useState<null | string>(null);
     const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
-        id: 0,
+        id: uuidv4(),
         contentType: 'text',
         value: 'Introduce...Why this lesson exist.'
     }]);
 
     const menuRef = useRef(null);
-
-    const handleMenuStateChange = (id: number) => setMenuState(id);
-
+    const handleMenuStateChange = (id: string) => setMenuState(id);
+    // Collapse menu when clicked outside the dedicated `menuRef`
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node)) {
@@ -39,11 +37,6 @@ const CreatePage = () => {
     }, [menuState]);
 
 
-    const generateUId = () => {
-        setCurrentId((prevID) => prevID + 1);
-        return currentId;
-    }
-
     // Image handlers
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -57,10 +50,9 @@ const CreatePage = () => {
         const file = e.target.files?.[0];
         if (file) {
             const imageUrl = URL.createObjectURL(file);
-            let id = lessonContent.length + 1;
             setLessonContent([
                 ...lessonContent,
-                { id: id, contentType: 'image', value: imageUrl }
+                { id: uuidv4(), contentType: 'image', value: imageUrl }
             ]);
         }
     };
@@ -74,7 +66,7 @@ const CreatePage = () => {
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
         const newField: lessonContentItem = {
-            id: generateUId(),
+            id: uuidv4(),
             contentType: 'text',
             value: ''
         }
@@ -82,7 +74,18 @@ const CreatePage = () => {
         setLessonContent([...lessonContent, newField]);
     }
 
-    const handleUpdateContent = (id: number, value: any) => {
+    // Handle insertion of text field
+    const handleInsertTextField = (index: number) => {
+        const newLessonContent = [...lessonContent];
+
+        newLessonContent.splice(index + 1, 0, {
+            id: uuidv4(),
+            contentType: 'text',
+            value: ''
+        });
+    };
+
+    const handleUpdateContent = (id: string, value: any) => {
         setLessonContent((prevContent) =>
             prevContent.map((field) =>
                 field.id === id ? { ...field, value } : field
@@ -90,7 +93,7 @@ const CreatePage = () => {
         )
     }
 
-    const handleDeleteContent = (id: number) => {
+    const handleDeleteContent = (id: string) => {
         setLessonContent((prevContent) => prevContent.filter((item) => item.id !== id));
     }
 
@@ -124,7 +127,7 @@ const CreatePage = () => {
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
-                        {lessonContent.map((item) => (
+                        {lessonContent.map((item, index) => (
                             <div key={item.id} className=''>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
@@ -153,11 +156,17 @@ const CreatePage = () => {
                                 <div ref={menuRef} className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
                                     <CreateButton onClick={() => handleMenuStateChange(item.id)} />
                                     {menuState === item.id && (
-                                        <ul className='absolute z-20 dark:bg-neutral-800'>
-                                            <li>Text</li>
-                                            <li>Image</li>
-                                            <li>Quiz</li>
-                                            <li>Code</li>
+                                        <ul className='absolute z-20 bg-neutral-200 dark:bg-neutral-800 rounded-lg'>
+                                            <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
+                                            <li><ImageBlockButton onClick={handleImageUpload} /></li>
+                                            <input
+                                                type='file'
+                                                accept='image/*'
+                                                ref={fileInputRef}
+                                                onChange={handleFileChange}
+                                                className=" hidden" />
+                                            <li><QuizBlockButton /></li>
+                                            <li><CodeBlockButton /></li>
                                         </ul>
                                     )}
                                 </div>

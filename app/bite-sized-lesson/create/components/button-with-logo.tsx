@@ -85,7 +85,7 @@ export const DeleteButton = ({ onClick, className }: { onClick: () => void, clas
     )
 }
 
-export const CreateButton = ({ onClick, ...rest }) => {
+export const CreateButton = ({ onClick, ...rest }: { onClick: () => void }) => {
     return (
         <Button {...rest} onClick={onClick}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
