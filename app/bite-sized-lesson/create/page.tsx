@@ -1,8 +1,9 @@
 'use client';
-import { useState, useRef } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton } from './components/button-with-logo';
+import { useState, useRef, useEffect } from 'react';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton } from './components/button-with-logo';
 import Image from 'next/image';
 import Textarea from './components/textarea';
+import { Button } from '@/app/components/Button';
 
 interface lessonContentItem {
     id: number;
@@ -12,12 +13,31 @@ interface lessonContentItem {
 
 const CreatePage = () => {
     const [currentId, setCurrentId] = useState(1);
+    const [menuState, setMenuState] = useState<null | number>(null);
     const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
         id: 0,
         contentType: 'text',
         value: 'Introduce...Why this lesson exist.'
     }]);
+
+    const menuRef = useRef(null);
+
+    const handleMenuStateChange = (id: number) => setMenuState(id);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node)) {
+                setMenuState(null);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuState]);
+
 
     const generateUId = () => {
         setCurrentId((prevID) => prevID + 1);
@@ -105,27 +125,41 @@ const CreatePage = () => {
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <TitlePreview title={lessonTitle} />
                         {lessonContent.map((item) => (
-                            <div key={item.id} className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
-                                {item.contentType === 'text' && (
-                                    <Textarea
-                                        rows={6}
-                                        className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
-                                        placeholder='Your paragraph or... Choose from menu'
-                                        name={item.contentType}
-                                        value={item.value}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
-                                    />
-                                )}
-                                {item.contentType === 'image' && (
-                                    <Image src={item.value} width={350} height={350} alt='image' />
-                                )}
-                                <div className='relative group/toolbar'>
-                                    <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
-                                        onClick={() => handleDeleteContent(item.id)} />
-                                    <div className='opacity-0 text-xs p-1 absolute -bottom-6 -right-0 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>
-                                        Delete
+                            <div key={item.id} className=''>
+                                <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
+                                    <div>
+                                        {item.contentType === 'text' && (
+                                            <Textarea
+                                                rows={2}
+                                                className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                placeholder='Your paragraph or... Choose from menu'
+                                                name={item.contentType}
+                                                value={item.value}
+                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
+                                            />
+                                        )}
+                                        {item.contentType === 'image' && (
+                                            <Image src={item.value} width={350} height={350} alt='image' />
+                                        )}
+                                        <div className='relative group/toolbar my-3'>
+                                            <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
+                                                onClick={() => handleDeleteContent(item.id)} />
+                                            <div className='opacity-0 text-xs p-1 absolute -bottom-6 -right-0 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>
+                                                Delete
+                                            </div>
+                                        </div>
                                     </div>
-
+                                </div>
+                                <div ref={menuRef} className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
+                                    <CreateButton onClick={() => handleMenuStateChange(item.id)} />
+                                    {menuState === item.id && (
+                                        <ul className='absolute z-20 dark:bg-neutral-800'>
+                                            <li>Text</li>
+                                            <li>Image</li>
+                                            <li>Quiz</li>
+                                            <li>Code</li>
+                                        </ul>
+                                    )}
                                 </div>
                             </div>
                         ))}
