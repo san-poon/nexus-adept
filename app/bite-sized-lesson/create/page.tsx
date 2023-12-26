@@ -5,27 +5,23 @@ import Image from 'next/image';
 import Textarea from './components/textarea';
 import { v4 as uuidv4 } from 'uuid';
 
-interface lessonContentItem {
-    id: string;
-    contentType: 'text' | 'quiz' | 'image' | 'code';
-    value: any;
-}
 
 const CreatePage = () => {
     const [menuState, setMenuState] = useState<null | string>(null);
     const [lessonTitle, setLessonTitle] = useState('');
-    const [lessonContent, setLessonContent] = useState<lessonContentItem[]>([{
+    const [lessonContent, setLessonContent] = useState([{
         id: uuidv4(),
         contentType: 'text',
         value: 'Introduce...Why this lesson exist.'
     }]);
 
-    const menuRef = useRef(null);
     const handleMenuStateChange = (id: string) => setMenuState(id);
     // Collapse menu when clicked outside the dedicated `menuRef`
+    const menuRef = useRef(null);
+    const triggerRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node)) {
+            if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node) && event.target !== triggerRef.current) {
                 setMenuState(null);
             }
         };
@@ -34,7 +30,7 @@ const CreatePage = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [menuState]);
+    }, [menuRef, triggerRef, menuState]);
 
 
     // Image handlers
@@ -65,7 +61,7 @@ const CreatePage = () => {
 
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
-        const newField: lessonContentItem = {
+        const newField = {
             id: uuidv4(),
             contentType: 'text',
             value: ''
@@ -76,13 +72,19 @@ const CreatePage = () => {
 
     // Handle insertion of text field
     const handleInsertTextField = (index: number) => {
-        const newLessonContent = [...lessonContent];
-
-        newLessonContent.splice(index + 1, 0, {
-            id: uuidv4(),
-            contentType: 'text',
-            value: ''
-        });
+        const insertAt = index + 1;
+        const nextLessonContent = [
+            // Items before the insertion point:
+            ...lessonContent.slice(0, insertAt),
+            // New item:
+            {
+                id: uuidv4(),
+                contentType: 'text',
+                value: ''
+            },
+            ...lessonContent.slice(insertAt)
+        ];
+        setLessonContent(nextLessonContent);
     };
 
     const handleUpdateContent = (id: string, value: any) => {
@@ -153,10 +155,10 @@ const CreatePage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div ref={menuRef} className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
+                                <div className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
                                     <CreateButton onClick={() => handleMenuStateChange(item.id)} />
                                     {menuState === item.id && (
-                                        <ul className='absolute z-20 bg-neutral-200 dark:bg-neutral-800 rounded-lg'>
+                                        <ul ref={menuRef} className='absolute z-20 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
                                             <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
                                             <li><ImageBlockButton onClick={handleImageUpload} /></li>
                                             <input
