@@ -99,6 +99,7 @@ const CreatePage = () => {
         setLessonContent((prevContent) => prevContent.filter((item) => item.id !== id));
     }
 
+
     return (
         <>
             <div className="md:w-2/3 mx-auto p-4">
@@ -128,15 +129,15 @@ const CreatePage = () => {
                 <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                     {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
-                        <TitlePreview title={lessonTitle} />
+                        <h1 className=" text-2xl lg:text-4xl">{lessonTitle}</h1>
                         {lessonContent.map((item, index) => (
-                            <div key={item.id} className=''>
+                            <div key={item.id}>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
                                         {item.contentType === 'text' && (
                                             <Textarea
                                                 rows={2}
-                                                className="rounded w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                className=" w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                 placeholder='Your paragraph or... Choose from menu'
                                                 name={item.contentType}
                                                 value={item.value}
@@ -158,7 +159,7 @@ const CreatePage = () => {
                                 <div className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
                                     <CreateButton onClick={() => handleMenuStateChange(item.id)} />
                                     {menuState === item.id && (
-                                        <ul ref={menuRef} className='absolute z-20 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
+                                        <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-20 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
                                             <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
                                             <li><ImageBlockButton onClick={handleImageUpload} /></li>
                                             <input
@@ -180,15 +181,6 @@ const CreatePage = () => {
         </>
     );
 };
-
-
-const TitlePreview = ({ title }: any) => {
-    return (
-        <>
-            <h1 className=" text-2xl lg:text-4xl">{title}</h1>
-        </>
-    )
-}
 
 const TitleInput = ({ title, onTitleChange }: any) => {
     return (
