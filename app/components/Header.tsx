@@ -12,7 +12,7 @@ export default function Header() {
         setMenuOpen(!isMenuOpen);
     }
     return (
-        <header className={`w-full z-10 top-0 p-4`}>
+        <header className={`w-full z-10 top-0 md:p-4  border-b-2 dark:border-neutral-800`}>
             <div className="container mx-auto flex items-center justify-between my-1">
                 <Link href="/" title="Play & learn, Learn & create, Create & learn">
                     <div className="flex items-center justify-center space-x-0 bg-neutral-50 dark:bg-neutral-900 rounded-lg dark:hover:bg-neutral-800 duration-300 p-1 transition-transform hover:scale-105">
