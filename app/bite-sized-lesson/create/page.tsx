@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton } from './components/button-with-logo';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/button-with-icon';
 import Image from 'next/image';
 import Textarea from './components/textarea';
 import { v4 as uuidv4 } from 'uuid';
@@ -85,6 +85,7 @@ const CreatePage = () => {
             ...lessonContent.slice(insertAt)
         ];
         setLessonContent(nextLessonContent);
+        setMenuState(null);
     };
 
     const handleUpdateContent = (id: string, value: any) => {
@@ -108,7 +109,7 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-4 z-50`}>
+                <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-44 z-50`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col md:space-y-6 justify-center">
                         <TextBlockButton onClick={handleAddTextField} />
@@ -127,7 +128,6 @@ const CreatePage = () => {
 
                 {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
-                    {/* Live Preview Goes Here */}
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                         <h1 className=" text-2xl lg:text-4xl">{lessonTitle}</h1>
                         {lessonContent.map((item, index) => (
@@ -135,14 +135,21 @@ const CreatePage = () => {
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
                                         {item.contentType === 'text' && (
-                                            <Textarea
-                                                rows={2}
-                                                className=" w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
-                                                placeholder='Your paragraph or... Choose from menu'
-                                                name={item.contentType}
-                                                value={item.value}
-                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
-                                            />
+                                            <div>
+                                                <div className='flex items-center justify-end -mb-1'>
+                                                    <ContentTypeButton className='opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 h-6 px-2 py-2 m-1' >
+                                                        <span className='me-2 text-xs'>paragraph</span>
+                                                    </ContentTypeButton>
+                                                </div>
+                                                <Textarea
+                                                    rows={2}
+                                                    className=" w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                    placeholder='Your paragraph or... Choose from menu'
+                                                    name={item.contentType}
+                                                    value={item.value}
+                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
+                                                />
+                                            </div>
                                         )}
                                         {item.contentType === 'image' && (
                                             <Image src={item.value} width={350} height={350} alt='image' />
@@ -156,7 +163,7 @@ const CreatePage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" relative flex justify-center items-center opacity-25 hover:opacity-100 transition-opacity duration-700">
+                                <div className=" relative flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700">
                                     <CreateButton onClick={() => handleMenuStateChange(item.id)} />
                                     {menuState === item.id && (
                                         <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-20 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
