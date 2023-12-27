@@ -4,6 +4,7 @@ import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, De
 import Image from 'next/image';
 import Textarea from './components/textarea';
 import { v4 as uuidv4 } from 'uuid';
+import { TextCombobox } from './components/content-type-combobox';
 
 
 const CreatePage = () => {
@@ -136,14 +137,12 @@ const CreatePage = () => {
                                     <div>
                                         {item.contentType === 'text' && (
                                             <div>
-                                                <div className='flex items-center justify-end -mb-1'>
-                                                    <ContentTypeButton className='opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 h-6 px-2 py-2 m-1' >
-                                                        <span className='me-2 text-xs'>paragraph</span>
-                                                    </ContentTypeButton>
+                                                <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
+                                                    <TextCombobox />
                                                 </div>
                                                 <Textarea
                                                     rows={2}
-                                                    className=" w-full p-1 md:p-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                    className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                     placeholder='Your paragraph or... Choose from menu'
                                                     name={item.contentType}
                                                     value={item.value}
