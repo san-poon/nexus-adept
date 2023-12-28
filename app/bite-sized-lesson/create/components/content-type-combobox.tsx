@@ -38,7 +38,7 @@ const textContentTypes = [
 ]
 
 
-export function TextCombobox() {
+export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeChange: (id: string, contentType: string) => void }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
 

@@ -89,6 +89,14 @@ const CreatePage = () => {
         setMenuState(null);
     };
 
+    const handleUpdateContentType = (id: string, contentType: string) => {
+        setLessonContent((prevContent) =>
+            prevContent.map((content) =>
+                content.id === id ? { ...content, contentType } : content
+            )
+        )
+    }
+
     const handleUpdateContent = (id: string, value: any) => {
         setLessonContent((prevContent) =>
             prevContent.map((field) =>
@@ -135,10 +143,11 @@ const CreatePage = () => {
                             <div key={item.id}>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
+                                        {/* Show form field based on content type */}
                                         {item.contentType === 'text' && (
                                             <div>
                                                 <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
-                                                    <TextCombobox />
+                                                    <TextCombobox id={item.id} onTextTypeChange={handleUpdateContentType} />
                                                 </div>
                                                 <Textarea
                                                     rows={2}
@@ -151,7 +160,9 @@ const CreatePage = () => {
                                             </div>
                                         )}
                                         {item.contentType === 'image' && (
-                                            <Image src={item.value} width={350} height={350} alt='image' />
+                                            <div className='flex items-center justify-center'>
+                                                <Image src={item.value} width={250} height={250} alt='image' />
+                                            </div>
                                         )}
                                         <div className='relative group/toolbar my-3'>
                                             <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
@@ -165,7 +176,7 @@ const CreatePage = () => {
                                 <div className=" relative flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700">
                                     <CreateButton onClick={() => handleMenuStateChange(item.id)} />
                                     {menuState === item.id && (
-                                        <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-20 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
+                                        <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-50 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
                                             <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
                                             <li><ImageBlockButton onClick={handleImageUpload} /></li>
                                             <input
