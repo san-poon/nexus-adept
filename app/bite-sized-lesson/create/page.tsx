@@ -13,7 +13,7 @@ const CreatePage = () => {
     const [lessonContent, setLessonContent] = useState([{
         id: uuidv4(),
         contentType: 'text',
-        value: 'Introduce...Why this lesson exist.'
+        value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
     }]);
 
     const handleMenuStateChange = (id: string) => setMenuState(id);
