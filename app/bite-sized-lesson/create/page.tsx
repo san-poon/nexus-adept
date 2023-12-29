@@ -150,7 +150,7 @@ const CreatePage = () => {
                                                     <TextCombobox id={item.id} onTextTypeChange={handleUpdateContentType} />
                                                 </div>
                                                 <Textarea
-                                                    rows={2}
+                                                    rows={1}
                                                     className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                     placeholder='Your paragraph or... Choose from menu'
                                                     name={item.contentType}
