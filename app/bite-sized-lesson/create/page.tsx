@@ -6,15 +6,16 @@ import Textarea from './components/textarea';
 import { v4 as uuidv4 } from 'uuid';
 import { TextCombobox } from './components/content-type-combobox';
 
+const initialContent = [{
+    id: uuidv4(),
+    contentType: 'markdown',
+    value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
+}]
 
 const CreatePage = () => {
     const [menuState, setMenuState] = useState<null | string>(null);
     const [lessonTitle, setLessonTitle] = useState('');
-    const [lessonContent, setLessonContent] = useState([{
-        id: uuidv4(),
-        contentType: 'markdown',
-        value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
-    }]);
+    const [lessonContent, setLessonContent] = useState(initialContent);
 
     // Handle changes in lesson title input
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +50,7 @@ const CreatePage = () => {
         }
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAddImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const imageUrl = URL.createObjectURL(file);
@@ -129,7 +130,7 @@ const CreatePage = () => {
                             type='file'
                             accept='image/*'
                             ref={fileInputRef}
-                            onChange={handleFileChange}
+                            onChange={handleAddImageChange}
                             className=" hidden" />
                         <QuizBlockButton />
                         <CodeBlockButton />
@@ -193,7 +194,7 @@ const CreatePage = () => {
                                                 type='file'
                                                 accept='image/*'
                                                 ref={fileInputRef}
-                                                onChange={handleFileChange}
+                                                onChange={handleAddImageChange}
                                                 className=" hidden" />
                                             <li><QuizBlockButton /></li>
                                             <li><CodeBlockButton /></li>
