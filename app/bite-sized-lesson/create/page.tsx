@@ -12,7 +12,7 @@ const CreatePage = () => {
     const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState([{
         id: uuidv4(),
-        contentType: 'text',
+        contentType: 'markdown',
         value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
     }]);
 
@@ -64,7 +64,7 @@ const CreatePage = () => {
     const handleAddTextField = () => {
         const newField = {
             id: uuidv4(),
-            contentType: 'text',
+            contentType: 'markdown',
             value: ''
         }
 
@@ -80,7 +80,7 @@ const CreatePage = () => {
             // New item:
             {
                 id: uuidv4(),
-                contentType: 'text',
+                contentType: 'markdown',
                 value: ''
             },
             ...lessonContent.slice(insertAt)
@@ -144,21 +144,29 @@ const CreatePage = () => {
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
                                         {/* Conditionally render based on 'contentType' */}
-                                        {item.contentType === 'text' && (
-                                            <div>
-                                                <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
-                                                    <TextCombobox id={item.id} onTextTypeChange={handleUpdateContentType} />
+                                        {
+                                            (
+                                                item.contentType === 'markdown'
+                                                || item.contentType === 'note'
+                                                || item.contentType === 'deep-dive'
+                                                || item.contentType === 'pitfall'
+                                            )
+                                            && (
+                                                <div>
+                                                    <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
+                                                        <TextCombobox id={item.id} onTextTypeChange={handleUpdateContentType} />
+                                                    </div>
+                                                    <Textarea
+                                                        rows={1}
+                                                        className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                        placeholder='Your paragraph or... Choose from menu'
+                                                        name={item.contentType}
+                                                        value={item.value}
+                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
+                                                    />
                                                 </div>
-                                                <Textarea
-                                                    rows={1}
-                                                    className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
-                                                    placeholder='Your paragraph or... Choose from menu'
-                                                    name={item.contentType}
-                                                    value={item.value}
-                                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, e.target.value)}
-                                                />
-                                            </div>
-                                        )}
+                                            )
+                                        }
                                         {item.contentType === 'image' && (
                                             <div className='flex items-center justify-center'>
                                                 <Image src={item.value} width={250} height={250} alt='image' />
