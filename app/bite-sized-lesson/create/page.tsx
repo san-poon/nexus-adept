@@ -16,6 +16,12 @@ const CreatePage = () => {
         value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
     }]);
 
+    // Handle changes in lesson title input
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setLessonTitle(event.target.value);
+    }
+
     const handleMenuStateChange = (id: string) => setMenuState(id);
     // Collapse menu when clicked outside the dedicated `menuRef`
     const menuRef = useRef(null);
@@ -37,7 +43,7 @@ const CreatePage = () => {
     // Image handlers
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleImageUpload = () => {
+    const handleImageButtonClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
@@ -54,11 +60,7 @@ const CreatePage = () => {
         }
     };
 
-    // Handle changes in lesson title input
-    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setLessonTitle(event.target.value);
-    }
+
 
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
@@ -122,7 +124,7 @@ const CreatePage = () => {
                     {/* Content Buttons */}
                     <div className="flex md:flex-col md:space-y-6 justify-center">
                         <TextBlockButton onClick={handleAddTextField} />
-                        <ImageBlockButton onClick={handleImageUpload} />
+                        <ImageBlockButton onClick={handleImageButtonClick} />
                         <input
                             type='file'
                             accept='image/*'
@@ -186,7 +188,7 @@ const CreatePage = () => {
                                     {menuState === item.id && (
                                         <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-50 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
                                             <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
-                                            <li><ImageBlockButton onClick={handleImageUpload} /></li>
+                                            <li><ImageBlockButton onClick={handleImageButtonClick} /></li>
                                             <input
                                                 type='file'
                                                 accept='image/*'
