@@ -143,7 +143,7 @@ const CreatePage = () => {
                             <div key={item.id}>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
-                                        {/* Show form field based on content type */}
+                                        {/* Conditionally render based on 'contentType' */}
                                         {item.contentType === 'text' && (
                                             <div>
                                                 <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>

@@ -8,20 +8,8 @@ import { useState } from "react";
 
 const textContentTypes = [
     {
-        value: "paragraph",
-        label: 'paragraph'
-    },
-    {
-        value: 'heading2',
-        label: 'Heading2',
-    },
-    {
-        value: 'introduction',
-        label: 'Introduction',
-    },
-    {
-        value: 'objective',
-        label: 'Objective',
+        value: 'markdown',
+        label: 'Markdown',
     },
     {
         value: 'note',
@@ -52,7 +40,7 @@ export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeC
                 >
                     {value
                         ? textContentTypes.find((textType) => textType.value === value)?.label
-                        : "paragraph"}
+                        : "markdown"}
                     <ChevronsUpDown className="ms-2 shrink-0 opacity-50 h-min" />
                 </Button>
             </PopoverTrigger>
