@@ -1,8 +1,9 @@
 import { useRef, useEffect } from "react";
 
-export default function Textarea({ ...rest }) {
+export function Textarea({ ...rest }) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+    // Automatically increase the height with content
     useEffect(() => {
         const adjustHeight = () => {
             if (textareaRef.current) {
@@ -30,3 +31,4 @@ export default function Textarea({ ...rest }) {
         </>
     )
 }
+

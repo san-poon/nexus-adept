@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/button-with-icon';
 import Image from 'next/image';
-import Textarea from './components/textarea';
+import { Textarea } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { TextCombobox } from './components/content-type-combobox';
 
