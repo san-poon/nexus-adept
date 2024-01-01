@@ -4,12 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { useEditor, EditorContent, JSONContent } from "@tiptap/react";
 import { defaultEditorProps } from "@/app/editor/props"
 import { defaultExtensions } from "@/app/editor/extensions";
-import useLocalStorage from "./lib/use-local-storage";
+import useLocalStorage from "@/lib/use-local-storage";
 import { useDebouncedCallback } from "use-debounce";
 import { toast } from 'sonner';
 import { defaultEditorContent } from "./default-content";
-import { EditorBubbleMenu } from './bubble-menu';
-import { getPrevText } from "@/lib/editor";
+import { EditorBubbleMenu } from "./bubble-menu";
 import { ImageResizer } from "./extensions/image-resizer";
 import { EditorProps } from '@tiptap/pm/view';
 import { Editor as EditorClass, Extensions } from '@tiptap/core';
