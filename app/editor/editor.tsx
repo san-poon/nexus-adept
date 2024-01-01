@@ -7,7 +7,7 @@ import { defaultExtensions } from "@/app/editor/extensions";
 import useLocalStorage from "./lib/use-local-storage";
 import { useDebouncedCallback } from "use-debounce";
 import { toast } from 'sonner';
-import { defaultEditorContent } from './default-content';
+import { defaultEditorContent } from "./default-content";
 import { EditorBubbleMenu } from './bubble-menu';
 import { getPrevText } from "@/lib/editor";
 import { ImageResizer } from "./extensions/image-resizer";
@@ -133,7 +133,7 @@ export default function Editor({
             }}
             className={className}
         >
-            {editor && <EditorBubbleMenu editor={editor} />}
+            {editor && <EditorBubbleMenu editor={editor} updateDelay={1000} />}
 
             {editor?.isActive("image") && <ImageResizer editor={editor} />}
 
