@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useEditor, EditorContent, JSONContent } from "@tiptap/react";
 import { defaultEditorProps } from "@/app/editor/props"
 import { defaultExtensions } from "@/app/editor/extensions";
 import useLocalStorage from "@/lib/use-local-storage";
 import { useDebouncedCallback } from "use-debounce";
-import { toast } from 'sonner';
 import { defaultEditorContent } from "./default-content";
 import { EditorBubbleMenu } from "./bubble-menu";
-import { ImageResizer } from "./extensions/image-resizer";
+// import { ImageResizer } from "./extensions/image-resizer";
 import { EditorProps } from '@tiptap/pm/view';
 import { Editor as EditorClass, Extensions } from '@tiptap/core';
 
@@ -110,6 +109,7 @@ export default function Editor({
             debouncedUpdates(e);
         },
         autofocus: "end",
+        editable: true,
     });
 
     // Default: Hydrate the editor with the content from localStorage.
@@ -132,9 +132,9 @@ export default function Editor({
             }}
             className={className}
         >
-            {editor && <EditorBubbleMenu editor={editor} updateDelay={1000} />}
+            {/* {editor && <EditorBubbleMenu editor={editor} updateDelay={1000} />} */}
 
-            {editor?.isActive("image") && <ImageResizer editor={editor} />}
+            {/* {editor?.isActive("image") && <ImageResizer editor={editor} />} */}
 
             <EditorContent editor={editor} />
 
