@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useEditor, EditorContent, JSONContent } from "@tiptap/react";
-import { defaultEditorProps } from "@/app/editor/props"
+import { defaultEditorProps } from "@/app/editor/props";
 import { defaultExtensions } from "@/app/editor/extensions";
 import useLocalStorage from "@/lib/use-local-storage";
 import { useDebouncedCallback } from "use-debounce";
@@ -115,7 +115,9 @@ export default function Editor({
     // Default: Hydrate the editor with the content from localStorage.
     // If disableLocalStorage is true, hydrate the editor with the defaultValue.
     useEffect(() => {
-        if (!editor || hydrated) return;
+        if (!editor || hydrated) {
+            return;
+        }
 
         const value = disableLocalStorage ? defaultValue : content;
 
