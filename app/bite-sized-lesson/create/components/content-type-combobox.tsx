@@ -28,7 +28,7 @@ const textContentTypes = [
     }
 ]
 
-export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeChange: (id: string, contentType: contentTypeProps) => void }) {
+export function TextCombobox({ id, itemValue, onTextContentTypeChange }: { id: string, itemValue: any, onTextContentTypeChange: (id: string, contentType: contentTypeProps, value: any) => void }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
 
@@ -58,7 +58,7 @@ export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeC
                                 onSelect={(currentValue) => {
                                     setValue(currentValue === value ? "" : currentValue);
                                     setOpen(false);
-                                    onTextTypeChange(id, currentValue as contentTypeProps);
+                                    onTextContentTypeChange(id, currentValue as contentTypeProps, itemValue);
                                 }}
                             >
                                 <Check
