@@ -4,41 +4,32 @@ import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, De
 import Image from 'next/image';
 import { Textarea } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
-import { TextCombobox } from './components/content-type-combobox';
+import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
+import { getImageUrlFromUser } from './utils';
 
-const initialContent = [{
+interface LessonContentBlockProps {
+    id: string;
+    contentType: 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall';
+    value: string | string[] | object;
+};
+
+type LessonContentProps = LessonContentBlockProps[];
+
+const initialContent: LessonContentProps = [{
     id: uuidv4(),
-    contentType: 'markdown',
+    contentType: 'text',
     value: 'Captivating Introduction. Every textarea acts like a basic markdown. But when it comes to adding some important section like caution, warning, show details (which are of text content type) will need different section. '
 }]
 
 const CreatePage = () => {
-    const [menuState, setMenuState] = useState<null | string>(null);
     const [lessonTitle, setLessonTitle] = useState('');
-    const [lessonContent, setLessonContent] = useState(initialContent);
+    const [lessonContent, setLessonContent] = useState<LessonContentProps>(initialContent);
 
     // Handle changes in lesson title input
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         setLessonTitle(event.target.value);
-    }
-
-    const handleMenuStateChange = (id: string) => setMenuState(id);
-    // Collapse menu when clicked outside the dedicated `menuRef`
-    const menuRef = useRef(null);
-    const triggerRef = useRef(null);
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !(menuRef.current as HTMLElement).contains(event.target as Node) && event.target !== triggerRef.current) {
-                setMenuState(null);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside)
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [menuRef, triggerRef, menuState]);
+    };
 
 
     // Image handlers
@@ -47,6 +38,18 @@ const CreatePage = () => {
     const handleImageButtonClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
+        }
+    };
+
+    const handleImageUploadClick = async () => {
+        try {
+            const imageUrl = await getImageUrlFromUser();
+            setLessonContent([
+                ...lessonContent,
+                { id: uuidv4(), contentType: 'image', value: imageUrl }
+            ]);
+        } catch (error) {
+            console.log('Error: ', error);
         }
     };
 
@@ -65,9 +68,9 @@ const CreatePage = () => {
 
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
-        const newField = {
+        const newField: LessonContentBlockProps = {
             id: uuidv4(),
-            contentType: 'markdown',
+            contentType: 'text',
             value: ''
         }
 
@@ -75,21 +78,35 @@ const CreatePage = () => {
     }
 
     // Handle insertion of text field
-    const handleInsertTextField = (index: number) => {
+    const handleInsertContentBlock = (index: number, contentType: string) => {
+        // based on content type, content value must be different
+        const newContent = () => {
+            switch (contentType) {
+                case 'text': {
+                    return {
+                        id: uuidv4(),
+                        contentType: 'text',
+                        value: "",
+                    };
+                }
+                case 'image': {
+
+                }
+                default: {
+                    throw Error('Not a valid content-type: ' + contentType);
+                }
+            };
+        }
+
         const insertAt = index + 1;
-        const nextLessonContent = [
+        const nextLessonContent: LessonContentProps = [
             // Items before the insertion point:
             ...lessonContent.slice(0, insertAt),
             // New item:
-            {
-                id: uuidv4(),
-                contentType: 'markdown',
-                value: ''
-            },
+            newContent(),
             ...lessonContent.slice(insertAt)
         ];
         setLessonContent(nextLessonContent);
-        setMenuState(null);
     };
 
     const handleUpdateContentType = (id: string, contentType: string) => {
@@ -121,17 +138,18 @@ const CreatePage = () => {
             </div>
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
-                <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 bg-neutral-100 dark:bg-neutral-900 rounded shadow transition sticky top-0 md:top-44 z-50`}>
+                <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-0 md:top-44 z-50`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col md:space-y-6 justify-center">
                         <TextBlockButton onClick={handleAddTextField} />
-                        <ImageBlockButton onClick={handleImageButtonClick} />
+                        <ImageBlockButton onClick={handleImageUploadClick} />
+                        {/* <ImageBlockButton onClick={handleImageButtonClick} />
                         <input
                             type='file'
                             accept='image/*'
                             ref={fileInputRef}
                             onChange={handleAddImageChange}
-                            className=" hidden" />
+                            className=" hidden" /> */}
                         <QuizBlockButton />
                         <CodeBlockButton />
                     </div>
@@ -141,7 +159,7 @@ const CreatePage = () => {
                 {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
-                        <h1 className=" text-2xl lg:text-4xl">{lessonTitle}</h1>
+                        <h1 className=" text-2xl md:text-4xl">{lessonTitle}</h1>
                         {lessonContent.map((item, index) => (
                             <div key={item.id}>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
@@ -149,10 +167,10 @@ const CreatePage = () => {
                                         {/* Conditionally render based on 'contentType' */}
                                         {
                                             (
-                                                item.contentType === 'markdown'
-                                                || item.contentType === 'note'
-                                                || item.contentType === 'deep-dive'
-                                                || item.contentType === 'pitfall'
+                                                item.contentType === 'text'
+                                                || item.contentType === 'text/note'
+                                                || item.contentType === 'text/deep-dive'
+                                                || item.contentType === 'text/pitfall'
                                             )
                                             && (
                                                 <div>
@@ -184,22 +202,9 @@ const CreatePage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" relative flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700">
-                                    <CreateButton onClick={() => handleMenuStateChange(item.id)} />
-                                    {menuState === item.id && (
-                                        <ul ref={menuRef} className='absolute right-0 md:right-32 lg:right-64 z-50 bg-neutral-200 dark:bg-neutral-700 rounded-lg px-2'>
-                                            <li><TextBlockButton onClick={() => handleInsertTextField(index)} /> </li>
-                                            <li><ImageBlockButton onClick={handleImageButtonClick} /></li>
-                                            <input
-                                                type='file'
-                                                accept='image/*'
-                                                ref={fileInputRef}
-                                                onChange={handleAddImageChange}
-                                                className=" hidden" />
-                                            <li><QuizBlockButton /></li>
-                                            <li><CodeBlockButton /></li>
-                                        </ul>
-                                    )}
+                                {/* ContentType Combobox */}
+                                <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
+                                    <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                 </div>
                             </div>
                         ))}
