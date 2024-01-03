@@ -25,59 +25,51 @@ const CreatePage = () => {
         setLessonTitle(event.target.value);
     };
 
-    const handleImageUploadClick = async () => {
-        try {
-            const imageUrl = await getImageUrlFromUser();
-            setLessonContent([
-                ...lessonContent,
-                { id: uuidv4(), contentType: 'image', value: imageUrl }
-            ]);
-        } catch (error) {
-            console.log('Error: ', error);
-        }
-    };
-
-    // Handle text content addition in lessonContent
-    const handleAddTextField = () => {
-        const newField: LessonContentBlockProps = {
-            id: uuidv4(),
-            contentType: 'text',
-            value: ''
-        }
-
-        setLessonContent([...lessonContent, newField]);
-    }
-
     // Handle insertion of text field
-    const handleInsertContentBlock = (index: number, contentType: string) => {
-        // based on content type, content value must be different
-        const newContent = (): LessonContentBlockProps => {
-            switch (contentType) {
-                case 'text': {
-                    return {
-                        id: uuidv4(),
-                        contentType: 'text',
-                        value: "",
-                    };
-                }
-                case 'image': {
+    const handleInsertContentBlock = async (index: number, contentType: string) => {
+        try {
+            // based on content type, content value must be different
+            const newContent = async (): Promise<LessonContentBlockProps> => {
+                switch (contentType) {
+                    case 'text': {
+                        return {
+                            id: uuidv4(),
+                            contentType: 'text',
+                            value: "",
+                        };
+                    }
+                    case 'image': {
+                        try {
+                            const imageUrl = await getImageUrlFromUser();
+                            return {
+                                id: uuidv4(),
+                                contentType: 'image',
+                                value: imageUrl,
+                            };
+                        } catch (error) {
+                            console.log(`Error: ${error}`);
+                        }
+                    }
+                    default: {
+                        throw new Error('Not a valid content-type: ' + contentType);
+                    }
+                };
+            }
 
-                }
-                default: {
-                    throw Error('Not a valid content-type: ' + contentType);
-                }
-            };
+            const insertAt = index + 1;
+            const nextLessonContent: LessonContentProps = [
+                // Items before the insertion point:
+                ...lessonContent.slice(0, insertAt),
+                // New item:
+                await newContent(),
+                ...lessonContent.slice(insertAt)
+            ];
+            setLessonContent(nextLessonContent);
         }
-
-        const insertAt = index + 1;
-        const nextLessonContent: LessonContentProps = [
-            // Items before the insertion point:
-            ...lessonContent.slice(0, insertAt),
-            // New item:
-            newContent(),
-            ...lessonContent.slice(insertAt)
-        ];
-        setLessonContent(nextLessonContent);
+        catch (error) {
+            console.log(`Error in handleInsertContentBlock: ${error}`);
+            // Handle the error as needed
+        }
     };
 
     const handleUpdateContentType = (id: string, contentType: contentTypeProps) => {
@@ -112,8 +104,8 @@ const CreatePage = () => {
                 <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-0 md:top-44 z-50`}>
                     {/* Content Buttons */}
                     <div className="flex md:flex-col md:space-y-6 justify-center">
-                        <TextBlockButton onClick={handleAddTextField} />
-                        <ImageBlockButton onClick={handleImageUploadClick} />
+                        <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
+                        <ImageBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'image')} />
                         {/* <ImageBlockButton onClick={handleImageButtonClick} />
                         <input
                             type='file'

@@ -58,7 +58,7 @@ export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeC
                                 onSelect={(currentValue) => {
                                     setValue(currentValue === value ? "" : currentValue);
                                     setOpen(false);
-                                    onTextTypeChange(id, currentValue);
+                                    onTextTypeChange(id, currentValue as contentTypeProps);
                                 }}
                             >
                                 <Check
