@@ -15,7 +15,7 @@ const initialContent: LessonContentProps = [{
     value: 'Captivating Introduction here...'
 }]
 
-const CreatePage = () => {
+const CreateLessonPage = () => {
     const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState<LessonContentProps>(initialContent);
 
@@ -72,11 +72,11 @@ const CreatePage = () => {
         }
     };
 
-    const handleUpdateContent = (id: string, contentType: contentTypeProps, value: any) => {
+    const handleUpdateContent = (contentBlock: LessonContentBlockProps) => {
         // Doesn't matter what user is updating: 'contentType' or 'value'
         const nextLessonContent = lessonContent.map((contentItem) => {
-            if (contentItem.id === id) {
-                return { ...contentItem, contentType, value }
+            if (contentItem.id === contentBlock.id) {
+                return { ...contentItem, contentType: contentBlock.contentType, value: contentBlock.value }
             } else return contentItem;
         });
         setLessonContent(nextLessonContent);
@@ -125,7 +125,7 @@ const CreatePage = () => {
                                             && (
                                                 <div>
                                                     <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
-                                                        <TextCombobox id={item.id} itemValue={item.value} onTextContentTypeChange={handleUpdateContent} />
+                                                        <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateContent} />
                                                     </div>
                                                     <Textarea
                                                         rows={1}
@@ -133,7 +133,7 @@ const CreatePage = () => {
                                                         placeholder='Your paragraph or... Choose from menu'
                                                         name={item.contentType}
                                                         value={item.value}
-                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent(item.id, item.contentType, e.target.value)}
+                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent({ ...item, value: e.target.value })}
                                                     />
                                                 </div>
                                             )
@@ -166,4 +166,4 @@ const CreatePage = () => {
 };
 
 
-export default CreatePage;
+export default CreateLessonPage;
