@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { useState } from "react";
 
 import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "./icons";
+import { contentTypeProps } from "../types";
 
 const textContentTypes = [
     {
@@ -27,7 +28,7 @@ const textContentTypes = [
     }
 ]
 
-export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeChange: (id: string, contentType: string) => void }) {
+export function TextCombobox({ id, onTextTypeChange }: { id: string, onTextTypeChange: (id: string, contentType: contentTypeProps) => void }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
 

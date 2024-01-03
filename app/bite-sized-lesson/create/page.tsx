@@ -6,14 +6,8 @@ import { Textarea } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
 import { getImageUrlFromUser } from './utils';
+import { contentTypeProps, LessonContentBlockProps, LessonContentProps } from './types';
 
-interface LessonContentBlockProps {
-    id: string;
-    contentType: 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall';
-    value: string | string[] | object;
-};
-
-type LessonContentProps = LessonContentBlockProps[];
 
 const initialContent: LessonContentProps = [{
     id: uuidv4(),
@@ -31,16 +25,6 @@ const CreatePage = () => {
         setLessonTitle(event.target.value);
     };
 
-
-    // Image handlers
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const handleImageButtonClick = () => {
-        if (fileInputRef.current) {
-            fileInputRef.current.click();
-        }
-    };
-
     const handleImageUploadClick = async () => {
         try {
             const imageUrl = await getImageUrlFromUser();
@@ -52,19 +36,6 @@ const CreatePage = () => {
             console.log('Error: ', error);
         }
     };
-
-    const handleAddImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setLessonContent([
-                ...lessonContent,
-                { id: uuidv4(), contentType: 'image', value: imageUrl }
-            ]);
-        }
-    };
-
-
 
     // Handle text content addition in lessonContent
     const handleAddTextField = () => {
@@ -80,7 +51,7 @@ const CreatePage = () => {
     // Handle insertion of text field
     const handleInsertContentBlock = (index: number, contentType: string) => {
         // based on content type, content value must be different
-        const newContent = () => {
+        const newContent = (): LessonContentBlockProps => {
             switch (contentType) {
                 case 'text': {
                     return {
@@ -109,13 +80,13 @@ const CreatePage = () => {
         setLessonContent(nextLessonContent);
     };
 
-    const handleUpdateContentType = (id: string, contentType: string) => {
-        setLessonContent((prevContent) =>
-            prevContent.map((content) =>
-                content.id === id ? { ...content, contentType } : content
-            )
-        )
-    }
+    const handleUpdateContentType = (id: string, contentType: contentTypeProps) => {
+        setLessonContent(lessonContent.map((content) => {
+            if (content.id === id) {
+                return { ...content, contentType: contentType }
+            } else return content
+        }))
+    };
 
     const handleUpdateContent = (id: string, value: any) => {
         setLessonContent((prevContent) =>
