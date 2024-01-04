@@ -2,11 +2,12 @@
 import { useState } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/button-with-icon';
 import Image from 'next/image';
-import { Textarea, TitleInput } from './components/content-blocks';
+import { DynamicTextarea, TitleInput } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
 import { getImageUrlFromUser } from './utils';
 import { LessonContentBlockProps, LessonContentProps } from './types';
+import QuizInputBlock from './components/QuizInputBlock';
 
 
 const initialContent: LessonContentProps = [{
@@ -127,7 +128,7 @@ const CreateLessonPage = () => {
                                                     <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
                                                         <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateContent} />
                                                     </div>
-                                                    <Textarea
+                                                    <DynamicTextarea
                                                         rows={1}
                                                         className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                         placeholder='Your paragraph or... Choose from menu'
@@ -159,6 +160,7 @@ const CreateLessonPage = () => {
                             </div>
                         ))}
                     </div>
+                    <QuizInputBlock />
                 </div>
             </div>
         </>

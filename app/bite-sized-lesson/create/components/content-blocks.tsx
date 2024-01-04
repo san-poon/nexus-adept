@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-export function Textarea({ ...rest }) {
+export function DynamicTextarea({ ...rest }) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     // Automatically increase the height with content
