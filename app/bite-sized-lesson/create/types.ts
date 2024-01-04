@@ -1,8 +1,8 @@
-export type contentTypeProps = 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall';
+export type ContentTypeProps = 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall';
 
 export interface LessonContentBlockProps {
     id: string;
-    contentType: contentTypeProps;
+    contentType: ContentTypeProps;
     value: any;
 };
 

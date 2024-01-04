@@ -33,7 +33,7 @@ export function Textarea({ ...rest }) {
 }
 
 
-export const TitleInput = ({ title, onTitleChange }: any) => {
+export function TitleInput({ title, onTitleChange }: any) {
     return (
         <>
             {/* Lesson Title input */}

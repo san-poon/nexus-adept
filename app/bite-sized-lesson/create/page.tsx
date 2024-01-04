@@ -6,7 +6,7 @@ import { Textarea, TitleInput } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
 import { getImageUrlFromUser } from './utils';
-import { contentTypeProps, LessonContentBlockProps, LessonContentProps } from './types';
+import { LessonContentBlockProps, LessonContentProps } from './types';
 
 
 const initialContent: LessonContentProps = [{
