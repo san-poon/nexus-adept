@@ -16,6 +16,7 @@ import { DynamicTextarea } from "./content-blocks";
 import { quizSchema } from '@/app/lib/schemas/quizSchema';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 
 const initialQuizContent = {
     id: uuidv4(),
@@ -55,7 +56,11 @@ export default function QuizInputBlock() {
                         <FormItem>
                             <FormLabel>Question</FormLabel>
                             <FormControl>
-                                <DynamicTextarea placeholder={initialQuizContent.question} />
+                                <DynamicTextarea
+                                    className="px-2 py-2 my-2"
+                                    rows={1}
+                                    placeholder={initialQuizContent.question} {...field}
+                                />
                             </FormControl>
                         </FormItem>
                     )}
@@ -68,22 +73,27 @@ export default function QuizInputBlock() {
                             name="options"
                             render={({ field }) => (
                                 <FormItem key={index}>
-                                    <FormLabel>{index + 1}</FormLabel>
-                                    <FormControl>
-                                        <Checkbox
-                                        // checked={field.value?.includes(option)}
-                                        // onCheckedChange={(checked) => {
-                                        //     return checked
-                                        //         ? field.onChange([...field.value, option])
-                                        //         : field.onChange(field.value?.filter(
-                                        //             (value) => value !== option
-                                        //         ))
-                                        // }}
-                                        />
-                                    </FormControl>
-                                    <FormControl>
-                                        <DynamicTextarea placeholder={`Option ${index + 1}`} />
-                                    </FormControl>
+                                    <div className='flex m-3 items-center'>
+                                        <FormControl>
+                                            <Checkbox
+                                                checked={field.value?.includes(option)}
+                                                onChange={(checked) => {
+                                                    return checked
+                                                        ? field.onChange([...field.value, option])
+                                                        : field.onChange(
+                                                            field.value?.filter((value) => value !== option)
+                                                        )
+                                                }}
+                                            />
+                                        </FormControl>
+                                        <FormControl>
+                                            <DynamicTextarea
+                                                rows={1}
+                                                placeholder={`Option ${index + 1}`}
+                                                className="px-2 mx-2 py-2"
+                                            />
+                                        </FormControl>
+                                    </div>
                                 </FormItem>
                             )}
                         />
@@ -96,7 +106,10 @@ export default function QuizInputBlock() {
                         <FormItem>
                             <FormLabel>Explanation</FormLabel>
                             <FormControl>
-                                <DynamicTextarea placeholder="Explanation here..." />
+                                <DynamicTextarea
+                                    rows={1}
+                                    className='px-2 py-2 my-2'
+                                    placeholder="Explanation here..." />
                             </FormControl>
                         </FormItem>
                     )}

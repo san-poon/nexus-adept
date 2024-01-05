@@ -134,7 +134,7 @@ const CreateLessonPage = () => {
                                                         placeholder='Your paragraph or... Choose from menu'
                                                         name={item.contentType}
                                                         value={item.value}
-                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleUpdateContent({ ...item, value: e.target.value })}
+                                                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateContent({ ...item, value: e.target.value })}
                                                     />
                                                 </div>
                                             )

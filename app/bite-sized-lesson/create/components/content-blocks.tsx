@@ -1,6 +1,8 @@
+import { Textarea } from "@/components/ui/textarea";
 import { useRef, useEffect } from "react";
-
-export function DynamicTextarea({ ...rest }) {
+import { cn } from '@/lib/utils';
+import { TextareaProps } from "@/components/ui/textarea";
+export function DynamicTextarea({ className, ...props }: TextareaProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     // Automatically increase the height with content
@@ -24,9 +26,12 @@ export function DynamicTextarea({ ...rest }) {
 
     return (
         <>
-            <textarea ref={textareaRef}
-                className="appearance-none border-none outline-none resize-none overflow-hidden"
-                {...rest}
+            <Textarea ref={textareaRef}
+                className={cn(
+                    "appearance-none border-none outline-none focus:outline-none hover:outline-none resize-none overflow-hidden",
+                    className
+                )}
+                {...props}
             />
         </>
     )
