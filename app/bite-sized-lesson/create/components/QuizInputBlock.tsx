@@ -1,31 +1,5 @@
-'use client';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
 import { DynamicTextarea } from "./content-blocks";
 import { OptionsProps, AnOptionProps, QuizProps } from '../types';
-
-// When Quiz Input Button is clicked, it will create
-// a quiz data structure, and QuizInputBlock will render the
-// data with initial quiz contents.
-const initialQuizContent = {
-    id: uuidv4(),
-    question: 'What is something divided by zero?',
-    options: [
-        { id: uuidv4(), value: 'Infinity', isCorrect: false },
-        { id: uuidv4(), value: 'Zero', isCorrect: false },
-        { id: uuidv4(), value: 'undefined', isCorrect: true },
-        { id: uuidv4(), value: 'Error', isCorrect: false },
-    ],
-    explanation: `
-    In mathematics, dividing anything by zero is simply undefined. 
-    Imagine trying to distribute something among no one. 
-    How much does each person get? It doesn't make sense, right? 
-    Similarly, any number divided by zero doesn't have a meaningful answer. 
-    Assigning any specific value, like infinity or even zero itself, would lead to contradictions with other basic math rules.
-    So, we leave it as undefined to avoid these inconsistencies.
-    `
-};
 
 export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationChange, onOptionsChange, onCheckedChange }: any) {
     return (

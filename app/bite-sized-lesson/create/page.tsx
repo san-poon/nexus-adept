@@ -9,23 +9,6 @@ import { getImageUrlFromUser } from './utils';
 import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
 
-const aLessonContent = [
-    {
-        id: uuidv4(),
-        contentType: 'quiz',
-        value: {
-            question: 'A question',
-            options: [
-                { id: uuidv4(), value: '', isCorrect: false },
-                { id: uuidv4(), value: '', isCorrect: false },
-                { id: uuidv4(), value: '', isCorrect: false },
-            ],
-            explanation: "an explanation to the quiz answer."
-        }
-    }
-];
-
-
 const initialContent: LessonContentProps = [{
     id: uuidv4(),
     contentType: 'text',
