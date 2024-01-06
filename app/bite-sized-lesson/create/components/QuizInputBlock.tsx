@@ -27,12 +27,13 @@ const initialQuizContent = {
     `
 };
 
-export default function QuizInputBlock({ quiz, onQuestionChange, onExplnationChange, onOptionsChange, onCheckedChange }: any) {
+export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationChange, onOptionsChange, onCheckedChange }: any) {
     return (
         <div>
             <div>
                 <label>Question</label>
                 <DynamicTextarea
+                    autoFocus={true}
                     rows={1}
                     className="px-2 py-2 my-2"
                     placeholder="Question..."
@@ -59,6 +60,14 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplnationCha
                         />
                     </div>
                 ))}
+            </div>
+            <div>
+                <DynamicTextarea
+                    rows={2}
+                    placeholder='Explanation... Make it clear and concise.'
+                    value={quiz.value.explanation}
+                    onChange={(e) => onExplanationChange(quiz.id, e.target.value)}
+                />
             </div>
         </div>
     )

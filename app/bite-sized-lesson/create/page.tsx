@@ -237,6 +237,7 @@ const CreateLessonPage = () => {
                                                         <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateContent} />
                                                     </div>
                                                     <DynamicTextarea
+                                                        autoFocus={true}
                                                         rows={1}
                                                         className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                         placeholder='Your paragraph or... Choose from menu'
@@ -259,7 +260,7 @@ const CreateLessonPage = () => {
                                                         quiz={item}
                                                         onCheckedChange={handleCheckedChange}
                                                         onQuestionChange={handleQuestionChange}
-                                                        onExplnationChange={handleExplanationChange}
+                                                        onExplanationChange={handleExplanationChange}
                                                         onOptionsChange={handleOptionValueChange}
                                                     />
                                                 </div>
