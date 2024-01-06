@@ -7,3 +7,16 @@ export interface LessonContentBlockProps {
 };
 
 export type LessonContentProps = LessonContentBlockProps[];
+
+export type AnOptionProps = {
+    id: string,
+    value: string,
+    isCorrect: boolean
+};
+
+export type OptionsProps = AnOptionProps[];
+export type QuizProps = {
+    question: string,
+    options: OptionsProps,
+    explanation: string,
+};

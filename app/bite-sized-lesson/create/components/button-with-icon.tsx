@@ -29,11 +29,11 @@ export const ImageBlockButton = ({ ...rest }) => {
     )
 }
 
-export const QuizBlockButton = () => {
+export const QuizBlockButton = ({ ...props }) => {
     return (
         <>
             {/* Quizzes Button */}
-            <Button className="relative group/quizTool">
+            <Button className="relative group/quizTool" {...props}>
                 <QuizBlockIcon />
                 {/* show button name, except on small screens */}
                 <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-20 transition duration-300 ease-in-out group-hover/quizTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>Add Quiz</span>

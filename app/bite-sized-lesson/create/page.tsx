@@ -6,8 +6,24 @@ import { DynamicTextarea, TitleInput } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
 import { getImageUrlFromUser } from './utils';
-import { LessonContentBlockProps, LessonContentProps } from './types';
+import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
+
+const aLessonContent = [
+    {
+        id: uuidv4(),
+        contentType: 'quiz',
+        value: {
+            question: 'A question',
+            options: [
+                { id: uuidv4(), value: '', isCorrect: false },
+                { id: uuidv4(), value: '', isCorrect: false },
+                { id: uuidv4(), value: '', isCorrect: false },
+            ],
+            explanation: "an explanation to the quiz answer."
+        }
+    }
+];
 
 
 const initialContent: LessonContentProps = [{
@@ -51,6 +67,21 @@ const CreateLessonPage = () => {
                             console.log(`Error: ${error}`);
                         }
                     }
+                    case 'quiz': {
+                        return {
+                            id: uuidv4(),
+                            contentType: 'quiz',
+                            value: {
+                                question: '',
+                                options: [
+                                    { id: uuidv4(), value: '', isCorrect: false },
+                                    { id: uuidv4(), value: '', isCorrect: false },
+                                    { id: uuidv4(), value: '', isCorrect: false },
+                                ],
+                                explanation: '',
+                            },
+                        };
+                    }
                     default: {
                         throw new Error('Not a valid content-type: ' + contentType);
                     }
@@ -87,6 +118,83 @@ const CreateLessonPage = () => {
         setLessonContent((prevContent) => prevContent.filter((item) => item.id !== id));
     }
 
+    // Quiz handlers
+    const handleCheckedChange = (contentId: string, optionId: string, isChecked: boolean) => {
+        const nextLessonContent = lessonContent.map((content) => {
+            if (content.id === contentId) {
+                return {
+                    ...content,
+                    value: {
+                        ...content.value,
+                        options: content.value.options.map((option: AnOptionProps) => {
+                            if (option.id === optionId) {
+                                return {
+                                    ...option,
+                                    isCorrect: isChecked,
+                                }
+                            } else return option;
+                        })
+                    }
+                }
+            } else return content;
+        });
+        setLessonContent(nextLessonContent);
+    }
+
+    const handleQuestionChange = (contentId: string, questionValue: string) => {
+        const nextLessonContent = lessonContent.map((content) => {
+            if (content.id === contentId) {
+                return {
+                    ...content,
+                    value: {
+                        ...content.value,
+                        question: questionValue,
+                    }
+                };
+            }
+            else return content;
+        })
+        setLessonContent(nextLessonContent);
+    };
+
+    const handleOptionValueChange = (contentId: string, optionId: string, optionValue: string) => {
+        const nextLessonContent = lessonContent.map((content) => {
+            if (content.id === contentId) {
+                return {
+                    ...content,
+                    value: {
+                        ...content.value,
+                        options: content.value.options.map((option: AnOptionProps) => {
+                            if (option.id === optionId) {
+                                return {
+                                    ...option,
+                                    value: optionValue
+                                }
+                            } else return option
+                        })
+                    }
+                }
+            } else return content;
+        });
+        setLessonContent(nextLessonContent);
+    };
+
+    const handleExplanationChange = (contentId: string, explanationValue: string) => {
+        const nextLessonContent = lessonContent.map((content) => {
+            if (content.id === contentId) {
+                return {
+                    ...content,
+                    value: {
+                        ...content.value,
+                        explanation: explanationValue,
+                    }
+                }
+            }
+            else return content;
+        });
+        setLessonContent(nextLessonContent);
+    };
+
 
     return (
         <>
@@ -101,7 +209,7 @@ const CreateLessonPage = () => {
                     <div className="flex md:flex-col md:space-y-6 justify-center">
                         <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
                         <ImageBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'image')} />
-                        <QuizBlockButton />
+                        <QuizBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'quiz')} />
                         <CodeBlockButton />
                     </div>
 
@@ -144,6 +252,19 @@ const CreateLessonPage = () => {
                                                 <Image src={item.value} width={300} height={300} alt='image' />
                                             </div>
                                         )}
+                                        {
+                                            item.contentType === 'quiz' && (
+                                                <div>
+                                                    <QuizInputBlock
+                                                        quiz={item}
+                                                        onCheckedChange={handleCheckedChange}
+                                                        onQuestionChange={handleQuestionChange}
+                                                        onExplnationChange={handleExplanationChange}
+                                                        onOptionsChange={handleOptionValueChange}
+                                                    />
+                                                </div>
+                                            )
+                                        }
                                         <div className='relative group/toolbar my-3'>
                                             <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
                                                 onClick={() => handleDeleteContentBlock(item.id)} />
@@ -160,7 +281,6 @@ const CreateLessonPage = () => {
                             </div>
                         ))}
                     </div>
-                    <QuizInputBlock />
                 </div>
             </div>
         </>

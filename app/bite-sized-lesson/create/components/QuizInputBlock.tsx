@@ -1,22 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '@/components/ui/form';
 
 import { DynamicTextarea } from "./content-blocks";
-import { quizSchema } from '@/app/lib/schemas/quizSchema';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { OptionsProps, AnOptionProps, QuizProps } from '../types';
 
 // When Quiz Input Button is clicked, it will create
 // a quiz data structure, and QuizInputBlock will render the
@@ -40,20 +27,7 @@ const initialQuizContent = {
     `
 };
 
-export default function QuizInputBlock() {
-    const [quiz, setQuiz] = useState(initialQuizContent)
-
-    const handleCheckboxChange = (optionId: String, isChecked: boolean) => {
-        const nextOptions = [...quiz.options].map((option) => {
-            if (option.id === optionId) {
-                return { ...option, isCorrect: isChecked }
-            } else {
-                return option
-            }
-        })
-        setQuiz({ ...quiz, options: nextOptions })
-
-    }
+export default function QuizInputBlock({ quiz, onQuestionChange, onExplnationChange, onOptionsChange, onCheckedChange }: any) {
     return (
         <div>
             <div>
@@ -61,23 +35,27 @@ export default function QuizInputBlock() {
                 <DynamicTextarea
                     rows={1}
                     className="px-2 py-2 my-2"
-                    placeholder={quiz.question}
+                    placeholder="Question..."
+                    value={quiz.value.question}
+                    onChange={(e) => onQuestionChange(quiz.id, e.target.value)}
                 />
             </div>
             <div>
                 <label>Options</label>
-                {quiz.options.map((option, index) => (
-                    <div key={index} className='flex items-center space-x-2 m-2'>
+                {quiz.value.options.map((option: AnOptionProps, index: number) => (
+                    <div key={option.id} className='flex items-center space-x-2 m-2'>
                         <input
                             className='h-4 w-4'
                             type="checkbox"
                             checked={option.isCorrect}
-                            onChange={(e) => handleCheckboxChange(option.id, e.target.checked)}
+                            onChange={(e) => onCheckedChange(quiz.id, option.id, e.target.checked)}
                         />
                         <DynamicTextarea
                             rows={1}
                             className='px-2 py-2 my-2'
                             placeholder={`Option: ${index + 1}`}
+                            value={option.value}
+                            onChange={(e) => onOptionsChange(quiz.id, option.id, e.target.value)}
                         />
                     </div>
                 ))}
