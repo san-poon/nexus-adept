@@ -38,17 +38,17 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
 }
 
 
-export function TitleInput({ title, onTitleChange }: any) {
+export function TitleInput({ content, onTitleChange }: any) {
     return (
         <>
             {/* Lesson Title input */}
             <input
                 type="text"
                 placeholder="Lesson Title"
-                value={title}
+                value={content.value}
                 className="w-full p-2 mb-4 border-b-2 border-blue-500 outline-none rounded shadow"
 
-                onChange={onTitleChange}
+                onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
         </>
     );

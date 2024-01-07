@@ -8,22 +8,23 @@ import { AddContentCombobox, TextCombobox } from './components/content-type-comb
 import { getImageUrlFromUser } from './utils';
 import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
+import { cn } from '@/lib/utils';
 
-const initialContent: LessonContentProps = [{
-    id: uuidv4(),
-    contentType: 'text',
-    value: 'Captivating Introduction here...'
-}]
+const initialContent: LessonContentProps = [
+    {
+        id: uuidv4(),
+        contentType: 'title',
+        value: ''
+    },
+    {
+        id: uuidv4(),
+        contentType: 'text',
+        value: 'Captivating Introduction here...'
+    }
+];
 
 const CreateLessonPage = () => {
-    const [lessonTitle, setLessonTitle] = useState('');
     const [lessonContent, setLessonContent] = useState<LessonContentProps>(initialContent);
-
-    // Handle changes in lesson title input
-    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setLessonTitle(event.target.value);
-    };
 
     // Handle insertion of text field
     const handleInsertContentBlock = async (index: number, contentType: string) => {
@@ -178,12 +179,13 @@ const CreateLessonPage = () => {
         setLessonContent(nextLessonContent);
     };
 
+    const titleBlock = lessonContent.find((content) => content.contentType === 'title');
 
     return (
         <>
             <div className="md:w-2/3 mx-auto p-4">
                 {/* Title Input */}
-                <TitleInput title={lessonTitle} onTitleChange={handleTitleChange} />
+                <TitleInput content={titleBlock} onTitleChange={handleUpdateContent} />
             </div>
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
@@ -201,9 +203,9 @@ const CreateLessonPage = () => {
                 {/* Right Side - Input Fields/Forms */}
                 <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                     <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
-                        <h1 className=" text-2xl md:text-4xl text-center">{lessonTitle}</h1>
+                        <h1 className=" text-2xl md:text-4xl text-center">{titleBlock?.value}</h1>
                         {lessonContent.map((item, index) => (
-                            <div key={item.id}>
+                            <div key={item.id} className={cn(item.contentType === 'title' ? 'hidden' : 'block')}>
                                 <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                     <div>
                                         {/* Conditionally render based on 'contentType' */}
