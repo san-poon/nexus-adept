@@ -9,6 +9,7 @@ import { getImageUrlFromUser } from './utils';
 import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
+import LessonPreview from './components/LessonPreview';
 
 const initialContent: LessonContentProps = [
     {
@@ -187,6 +188,8 @@ const CreateLessonPage = () => {
                 {/* Title Input */}
                 <TitleInput content={titleBlock} onTitleChange={handleUpdateContent} />
             </div>
+            <div><LessonPreview content={lessonContent} /></div>
+
             <div className={`flex flex-col md:flex-row`}>
                 {/* Left Side - Content Buttons */}
                 <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-0 md:top-44 z-50`}>
