@@ -3,13 +3,13 @@ import { OptionsProps, AnOptionProps, QuizProps } from '../types';
 
 export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationChange, onOptionsChange, onCheckedChange }: any) {
     return (
-        <div>
+        <div className="m-2">
             <div>
                 <label>Question</label>
                 <DynamicTextarea
                     autoFocus={true}
                     rows={1}
-                    className="px-2 py-2 my-2"
+                    className="px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800"
                     placeholder="Question..."
                     value={quiz.value.question}
                     onChange={(e) => onQuestionChange(quiz.id, e.target.value)}
@@ -27,7 +27,7 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationCh
                         />
                         <DynamicTextarea
                             rows={1}
-                            className='px-2 py-2 my-2'
+                            className='px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800'
                             placeholder={`Option: ${index + 1}`}
                             value={option.value}
                             onChange={(e) => onOptionsChange(quiz.id, option.id, e.target.value)}
@@ -36,7 +36,9 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationCh
                 ))}
             </div>
             <div>
+                <label>Explanation</label>
                 <DynamicTextarea
+                    className='px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800'
                     rows={2}
                     placeholder='Explanation... Make it clear and concise.'
                     value={quiz.value.explanation}
