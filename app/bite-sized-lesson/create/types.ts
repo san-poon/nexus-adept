@@ -20,3 +20,8 @@ export type QuizProps = {
     options: OptionsProps,
     explanation: string,
 };
+export type QuizBlockProps = {
+    id: string,
+    contentType: ContentTypeProps,
+    value: QuizProps,
+};

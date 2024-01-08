@@ -28,7 +28,7 @@ export function LessonPreviewButton() {
 export default function LessonPreview({ content }: { content: LessonContentProps }) {
     return (
         <div className="flex justify-center">
-            <div className=" lg:w-3/5 m-2 p-4 rounded border-2 dark:border-neutral-700">
+            <div className=" w-screen lg:w-3/5 m-2 mt-10 p-4 rounded border-2 dark:border-neutral-700 overflow-y-auto">
                 {
                     content.map((contentBlock) => (
                         <div key={contentBlock.id}>
@@ -43,7 +43,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                                 </Markdown>
                             )}
                             {contentBlock.contentType === 'quiz' && (
-                                <QuizPreview content={contentBlock} />
+                                <QuizPreview quiz={contentBlock.value} />
                             )}
                         </div>
                     ))

@@ -191,7 +191,7 @@ const CreateLessonPage = () => {
                 </div>
                 <div className={`flex flex-col md:flex-row`}>
                     {/* Left Side - Content Buttons */}
-                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-0 md:top-44 z-50`}>
+                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-10 md:top-44 z-50 bg-emerald-50 dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
                         <div className="flex md:flex-col md:space-y-6 justify-center">
                             <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
@@ -224,7 +224,7 @@ const CreateLessonPage = () => {
                                                             <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateContent} />
                                                         </div>
                                                         <DynamicTextarea
-                                                            // autoFocus={true}
+                                                            // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
                                                             className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
                                                             placeholder='Your paragraph or... Choose from menu'
