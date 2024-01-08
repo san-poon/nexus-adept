@@ -12,7 +12,7 @@ export const TextBlockButton = ({ onClick }: { onClick: () => void }) => {
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button onClick={onClick}>
+                    <Button onClick={onClick} className="transition duration-200 ease-in-out transform active:scale-75">
                         <TextBlockIcon />
                     </Button>
                 </TooltipTrigger>
@@ -30,7 +30,7 @@ export const ImageBlockButton = ({ ...props }) => {
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button {...props}>
+                    <Button {...props} className="transition duration-200 ease-in-out transform active:scale-75">
                         <ImageBlockIcon />
                     </Button>
                 </TooltipTrigger>
@@ -47,7 +47,7 @@ export const QuizBlockButton = ({ ...props }) => {
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button {...props}>
+                    <Button {...props} className="transition duration-200 ease-in-out transform active:scale-75">
                         <QuizBlockIcon />
                     </Button>
                 </TooltipTrigger>
@@ -65,7 +65,7 @@ export const CodeBlockButton = () => {
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button>
+                    <Button className="transition duration-200 ease-in-out transform active:scale-75">
                         <CodeBlockIcon />
                     </Button>
                 </TooltipTrigger>
