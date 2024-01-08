@@ -1,60 +1,79 @@
 import { Button } from "@/app/components/Button"
 import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "./icons"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export const TextBlockButton = ({ onClick }: { onClick: () => void }) => {
     return (
-        <>
-            {/* Text Button */}
-            <Button className=" relative group/textTool" onClick={onClick}>
-                <TextBlockIcon />
-                {/* show button name, except on small screens */}
-                <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-20 transition duration-300 ease-in-out group-hover/textTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>
-                    Add Text
-                </span>
-            </Button>
-        </>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger>
+                    <Button onClick={onClick}>
+                        <TextBlockIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Add Text</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     )
 }
 
-export const ImageBlockButton = ({ ...rest }) => {
+
+export const ImageBlockButton = ({ ...props }) => {
     return (
-        <>
-            {/* Images Button */}
-            <Button className=" relative group/imageTool" {...rest}>
-                <ImageBlockIcon />
-                {/* show button name, except on small screens */}
-                <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-24 transition duration-300 ease-in-out group-hover/imageTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>Add Image</span>
-            </Button>
-        </>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger>
+                    <Button {...props}>
+                        <ImageBlockIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Add Image</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     )
 }
 
 export const QuizBlockButton = ({ ...props }) => {
     return (
-        <>
-            {/* Quizzes Button */}
-            <Button className="relative group/quizTool" {...props}>
-                <QuizBlockIcon />
-                {/* show button name, except on small screens */}
-                <span className="hidden md:inline-block opacity-0 text-xs p-1 absolute -right-20 transition duration-300 ease-in-out group-hover/quizTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded" >
-                    Add Quiz
-                </span>
-            </Button>
-        </>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger>
+                    <Button {...props}>
+                        <QuizBlockIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Add Quiz</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     )
 }
 
 
 export const CodeBlockButton = () => {
     return (
-        <>
-            {/* Code Sandbox Button */}
-            <Button className="relative group/codeTool">
-                <CodeBlockIcon />
-                {/* show button name, except on small screens */}
-                <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-20 transition duration-300 ease-in-out group-hover/codeTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>Add Code</span>
-            </Button>
-        </>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger>
+                    <Button>
+                        <CodeBlockIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Add Code</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     )
 }
 
@@ -89,3 +108,14 @@ export const ContentTypeButton = ({ className, children, ...rest }: { className:
         </Button>
     )
 }
+// export const ImageBlockButton = ({ ...props }) => {
+//     return (
+//         <>
+//             <Button className=" relative group/imageTool" {...props}>
+//                 <ImageBlockIcon />
+//                 {/* show button name, except on small screens */}
+//                 <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-24 transition duration-300 ease-in-out group-hover/imageTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>Add Image</span>
+//             </Button>
+//         </>
+//     )
+// }

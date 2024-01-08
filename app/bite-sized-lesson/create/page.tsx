@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/button-with-icon';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/tooltip-buttons';
 import Image from 'next/image';
 import { DynamicTextarea, TitleInput } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
