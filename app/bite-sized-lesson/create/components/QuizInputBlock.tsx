@@ -7,7 +7,7 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationCh
             <div>
                 <label>Question</label>
                 <DynamicTextarea
-                    autoFocus={true}
+                    // autoFocus={true} // gets weird with lesson-tab switching
                     rows={1}
                     className="px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800"
                     placeholder="Question..."
