@@ -1,5 +1,6 @@
 import { LessonContentProps } from "../types";
 import Markdown, { Components } from 'react-markdown';
+import QuizPreview from "./QuizPreview";
 
 const markdownComponents: Components = {
     h1(props) {
@@ -26,23 +27,28 @@ export function LessonPreviewButton() {
 
 export default function LessonPreview({ content }: { content: LessonContentProps }) {
     return (
-        <div>
-            {
-                content.map((contentBlock) => (
-                    <div key={contentBlock.id}>
-                        {contentBlock.contentType === 'title' && (
-                            <h1 className="text-4xl">{contentBlock.value}</h1>
-                        )}
-                        {contentBlock.contentType === 'text' && (
-                            <Markdown
-                                components={markdownComponents}
-                            >
-                                {contentBlock.value}
-                            </Markdown>
-                        )}
-                    </div>
-                ))
-            }
+        <div className="flex justify-center">
+            <div className=" lg:w-3/5 m-2 p-4 rounded border-2 dark:border-neutral-700">
+                {
+                    content.map((contentBlock) => (
+                        <div key={contentBlock.id}>
+                            {contentBlock.contentType === 'title' && (
+                                <h1 className="text-4xl">{contentBlock.value}</h1>
+                            )}
+                            {contentBlock.contentType === 'text' && (
+                                <Markdown
+                                    components={markdownComponents}
+                                >
+                                    {contentBlock.value}
+                                </Markdown>
+                            )}
+                            {contentBlock.contentType === 'quiz' && (
+                                <QuizPreview content={contentBlock} />
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }
