@@ -1,4 +1,4 @@
-import { Button } from "@/app/components/Button"
+import { Button } from "@/components/ui/button";
 import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "./icons"
 import {
     Tooltip,
@@ -9,14 +9,14 @@ import {
 
 export const TextBlockButton = ({ onClick }: { onClick: () => void }) => {
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <Button onClick={onClick}>
                         <TextBlockIcon />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="right" sideOffset={2}>
                     <p>Add Text</p>
                 </TooltipContent>
             </Tooltip>
@@ -27,14 +27,14 @@ export const TextBlockButton = ({ onClick }: { onClick: () => void }) => {
 
 export const ImageBlockButton = ({ ...props }) => {
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <Button {...props}>
                         <ImageBlockIcon />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="right" sideOffset={2}>
                     <p>Add Image</p>
                 </TooltipContent>
             </Tooltip>
@@ -44,14 +44,14 @@ export const ImageBlockButton = ({ ...props }) => {
 
 export const QuizBlockButton = ({ ...props }) => {
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <Button {...props}>
                         <QuizBlockIcon />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="right" sideOffset={2}>
                     <p>Add Quiz</p>
                 </TooltipContent>
             </Tooltip>
@@ -62,14 +62,14 @@ export const QuizBlockButton = ({ ...props }) => {
 
 export const CodeBlockButton = () => {
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={300}>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <Button>
                         <CodeBlockIcon />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="right" sideOffset={2}>
                     <p>Add Code</p>
                 </TooltipContent>
             </Tooltip>
@@ -108,14 +108,3 @@ export const ContentTypeButton = ({ className, children, ...rest }: { className:
         </Button>
     )
 }
-// export const ImageBlockButton = ({ ...props }) => {
-//     return (
-//         <>
-//             <Button className=" relative group/imageTool" {...props}>
-//                 <ImageBlockIcon />
-//                 {/* show button name, except on small screens */}
-//                 <span className='hidden md:inline-block opacity-0 text-xs p-1 absolute -right-24 transition duration-300 ease-in-out group-hover/imageTool:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>Add Image</span>
-//             </Button>
-//         </>
-//     )
-// }
