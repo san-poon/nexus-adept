@@ -89,7 +89,7 @@ const CreateLessonPage = () => {
         }
     };
 
-    const handleUpdateContent = (contentBlock: LessonContentBlockProps) => {
+    const handleUpdateTextContent = (contentBlock: LessonContentBlockProps) => {
         // Doesn't matter what user is updating: 'contentType' or 'value'
         const nextLessonContent = lessonContent.map((contentItem) => {
             if (contentItem.id === contentBlock.id) {
@@ -187,7 +187,7 @@ const CreateLessonPage = () => {
             <LessonTabs lessonContent={lessonContent}>
                 <div className="md:w-2/3 mx-auto p-4">
                     {/* Title Input */}
-                    <TitleInput content={titleBlock} onTitleChange={handleUpdateContent} />
+                    <TitleInput content={titleBlock} onTitleChange={handleUpdateTextContent} />
                 </div>
                 <div className={`flex flex-col md:flex-row`}>
                     {/* Left Side - Content Buttons */}
@@ -221,7 +221,7 @@ const CreateLessonPage = () => {
                                                 && (
                                                     <div>
                                                         <div className='flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
-                                                            <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateContent} />
+                                                            <TextCombobox contentBlock={item} onTextContentTypeChange={handleUpdateTextContent} />
                                                         </div>
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
@@ -230,7 +230,7 @@ const CreateLessonPage = () => {
                                                             placeholder='Your paragraph or... Choose from menu'
                                                             name={item.contentType}
                                                             value={item.value}
-                                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateContent({ ...item, value: e.target.value })}
+                                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...item, value: e.target.value })}
                                                         />
                                                     </div>
                                                 )
