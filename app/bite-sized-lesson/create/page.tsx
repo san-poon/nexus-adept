@@ -190,13 +190,9 @@ const CreateLessonPage = () => {
     const objectiveBlock = lessonContent.find((content) => content.contentType === 'text/objective');
 
     return (
-        <>
+        <main className='dark:bg-neutral-900 dark:text-neutral-100'>
             <LessonTabs lessonContent={lessonContent}>
-                <div className="md:w-2/3 mx-auto p-4">
-                    {/* Title Input */}
-
-                </div>
-                <div className={`flex flex-col md:flex-row`}>
+                <div className={`flex flex-col md:flex-row my-10`}>
                     {/* Left Side - Content Buttons */}
                     <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-10 md:top-44 z-50 bg-emerald-50 dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
@@ -306,7 +302,7 @@ const CreateLessonPage = () => {
                     </div>
                 </div>
             </LessonTabs>
-        </>
+        </main>
     );
 };
 

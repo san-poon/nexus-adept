@@ -1,6 +1,7 @@
 import { LessonContentProps } from "../types";
 import Markdown, { Components } from 'react-markdown';
 import QuizPreview from "./QuizPreview";
+import { Label } from "@/components/ui/label";
 
 const markdownComponents: Components = {
     h1(props) {
@@ -50,7 +51,7 @@ export function LessonPreviewButton() {
 export default function LessonPreview({ content }: { content: LessonContentProps }) {
     return (
         <div className="flex justify-center">
-            <div className=" w-screen lg:w-3/5 m-2 mt-10 p-4 rounded border-2 dark:border-neutral-800 overflow-y-auto">
+            <div className=" w-screen lg:w-3/5 m-2 my-10 p-4 rounded border-2 dark:border-neutral-800 overflow-y-auto">
                 {
                     content.map((contentBlock) => (
                         <div key={contentBlock.id}>
@@ -65,10 +66,13 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                                 </div>
                             )}
                             {contentBlock.contentType === 'text/objective' && (
-                                <div className=" border-2 dark:border-neutral-800 shadow-md dark:shadow-neutral-800 rounded-3xl ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-300">
-                                    <Markdown components={markdownObjectiveComponents}>
-                                        {contentBlock.value}
-                                    </Markdown>
+                                <div className="border-2 dark:border-neutral-800 shadow-md dark:shadow-neutral-800 rounded-3xl ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
+                                    <Label className="text-2xl">We will Learn</Label>
+                                    <div className="mt-4">
+                                        <Markdown components={markdownObjectiveComponents}>
+                                            {contentBlock.value}
+                                        </Markdown>
+                                    </div>
                                 </div>
                             )}
                             {contentBlock.contentType === 'text' && (

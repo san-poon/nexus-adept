@@ -48,7 +48,7 @@ export function TitleInput({ content, onTitleChange }: any) {
                 type="text"
                 placeholder="Lesson Title"
                 value={content.value}
-                className="w-full p-2 mb-4 border-b-2 border-blue-500 outline-none rounded shadow"
+                className="w-full p-4 my-4 outline-none rounded-lg dark:bg-neutral-800"
 
                 onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
