@@ -1,3 +1,6 @@
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 import {
     Card,
     CardContent,
@@ -5,9 +8,12 @@ import {
     CardTitle,
     CardFooter
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+} from '@/components/ui/accordion';
 
 import { QuizProps, AnOptionProps } from "../types";
 import { QuizBlockIcon } from './icons';
@@ -38,7 +44,7 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
     );
 
     const isPlayerInProgress = playerStatus === 'in-progress';
-    const isAnswered = playerStatus === 'submitted';
+    const isSubmitted = playerStatus === 'submitted';
 
     return (
         <div className="mt-4 flex justify-center">
@@ -62,7 +68,7 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
                                     key={option.id}
                                     className={cn(
                                         "p-2 md:p-4 m-2 md:m-4 bg-emerald-100 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
-                                        selectedOptions.includes(option.id) ? 'bg-emerald-300 dark:bg-neutral-700' : "",
+                                        selectedOptions.includes(option.id) ? 'bg-emerald-300 dark:bg-emerald-800' : "",
                                     )}
                                     onClick={() => handleOptionClick(option.id)}
                                 >
@@ -75,7 +81,7 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
                 <CardFooter className='flex flex-col'>
                     <div className="flex justify-between items-center w-full">
                         <div>
-                            {isAnswered && (
+                            {isSubmitted && (
                                 isPlayerCorrect
                                     ? <span>Correct!</span>
                                     : <span>Try Again!</span>
@@ -85,9 +91,16 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
                             <Button onClick={handleSubmit}>Submit</Button>
                         </div>
                     </div>
-                    <div>
-
-                    </div>
+                    <Accordion type="single" collapsible className='w-full'>
+                        <AccordionItem value="explanation">
+                            <AccordionTrigger>
+                                Explanation
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                {quiz.explanation}
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </CardFooter>
             </Card>
         </div>
