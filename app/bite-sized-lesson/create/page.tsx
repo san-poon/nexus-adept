@@ -250,7 +250,6 @@ const CreateLessonPage = () => {
                                                 (
                                                     item.contentType === 'text'
                                                     || item.contentType === 'text/note'
-                                                    || item.contentType === 'text/deep-dive'
                                                     || item.contentType === 'text/pitfall'
                                                 )
                                                 && (

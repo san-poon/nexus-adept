@@ -22,10 +22,6 @@ const textContentTypes = [
         value: 'text/pitfall',
         label: 'Pitfall',
     },
-    {
-        value: 'text/deep-dive',
-        label: 'Deep Dive'
-    }
 ]
 
 export function TextCombobox({ contentBlock, onTextContentTypeChange }: { contentBlock: LessonContentBlockProps, onTextContentTypeChange: (contentBlock: LessonContentBlockProps) => void }) {
