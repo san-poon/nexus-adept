@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Code from './code';
+import { shuffleArray } from '@/lib/utils';
 
 type QuizProps = {
     quiz: {
@@ -55,11 +56,3 @@ export default function Quiz({ quiz }: QuizProps) {
 }
 
 // Returns a new shuffled array without mutating the original array
-const shuffleArray = (array: optionType[]): optionType[] => {
-    let shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-};

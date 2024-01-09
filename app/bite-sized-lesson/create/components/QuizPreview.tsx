@@ -6,11 +6,40 @@ import {
     CardFooter
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 import { QuizProps, AnOptionProps } from "../types";
 import { QuizBlockIcon } from './icons';
 
+type Status = 'idle' | 'in-progress' | 'submitted' | 'reviewing'
+
 export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const [playerStatus, setPlayerStatus] = useState<Status>('idle'); // 'idle' | 'in-progress' | 'submitted' | 'reviewing'
+
+
+    const handleOptionClick = (optionId: string) => {
+        setPlayerStatus('in-progress');
+        const updatedOptions = selectedOptions?.includes(optionId)
+            ? selectedOptions.filter((id) => id !== optionId)
+            : [...selectedOptions, optionId];
+        setSelectedOptions(updatedOptions);
+    };
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        setPlayerStatus('submitted');
+    }
+
+    // Check correctness based on 'isCorrect' flag
+    const isPlayerCorrect = selectedOptions.every(
+        (optionId) => quiz.options.find((option) => option.id === optionId)?.isCorrect
+    );
+
+    const isPlayerInProgress = playerStatus === 'in-progress';
+    const isAnswered = playerStatus === 'submitted';
+
     return (
         <div className="mt-4 flex justify-center">
             <Card className=" w-full md:w-11/12 bg-teal-50 dark:bg-inherit rounded-3xl shadow-2xl dark:shadow-neutral-800 border-2">
@@ -29,16 +58,35 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
                         </div>
                         <ul className='mt-4'>
                             {quiz.options.map((option: AnOptionProps) => (
-                                <div key={option.id} className='p-2 m-2 bg-emerald-100 dark:bg-neutral-800 rounded-xl w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 hover:bg-emerald-200 dark:hover:bg-neutral-700 cursor-pointer'>
+                                <div
+                                    key={option.id}
+                                    className={cn(
+                                        "p-2 md:p-4 m-2 md:m-4 bg-emerald-100 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
+                                        selectedOptions.includes(option.id) ? 'bg-emerald-300 dark:bg-neutral-700' : "",
+                                    )}
+                                    onClick={() => handleOptionClick(option.id)}
+                                >
                                     {option.value}
                                 </div>
                             ))}
                         </ul>
                     </div>
                 </CardContent>
-                <CardFooter>
-                    <div className='ml-auto'>
-                        <Button>Submit</Button>
+                <CardFooter className='flex flex-col'>
+                    <div className="flex justify-between items-center w-full">
+                        <div>
+                            {isAnswered && (
+                                isPlayerCorrect
+                                    ? <span>Correct!</span>
+                                    : <span>Try Again!</span>
+                            )}
+                        </div>
+                        <div>
+                            <Button onClick={handleSubmit}>Submit</Button>
+                        </div>
+                    </div>
+                    <div>
+
                     </div>
                 </CardFooter>
             </Card>
