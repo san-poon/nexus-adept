@@ -4,7 +4,7 @@ import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, De
 import Image from 'next/image';
 import { DynamicTextarea, TitleInput } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
-import { AddContentCombobox, TextCombobox } from './components/content-type-combobox';
+import { AddContentCombobox, TextCombobox } from './components/combobox';
 import { getImageUrlFromUser } from './utils';
 import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
@@ -19,9 +19,14 @@ const initialContent: LessonContentProps = [
     },
     {
         id: uuidv4(),
-        contentType: 'text',
-        value: 'Captivating Introduction here...'
-    }
+        contentType: 'text/introduction',
+        value: '',
+    },
+    {
+        id: uuidv4(),
+        contentType: 'text/objective',
+        value: '',
+    },
 ];
 
 const CreateLessonPage = () => {
@@ -181,13 +186,15 @@ const CreateLessonPage = () => {
     };
 
     const titleBlock = lessonContent.find((content) => content.contentType === 'title');
+    const introductionBlock = lessonContent.find((content) => content.contentType === 'text/introduction');
+    const objectiveBlock = lessonContent.find((content) => content.contentType === 'text/objective');
 
     return (
         <>
             <LessonTabs lessonContent={lessonContent}>
                 <div className="md:w-2/3 mx-auto p-4">
                     {/* Title Input */}
-                    <TitleInput content={titleBlock} onTitleChange={handleUpdateTextContent} />
+
                 </div>
                 <div className={`flex flex-col md:flex-row`}>
                     {/* Left Side - Content Buttons */}
@@ -205,9 +212,37 @@ const CreateLessonPage = () => {
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                         <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
-                            <h1 className=" text-2xl md:text-4xl text-center">{titleBlock?.value}</h1>
+                            <TitleInput content={titleBlock} onTitleChange={handleUpdateTextContent} />
+                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2'>
+                                <DynamicTextarea
+                                    // autoFocus={true} // gets weird with lesson-tab switching
+                                    rows={2}
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                    placeholder='Captivating Introduction...'
+                                    name={introductionBlock?.contentType}
+                                    value={introductionBlock?.value}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...introductionBlock as LessonContentBlockProps, value: e.target.value })}
+                                />
+                            </div>
+                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2'>
+                                <DynamicTextarea
+                                    // autoFocus={true} // gets weird with lesson-tab switching
+                                    rows={2}
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                    placeholder='Concise Objective...'
+                                    name={objectiveBlock?.contentType}
+                                    value={objectiveBlock?.value}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...objectiveBlock as LessonContentBlockProps, value: e.target.value })}
+                                />
+                            </div>
+
                             {lessonContent.map((item, index) => (
-                                <div key={item.id} className={cn(item.contentType === 'title' ? 'hidden' : 'block')}>
+                                <div key={item.id} className={cn(
+                                    item.contentType === 'title'
+                                        || item.contentType === 'text/introduction'
+                                        || item.contentType === 'text/objective'
+                                        ? 'hidden' : 'block'
+                                )}>
                                     <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
@@ -227,7 +262,7 @@ const CreateLessonPage = () => {
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
                                                             className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
-                                                            placeholder='Your paragraph or... Choose from menu'
+                                                            placeholder='Your paragraph or... Choose from dropdown menu'
                                                             name={item.contentType}
                                                             value={item.value}
                                                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...item, value: e.target.value })}
