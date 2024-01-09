@@ -26,7 +26,7 @@ const textContentTypes = [
 
 export function TextCombobox({ contentBlock, onTextContentTypeChange }: { contentBlock: LessonContentBlockProps, onTextContentTypeChange: (contentBlock: LessonContentBlockProps) => void }) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(contentBlock.contentType);
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -52,7 +52,7 @@ export function TextCombobox({ contentBlock, onTextContentTypeChange }: { conten
                                 key={textType.value}
                                 value={textType.value}
                                 onSelect={(currentValue) => {
-                                    setValue(currentValue === value ? "" : currentValue);
+                                    setValue(currentValue === value ? "" : currentValue); // Ignore this TS error
                                     setOpen(false);
                                     onTextContentTypeChange({ ...contentBlock, contentType: currentValue as ContentTypeProps });
                                 }}
