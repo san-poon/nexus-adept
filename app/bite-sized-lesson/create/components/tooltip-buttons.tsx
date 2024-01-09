@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "./icons"
+import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "../icons"
 import {
     Tooltip,
     TooltipContent,

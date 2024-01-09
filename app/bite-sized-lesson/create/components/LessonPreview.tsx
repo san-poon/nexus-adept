@@ -2,6 +2,7 @@ import { LessonContentProps } from "../types";
 import Markdown, { Components } from 'react-markdown';
 import QuizPreview from "./QuizPreview";
 import { Label } from "@/components/ui/label";
+import { NoteIcon, PitfallIcon } from "../icons";
 
 const markdownComponents: Components = {
     h2(props) {
@@ -86,7 +87,23 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                             )}
                             {contentBlock.contentType === 'text/note' && (
                                 <div className="dark:bg-emerald-950 bg-emerald-100 rounded-3xl py-10 px-4 md:mx-4 my-10">
-                                    <Label className="text-2xl">Note</Label>
+                                    <div className="flex items-center">
+                                        <NoteIcon />
+                                        <Label className="text-2xl ms-4">Note</Label>
+                                    </div>
+                                    <div className="mt-4">
+                                        <Markdown components={markdownNoteComponents}>
+                                            {contentBlock.value}
+                                        </Markdown>
+                                    </div>
+                                </div>
+                            )}
+                            {contentBlock.contentType === 'text/pitfall' && (
+                                <div className="dark:bg-amber-950/75 bg-amber-100 rounded-3xl py-10 px-4 md:mx-4 my-10">
+                                    <div className="flex items-center">
+                                        <PitfallIcon />
+                                        <Label className="text-2xl ms-4">Pitfall</Label>
+                                    </div>
                                     <div className="mt-4">
                                         <Markdown components={markdownNoteComponents}>
                                             {contentBlock.value}
