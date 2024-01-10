@@ -6,7 +6,10 @@ import { CodeBlockProps } from '../types';
 export default function CodePreview({ codeBlock }: { codeBlock: CodeBlockProps }) {
     const codeString = codeBlock.value.code;
     return (
-        <SyntaxHighlighter language={codeBlock.value.lang} style={a11yDark}>
+        <SyntaxHighlighter
+            language={codeBlock.value.lang}
+            style={a11yDark}
+        >
             {codeString}
         </SyntaxHighlighter>
     );
