@@ -1,25 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/themes/prism-okaidia.css';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
-type CodeProps = {
-    code: string;
-}
-export default function Code({ code }: CodeProps) {
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            Prism.highlightAll();
-        }
-    }, [code]);
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+export default function Code({ code }: { code: string }) {
     return (
-        <pre className="bg-slate-900 text-white p-4 text-sm rounded-md">
-            <code className="language-typescript">
-                {code}
-            </code>
-        </pre>
-    )
+        <SyntaxHighlighter
+            language='javascript'
+            style={a11yDark}
+        >
+            {code}
+        </SyntaxHighlighter>
+    );
 }
