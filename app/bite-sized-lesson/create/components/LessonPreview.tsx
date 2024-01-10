@@ -11,11 +11,15 @@ const markdownComponents: Components = {
     },
     a(props) {
         const { node, ...rest } = props;
-        return <a className="dark:bg-slate-200 p-1 rounded-md dark:text-cyan-950" {...rest} />
+        return <a className=" text-sky-600 dark:text-sky-400 hover:underline decoration-1 decoration hover:underline-offset-4" {...rest} />
     },
     p(props) {
         const { node, ...rest } = props;
         return <p className="my-3" {...rest} />
+    },
+    ul(props) {
+        const { node, ...rest } = props;
+        return <ul className=" list-disc px-4" {...rest} />
     },
     ol(props) {
         const { node, ...rest } = props;
@@ -28,6 +32,7 @@ const markdownComponents: Components = {
 }
 
 const markdownIntroductionComponents: Components = {
+    ...markdownComponents,
     p(props) {
         const { node, ...rest } = props;
         return <p className="mt-3 text-lg" {...rest} />
@@ -35,9 +40,10 @@ const markdownIntroductionComponents: Components = {
 }
 
 const markdownObjectiveComponents: Components = {
+    ...markdownComponents,
     ul(props) {
         const { node, ...rest } = props;
-        return <ul className=" list-disc px-4" {...rest} />
+        return <ul className=" list-disc px-4 ms-4" {...rest} />
     }
 }
 
@@ -48,10 +54,18 @@ const markdownNoteComponents: Components = {
         return <code className="dark:bg-emerald-900/50 bg-emerald-200 p-1 rounded-lg" {...rest} />
     },
 }
+const markdownPitfallComponents: Components = {
+    ...markdownComponents,
+    code(props) {
+        const { node, ...rest } = props;
+        return <code className="dark:bg-amber-900/50 bg-amber-200 p-1 rounded-lg" {...rest} />
+    },
+
+}
 
 export default function LessonPreview({ content }: { content: LessonContentProps }) {
     return (
-        <div className="flex justify-center leading-loose dark:text-neutral-200">
+        <div className="flex justify-center leading-loose dark:text-neutral-100">
             <div className=" w-screen lg:w-3/5 m-2 my-10 p-4 rounded border-2 dark:border-neutral-800 overflow-y-auto">
                 {
                     content.map((contentBlock) => (
@@ -67,7 +81,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                                 </div>
                             )}
                             {contentBlock.contentType === 'text/objective' && (
-                                <div className="border-2 dark:border-neutral-800 shadow-md dark:shadow-neutral-800 rounded-3xl ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
+                                <div className="border-2 dark:border-neutral-800 shadow dark:shadow-neutral-800 rounded-3xl ps-4 md:ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
                                     <Label className="text-2xl">We will Learn</Label>
                                     <div className="mt-4">
                                         <Markdown components={markdownObjectiveComponents}>
@@ -105,7 +119,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                                         <Label className="text-2xl ms-4">Pitfall</Label>
                                     </div>
                                     <div className="mt-4">
-                                        <Markdown components={markdownNoteComponents}>
+                                        <Markdown components={markdownPitfallComponents}>
                                             {contentBlock.value}
                                         </Markdown>
                                     </div>
