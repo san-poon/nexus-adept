@@ -60,12 +60,14 @@ export const QuizBlockButton = ({ ...props }) => {
 }
 
 
-export const CodeBlockButton = () => {
+export const CodeBlockButton = ({ ...props }) => {
     return (
         <TooltipProvider delayDuration={300}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button className="transition duration-200 ease-in-out transform active:scale-75">
+                    <Button className="transition duration-200 ease-in-out transform active:scale-75"
+                        {...props}
+                    >
                         <CodeBlockIcon />
                     </Button>
                 </TooltipTrigger>

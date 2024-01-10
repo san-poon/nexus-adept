@@ -2,6 +2,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
+
 export function DynamicTextarea({ className, ...props }: TextareaProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -40,7 +41,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
 }
 
 
-export function TitleInput({ content, onTitleChange }: any) {
+export function TitleInputBlock({ content, onTitleChange }: any) {
     return (
         <>
             {/* Lesson Title input */}

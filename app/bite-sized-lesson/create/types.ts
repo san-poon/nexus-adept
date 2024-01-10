@@ -25,3 +25,12 @@ export type QuizBlockProps = {
     contentType: ContentTypeProps,
     value: QuizProps,
 };
+
+export type codeBlockProps = {
+    id: string,
+    contentType: ContentTypeProps,
+    value: {
+        lang: string,
+        code: string,
+    },
+}

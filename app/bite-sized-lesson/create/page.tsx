@@ -2,14 +2,15 @@
 import { useState } from 'react';
 import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton, CreateButton, ContentTypeButton } from './components/tooltip-buttons';
 import Image from 'next/image';
-import { DynamicTextarea, TitleInput } from './components/content-blocks';
+import { DynamicTextarea, TitleInputBlock } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, TextCombobox } from './components/combobox';
 import { getImageUrlFromUser } from './utils';
-import { LessonContentBlockProps, LessonContentProps, AnOptionProps } from './types';
+import { LessonContentBlockProps, LessonContentProps, AnOptionProps, codeBlockProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
 import LessonTabs from './components/LessonTabs';
+import CodeInputBlock from './components/CodeInputBlock';
 
 const initialContent: LessonContentProps = [
     {
@@ -42,7 +43,17 @@ const CreateLessonPage = () => {
                         return {
                             id: uuidv4(),
                             contentType: 'text',
-                            value: "",
+                            value: ""
+                        };
+                    }
+                    case 'code': {
+                        return {
+                            id: uuidv4(),
+                            contentType: 'code',
+                            value: {
+                                lang: 'js',
+                                code: '',
+                            },
                         };
                     }
                     case 'image': {
@@ -106,6 +117,23 @@ const CreateLessonPage = () => {
 
     const handleDeleteContentBlock = (id: string) => {
         setLessonContent((prevContent) => prevContent.filter((item) => item.id !== id));
+    }
+
+    // Code handlers
+    const handleUpdateCodeContent = (codeContentBlock: codeBlockProps) => {
+        const nextLessonContent = lessonContent.map((content) => {
+            if (content.id === codeContentBlock.id) {
+                return {
+                    ...content,
+                    value: {
+                        lang: codeContentBlock.value.lang,
+                        code: codeContentBlock.value.code,
+                    }
+                }
+            }
+            else return content;
+        });
+        setLessonContent(nextLessonContent);
     }
 
     // Quiz handlers
@@ -200,7 +228,7 @@ const CreateLessonPage = () => {
                             <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
                             <ImageBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'image')} />
                             <QuizBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'quiz')} />
-                            <CodeBlockButton />
+                            <CodeBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'code')} />
                         </div>
 
                     </div>
@@ -208,7 +236,7 @@ const CreateLessonPage = () => {
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                         <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
-                            <TitleInput content={titleBlock} onTitleChange={handleUpdateTextContent} />
+                            <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
                             <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2'>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
@@ -239,6 +267,10 @@ const CreateLessonPage = () => {
                                         || item.contentType === 'text/objective'
                                         ? 'hidden' : 'block'
                                 )}>
+                                    {/* ContentType Combobox */}
+                                    <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
+                                        <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
+                                    </div>
                                     <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
@@ -283,6 +315,21 @@ const CreateLessonPage = () => {
                                                     </div>
                                                 )
                                             }
+                                            {
+                                                item.contentType === 'code' && (
+                                                    <div className='my-4'>
+                                                        <DynamicTextarea
+                                                            // autoFocus={true} // gets weird with lesson-tab switching
+                                                            rows={1}
+                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                            placeholder='Paste your code here...'
+                                                            name={item.contentType}
+                                                            value={item.value.code}
+                                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateCodeContent({ ...item, value: { lang: "js", code: e.target.value } })}
+                                                        />
+                                                    </div>
+                                                )
+                                            }
                                             <div className='relative group/toolbar my-3'>
                                                 <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
                                                     onClick={() => handleDeleteContentBlock(item.id)} />
@@ -292,10 +339,7 @@ const CreateLessonPage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    {/* ContentType Combobox */}
-                                    <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
-                                        <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
-                                    </div>
+
                                 </div>
                             ))}
                         </div>
