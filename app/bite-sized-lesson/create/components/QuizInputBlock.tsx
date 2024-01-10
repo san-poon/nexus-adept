@@ -1,5 +1,5 @@
 import { DynamicTextarea } from "./content-blocks";
-import { OptionsProps, AnOptionProps, QuizProps } from '../types';
+import { AnOptionProps } from '../types';
 
 export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationChange, onOptionsChange, onCheckedChange }: any) {
     return (

@@ -158,7 +158,7 @@ export function AddContentCombobox({ index, onInsertContentField }: any) {
 // For users to choose from available languages
 const languages = [
     {
-        value: 'js',
+        value: 'javascript',
         label: 'JavaScript',
     },
     {
