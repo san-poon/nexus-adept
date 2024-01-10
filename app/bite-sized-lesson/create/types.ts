@@ -26,7 +26,7 @@ export type QuizBlockProps = {
     value: QuizProps,
 };
 
-export type codeBlockProps = {
+export type CodeBlockProps = {
     id: string,
     contentType: ContentTypeProps,
     value: {

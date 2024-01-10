@@ -7,7 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { useState } from "react";
 
 import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "../icons";
-import { LessonContentBlockProps, ContentTypeProps } from "../types";
+import { LessonContentBlockProps, ContentTypeProps, CodeBlockProps } from "../types";
 
 const textContentTypes = [
     {
@@ -145,6 +145,72 @@ export function AddContentCombobox({ index, onInsertContentField }: any) {
                             >
                                 <BlockIcon contentType={type.value} />
                                 <span className="ps-4 md:ps-6"> {type.label} </span>
+                            </CommandItem>
+                        ))}
+                    </CommandGroup>
+                </Command>
+            </PopoverContent>
+        </Popover>
+    )
+}
+
+
+// For users to choose from available languages
+const languages = [
+    {
+        value: 'js',
+        label: 'JavaScript',
+    },
+    {
+        value: 'css',
+        label: 'CSS',
+    },
+    {
+        value: 'html',
+        label: 'HTML',
+    },
+];
+
+export function CodeCombobox({ codeBlock, onCodeLangUpdate }: { codeBlock: CodeBlockProps, onCodeLangUpdate: (contentBlock: CodeBlockProps) => void }) {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(codeBlock.value.lang);
+
+    return (
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <Button
+                    role="combobox"
+                    aria-expanded={open}
+                    className="justify-between text-xs h-min"
+                >
+                    {value
+                        ? languages.find((textType) => textType.value === value)?.label
+                        : "JavaScript"}
+                    <ChevronsUpDown className="ms-2 shrink-0 opacity-50 h-min" />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[200px] p-0">
+                <Command>
+                    <CommandInput placeholder="Search text type..." />
+                    <CommandEmpty>No language found!</CommandEmpty>
+                    <CommandGroup className="">
+                        {languages.map((lang) => (
+                            <CommandItem
+                                key={lang.value}
+                                value={lang.value}
+                                onSelect={(currentValue) => {
+                                    setValue(currentValue === value ? "" : currentValue);
+                                    setOpen(false);
+                                    onCodeLangUpdate({ ...codeBlock, value: { ...codeBlock.value, lang: currentValue } });
+                                }}
+                            >
+                                <Check
+                                    className={clsx(`
+                                        "mr-2 h-4 w-4",
+                                        ${value === lang.value ? "opacity-100" : "opacity-0"}
+                                    `)}
+                                />
+                                {lang.label}
                             </CommandItem>
                         ))}
                     </CommandGroup>

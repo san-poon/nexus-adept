@@ -4,9 +4,9 @@ import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, De
 import Image from 'next/image';
 import { DynamicTextarea, TitleInputBlock } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
-import { AddContentCombobox, TextCombobox } from './components/combobox';
+import { AddContentCombobox, CodeCombobox, TextCombobox } from './components/combobox';
 import { getImageUrlFromUser } from './utils';
-import { LessonContentBlockProps, LessonContentProps, AnOptionProps, codeBlockProps } from './types';
+import { LessonContentBlockProps, LessonContentProps, AnOptionProps, CodeBlockProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
 import LessonTabs from './components/LessonTabs';
@@ -120,7 +120,7 @@ const CreateLessonPage = () => {
     }
 
     // Code handlers
-    const handleUpdateCodeContent = (codeContentBlock: codeBlockProps) => {
+    const handleUpdateCodeContent = (codeContentBlock: CodeBlockProps) => {
         const nextLessonContent = lessonContent.map((content) => {
             if (content.id === codeContentBlock.id) {
                 return {
@@ -317,7 +317,10 @@ const CreateLessonPage = () => {
                                             }
                                             {
                                                 item.contentType === 'code' && (
-                                                    <div className='my-4'>
+                                                    <div className=''>
+                                                        <div className='text-xs flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
+                                                            <CodeCombobox codeBlock={item} onCodeLangUpdate={handleUpdateCodeContent} />
+                                                        </div>
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
