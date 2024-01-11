@@ -50,7 +50,7 @@ const CreateLessonPage = () => {
                             id: uuidv4(),
                             contentType: 'code',
                             value: {
-                                lang: 'js',
+                                lang: 'javascript',
                                 code: '',
                             },
                         };
