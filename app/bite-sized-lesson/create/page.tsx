@@ -221,7 +221,7 @@ const CreateLessonPage = () => {
             <LessonTabs lessonContent={lessonContent}>
                 <div className={`flex flex-col md:flex-row my-10`}>
                     {/* Left Side - Content Buttons */}
-                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-10 md:top-44 z-50 bg-emerald-50 dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
+                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-10 md:top-44 z-50 bg-emerald-50 md:bg-inherit dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
                         <div className="flex md:flex-col md:space-y-6 justify-center">
                             <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
