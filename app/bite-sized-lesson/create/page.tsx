@@ -10,7 +10,6 @@ import { LessonContentBlockProps, LessonContentProps, AnOptionProps, CodeBlockPr
 import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
 import LessonTabs from './components/LessonTabs';
-import CodeInputBlock from './components/CodeInputBlock';
 
 const initialContent: LessonContentProps = [
     {
