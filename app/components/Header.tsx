@@ -1,4 +1,3 @@
-'use client';
 import Link from "next/link";
 import ThemeToggler from "./theme-toggler";
 import Logo from "./logo";
