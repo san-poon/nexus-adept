@@ -26,7 +26,7 @@ const textContentTypes = [
 
 export function TextCombobox({ contentBlock, onTextContentTypeChange }: { contentBlock: LessonContentBlockProps, onTextContentTypeChange: (contentBlock: LessonContentBlockProps) => void }) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(contentBlock.contentType);
+    const [value, setValue] = useState("");
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -173,7 +173,7 @@ const languages = [
 
 export function CodeCombobox({ codeBlock, onCodeLangUpdate }: { codeBlock: CodeBlockProps, onCodeLangUpdate: (contentBlock: CodeBlockProps) => void }) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(codeBlock.value.lang);
+    const [value, setValue] = useState("");
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
