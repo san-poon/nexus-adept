@@ -84,7 +84,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                             )}
                             {contentBlock.contentType === 'text/objective' && (
                                 <div className="border-2 dark:border-neutral-800 shadow dark:shadow-neutral-800 rounded-3xl ps-4 md:ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
-                                    <Label className="text-2xl">We will Learn</Label>
+                                    <Label className={`${inter.className} text-2xl`}>We will Learn</Label>
                                     <div className="mt-4">
                                         <Markdown components={markdownObjectiveComponents}>
                                             {contentBlock.value}
