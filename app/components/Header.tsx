@@ -24,9 +24,9 @@ export default function Header() {
                 </Link>
                 {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
-                    <Link href="/bite-sized-lesson/create" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Create</Button></Link>
-                    <Link href="/quiz/mcqs/play" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Play</Button></Link>
-                    <Link href="/portfolio" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Portfolio</Button></Link>
+                    <Link href="/feature-lesson/create" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Create</Button></Link>
+                    <Link href="/feature-quiz/mcqs/play" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Play</Button></Link>
+                    <Link href="/feature-portfolio" className="text-neutral-700 dark:text-neutral-300 hover:text-teal-500 dark:hover:text-teal-300 transition duration-300"><Button>Portfolio</Button></Link>
                 </nav>
 
                 {/* Theme Toggler */}
@@ -52,9 +52,9 @@ function PopoverMenu() {
             </PopoverTrigger>
             <PopoverContent className="w-fit text-sm leading-loose rounded-xl">
                 <div className="flex flex-col">
-                    <Link href="/bite-sized-lesson/create" className="active:bg-neutral-500 active:dark:bg-neutral-500">Create</Link>
-                    <Link href="/quiz/mcqs/play" className="active:bg-neutral-500 active:dark:bg-neutral-500">Play</Link>
-                    <Link href="/portfolio" className="active:bg-neutral-500 active:dark:bg-neutral-500">Portfolio</Link>
+                    <Link href="/feature-lesson/create" className="active:bg-neutral-500 active:dark:bg-neutral-500">Create</Link>
+                    <Link href="/feature-quiz/mcqs/play" className="active:bg-neutral-500 active:dark:bg-neutral-500">Play</Link>
+                    <Link href="/feature-portfolio" className="active:bg-neutral-500 active:dark:bg-neutral-500">Portfolio</Link>
                 </div>
             </PopoverContent>
         </Popover>
