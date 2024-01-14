@@ -5,11 +5,11 @@ import ReactFlow, {
     Background,
     applyEdgeChanges,
     applyNodeChanges,
-    NodeChange,
-    EdgeChange,
+    MiniMap
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useState, useCallback } from 'react';
+import NodeTextUpdater from './NodeTextUpdater';
 
 const initialNodes = [
     {
@@ -23,6 +23,12 @@ const initialNodes = [
         position: { x: 100, y: 100 },
         data: { label: 'Introduction to JavaScript' }
     },
+    {
+        id: "3",
+        type: 'nodeTextUpdater',
+        position: { x: 100, y: 200 },
+        data: { value: 123 }
+    }
 ];
 
 const initialEdges = [
@@ -36,17 +42,26 @@ const initialEdges = [
 
 ]
 
+// Either define the nodeTypes outside of the component to prevent 
+// re-renderings/bugs or use 'useMemo' hook inside the component.
+const nodeTypes = { nodeTextUpdater: NodeTextUpdater };
+
 export default function CreateCategoryHierarchy() {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
 
     const handleNodesChange = useCallback(
         (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-        [],
+        [setNodes],
     );
     const handleEdgesChange = useCallback(
         (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-        [],
+        [setEdges],
+    );
+
+    const handleNodesConnect = useCallback(
+        (connection) => setEdges((eds) => addEdge(connection, eds)),
+        [setEdges]
     );
 
     return (
@@ -56,9 +71,13 @@ export default function CreateCategoryHierarchy() {
                 edges={edges}
                 onNodesChange={handleNodesChange}
                 onEdgesChange={handleEdgesChange}
+                onConnect={handleNodesConnect}
+                nodeTypes={nodeTypes}
+                fitView
             >
                 <Background />
                 <Controls />
+                <MiniMap />
             </ReactFlow>
         </div>
     )
