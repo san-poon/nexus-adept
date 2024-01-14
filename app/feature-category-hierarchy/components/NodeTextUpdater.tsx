@@ -16,13 +16,6 @@ export default function NodeTextUpdater({ data, isConnectable }) {
                 </label>
                 <input type="text" id="text" name="text" onChange={onChange} className=" rounded-3xl px-2 dark:bg-inherit bg-inherit border-2 dark:border-neutral-700" placeholder="First Name" />
             </div>
-            <Handle
-                type="source"
-                position={Position.Bottom}
-                id="a"
-                style={{ left: 10 }}
-                isConnectable={isConnectable}
-            />
             <Handle type="source" position={Position.Bottom} id="b" isConnectable={true} />
         </div>
     )
