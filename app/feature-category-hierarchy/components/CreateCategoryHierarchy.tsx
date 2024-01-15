@@ -5,13 +5,15 @@ import ReactFlow, {
     Background,
     applyEdgeChanges,
     applyNodeChanges,
-    MiniMap
+    MiniMap,
+    Node,
+    Edge,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useState, useCallback } from 'react';
 import NodeTextUpdater from './NodeTextUpdater';
 
-const initialNodes = [
+const initialNodes: Node[] = [
     {
         id: '1',
         position: { x: 0, y: 0 },
@@ -31,7 +33,7 @@ const initialNodes = [
     }
 ];
 
-const initialEdges = [
+const initialEdges: Edge[] = [
     {
         id: '1-2',
         source: '1',

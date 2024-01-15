@@ -1,8 +1,7 @@
-import { useCallback } from "react";
-import { Handle, Position } from 'reactflow';
-import styles from '../styles.module.css';
+import React, { useCallback } from "react";
+import { Handle, Position, NodeProps } from 'reactflow';
 
-export default function NodeTextUpdater({ data, isConnectable }) {
+export default function NodeTextUpdater({ data, isConnectable }: NodeProps) {
     const onChange = useCallback((evt) => {
         console.log(evt.target.value);
     }, []);
