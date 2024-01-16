@@ -52,9 +52,9 @@ function PopoverMenu() {
             </PopoverTrigger>
             <PopoverContent className="w-fit text-sm leading-loose rounded-xl">
                 <div className="flex flex-col">
-                    <Link href="/feature-lesson/create" className="active:bg-neutral-500 active:dark:bg-neutral-500">Create</Link>
-                    <Link href="/feature-quiz/mcqs/play" className="active:bg-neutral-500 active:dark:bg-neutral-500">Play</Link>
-                    <Link href="/feature-portfolio" className="active:bg-neutral-500 active:dark:bg-neutral-500">Portfolio</Link>
+                    <Link href="/feature-lesson/create" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Create</Link>
+                    <Link href="/feature-quiz/mcqs/play" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Play</Link>
+                    <Link href="/feature-portfolio" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Portfolio</Link>
                 </div>
             </PopoverContent>
         </Popover>
