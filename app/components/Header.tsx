@@ -29,14 +29,16 @@ export default function Header() {
                     <Link href="/feature-portfolio"><Button>Portfolio</Button></Link>
                 </nav>
 
-                {/* Theme Toggler */}
-                <ThemeToggler />
-
-                {/* Mobile menu button */}
-                <div
-                    className="md:hidden p-0">
-                    <PopoverMenu />
+                <div className="flex">
+                    <ThemeToggler />
+                    {/* Mobile menu */}
+                    <div
+                        className="md:hidden p-0">
+                        <PopoverMenu />
+                    </div>
                 </div>
+
+
             </div>
         </header >
     )
