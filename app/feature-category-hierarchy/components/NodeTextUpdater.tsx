@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Handle, Position, NodeProps } from 'reactflow';
 
 export default function NodeTextUpdater({ data, isConnectable }: NodeProps) {
+    // @ts-ignore
     const onChange = useCallback((evt) => {
         console.log(evt.target.value);
     }, []);

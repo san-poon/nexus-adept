@@ -4,7 +4,6 @@ import QuizPreview from "./QuizPreview";
 import { Label } from "@/components/ui/label";
 import { NoteIcon, PitfallIcon } from "../icons";
 import CodePreview from "./CodePreview";
-import { rubik, inter } from "@/app/fonts";
 
 const markdownComponents: Components = {
     h2(props) {
@@ -67,13 +66,13 @@ const markdownPitfallComponents: Components = {
 
 export default function LessonPreview({ content }: { content: LessonContentProps }) {
     return (
-        <div className={` ${rubik.className} flex justify-center leading-loose dark:text-neutral-100`}>
+        <div className={` flex justify-center leading-loose dark:text-neutral-100`}>
             <div className=" w-screen lg:w-3/5 m-2 my-10 p-4 rounded border-2 dark:border-neutral-800 overflow-y-auto">
                 {
                     content.map((contentBlock) => (
                         <div key={contentBlock.id}>
                             {contentBlock.contentType === 'title' && (
-                                <h1 className={`${inter.className}  text-4xl font-bold`}>{contentBlock.value}</h1>
+                                <h1 className={` text-4xl font-bold`}>{contentBlock.value}</h1>
                             )}
                             {contentBlock.contentType === 'text/introduction' && (
                                 <div className="my-10">
@@ -84,7 +83,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                             )}
                             {contentBlock.contentType === 'text/objective' && (
                                 <div className="border-2 dark:border-neutral-800 shadow dark:shadow-neutral-800 rounded-3xl ps-4 md:ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
-                                    <Label className={`${inter.className} text-2xl`}>We will Learn</Label>
+                                    <Label className={`text-2xl`}>We will Learn</Label>
                                     <div className="mt-4">
                                         <Markdown components={markdownObjectiveComponents}>
                                             {contentBlock.value}
