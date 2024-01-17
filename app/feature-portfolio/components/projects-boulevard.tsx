@@ -5,7 +5,7 @@ import Link from "next/link";
 // Projects Boulevard Component
 export default function ProjectsBoulevard() {
     const projects = [
-        { name: 'PlayLearnForge', description: 'Your gamified learning wonderland', imageSrc: Logo, projectUrl: "/" },
+        { name: 'PlayLearnForge', description: 'The Structured Learning Platform', imageSrc: Logo, projectUrl: "/" },
         // Add more projects as needed
     ];
 
@@ -16,7 +16,7 @@ export default function ProjectsBoulevard() {
             <h2 className="text-2xl font-bold dark:text-gray-200 mb-4">Projects Boulevard</h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectClass}`}>
                 {projects.map((project) => (
-                    <div className={`rounded-lg overflow-hidden shadow-md bg-gradient-to-r dark:from-gray-800 dark:to-gray-600 from-gray-300 to-gray-500 ${projectClass}`} key={project.name}>
+                    <div className={`rounded-lg overflow-hidden ${projectClass}`} key={project.name}>
                         <div className="relative h-40">
                             <Link href={project.projectUrl}>
                                 <Image
