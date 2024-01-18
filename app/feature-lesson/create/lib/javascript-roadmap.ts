@@ -20,7 +20,7 @@
  * 
  * Based on 'DAG', now we can update it as we like.
  */
-const javascriptCurriculumGraph = [
+const javascriptLearningPathGraph = [
     {
         id: 1,
         title: "JavaScript",
