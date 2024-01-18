@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 export default function LearningPathNode({ data, isConnectable }: NodeProps) {
     return (
         <div className='border-2 border-neutral-700 p-2 rounded-md'>
-            <Handle type="source" id="a" position={Position.Bottom} isConnectable={isConnectable} />
+            <Handle type="target" id="a" position={Position.Top} isConnectable={isConnectable} />
             <div>
                 <Popover>
                     <PopoverTrigger asChild className=''>
@@ -24,6 +24,7 @@ export default function LearningPathNode({ data, isConnectable }: NodeProps) {
                     </PopoverContent>
                 </Popover>
             </div>
+            <Handle type="source" id="b" position={Position.Bottom} isConnectable={isConnectable} />
         </div>
     )
 }

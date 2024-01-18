@@ -1,10 +1,20 @@
 'use client';
-
+import { useState, useCallback } from "react";
 import LearningPathNode from "./LearningPathNode";
-import ReactFlow, { Controls, Background } from 'reactflow';
+import ReactFlow,
+{
+    Controls,
+    Background,
+    Node,
+    Edge,
+    applyEdgeChanges,
+    applyNodeChanges,
+    addEdge,
+    MiniMap
+} from 'reactflow';
 import 'reactflow/dist/style.css';
 
-const initialNodes = [
+const initialNodes: Node[] = [
     {
         id: 'node-1',
         type: "learningPath",
@@ -27,12 +37,11 @@ const initialNodes = [
     },
 ];
 
-const initialEdges = [
+const initialEdges: Edge[] = [
     {
         id: 'edge-1',
         source: 'node-1',
         target: 'node-2',
-        sourceHandle: 'a',
     }
 ]
 
@@ -41,15 +50,38 @@ const initialEdges = [
 const nodeTypes = { learningPath: LearningPathNode };
 
 export default function JsLearningPath() {
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+    const onNodesChange = useCallback(
+        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+        [setNodes]
+    );
+    const onEdgesChange = useCallback(
+        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+        [setEdges]
+    );
+    const onConnect = useCallback(
+        (connection) => setEdges((eds) => addEdge(connection, eds)),
+        [setEdges]
+    );
     return (
         <div className="h-screen">
             <ReactFlow
-                nodes={initialNodes}
-                edges={initialEdges}
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
                 nodeTypes={nodeTypes}
+                fitView
+                panOnScroll
+                selectionOnDrag
+
             >
                 <Background />
                 <Controls />
+                <MiniMap />
             </ReactFlow>
         </div>
     )
