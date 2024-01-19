@@ -13,9 +13,7 @@ import ReactFlow,
     OnEdgesChange,
     addEdge,
     MiniMap,
-    NodeChange,
     Connection,
-    Position
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -23,6 +21,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-1',
         type: "learningPath",
+        // @ts-expect-error
         sourcePosition: 'bottom',
         position: { x: 0, y: 0 },
         data: {
@@ -33,6 +32,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-2',
         type: 'learningPath',
+        // @ts-expect-error
         targetPosition: 'top',
         position: { x: 0, y: 200 },
         data: {
@@ -86,7 +86,6 @@ export default function JsLearningPath() {
             >
                 <Background />
                 <Controls />
-                <MiniMap />
             </ReactFlow>
         </div>
     )

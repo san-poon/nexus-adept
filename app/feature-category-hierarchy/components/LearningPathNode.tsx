@@ -20,7 +20,7 @@ export default function LearningPathNode({ data, isConnectable }: NodeProps) {
                         <Button className='dark:bg-neutral-900 outline-none'>{data.label}</Button>
                     </PopoverTrigger>
                     <PopoverContent className='border-2 shadow-lg rounded-3xl p-4 bg-neutral-50 dark:bg-neutral-800'>
-                        {data.value}
+                        {data.introduction}
                     </PopoverContent>
                 </Popover>
             </div>

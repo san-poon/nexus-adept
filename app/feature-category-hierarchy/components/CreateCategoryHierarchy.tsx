@@ -9,7 +9,6 @@ import ReactFlow, {
     Node,
     Edge,
     addEdge,
-    NodeChange,
     Connection,
     OnNodesChange,
     OnEdgesChange,
