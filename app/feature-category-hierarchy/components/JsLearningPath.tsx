@@ -9,8 +9,13 @@ import ReactFlow,
     Edge,
     applyEdgeChanges,
     applyNodeChanges,
+    OnNodesChange,
+    OnEdgesChange,
     addEdge,
-    MiniMap
+    MiniMap,
+    NodeChange,
+    Connection,
+    Position
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -53,16 +58,16 @@ export default function JsLearningPath() {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
 
-    const onNodesChange = useCallback(
+    const onNodesChange: OnNodesChange = useCallback(
         (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
         [setNodes]
     );
-    const onEdgesChange = useCallback(
+    const onEdgesChange: OnEdgesChange = useCallback(
         (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
         [setEdges]
     );
     const onConnect = useCallback(
-        (connection) => setEdges((eds) => addEdge(connection, eds)),
+        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
         [setEdges]
     );
     return (

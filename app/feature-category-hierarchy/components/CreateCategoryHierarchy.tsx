@@ -8,6 +8,11 @@ import ReactFlow, {
     MiniMap,
     Node,
     Edge,
+    addEdge,
+    NodeChange,
+    Connection,
+    OnNodesChange,
+    OnEdgesChange,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useState, useCallback } from 'react';
@@ -52,17 +57,17 @@ export default function CreateCategoryHierarchy() {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
 
-    const handleNodesChange = useCallback(
+    const handleNodesChange: OnNodesChange = useCallback(
         (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
         [setNodes],
     );
-    const handleEdgesChange = useCallback(
+    const handleEdgesChange: OnEdgesChange = useCallback(
         (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
         [setEdges],
     );
 
     const handleNodesConnect = useCallback(
-        (connection) => setEdges((eds) => addEdge(connection, eds)),
+        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
         [setEdges]
     );
 
