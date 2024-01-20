@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import LearningPathNode from "./LearningPathNode";
 import ReactFlow,
 {
@@ -14,9 +14,56 @@ import ReactFlow,
     addEdge,
     MiniMap,
     Connection,
-    Position
+    Position,
+    CoordinateExtent
 } from 'reactflow';
 import 'reactflow/dist/style.css';
+import { findBoundingBox } from "../lib/utils";
+
+// we define the nodeTypes outside of the component to prevent re-renderings
+// you could also use useMemo inside the component
+const nodeTypes = { learningPath: LearningPathNode };
+
+export default function JsLearningPath() {
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+
+    const onNodesChange: OnNodesChange = useCallback(
+        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+        [setNodes]
+    );
+    const onEdgesChange: OnEdgesChange = useCallback(
+        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+        [setEdges]
+    );
+    const onConnect = useCallback(
+        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
+        [setEdges]
+    );
+
+    const boundingBox = findBoundingBox(nodes)
+
+    return (
+        <div className=" h-[92vh] md:h-[90vh]">
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                nodeTypes={nodeTypes}
+                panOnScroll
+                onlyRenderVisibleElements
+                translateExtent={boundingBox}
+                fitView
+                fitViewOptions={{ minZoom: 1 }}
+            >
+                <Background />
+                <Controls />
+            </ReactFlow>
+        </div>
+    )
+}
+
+
 
 const initialNodes: Node[] = [
     {
@@ -116,49 +163,17 @@ const initialEdges: Edge[] = [
     },
     {
         id: 'edge-3',
-        source: 'node-1',
+        source: 'node-3',
         target: 'node-5',
+    },
+    {
+        id: 'edge-3',
+        source: 'node-5',
+        target: 'node-6',
+    },
+    {
+        id: 'edge-3',
+        source: 'node-6',
+        target: 'node-7',
     }
-]
-
-// we define the nodeTypes outside of the component to prevent re-renderings
-// you could also use useMemo inside the component
-const nodeTypes = { learningPath: LearningPathNode };
-
-export default function JsLearningPath() {
-    const [nodes, setNodes] = useState(initialNodes);
-    const [edges, setEdges] = useState(initialEdges);
-
-    const onNodesChange: OnNodesChange = useCallback(
-        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-        [setNodes]
-    );
-    const onEdgesChange: OnEdgesChange = useCallback(
-        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-        [setEdges]
-    );
-    const onConnect = useCallback(
-        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
-        [setEdges]
-    );
-    return (
-        <div className=" h-[90vh]">
-            <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-                nodeTypes={nodeTypes}
-                panOnScroll
-                onlyRenderVisibleElements
-                translateExtent={[[-1500, -100], [1500, +Infinity]]}
-                fitView
-            >
-                <Background />
-                <Controls />
-                <MiniMap />
-            </ReactFlow>
-        </div>
-    )
-}
+];
