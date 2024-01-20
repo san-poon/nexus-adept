@@ -1,6 +1,5 @@
 'use client';
 
-import { useCallback } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 
 import {
@@ -12,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
 export default function LearningPathNode({ data, isConnectable }: NodeProps) {
     return (
-        <div className='border-2 border-neutral-700 p-2 rounded-md'>
+        <div className='border-2 border-neutral-700 p-2 rounded-md dark:bg-neutral-900 bg-neutral-50'>
             <Handle type="target" id="a" position={Position.Top} isConnectable={isConnectable} />
             <div>
                 <Popover>
