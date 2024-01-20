@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import LearningPathNode from "./LearningPathNode";
 import ReactFlow,
 {
@@ -151,6 +151,7 @@ export default function JsLearningPath() {
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
                 fitView
+                panOnScroll
             >
                 <Background />
                 <Controls />
