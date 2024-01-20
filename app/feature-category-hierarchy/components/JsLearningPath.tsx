@@ -150,8 +150,10 @@ export default function JsLearningPath() {
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
-                fitView
                 panOnScroll
+                onlyRenderVisibleElements
+                translateExtent={[[-1500, -100], [1500, +Infinity]]}
+                fitView
             >
                 <Background />
                 <Controls />
