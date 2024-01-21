@@ -47,6 +47,7 @@ export default function JsLearningPath() {
     return (
         <div className=" h-[92vh] md:h-[90vh]">
             <ReactFlow
+                proOptions={{ hideAttribution: true }}
                 nodes={nodes}
                 edges={edges}
                 nodeTypes={nodeTypes}
@@ -57,7 +58,7 @@ export default function JsLearningPath() {
                 fitViewOptions={{ minZoom: 1 }}
             >
                 <Background />
-                <Controls />
+                <Controls fitViewOptions={{ minZoom: 1 }} />
             </ReactFlow>
         </div>
     )
