@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import LearningPathNode from "./LearningPathNode";
 import ReactFlow,
 {
@@ -12,10 +12,8 @@ import ReactFlow,
     OnNodesChange,
     OnEdgesChange,
     addEdge,
-    MiniMap,
     Connection,
     Position,
-    CoordinateExtent
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { findBoundingBox } from "../lib/utils";
