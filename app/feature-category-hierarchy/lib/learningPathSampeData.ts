@@ -1,6 +1,6 @@
 /**
  * Fetch should return data in this format.
- * This is the placeholder data, the actual data must be
+ * This is a placeholder data, the actual data must be
  * fetched from the database.
  * 
  * This data is to load catgory-hierarchy graph using custom 
@@ -17,7 +17,7 @@ const sampleData = [
     {
         id: '2',
         title: "Introduction to JavaScript",
-        childIDs: ['3', '4', '5', '6'],
+        childIDs: ['3', '5', '6'],
         parentIDs: ['1'],
     },
     {
@@ -165,4 +165,4 @@ const sampleData = [
         childIDs: [],
     },
 
-]
+];

@@ -3,7 +3,7 @@
  * it has to be verified to become official. An official lesson
  * can be used as a part of a greater learning-path.
  * A personalized learning path depends on each individual. 
- * But the beginners can never create the learning path themselves,
+ * But the beginners can never create the learning path on their own,
  * instead experts of each field, will create learning path using the bite-sized lessons already created. 
  * The best example is 'JavaScript' for React vs 'JavaScript' for 'back-end/node.js'.
  * They may have similarites in 'fundamentals' but, when one tries to build something,
