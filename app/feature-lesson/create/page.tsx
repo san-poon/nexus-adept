@@ -236,7 +236,7 @@ const CreateLessonPage = () => {
                     <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
                         <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
                             <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
-                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2'>
+                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2 '>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={2}
