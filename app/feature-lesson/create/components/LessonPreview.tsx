@@ -36,7 +36,7 @@ const markdownIntroductionComponents: Components = {
     ...markdownComponents,
     p(props) {
         const { node, ...rest } = props;
-        return <p className="mt-3 text-lg" {...rest} />
+        return <p className="mt-3 text-xl" {...rest} />
     }
 }
 
