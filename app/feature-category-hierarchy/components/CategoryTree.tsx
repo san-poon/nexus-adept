@@ -3,7 +3,7 @@ import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
 import { CategoryTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
-export default function CategoryTree({ categoryID, categories, onCategoryInsert, onTitleUpdate }: CategoryTreeProps) {
+export default function CategoryTree({ categoryID, categories, onCategoryInsert, onTitleUpdate, level }: CategoryTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
@@ -23,15 +23,18 @@ export default function CategoryTree({ categoryID, categories, onCategoryInsert,
         },
         {}
     );
-    const childIDs = category.childIDs;
 
+    const childIDs = category.childIDs;
+    const maxDepth = 5;
+    const canAddChildren = level < maxDepth;
     return (
-        <li>
+        <li className="flex-grow">
             <div className="flex items-center">
                 <CategoryBlock
                     category={category}
                     onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
                     onTitleUpdate={onTitleUpdate}
+                    canAddChildren={canAddChildren}
                 />
                 {childIDs.length > 0 && (
                     <Button onClick={handleHierarchyToggle}>
@@ -45,15 +48,17 @@ export default function CategoryTree({ categoryID, categories, onCategoryInsert,
             {isExpanded && childIDs.length > 0 && (
                 <div className=" border-s dark:border-neutral-700 border-neutral-300">
                     <ul className=" ml-10 my-2 overflow-y-auto">
-                        {childIDs.map((childID: string) => (
-                            <CategoryTree
+                        {childIDs.map((childID: string) => {
+                            const nextLevel = level + 1;
+                            return (<CategoryTree
                                 key={childID}
                                 categoryID={childID}
                                 categories={categories}
                                 onCategoryInsert={onCategoryInsert}
                                 onTitleUpdate={onTitleUpdate}
-                            />
-                        ))}
+                                level={nextLevel}
+                            />)
+                        })}
                     </ul>
                 </div>
             )}

@@ -62,10 +62,10 @@ export default function CategoryHierarchy() {
     // Root represents the title of the learning path and
     // cannot be deleted
     const root = categories[0];
-    const learningPathIDs = root.childIDs;
+    const rootChildIDs = root.childIDs;
 
     return (
-        <div className="m-4 flex-col">
+        <div className="m-4 min-h-screen">
             <div className="flex item-center justify-center">
                 <HierarchyTitle
                     category={root}
@@ -73,14 +73,15 @@ export default function CategoryHierarchy() {
                     onTitleUpdate={handleCategoryTitleUpdate}
                 />
             </div>
-            <ul>
-                {learningPathIDs.map((id: string) => (
+            <ul className="md:ms-10 lg:ms-96">
+                {rootChildIDs.map((id: string) => (
                     <CategoryTree
                         key={id}
                         categoryID={id}
                         categories={categories}
                         onCategoryInsert={handleCategoryInsert}
                         onTitleUpdate={handleCategoryTitleUpdate}
+                        level={1}
                     />
                 ))}
             </ul>

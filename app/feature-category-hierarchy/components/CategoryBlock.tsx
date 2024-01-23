@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Category } from "../lib/types";
 import { Plus } from 'lucide-react';
 
-export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdate }: { category: Category, onCategoryInsert: any, onTitleUpdate: any }) {
+export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdate, canAddChildren }: { category: Category, onCategoryInsert: any, onTitleUpdate: any, canAddChildren: boolean }) {
     return (
         <div>
-            <div className=" my-2 md:my-3 flex py-1 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 max-w-lg">
+            <div className="my-1 md:my-2 flex rounded-lg border-2 border-neutral-300 dark:border-neutral-700 flex-grow">
                 <Input
-                    className=" text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
+                    className="text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                     type="text"
                     placeholder="Title of the Branch"
                     value={category.title}
@@ -16,7 +16,7 @@ export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdat
                 />
                 <Button type="button"
                     onClick={onCategoryInsert}
-                    className="mx-2"
+                    className={`${canAddChildren ? "block" : "hidden"}`}
                 >
                     <Plus className="w-4" />
                 </Button>

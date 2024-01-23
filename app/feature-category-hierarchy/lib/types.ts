@@ -6,6 +6,7 @@ export type Category = {
 };
 
 export type CategoryTreeProps = {
+    level: number,
     categoryID: string,
     categories: Category[],
     onCategoryInsert: (parentID: string, index: number) => void,
