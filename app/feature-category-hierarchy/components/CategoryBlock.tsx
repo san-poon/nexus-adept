@@ -15,7 +15,7 @@ export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdat
                 autoFocus
                 className="text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
-                placeholder={`Leve ${level} branch`}
+                placeholder={`Level ${level}`}
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
