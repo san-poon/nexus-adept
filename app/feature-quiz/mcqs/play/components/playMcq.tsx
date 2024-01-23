@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Quiz from './quiz';
-import { Button } from '@/app/components/Button';
+import { Button } from '@/components/ui/button';
 import { QuizData } from '@/app/lib/definitions';
 
 export default function PlayMcq({ mcqs }: { mcqs?: QuizData }) {
