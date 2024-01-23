@@ -3,22 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Category } from "../lib/types";
 import { Plus } from 'lucide-react';
 
-export default function CategoryBlock({ category, onInsertCategory, onTitleUpdate }: { category: Category, onInsertCategory: any, onTitleUpdate: any }) {
+export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdate }: { category: Category, onCategoryInsert: any, onTitleUpdate: any }) {
     return (
-        <div className="flex">
-            <div className=" flex-grow me-2 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 max-w-screen-md">
+        <div>
+            <div className=" my-2 md:my-3 flex py-1 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 max-w-lg">
                 <Input
-                    className=" text-base border-none "
+                    className=" text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                     type="text"
-                    placeholder="A branch"
+                    placeholder="Title of the Branch"
                     value={category.title}
                     onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
                 />
+                <Button type="button"
+                    onClick={onCategoryInsert}
+                    className="mx-2"
+                >
+                    <Plus className="w-4" />
+                </Button>
             </div>
-            <Button type="button" onClick={onInsertCategory}>
-                <Plus className="pe-2" />
-                Branch
-            </Button>
+
         </div>
     )
 }

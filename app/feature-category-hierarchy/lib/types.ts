@@ -4,3 +4,10 @@ export type Category = {
     childIDs: string[];    // Array of string for child IDs
     parentIDs: string[];   // Array of string for parent IDs
 };
+
+export type CategoryTreeProps = {
+    categoryID: string,
+    categories: Category[],
+    onCategoryInsert: (parentID: string, index: number) => void,
+    onTitleUpdate: (id: string, title: string) => void
+};
