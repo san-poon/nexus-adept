@@ -25,17 +25,18 @@ export default function CategoryTree({ categoryID, categories, onCategoryInsert,
     );
 
     const childIDs = category.childIDs;
-    const maxDepth = 5;
-    const canAddChildren = level < maxDepth;
+
     return (
-        <li className="flex-grow">
+        <li>
             <div className="flex items-center">
-                <CategoryBlock
-                    category={category}
-                    onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
-                    onTitleUpdate={onTitleUpdate}
-                    canAddChildren={canAddChildren}
-                />
+                <div>
+                    <CategoryBlock
+                        category={category}
+                        onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
+                        onTitleUpdate={onTitleUpdate}
+                        level={level}
+                    />
+                </div>
                 {childIDs.length > 0 && (
                     <Button onClick={handleHierarchyToggle}>
                         {isExpanded
