@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Category, CategoryTreeProps } from '../lib/types'
-import CategoryBlock from "./CategoryBlock";
+import { Category } from '../lib/types'
 import HierarchyTitle from "./HierarchyTitle";
+import CategoryTree from "./CategoryTree";
 
 const initialCategory: Category[] = [
     {
@@ -86,47 +86,4 @@ export default function CategoryHierarchy() {
             </ul>
         </div>
     );
-}
-
-function CategoryTree({ categoryID, categories, onCategoryInsert, onTitleUpdate }: CategoryTreeProps) {
-    //@ts-ignore
-    const { index, category } = categories.reduce(
-        (result, current, currentIndex) => {
-            if (current.id === categoryID) {
-                return {
-                    index: currentIndex,
-                    category: current
-                }
-            }
-            return result;
-        },
-        {}
-    );
-    const childIDs = category.childIDs;
-
-    return (
-        <li>
-            <CategoryBlock
-                category={category}
-                onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
-                onTitleUpdate={onTitleUpdate}
-            />
-            {childIDs.length > 0 && (
-                <div className=" border-s dark:border-neutral-700 border-neutral-300">
-                    <ul className=" ms-10 my-2">
-                        {childIDs.map((childID: string) => (
-                            <CategoryTree
-                                key={childID}
-                                categoryID={childID}
-                                categories={categories}
-                                onCategoryInsert={onCategoryInsert}
-                                onTitleUpdate={onTitleUpdate}
-                            />
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </li>
-
-    )
 }
