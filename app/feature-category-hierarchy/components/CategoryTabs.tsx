@@ -5,7 +5,7 @@ import {
     TabsTrigger,
 } from '@/components/ui/tabs';
 
-export default function CategoryTabs({ children, categoryContent }: { children: React.ReactNode, categoryContent: CategoryContentProps }) {
+export default function CategoryTabs({ children, categoryContent }: { children: React.ReactNode, categoryContent: any }) {
     return (
         <Tabs defaultValue="create" >
             <TabsList className="grid w-full grid-cols-2 sticky top-0 z-50">

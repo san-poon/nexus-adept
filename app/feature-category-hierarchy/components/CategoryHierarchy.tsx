@@ -73,7 +73,7 @@ export default function CategoryHierarchy() {
                     onTitleUpdate={handleCategoryTitleUpdate}
                 />
             </div>
-            <ul className="md:ms-10 lg:ms-96">
+            <ul className="md:ms-10">
                 {rootChildIDs.map((id: string) => (
                     <CategoryTree
                         key={id}
