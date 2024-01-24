@@ -12,5 +12,6 @@ export type HierarchyTreeProps = {
     hierarchies: Record<string, Hierarchy>,
     onSiblingCategoryInsert: (siblingID: string) => void,
     onChildCategoryInsert: (parentID: string) => void,
+    onCategoryDelete: (categoryID: string) => void,
     onTitleUpdate: (id: string, title: string) => void
 };

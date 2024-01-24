@@ -1,16 +1,22 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Hierarchy } from "../lib/types";
-import { Plus } from 'lucide-react';
+import { Plus, Trash2Icon } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, level }: { category: Hierarchy, onChildCategoryInsert: any, onTitleUpdate: any, level: number }) {
+export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: { category: Hierarchy, onChildCategoryInsert: any, onTitleUpdate: any, onCategoryDelete: any, level: number }) {
     const maxDepth = 5;
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
             "flex rounded-lg border-2 border-neutral-300 dark:border-neutral-700",
         )}>
+            <Button
+                onClick={() => onCategoryDelete(category.id)}
+                className="opacity-30 transition-opacity duration-300 hover:opacity-100"
+            >
+                <Trash2Icon className="w-4" />
+            </Button>
             <Input
                 autoFocus
                 className="text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "

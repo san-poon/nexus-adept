@@ -90,6 +90,28 @@ export default function CategoryHierarchy() {
         setHierarchies(nextHierarchies);
     };
 
+    const handleCategoryDelete = (categoryID: string) => {
+        setHierarchies((prevHierarchies) => {
+            const categoryToDelete = prevHierarchies[categoryID];
+            const parentID = categoryToDelete.parentIDs[0]; // A category must have only one parentID
+
+            // Filter out the category to be deleted from the parent's childIDs
+            const updatedParentCategory = {
+                ...prevHierarchies[parentID],
+                childIDs: prevHierarchies[parentID].childIDs.filter((id) => id !== categoryID),
+            };
+
+            //Create a copy of the previous hierarchies without the deleted category
+            const updatedHierarchies = { ...prevHierarchies };
+            delete updatedHierarchies[categoryID];
+
+            return {
+                ...updatedHierarchies,
+                [parentID]: updatedParentCategory,
+            }
+        })
+    }
+
     // Root represents the title of the learning path and
     // make sure not to place delete button rendering it.
     const root = hierarchies[initialID];
@@ -113,6 +135,7 @@ export default function CategoryHierarchy() {
                         onChildCategoryInsert={handleChildCategoryInsert}
                         onSiblingCategoryInsert={handleSiblingCategoryInsert}
                         onTitleUpdate={handleCategoryTitleUpdate}
+                        onCategoryDelete={handleCategoryDelete}
                         level={1}
                     />
                 ))}
