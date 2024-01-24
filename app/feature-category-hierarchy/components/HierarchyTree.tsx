@@ -1,28 +1,16 @@
 import { useState } from "react";
 import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
-import { CategoryTreeProps } from "../lib/types";
+import { HierarchyTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
-export default function HierarchyTree({ categoryID, categories, onCategoryInsert, onTitleUpdate, level }: CategoryTreeProps) {
+export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onTitleUpdate, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
         setIsExpanded((prev) => !prev);
     }
 
-    //@ts-ignore
-    const { index, category } = categories.reduce(
-        (result, current, currentIndex) => {
-            if (current.id === categoryID) {
-                return {
-                    index: currentIndex,
-                    category: current
-                }
-            }
-            return result;
-        },
-        {}
-    );
+    const category = hierarchies[categoryID];
 
     const childIDs = category.childIDs;
 
@@ -35,7 +23,8 @@ export default function HierarchyTree({ categoryID, categories, onCategoryInsert
                             type="button"
                             className=""
                             onClick={() => {
-                                onCategoryInsert(category.parentIDs[0], index)
+                                // Todo: refactor with onSiblingCategoryInsert handler
+                                onChildCategoryInsert(category.parentIDs[0])
                             }}
                         >
                             <Plus className="w-4 h-4" />
@@ -43,7 +32,7 @@ export default function HierarchyTree({ categoryID, categories, onCategoryInsert
                     </div>
                     <CategoryBlock
                         category={category}
-                        onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
+                        onChildCategoryInsert={() => { onChildCategoryInsert(category.id) }}
                         onTitleUpdate={onTitleUpdate}
                         level={level}
                     />
@@ -65,8 +54,8 @@ export default function HierarchyTree({ categoryID, categories, onCategoryInsert
                             return (<HierarchyTree
                                 key={childID}
                                 categoryID={childID}
-                                categories={categories}
-                                onCategoryInsert={onCategoryInsert}
+                                hierarchies={hierarchies}
+                                onChildCategoryInsert={onChildCategoryInsert}
                                 onTitleUpdate={onTitleUpdate}
                                 level={nextLevel}
                             />)

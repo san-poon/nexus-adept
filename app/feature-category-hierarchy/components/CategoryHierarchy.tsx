@@ -2,66 +2,58 @@
 
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Category } from '../lib/types'
+import { Hierarchy } from '../lib/types'
 import HierarchyTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 
-const initialCategory: Category[] = [
-    {
-        id: uuidv4(),
-        title: '',
+const initialID = uuidv4();
+const initialHierarchy: Record<string, Hierarchy> = {
+    [initialID]: {
+        id: initialID,
+        title: "",
         childIDs: [],
         parentIDs: [],
-    },
-];
+    }
+};
 
 export default function CategoryHierarchy() {
-    const [categories, setCategories] = useState(initialCategory);
+    const [hierarchies, setHierarchies] = useState<Record<string, Hierarchy>>(initialHierarchy);
 
-    const handleCategoryInsert = (parentID: string, index: number) => {
-        const newCategory: Category = {
+    const handleChildCategoryInsert = (parentID: string) => {
+        const newCategory: Hierarchy = {
             id: uuidv4(),
             title: "",
             childIDs: [],
             parentIDs: [parentID],
-        };
-
-        const insertAt = index + 1;
-        const nextCategories = [
-            // Items before the insertion point
-            ...categories.slice(0, insertAt),
-            // New item
-            newCategory,
-            // Remaining item
-            ...categories.slice(insertAt)
-        ]
-
-        // Update the childIDs of the parent of the newly added category
-        setCategories(nextCategories.map((category) => {
-            if (category.id === parentID) {
-                return {
-                    ...category, childIDs: [...category.childIDs, newCategory.id]
-                }
-            } else {
-                return category;
+        }
+        setHierarchies((prevHierarchies) => {
+            // Updat the childIDs of the parent category
+            const updatedParentCategory = {
+                ...prevHierarchies[parentID],
+                childIDs: [...prevHierarchies[parentID].childIDs, newCategory.id],
             }
-        }));
+            return {
+                ...prevHierarchies,
+                [parentID]: updatedParentCategory,
+                [newCategory.id]: newCategory,
+            }
+        })
     }
 
-    const handleCategoryTitleUpdate = (id: string, title: string) => {
-        const nextCategories = categories.map(category => {
-            if (category.id === id) {
-                return { ...category, title: title }
-            } else {
-                return category
+    const handleCategoryTitleUpdate = (categoryID: string, newTitle: string) => {
+        const nextHierarchies: Record<string, Hierarchy> = {
+            ...hierarchies,
+            [categoryID]: {
+                ...hierarchies[categoryID],
+                title: newTitle
             }
-        });
-        setCategories(nextCategories);
+        }
+        setHierarchies(nextHierarchies);
     };
 
     // Root represents the title of the learning path and
-    // cannot be deleted
-    const root = categories[0];
+    // make sure not to place delete button rendering it.
+    const root = hierarchies[initialID];
     const rootChildIDs = root.childIDs;
 
     return (
@@ -69,7 +61,7 @@ export default function CategoryHierarchy() {
             <div className="flex item-center justify-center">
                 <HierarchyTitle
                     category={root}
-                    onCategoryInsert={() => { handleCategoryInsert(root.id, 0) }}
+                    onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
                     onTitleUpdate={handleCategoryTitleUpdate}
                 />
             </div>
@@ -78,8 +70,8 @@ export default function CategoryHierarchy() {
                     <HierarchyTree
                         key={id}
                         categoryID={id}
-                        categories={categories}
-                        onCategoryInsert={handleCategoryInsert}
+                        hierarchies={hierarchies}
+                        onChildCategoryInsert={handleChildCategoryInsert}
                         onTitleUpdate={handleCategoryTitleUpdate}
                         level={1}
                     />

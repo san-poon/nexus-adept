@@ -1,10 +1,10 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Category } from "../lib/types";
+import { Hierarchy } from "../lib/types";
 import { Plus } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdate, level }: { category: Category, onCategoryInsert: any, onTitleUpdate: any, level: number }) {
+export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, level }: { category: Hierarchy, onChildCategoryInsert: any, onTitleUpdate: any, level: number }) {
     const maxDepth = 5;
     const canAddChildren = level < maxDepth;
     return (
@@ -20,7 +20,7 @@ export default function CategoryBlock({ category, onCategoryInsert, onTitleUpdat
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
             <Button type="button"
-                onClick={onCategoryInsert}
+                onClick={onChildCategoryInsert}
                 className={`${canAddChildren ? "block" : "hidden"}`}
             >
                 <Plus className="w-4" />
