@@ -38,6 +38,45 @@ export default function CategoryHierarchy() {
                 [newCategory.id]: newCategory,
             }
         })
+    };
+
+    const handleSiblingCategoryInsert = (siblingID: string) => {
+        const newCategory: Hierarchy = {
+            id: uuidv4(),
+            title: "",
+            childIDs: [],
+            parentIDs: [],
+        };
+
+        setHierarchies((prevHierarchies) => {
+            const sibling = prevHierarchies[siblingID];
+            const parentID = sibling.parentIDs[0]; // A hierarchy has always one parent
+            // Sibling index in the parent's childIDs
+            const siblingIndex = prevHierarchies[parentID].childIDs.indexOf(siblingID);
+
+            // Update the sibling's parent's childIDs by inserting 
+            // the new sibling's id before the current sibling's id
+            const updatedParentCategory = {
+                ...prevHierarchies[parentID],
+                childIDs: [
+                    ...prevHierarchies[parentID].childIDs.slice(0, siblingIndex),
+                    newCategory.id, // Add before the sibling
+                    ...prevHierarchies[parentID].childIDs.slice(siblingIndex),
+                ],
+            };
+            // Update the new sibling's parentIDs
+            const updatedNewCategory = {
+                ...newCategory,
+                parentIDs: [parentID],
+            };
+
+            return {
+                ...prevHierarchies,
+                [newCategory.id]: updatedNewCategory,
+                [parentID]: updatedParentCategory,
+            };
+        })
+
     }
 
     const handleCategoryTitleUpdate = (categoryID: string, newTitle: string) => {
@@ -65,13 +104,14 @@ export default function CategoryHierarchy() {
                     onTitleUpdate={handleCategoryTitleUpdate}
                 />
             </div>
-            <ul className="md:ms-10">
+            <ul className="md:ms-10 lg:ms-96">
                 {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                     <HierarchyTree
                         key={id}
                         categoryID={id}
                         hierarchies={hierarchies}
                         onChildCategoryInsert={handleChildCategoryInsert}
+                        onSiblingCategoryInsert={handleSiblingCategoryInsert}
                         onTitleUpdate={handleCategoryTitleUpdate}
                         level={1}
                     />

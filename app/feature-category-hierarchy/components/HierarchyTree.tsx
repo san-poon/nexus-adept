@@ -3,7 +3,7 @@ import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
 import { HierarchyTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
-export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onTitleUpdate, level }: HierarchyTreeProps) {
+export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
@@ -21,34 +21,35 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
                     <div className="flex justify-center">
                         <Button
                             type="button"
-                            className=""
                             onClick={() => {
-                                // Todo: refactor with onSiblingCategoryInsert handler
-                                onChildCategoryInsert(category.parentIDs[0])
+                                onSiblingCategoryInsert(category.id)
                             }}
                         >
-                            <Plus className="w-4 h-4" />
+                            <Plus className="w-3 h-3" />
                         </Button>
                     </div>
-                    <CategoryBlock
-                        category={category}
-                        onChildCategoryInsert={() => { onChildCategoryInsert(category.id) }}
-                        onTitleUpdate={onTitleUpdate}
-                        level={level}
-                    />
+                    <div className="flex justify-center">
+                        <CategoryBlock
+                            category={category}
+                            onChildCategoryInsert={() => { onChildCategoryInsert(category.id) }}
+                            onTitleUpdate={onTitleUpdate}
+                            level={level}
+                        />
+                        {childIDs.length > 0 && (
+                            <Button onClick={handleHierarchyToggle}>
+                                {isExpanded
+                                    ? <ChevronDown className="w-4" />
+                                    : <ChevronRight className="w-4" />
+                                }
+                            </Button>
+                        )}
+                    </div>
                 </div>
-                {childIDs.length > 0 && (
-                    <Button onClick={handleHierarchyToggle}>
-                        {isExpanded
-                            ? <ChevronDown className="w-4" />
-                            : <ChevronRight className="w-4" />
-                        }
-                    </Button>
-                )}
+
             </div>
             {isExpanded && childIDs.length > 0 && (
                 <div className=" border-s dark:border-neutral-700 border-neutral-300">
-                    <ul className=" ml-10 my-2 overflow-y-auto">
+                    <ul className=" ml-10 overflow-y-auto">
                         {childIDs.map((childID: string) => {
                             const nextLevel = level + 1;
                             return (<HierarchyTree
@@ -56,6 +57,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
                                 categoryID={childID}
                                 hierarchies={hierarchies}
                                 onChildCategoryInsert={onChildCategoryInsert}
+                                onSiblingCategoryInsert={onSiblingCategoryInsert}
                                 onTitleUpdate={onTitleUpdate}
                                 level={nextLevel}
                             />)
