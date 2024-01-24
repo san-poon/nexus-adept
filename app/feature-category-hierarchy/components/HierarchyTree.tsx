@@ -3,7 +3,7 @@ import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
 import { CategoryTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
-export default function CategoryTree({ categoryID, categories, onCategoryInsert, onTitleUpdate, level }: CategoryTreeProps) {
+export default function HierarchyTree({ categoryID, categories, onCategoryInsert, onTitleUpdate, level }: CategoryTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
@@ -51,7 +51,7 @@ export default function CategoryTree({ categoryID, categories, onCategoryInsert,
                     <ul className=" ml-10 my-2 overflow-y-auto">
                         {childIDs.map((childID: string) => {
                             const nextLevel = level + 1;
-                            return (<CategoryTree
+                            return (<HierarchyTree
                                 key={childID}
                                 categoryID={childID}
                                 categories={categories}

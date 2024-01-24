@@ -4,7 +4,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Category } from '../lib/types'
 import HierarchyTitle from "./HierarchyTitle";
-import CategoryTree from "./CategoryTree";
+import HierarchyTree from "./HierarchyTree";
 
 const initialCategory: Category[] = [
     {
@@ -75,7 +75,7 @@ export default function CategoryHierarchy() {
             </div>
             <ul className="md:ms-10">
                 {rootChildIDs.map((id: string) => (
-                    <CategoryTree
+                    <HierarchyTree
                         key={id}
                         categoryID={id}
                         categories={categories}
