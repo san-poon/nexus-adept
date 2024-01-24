@@ -74,7 +74,7 @@ export default function CategoryHierarchy() {
                 />
             </div>
             <ul className="md:ms-10">
-                {rootChildIDs.map((id: string) => (
+                {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                     <HierarchyTree
                         key={id}
                         categoryID={id}

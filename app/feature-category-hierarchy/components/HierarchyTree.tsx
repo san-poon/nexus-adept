@@ -2,7 +2,7 @@ import { useState } from "react";
 import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
 import { CategoryTreeProps } from "../lib/types";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 export default function HierarchyTree({ categoryID, categories, onCategoryInsert, onTitleUpdate, level }: CategoryTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
@@ -30,6 +30,17 @@ export default function HierarchyTree({ categoryID, categories, onCategoryInsert
         <li>
             <div className="flex items-center">
                 <div>
+                    <div className="flex justify-center">
+                        <Button
+                            type="button"
+                            className=""
+                            onClick={() => {
+                                onCategoryInsert(category.parentIDs[0], index)
+                            }}
+                        >
+                            <Plus className="w-4 h-4" />
+                        </Button>
+                    </div>
                     <CategoryBlock
                         category={category}
                         onCategoryInsert={() => { onCategoryInsert(category.id, index) }}
