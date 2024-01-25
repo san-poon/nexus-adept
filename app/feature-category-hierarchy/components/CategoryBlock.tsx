@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Hierarchy } from "../lib/types";
 import { Plus, Trash2Icon } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { AddHierarchyTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
 export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: { category: Hierarchy, onChildCategoryInsert: any, onTitleUpdate: any, onCategoryDelete: any, level: number }) {
     const maxDepth = 5;
@@ -11,12 +12,10 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
         <div className={cn(
             "flex rounded-lg border-2 border-neutral-300 dark:border-neutral-700",
         )}>
-            <Button
+            <DeleteTooltipButton
                 onClick={() => onCategoryDelete(category.id)}
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
-            >
-                <Trash2Icon className="w-4" />
-            </Button>
+            />
             <Input
                 autoFocus
                 className="text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
@@ -25,12 +24,10 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
-            <Button type="button"
+            <AddHierarchyTooltipButton
                 onClick={onChildCategoryInsert}
                 className={`${canAddChildren ? "block" : "hidden"}`}
-            >
-                <Plus className="w-4" />
-            </Button>
+            />
         </div>
 
     )
