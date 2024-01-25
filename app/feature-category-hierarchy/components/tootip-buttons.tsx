@@ -47,8 +47,31 @@ export function AddHierarchyTooltipButton({ onClick, className }: { onClick: () 
                         <PlusIcon size={16} />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-800">
+                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-900">
                     <p>Add Hierarchy</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    )
+}
+
+export function AddSiblingTooltipButton({ onClick, className }: { onClick: () => void, className: string }) {
+    return (
+        <TooltipProvider delayDuration={300}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button
+                        onClick={onClick}
+                        className={cn(
+                            "transition duration-200 ease-in-out transform active:scale-75",
+                            className
+                        )}
+                    >
+                        <PlusIcon size={16} />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-800">
+                    <p>Add Sibling</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

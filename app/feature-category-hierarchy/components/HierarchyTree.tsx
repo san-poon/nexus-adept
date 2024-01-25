@@ -2,8 +2,10 @@ import { useState } from "react";
 import CategoryBlock from "./CategoryBlock";
 import { Button } from "@/components/ui/button";
 import { HierarchyTreeProps } from "../lib/types";
-import { ChevronDown, ChevronRight, PlusIcon, } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AddSiblingTooltipButton } from "./tootip-buttons";
+
 export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
@@ -20,15 +22,12 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
             <div className="flex items-center">
                 <div>
                     <div className="flex justify-center">
-                        <Button
-                            type="button"
+                        <AddSiblingTooltipButton
                             className="opacity-30 transition-opacity duration-300 hover:opacity-100"
                             onClick={() => {
                                 onSiblingCategoryInsert(category.id)
                             }}
-                        >
-                            <PlusIcon className="w-3 h-3" />
-                        </Button>
+                        />
                     </div>
                     <div className="flex justify-center">
                         <CategoryBlock
