@@ -1,11 +1,10 @@
 import { Input } from "@/components/ui/input";
-import { HierarchyData } from "../lib/types";
 import { cn } from "@/lib/utils";
 import { AddHierarchyTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
 
 
-export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: { category: HierarchyData, onChildCategoryInsert: any, onTitleUpdate: any, onCategoryDelete: any, level: number }) {
+export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
     const maxDepth = 5;
     const canAddChildren = level < maxDepth;
     return (

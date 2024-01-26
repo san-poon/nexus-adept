@@ -5,7 +5,7 @@ import {
     TabsTrigger,
 } from '@/components/ui/tabs';
 
-export default function CategoryTabs({ children, categoryContent }: { children: React.ReactNode, categoryContent: any }) {
+export default function CategoryTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: any }) {
     return (
         <Tabs defaultValue="create" >
             <TabsList className="grid w-full grid-cols-2 sticky top-0 z-50">
@@ -16,7 +16,7 @@ export default function CategoryTabs({ children, categoryContent }: { children: 
                 {children}
             </TabsContent>
             <TabsContent value="preview">
-                {/* <CategoryPreview content={categoryContent} /> */}
+                {/* <HierarchyPreview hierarchies={hierarchies} /> */}
             </TabsContent>
         </Tabs>
     )

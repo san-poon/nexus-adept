@@ -15,19 +15,26 @@ const HeroComponent = () => {
                 <p className="text-lg mb-8">
                     Welcome to the vibrant town square of learning and creation.
                 </p>
-                <div className="flex flex-col items-center mb-4">
-                    <Link href="/feature-quiz/mcqs/create" title="Create quizz">
-                        <Button className="hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                <div className="flex flex-col mt-4">
+                    {/* <Link href="/feature-quiz/mcqs/create" title="Create quizz">
+                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Create Quiz
                         </Button>
-                    </Link>
+                    </Link> */}
                     <Link href="/feature-lesson/create" title="Create course lesson and get paid">
                         <Button className=" mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Create Lesson
                         </Button>
                     </Link>
+                    <Link href="/feature-category-hierarchy/create" title="Play Javascript quizzes">
+                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                            Create Learning Path
+                        </Button>
+                    </Link>
                     <Link href="/feature-quiz/mcqs/play" title="Play Javascript quizzes">
-                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">Play</Button>
+                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                            Play JavaScript Quizzes
+                        </Button>
                     </Link>
                 </div>
             </div>
