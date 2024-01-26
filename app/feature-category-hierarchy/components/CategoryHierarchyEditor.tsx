@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Hierarchy } from '../lib/types'
-import HierarchyTitle from "./HierarchyTitle";
+import { HierarchyData, HierarchyTreeData } from '../lib/types'
+import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 
 const initialID = uuidv4();
-const initialHierarchy: Record<string, Hierarchy> = {
+const initialHierarchy: HierarchyTreeData = {
     [initialID]: {
         id: initialID,
         title: "",
@@ -16,11 +16,11 @@ const initialHierarchy: Record<string, Hierarchy> = {
     }
 };
 
-export default function CategoryHierarchy() {
-    const [hierarchies, setHierarchies] = useState<Record<string, Hierarchy>>(initialHierarchy);
+export default function CategoryHierarchyEditor() {
+    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchy);
 
     const handleChildCategoryInsert = (parentID: string) => {
-        const newCategory: Hierarchy = {
+        const newCategory: HierarchyData = {
             id: uuidv4(),
             title: "",
             childIDs: [],
@@ -41,7 +41,7 @@ export default function CategoryHierarchy() {
     };
 
     const handleSiblingCategoryInsert = (siblingID: string) => {
-        const newCategory: Hierarchy = {
+        const newCategory: HierarchyData = {
             id: uuidv4(),
             title: "",
             childIDs: [],
@@ -80,7 +80,7 @@ export default function CategoryHierarchy() {
     }
 
     const handleCategoryTitleUpdate = (categoryID: string, newTitle: string) => {
-        const nextHierarchies: Record<string, Hierarchy> = {
+        const nextHierarchies: HierarchyTreeData = {
             ...hierarchies,
             [categoryID]: {
                 ...hierarchies[categoryID],
@@ -120,7 +120,7 @@ export default function CategoryHierarchy() {
     return (
         <div className="m-4 min-h-screen">
             <div className="flex item-center justify-center">
-                <HierarchyTitle
+                <HierarchyRootTitle
                     category={root}
                     onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
                     onTitleUpdate={handleCategoryTitleUpdate}

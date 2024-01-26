@@ -1,11 +1,11 @@
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Hierarchy } from "../lib/types";
-import { Plus, Trash2Icon } from 'lucide-react';
+import { HierarchyData } from "../lib/types";
 import { cn } from "@/lib/utils";
 import { AddHierarchyTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
-export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: { category: Hierarchy, onChildCategoryInsert: any, onTitleUpdate: any, onCategoryDelete: any, level: number }) {
+
+
+export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: { category: HierarchyData, onChildCategoryInsert: any, onTitleUpdate: any, onCategoryDelete: any, level: number }) {
     const maxDepth = 5;
     const canAddChildren = level < maxDepth;
     return (
