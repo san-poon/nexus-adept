@@ -5,39 +5,43 @@ import { Button } from "@/components/ui/button";
 
 const HeroComponent = () => {
     return (
-        <section className="bg-gradient-to-r from-neutral-500 via-neutral-600 to-neutral-700 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-700 text-white py-16 h-screen">
+        <section className="relative dark:bg-gradient-to-r dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 
+        bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 dark:text-white py-16 h-screen">
             <div className="container mx-auto text-center">
                 {/* Logo Image */}
                 <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                     Forge Your Knowledge, Play Your Way!
                 </h1>
-                <p className="text-lg mb-8">
+                <p className="text-lg mb-8 opacity-80">
                     Welcome to the vibrant town square of learning and creation.
                 </p>
-                <div className="flex flex-col mt-4">
+                <div className=" mt-4 md:mt-24 grid grid-rows-3 place-items-center">
                     {/* <Link href="/feature-quiz/mcqs/create" title="Create quizz">
                         <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Create Quiz
                         </Button>
                     </Link> */}
-                    <Link href="/feature-lesson/create" title="Create course lesson and get paid">
-                        <Button className=" mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                    <Link href="/feature-lesson/create" title="Choose a learning path, create lesson">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Create Lesson
                         </Button>
                     </Link>
-                    <Link href="/feature-category-hierarchy/create" title="Play Javascript quizzes">
-                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                    <Link href="/feature-category-hierarchy/create" title="Structured Learning Path Editor">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Create Learning Path
                         </Button>
                     </Link>
                     <Link href="/feature-quiz/mcqs/play" title="Play Javascript quizzes">
-                        <Button className="mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
                             Play JavaScript Quizzes
                         </Button>
                     </Link>
                 </div>
             </div>
+            <p className="text-xs absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                This app is a work in progress.
+            </p>
         </section>
     );
 };

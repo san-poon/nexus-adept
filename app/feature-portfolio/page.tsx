@@ -8,7 +8,7 @@ export default function PortfolioPage() {
             <HeroSection />
             <SkillsMeadow />
             <ProjectsBoulevard />
-            <ContactSquare />
+            {/* <ContactSquare /> */}
         </main>
     )
 }

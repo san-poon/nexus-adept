@@ -11,7 +11,7 @@ export default function ContactSquare() {
 
     return (
         <div className="mt-6 p-2">
-            <h2 className="text-2xl font-semibold mb-4">Contact Square</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center">Contact Square</h2>
             <div className="">
                 <ul className="list-disc ml-6 md:ml-20">
                     {contactInfo.map(({ label, value, url }) => (

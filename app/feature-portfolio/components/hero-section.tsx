@@ -4,7 +4,7 @@ import profilePic from '@/app/images/sanjib-pp-1178.png';
 // Hero Section Component
 export default function HeroSection() {
     return (
-        <div className="bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-300 dark:to-gray-500 p-8 rounded-md shadow-lg">
+        <div className="bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-300 dark:to-gray-500 p-8 shadow-lg">
             <div className="relative h-40 w-40 mb-4 mx-auto overflow-hidden rounded-full">
                 <Image
                     src={profilePic}

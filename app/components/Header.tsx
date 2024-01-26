@@ -17,7 +17,7 @@ export default function Header() {
                     <div className="flex items-center justify-center space-x-0 bg-neutral-50 dark:bg-neutral-900 rounded-lg dark:hover:bg-neutral-800 duration-300 p-1 transition-transform hover:scale-105">
                         {/* Logo */}
                         <Logo />
-                        <span className="font-bold">
+                        <span className=" text-lg">
                             Autodidact
                         </span>
                     </div>

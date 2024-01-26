@@ -13,7 +13,7 @@ export default function ProjectsBoulevard() {
 
     return (
         <div className="p-2 mt-6">
-            <h2 className="text-2xl font-bold dark:text-gray-200 mb-4">Projects Boulevard</h2>
+            <h2 className="text-2xl font-bold dark:text-gray-200 mb-4 text-center">Projects Boulevard</h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectClass}`}>
                 {projects.map((project) => (
                     <div className={`rounded-lg overflow-hidden ${projectClass}`} key={project.name}>
@@ -22,7 +22,7 @@ export default function ProjectsBoulevard() {
                                 <Image
                                     src={project.imageSrc}
                                     alt={project.name}
-                                    className="rounded-full w-auto h-full p-2 transition-transform hover:scale-105"
+                                    className="rounded-full w-full h-auto md:h-full p-2 transition-transform hover:scale-105"
                                 />
                             </Link>
                         </div>
