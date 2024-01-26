@@ -40,7 +40,7 @@ export function AddHierarchyTooltipButton({ onClick, className }: { onClick: () 
                     <Button
                         onClick={onClick}
                         className={cn(
-                            "transition duration-200 ease-in-out transform active:scale-75",
+                            "transition duration-500 ease-in-out transform active:scale-75",
                             className
                         )}
                     >
