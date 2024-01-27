@@ -4,8 +4,9 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs';
+import { HierarchyTreeData } from '../lib/types';
 
-export default function CategoryTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: any }) {
+export default function HierarchyTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: HierarchyTreeData }) {
     return (
         <Tabs defaultValue="create" >
             <TabsList className="grid w-full grid-cols-2 sticky top-0 z-50">
@@ -16,7 +17,7 @@ export default function CategoryTabs({ children, hierarchies }: { children: Reac
                 {children}
             </TabsContent>
             <TabsContent value="preview">
-                {/* <HierarchyPreview hierarchies={hierarchies} /> */}
+                {/* This is where we need to load React Flow with 'hierarchies data' or 'hierarchiesNodes data' */}
             </TabsContent>
         </Tabs>
     )

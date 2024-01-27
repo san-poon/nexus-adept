@@ -1,7 +1,7 @@
-import CategoryHierarchyEditor from "../components/CategoryHierarchyEditor";
+import HierarchyEditor from "../components/HierarchyEditor";
 
 export default function CategoryHierarchyPage() {
     return (
-        <CategoryHierarchyEditor />
+        <HierarchyEditor />
     )
 }
