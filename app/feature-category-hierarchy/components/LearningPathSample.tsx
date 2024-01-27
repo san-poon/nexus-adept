@@ -22,7 +22,7 @@ import { findBoundingBox } from "../lib/utils";
 // you could also use useMemo inside the component
 const nodeTypes = { learningPath: LearningPathNode };
 
-export default function JsLearningPath() {
+export default function LearningPathSample() {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
 
@@ -77,7 +77,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-2',
         type: 'learningPath',
-        position: { x: 0, y: 100 },
+        position: { x: 0, y: 50 },
         data: {
             label: 'Asynchronous JavaScript',
             introduction: "Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result."
@@ -86,7 +86,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-3',
         type: "learningPath",
-        position: { x: 0, y: 200 },
+        position: { x: 0, y: 100 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -95,7 +95,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-5',
         type: "learningPath",
-        position: { x: 0, y: 300 },
+        position: { x: 0, y: 150 },
         targetPosition: Position.Left,
         data: {
             label: 'Intro to JS',
@@ -105,7 +105,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-6',
         type: "learningPath",
-        position: { x: 0, y: 400 },
+        position: { x: 0, y: 200 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -114,7 +114,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-7',
         type: "learningPath",
-        position: { x: 0, y: 500 },
+        position: { x: 0, y: 250 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -123,7 +123,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-8',
         type: "learningPath",
-        position: { x: 0, y: 600 },
+        position: { x: 0, y: 300 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -132,7 +132,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-9',
         type: "learningPath",
-        position: { x: 0, y: 700 },
+        position: { x: 0, y: 350 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -141,7 +141,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-10',
         type: "learningPath",
-        position: { x: 0, y: 800 },
+        position: { x: 0, y: 400 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."

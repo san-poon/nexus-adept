@@ -1,91 +1,161 @@
 'use client';
 
-import ReactFlow, {
+import ReactFlow,
+{
     Controls,
     Background,
-    applyEdgeChanges,
-    applyNodeChanges,
-    MiniMap,
     Node,
     Edge,
-    addEdge,
-    Connection,
+    applyEdgeChanges,
+    applyNodeChanges,
     OnNodesChange,
     OnEdgesChange,
+    addEdge,
+    Connection,
+    Position,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { useState, useCallback } from 'react';
-import NodeTextUpdater from './NodeTextUpdater';
+import { findBoundingBox } from "../lib/utils";
+import LearningPathNode from "./LearningPathNode";
 
-const initialNodes: Node[] = [
-    {
-        id: '1',
-        position: { x: 0, y: 0 },
-        data: { label: 'JavaScript' },
-        type: 'input',
-    },
-    {
-        id: '2',
-        position: { x: 100, y: 100 },
-        data: { label: 'Introduction to JavaScript' }
-    },
-    {
-        id: "3",
-        type: 'nodeTextUpdater',
-        position: { x: 100, y: 200 },
-        data: { value: 123 }
-    }
-];
-
-const initialEdges: Edge[] = [
-    {
-        id: '1-2',
-        source: '1',
-        target: '2',
-        label: 'chapter',
-
-    },
-
-]
-
-// Either define the nodeTypes outside of the component to prevent 
-// re-renderings/bugs or use 'useMemo' hook inside the component.
-const nodeTypes = { nodeTextUpdater: NodeTextUpdater };
+// we define the nodeTypes outside of the component to prevent re-renderings
+// you could also use useMemo inside the component
+const nodeTypes = { learningPath: LearningPathNode };
 
 export default function HierarchyPreview() {
-    const [nodes, setNodes] = useState(initialNodes);
-    const [edges, setEdges] = useState(initialEdges);
+    const nodes = initialNodes;
+    const edges = initialEdges;
 
-    const handleNodesChange: OnNodesChange = useCallback(
-        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-        [setNodes],
-    );
-    const handleEdgesChange: OnEdgesChange = useCallback(
-        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-        [setEdges],
-    );
-
-    const handleNodesConnect = useCallback(
-        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
-        [setEdges]
-    );
-
+    const boundingBox = findBoundingBox(nodes);
     return (
-        <div className="border-2 dark:border-neutral-700 m-2 md:m-4 h-screen">
+        <div className=" h-[92vh] md:h-[90vh]">
             <ReactFlow
+                proOptions={{ hideAttribution: true }}
                 nodes={nodes}
                 edges={edges}
-                onNodesChange={handleNodesChange}
-                onEdgesChange={handleEdgesChange}
-                onConnect={handleNodesConnect}
                 nodeTypes={nodeTypes}
+                panOnScroll
+                onlyRenderVisibleElements
+                translateExtent={boundingBox}
                 fitView
+                fitViewOptions={{ minZoom: 1 }}
             >
                 <Background />
-                <Controls />
-                <MiniMap />
+                <Controls fitViewOptions={{ minZoom: 1 }} />
             </ReactFlow>
         </div>
     )
 }
 
+const initialNodes: Node[] = [
+    {
+        id: 'node-1',
+        type: "learningPath",
+        position: { x: 0, y: 0 },
+        data: {
+            label: 'JavaScript',
+            introduction: 'JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.'
+        },
+    },
+    {
+        id: 'node-2',
+        type: 'learningPath',
+        position: { x: 0, y: 100 },
+        data: {
+            label: 'Asynchronous JavaScript',
+            introduction: "Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result."
+        },
+    },
+    {
+        id: 'node-3',
+        type: "learningPath",
+        position: { x: 0, y: 200 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-5',
+        type: "learningPath",
+        position: { x: 0, y: 300 },
+        targetPosition: Position.Left,
+        data: {
+            label: 'Intro to JS',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-6',
+        type: "learningPath",
+        position: { x: 0, y: 400 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-7',
+        type: "learningPath",
+        position: { x: 0, y: 500 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-8',
+        type: "learningPath",
+        position: { x: 0, y: 600 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-9',
+        type: "learningPath",
+        position: { x: 0, y: 700 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+    {
+        id: 'node-10',
+        type: "learningPath",
+        position: { x: 0, y: 800 },
+        data: {
+            label: 'All about variables',
+            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+        },
+    },
+];
+
+const initialEdges: Edge[] = [
+    {
+        id: 'edge-1',
+        source: 'node-1',
+        target: 'node-2',
+    },
+    {
+        id: 'edge-2',
+        source: 'node-2',
+        target: 'node-3',
+    },
+    {
+        id: 'edge-4',
+        source: 'node-3',
+        target: 'node-5',
+    },
+    {
+        id: 'edge-5',
+        source: 'node-5',
+        target: 'node-6',
+    },
+    {
+        id: 'edge-6',
+        source: 'node-6',
+        target: 'node-7',
+    }
+];
