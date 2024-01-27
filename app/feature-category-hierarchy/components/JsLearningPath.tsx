@@ -161,17 +161,17 @@ const initialEdges: Edge[] = [
         target: 'node-3',
     },
     {
-        id: 'edge-3',
+        id: 'edge-4',
         source: 'node-3',
         target: 'node-5',
     },
     {
-        id: 'edge-3',
+        id: 'edge-5',
         source: 'node-5',
         target: 'node-6',
     },
     {
-        id: 'edge-3',
+        id: 'edge-6',
         source: 'node-6',
         target: 'node-7',
     }
