@@ -1,13 +1,10 @@
 'use client';
-
-import ReactFlow, {
+import { useState, useCallback } from "react";
+import LearningPathNode from "./LearningPathNode";
+import ReactFlow,
+{
     Controls,
     Background,
-<<<<<<< HEAD
-} from 'reactflow';
-import 'reactflow/dist/style.css';
-
-=======
     Node,
     Edge,
     applyEdgeChanges,
@@ -20,39 +17,53 @@ import 'reactflow/dist/style.css';
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { findBoundingBox } from "../lib/utils";
-import LearningPathNode from "./LearningPathNode";
 
 // we define the nodeTypes outside of the component to prevent re-renderings
 // you could also use useMemo inside the component
 const nodeTypes = { learningPath: LearningPathNode };
->>>>>>> parent of c724afb (Minor changes)
 
-export default function HierarchyPreview() {
+export default function LearningPathSample() {
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+
+    const onNodesChange: OnNodesChange = useCallback(
+        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+        [setNodes]
+    );
+    const onEdgesChange: OnEdgesChange = useCallback(
+        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+        [setEdges]
+    );
+    const onConnect = useCallback(
+        (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
+        [setEdges]
+    );
+
+    const boundingBox = findBoundingBox(nodes)
+
     return (
-        <div className=" h-[90vh]">
+        <div className=" h-[92vh] md:h-[90vh]">
             <ReactFlow
+                proOptions={{ hideAttribution: true }}
                 nodes={nodes}
                 edges={edges}
-<<<<<<< HEAD
-=======
                 nodeTypes={nodeTypes}
                 panOnScroll
                 onlyRenderVisibleElements
                 translateExtent={boundingBox}
                 fitView
                 fitViewOptions={{ minZoom: 1 }}
->>>>>>> parent of c724afb (Minor changes)
             >
                 <Background />
-                <Controls />
+                <Controls fitViewOptions={{ minZoom: 1 }} />
             </ReactFlow>
         </div>
     )
 }
 
-<<<<<<< HEAD
-const edges = [{ id: '1-2', source: '1', target: '2' }];
-=======
+
+
 const initialNodes: Node[] = [
     {
         id: 'node-1',
@@ -66,7 +77,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-2',
         type: 'learningPath',
-        position: { x: 0, y: 100 },
+        position: { x: 0, y: 50 },
         data: {
             label: 'Asynchronous JavaScript',
             introduction: "Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result."
@@ -75,7 +86,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-3',
         type: "learningPath",
-        position: { x: 0, y: 200 },
+        position: { x: 0, y: 100 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -84,7 +95,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-5',
         type: "learningPath",
-        position: { x: 0, y: 300 },
+        position: { x: 0, y: 150 },
         targetPosition: Position.Left,
         data: {
             label: 'Intro to JS',
@@ -94,7 +105,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-6',
         type: "learningPath",
-        position: { x: 0, y: 400 },
+        position: { x: 0, y: 200 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -103,7 +114,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-7',
         type: "learningPath",
-        position: { x: 0, y: 500 },
+        position: { x: 0, y: 250 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -112,7 +123,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-8',
         type: "learningPath",
-        position: { x: 0, y: 600 },
+        position: { x: 0, y: 300 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -121,7 +132,7 @@ const initialNodes: Node[] = [
     {
         id: 'node-9',
         type: "learningPath",
-        position: { x: 0, y: 700 },
+        position: { x: 0, y: 350 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
@@ -130,29 +141,25 @@ const initialNodes: Node[] = [
     {
         id: 'node-10',
         type: "learningPath",
-        position: { x: 0, y: 800 },
+        position: { x: 0, y: 400 },
         data: {
             label: 'All about variables',
             introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
         },
     },
 ];
->>>>>>> parent of c724afb (Minor changes)
 
-const nodes = [
+const initialEdges: Edge[] = [
     {
-        id: '1',
-        data: { label: 'Hello' },
-        position: { x: 0, y: 0 },
-        type: 'input',
+        id: 'edge-1',
+        source: 'node-1',
+        target: 'node-2',
     },
     {
-        id: '2',
-        data: { label: 'World' },
-        position: { x: 100, y: 100 },
+        id: 'edge-2',
+        source: 'node-2',
+        target: 'node-3',
     },
-<<<<<<< HEAD
-=======
     {
         id: 'edge-4',
         source: 'node-3',
@@ -168,5 +175,4 @@ const nodes = [
         source: 'node-6',
         target: 'node-7',
     }
->>>>>>> parent of c724afb (Minor changes)
 ];
