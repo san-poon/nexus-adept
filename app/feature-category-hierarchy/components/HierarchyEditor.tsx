@@ -7,10 +7,10 @@ import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 import HierarchyTabs from "./HierarchyTabs";
 
-const initialID = uuidv4();
+const rootID = "ROOT"
 const initialHierarchy: HierarchyTreeData = {
-    [initialID]: {
-        id: initialID,
+    [rootID]: {
+        id: rootID,
         title: "",
         childIDs: [],
         parentIDs: [],
@@ -115,11 +115,11 @@ export default function HierarchyEditor() {
 
     // Root represents the title of the learning path and
     // make sure not to place delete button rendering it.
-    const root = hierarchies[initialID];
-    const rootChildIDs = root.childIDs;
+    const root = hierarchies["ROOT"];
+    const rootChildIDs = root?.childIDs;
 
     return (
-        <div className=" min-h-screen">
+        <div className="min-h-screen">
             <HierarchyTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <HierarchyRootTitle

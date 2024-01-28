@@ -1,8 +1,8 @@
 
-import LearningPathSample from '../components/LearningPathSample';
-
-export default function JavascriptPath() {
+export default function ExploreLearningPath() {
     return (
-        <LearningPathSample />
+        <div className="flex items-center justify-center h-screen">
+            Currently Empty
+        </div>
     )
 }
