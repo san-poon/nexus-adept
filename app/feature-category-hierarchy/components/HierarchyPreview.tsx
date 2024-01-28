@@ -3,11 +3,6 @@
 import ReactFlow, {
     Controls,
     Background,
-<<<<<<< HEAD
-} from 'reactflow';
-import 'reactflow/dist/style.css';
-
-=======
     Node,
     Edge,
     applyEdgeChanges,
@@ -25,23 +20,22 @@ import LearningPathNode from "./LearningPathNode";
 // we define the nodeTypes outside of the component to prevent re-renderings
 // you could also use useMemo inside the component
 const nodeTypes = { learningPath: LearningPathNode };
->>>>>>> parent of c724afb (Minor changes)
 
 export default function HierarchyPreview() {
+
+    const boundingBox = findBoundingBox(nodes);
+
     return (
         <div className=" h-[90vh]">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
-<<<<<<< HEAD
-=======
                 nodeTypes={nodeTypes}
                 panOnScroll
                 onlyRenderVisibleElements
                 translateExtent={boundingBox}
                 fitView
                 fitViewOptions={{ minZoom: 1 }}
->>>>>>> parent of c724afb (Minor changes)
             >
                 <Background />
                 <Controls />
@@ -50,10 +44,7 @@ export default function HierarchyPreview() {
     )
 }
 
-<<<<<<< HEAD
-const edges = [{ id: '1-2', source: '1', target: '2' }];
-=======
-const initialNodes: Node[] = [
+const nodes: Node[] = [
     {
         id: 'node-1',
         type: "learningPath",
@@ -137,22 +128,8 @@ const initialNodes: Node[] = [
         },
     },
 ];
->>>>>>> parent of c724afb (Minor changes)
 
-const nodes = [
-    {
-        id: '1',
-        data: { label: 'Hello' },
-        position: { x: 0, y: 0 },
-        type: 'input',
-    },
-    {
-        id: '2',
-        data: { label: 'World' },
-        position: { x: 100, y: 100 },
-    },
-<<<<<<< HEAD
-=======
+const edges: Edge[] = [
     {
         id: 'edge-4',
         source: 'node-3',
@@ -168,5 +145,4 @@ const nodes = [
         source: 'node-6',
         target: 'node-7',
     }
->>>>>>> parent of c724afb (Minor changes)
 ];
