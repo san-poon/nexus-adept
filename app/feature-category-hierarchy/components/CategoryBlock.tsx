@@ -16,7 +16,6 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                autoFocus
                 className="text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
                 placeholder={`Level ${level}`}
