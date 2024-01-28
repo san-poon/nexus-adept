@@ -21,5 +21,5 @@ export function findBoundingBox(nodes: Node[]): CoordinateExtent {
         largestY = Math.max(largestY, node.position.y);
     }
     // Catering to the need of 4k display (hahaha)
-    return [[smallestX - 2000, smallestY - 200], [largestX + 2000, largestY + 200]];
+    return [[smallestX - 500, smallestY - 200], [largestX + 3000, largestY + 500]];
 }

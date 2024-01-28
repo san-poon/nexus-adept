@@ -2,15 +2,8 @@
 
 import ReactFlow, {
     Controls,
-    Background,
     Node,
     Edge,
-    applyEdgeChanges,
-    applyNodeChanges,
-    OnNodesChange,
-    OnEdgesChange,
-    addEdge,
-    Connection,
     Position,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
@@ -28,6 +21,7 @@ export default function HierarchyPreview() {
     return (
         <div className=" h-[90vh]">
             <ReactFlow
+                proOptions={{ hideAttribution: true }}
                 nodes={nodes}
                 edges={edges}
                 nodeTypes={nodeTypes}
@@ -35,9 +29,8 @@ export default function HierarchyPreview() {
                 onlyRenderVisibleElements
                 translateExtent={boundingBox}
                 fitView
-                fitViewOptions={{ minZoom: 1 }}
+                fitViewOptions={{ maxZoom: 1.2 }}
             >
-                <Background />
                 <Controls />
             </ReactFlow>
         </div>
@@ -46,103 +39,135 @@ export default function HierarchyPreview() {
 
 const nodes: Node[] = [
     {
-        id: 'node-1',
+        id: 'ROOT',
         type: "learningPath",
         position: { x: 0, y: 0 },
         data: {
-            label: 'JavaScript',
-            introduction: 'JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.'
+            label: 'Full-stack with Next.js',
+            introduction: ''
         },
     },
     {
-        id: 'node-2',
+        id: '1',
         type: 'learningPath',
         position: { x: 0, y: 100 },
         data: {
-            label: 'Asynchronous JavaScript',
-            introduction: "Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result."
+            label: 'HTML, CSS & JS',
+            introduction: ""
         },
     },
     {
-        id: 'node-3',
+        id: '2',
         type: "learningPath",
         position: { x: 0, y: 200 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'React',
+            introduction: ""
         },
     },
     {
-        id: 'node-5',
+        id: '3',
         type: "learningPath",
         position: { x: 0, y: 300 },
         targetPosition: Position.Left,
         data: {
-            label: 'Intro to JS',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'Next.js',
+            introduction: ""
         },
     },
     {
-        id: 'node-6',
+        id: '4',
         type: "learningPath",
-        position: { x: 0, y: 400 },
+        position: { x: 300, y: 100 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'HTML',
+            introduction: ""
         },
     },
     {
-        id: 'node-7',
+        id: '5',
         type: "learningPath",
-        position: { x: 0, y: 500 },
+        position: { x: 300, y: 200 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'CSS',
+            introduction: ""
         },
     },
     {
-        id: 'node-8',
+        id: '6',
         type: "learningPath",
-        position: { x: 0, y: 600 },
+        position: { x: 300, y: 300 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'JS',
+            introduction: ""
         },
     },
     {
-        id: 'node-9',
+        id: '7',
         type: "learningPath",
-        position: { x: 0, y: 700 },
+        position: { x: 500, y: 100 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'Semantic HTML',
+            introduction: ""
         },
     },
     {
-        id: 'node-10',
+        id: '8',
         type: "learningPath",
-        position: { x: 0, y: 800 },
+        position: { x: 500, y: 200 },
         data: {
-            label: 'All about variables',
-            introduction: "Variables are named containers that store data values for later use in your code.Think of them as labeled boxes where you can put different things."
+            label: 'Layout and Positioning',
+            introduction: ""
         },
     },
 ];
 
 const edges: Edge[] = [
     {
-        id: 'edge-4',
-        source: 'node-3',
-        target: 'node-5',
+        id: 'ROOT-0',
+        source: 'ROOT',
+        target: '1',
     },
     {
-        id: 'edge-5',
-        source: 'node-5',
-        target: 'node-6',
+        id: '1-2',
+        source: '1',
+        target: '2',
     },
     {
-        id: 'edge-6',
-        source: 'node-6',
-        target: 'node-7',
+        id: '2-3',
+        source: '2',
+        target: '3',
+    },
+    {
+        id: '1-4',
+        source: '1',
+        target: '4',
+        sourceHandle: 'right',
+        targetHandle: 'left',
+    },
+    {
+        id: '4-5',
+        source: '4',
+        target: '5',
+    },
+    {
+        id: '5-6',
+        source: '5',
+        target: '6',
+    },
+    {
+        id: '4-7',
+        source: '4',
+        target: '7',
+        sourceHandle: 'right',
+        targetHandle: 'left',
+    },
+    {
+        id: '5-8',
+        source: '5',
+        target: '8',
+        sourceHandle: 'right',
+        targetHandle: 'left'
     }
+
 ];
