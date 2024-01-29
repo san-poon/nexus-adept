@@ -9,6 +9,7 @@ import ReactFlow, {
     applyEdgeChanges,
     OnNodesChange,
     OnEdgesChange,
+    MarkerType,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { findBoundingBox } from "../lib/utils";
@@ -142,9 +143,12 @@ const initialNodes: Node[] = [
 
 const initialEdges: Edge[] = [
     {
-        id: 'ROOT-0',
+        id: 'ROOT-1',
         source: 'ROOT',
         target: '1',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         }
@@ -153,6 +157,9 @@ const initialEdges: Edge[] = [
         id: '1-2',
         source: '1',
         target: '2',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         }
@@ -161,6 +168,9 @@ const initialEdges: Edge[] = [
         id: '2-3',
         source: '2',
         target: '3',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
@@ -169,6 +179,10 @@ const initialEdges: Edge[] = [
         id: '1-4',
         source: '1',
         target: '4',
+        type: 'straight',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
@@ -179,6 +193,9 @@ const initialEdges: Edge[] = [
         id: '4-5',
         source: '4',
         target: '5',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
@@ -187,6 +204,9 @@ const initialEdges: Edge[] = [
         id: '5-6',
         source: '5',
         target: '6',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
@@ -195,6 +215,10 @@ const initialEdges: Edge[] = [
         id: '4-7',
         source: '4',
         target: '7',
+        type: 'straight',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
@@ -205,6 +229,10 @@ const initialEdges: Edge[] = [
         id: '5-8',
         source: '5',
         target: '8',
+        type: 'straight',
+        markerEnd: {
+            type: MarkerType.Arrow,
+        },
         style: {
             strokeWidth: 2,
         },
