@@ -1,10 +1,14 @@
 'use client';
-
+import { useState, useCallback } from 'react';
 import ReactFlow, {
     Controls,
     Node,
     Edge,
     Position,
+    applyNodeChanges,
+    applyEdgeChanges,
+    OnNodesChange,
+    OnEdgesChange,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { findBoundingBox } from "../lib/utils";
@@ -15,6 +19,17 @@ import LearningPathNode from "./LearningPathNode";
 const nodeTypes = { learningPath: LearningPathNode };
 
 export default function HierarchyPreview() {
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+    const onNodesChange: OnNodesChange = useCallback(
+        (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+        [setNodes]
+    );
+    const onEdgesChange: OnEdgesChange = useCallback(
+        (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+        [setEdges]
+    );
 
     const boundingBox = findBoundingBox(nodes);
 
@@ -30,6 +45,9 @@ export default function HierarchyPreview() {
                 translateExtent={boundingBox}
                 fitView
                 fitViewOptions={{ maxZoom: 1.2 }}
+
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
             >
                 <Controls />
             </ReactFlow>
@@ -37,7 +55,7 @@ export default function HierarchyPreview() {
     )
 }
 
-const nodes: Node[] = [
+const initialNodes: Node[] = [
     {
         id: 'ROOT',
         type: "learningPath",
@@ -122,26 +140,38 @@ const nodes: Node[] = [
     },
 ];
 
-const edges: Edge[] = [
+const initialEdges: Edge[] = [
     {
         id: 'ROOT-0',
         source: 'ROOT',
         target: '1',
+        style: {
+            strokeWidth: 2,
+        }
     },
     {
         id: '1-2',
         source: '1',
         target: '2',
+        style: {
+            strokeWidth: 2,
+        }
     },
     {
         id: '2-3',
         source: '2',
         target: '3',
+        style: {
+            strokeWidth: 2,
+        },
     },
     {
         id: '1-4',
         source: '1',
         target: '4',
+        style: {
+            strokeWidth: 2,
+        },
         sourceHandle: 'right',
         targetHandle: 'left',
     },
@@ -149,16 +179,25 @@ const edges: Edge[] = [
         id: '4-5',
         source: '4',
         target: '5',
+        style: {
+            strokeWidth: 2,
+        },
     },
     {
         id: '5-6',
         source: '5',
         target: '6',
+        style: {
+            strokeWidth: 2,
+        },
     },
     {
         id: '4-7',
         source: '4',
         target: '7',
+        style: {
+            strokeWidth: 2,
+        },
         sourceHandle: 'right',
         targetHandle: 'left',
     },
@@ -166,6 +205,9 @@ const edges: Edge[] = [
         id: '5-8',
         source: '5',
         target: '8',
+        style: {
+            strokeWidth: 2,
+        },
         sourceHandle: 'right',
         targetHandle: 'left'
     }
