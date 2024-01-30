@@ -219,7 +219,7 @@ const CreateLessonPage = () => {
     return (
         <div className=' dark:text-neutral-200'>
             <LessonTabs lessonContent={lessonContent}>
-                <div className={`flex flex-col md:flex-row my-10`}>
+                <div className={`flex flex-col md:flex-row my-4`}>
                     {/* Left Side - Content Buttons */}
                     <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 rounded shadow transition sticky top-10 md:top-44 z-50 bg-emerald-50 md:bg-inherit dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
@@ -229,21 +229,20 @@ const CreateLessonPage = () => {
                             <QuizBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'quiz')} />
                             <CodeBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, 'code')} />
                         </div>
-
                     </div>
 
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
-                        <div className='mb-4 flex justify-center items-center'>
+                        <div className='mb-4 flex-1 items-center justify-center max-w-md'>
                             <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
                         </div>
-                        <div className="md:p-2 rounded shadow border-2 dark:border-neutral-800">
+                        <div className="md:p-2 rounded shadow border dark:border-neutral-700">
 
                             <div className='mt-2'>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-inherit bg-neutral-900"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -254,7 +253,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900 p-4"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -273,7 +272,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded border-2 dark:border-neutral-700">
+                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-lg border-2 dark:border-neutral-700">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
@@ -290,7 +289,7 @@ const CreateLessonPage = () => {
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
-                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none bg-inherit"
                                                             placeholder='Your paragraph or... Choose from dropdown menu'
                                                             name={item.contentType}
                                                             value={item.value}
@@ -300,7 +299,7 @@ const CreateLessonPage = () => {
                                                 )
                                             }
                                             {item.contentType === 'image' && (
-                                                <div className='flex items-center justify-center'>
+                                                <div className='flex items-center justify-center p-2'>
                                                     <Image src={item.value} width={300} height={300} alt='image' />
                                                 </div>
                                             )}
@@ -326,7 +325,7 @@ const CreateLessonPage = () => {
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
-                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none bg-inherit"
                                                             placeholder='Paste your code here...'
                                                             name={item.contentType}
                                                             value={item.value.code}
@@ -336,7 +335,7 @@ const CreateLessonPage = () => {
                                                 )
                                             }
                                             <div className='relative group/toolbar my-3'>
-                                                <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-2 py-2 m-1'
+                                                <DeleteButton className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 text-sm h-6 px-4 py-2 m-1'
                                                     onClick={() => handleDeleteContentBlock(item.id)} />
                                                 <div className='opacity-0 text-xs p-1 absolute -bottom-6 -right-0 transition duration-300 ease-in-out group-hover/toolbar:opacity-100 z-10 bg-neutral-200 dark:bg-neutral-800 rounded'>
                                                     Delete
