@@ -2,20 +2,20 @@
 
 export default function Footer() {
     return (
-        <footer className="">
-            <div className="container text-center dark:bg-neutral-900 border-t-2 dark:border-neutral-800 py-2">
+        <footer className="bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15">
+            <div className="container text-center border-t dark:border-neutral-700 py-2">
                 <p className="text-xs">
                     &copy; 2023 PlayLearnForge.
                 </p>
                 {/* <p className="text-xs mb-2">Play, Learn, Create</p> */}
                 {/* Contact Information */}
                 <div className="flex justify-center space-x-8 mt-4">
-                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-1 rounded">
+                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-4 rounded-full">
                         <a href="mailto:sanjibpoon123@gmail.com" className="">
                             Email
                         </a>
                     </div>
-                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-1 rounded">
+                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-4 rounded-full">
                         <a
                             href="https://twitter.com/san_poon_2"
                             target="_blank"

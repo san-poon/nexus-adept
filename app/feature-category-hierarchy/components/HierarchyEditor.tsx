@@ -6,7 +6,6 @@ import { HierarchyData, HierarchyTreeData } from '../lib/types'
 import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 import HierarchyTabs from "./HierarchyTabs";
-import { cn } from "@/lib/utils";
 
 const rootID = "ROOT"
 const initialHierarchy: HierarchyTreeData = {
@@ -121,7 +120,7 @@ export default function HierarchyEditor() {
     const hasRootChildren = rootChildIDs.length > 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-cyan-50  via-emerald-50/50 to-slate-50 dark:bg-gradient-to-r dark:from-cyan-800/15  dark:via-emerald-900/10 dark:to-slate-800/15">
+        <div className="min-h-screen bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15">
             <HierarchyTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <HierarchyRootTitle

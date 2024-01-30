@@ -217,7 +217,7 @@ const CreateLessonPage = () => {
     const objectiveBlock = lessonContent.find((content) => content.contentType === 'text/objective');
 
     return (
-        <main className='dark:bg-neutral-900 dark:text-neutral-100'>
+        <div className=' dark:text-neutral-200'>
             <LessonTabs lessonContent={lessonContent}>
                 <div className={`flex flex-col md:flex-row my-10`}>
                     {/* Left Side - Content Buttons */}
@@ -234,24 +234,27 @@ const CreateLessonPage = () => {
 
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
-                        <div className="bg-white dark:bg-neutral-900 md:p-2 rounded shadow border-2 dark:border-neutral-800">
+                        <div className='mb-4 flex justify-center items-center'>
                             <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
-                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2 '>
+                        </div>
+                        <div className="md:p-2 rounded shadow border-2 dark:border-neutral-800">
+
+                            <div className='mt-2'>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
-                                    rows={2}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                    rows={1}
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-inherit bg-neutral-900"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...introductionBlock as LessonContentBlockProps, value: e.target.value })}
                                 />
                             </div>
-                            <div className='border-2 dark:border-neutral-700 m-2 mb-4 rounded p-2'>
+                            <div>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
-                                    rows={2}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900"
+                                    rows={1}
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none dark:bg-neutral-900 p-4"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -348,7 +351,7 @@ const CreateLessonPage = () => {
                     </div>
                 </div>
             </LessonTabs>
-        </main>
+        </div>
     );
 };
 

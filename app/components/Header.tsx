@@ -11,10 +11,10 @@ import { MenuIcon } from "../icons";
 
 export default function Header() {
     return (
-        <header className={`w-full z-10 top-0 md:p-4  border-b-2 dark:border-neutral-800 h-[10vh]`}>
+        <header className={`w-full z-10 top-0 md:p-4  border-b dark:border-neutral-700 h-[10vh] bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15`}>
             <div className="container mx-auto flex items-center justify-between my-1">
-                <Link href="/" title="Play & learn, Learn & create, Create & learn">
-                    <div className="flex items-center justify-center space-x-0 bg-neutral-50 dark:bg-neutral-900 rounded-lg dark:hover:bg-neutral-800 duration-300 p-1 transition-transform hover:scale-105">
+                <Link href="/" title="Opinionated Structured Learning Platform ">
+                    <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-125">
                         {/* Logo */}
                         <Logo />
                         <span className=" text-lg">

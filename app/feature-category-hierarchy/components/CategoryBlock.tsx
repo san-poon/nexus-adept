@@ -9,7 +9,7 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
-            "flex rounded-lg border-2 border-neutral-300 dark:border-neutral-700",
+            "flex rounded-full border-2 border-neutral-300 dark:border-neutral-700",
         )}>
             <DeleteTooltipButton
                 onClick={() => onCategoryDelete(category.id)}

@@ -19,7 +19,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
     const childIDs = category.childIDs;
 
     return (
-        <li className="flex flex-col gap-1">
+        <li className="ps-4 md:ps-10 space-y-2">
             <div className="flex items-center">
                 <div>
                     <div className="flex justify-center">
@@ -51,7 +51,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
 
             </div>
             {isExpanded && childIDs.length > 0 && (
-                <ul className="ms-3 md:ms-10">
+                <ul className="border-s dark:border-neutral-700 ms-1 md:ms-2 space-y-1">
                     {childIDs.map((childID: string) => {
                         const nextLevel = level + 1;
                         return (<HierarchyTree

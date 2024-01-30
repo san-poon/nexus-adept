@@ -1,4 +1,5 @@
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
@@ -45,11 +46,11 @@ export function TitleInputBlock({ content, onTitleChange }: any) {
     return (
         <>
             {/* Lesson Title input */}
-            <input
+            <Input
                 type="text"
                 placeholder="Lesson Title"
                 value={content.value}
-                className="w-full p-4 my-4 outline-none rounded-lg border-2 dark:border-neutral-700 border-neutral-200 bg-inherit"
+                className="rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2 px-4"
                 onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
         </>

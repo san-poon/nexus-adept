@@ -17,14 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen bg-white dark:bg-neutral-900`}>
+      <body className={`${inter.className} flex flex-col min-h-screen bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15 dark:text-neutral-200`}>
         <ThemeProvider attribute='class'
           defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
           <Header />
-          <main className='flex-1 text-lg'>
+          <main className='flex-1 text-lg bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15' >
             {children}
           </main>
           <Footer />

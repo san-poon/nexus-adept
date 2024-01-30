@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroComponent = () => {
     return (
-        <section className="relative dark:bg-gradient-to-r dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 
-        bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 dark:text-white py-16 h-screen">
+        <section className="relative dark:text-white py-16 h-screen">
             <div className="container mx-auto text-center">
                 {/* Logo Image */}
                 <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />
@@ -39,8 +38,8 @@ const HeroComponent = () => {
                     </Link>
                 </div>
             </div>
-            <p className="text-xs absolute bottom-0 left-1/2 transform -translate-x-1/2">
-                This app is a work in progress.
+            <p className="text-xs absolute bottom-2 left-1/2 transform -translate-x-1/2">
+                NB: This app is a work in progress.
             </p>
         </section>
     );
