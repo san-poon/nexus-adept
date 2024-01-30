@@ -6,6 +6,7 @@ import { HierarchyData, HierarchyTreeData } from '../lib/types'
 import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 import HierarchyTabs from "./HierarchyTabs";
+import { cn } from "@/lib/utils";
 
 const rootID = "ROOT"
 const initialHierarchy: HierarchyTreeData = {
@@ -117,9 +118,10 @@ export default function HierarchyEditor() {
     // make sure not to place delete button rendering it.
     const root = hierarchies["ROOT"];
     const rootChildIDs = root?.childIDs;
+    const hasRootChildren = rootChildIDs.length > 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-cyan-50 via-slate-50 to-emerald-50/50 dark:bg-gradient-to-r dark:from-cyan-800/15 dark:via-slate-800/15 dark:to-emerald-900/10">
+        <div className="min-h-screen bg-gradient-to-r from-cyan-50  via-emerald-50/50 to-slate-50 dark:bg-gradient-to-r dark:from-cyan-800/15  dark:via-emerald-900/10 dark:to-slate-800/15">
             <HierarchyTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <HierarchyRootTitle
@@ -128,20 +130,22 @@ export default function HierarchyEditor() {
                         onTitleUpdate={handleCategoryTitleUpdate}
                     />
                 </div>
-                <ul className="md:ms-10 lg:ms-96">
-                    {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                        <HierarchyTree
-                            key={id}
-                            categoryID={id}
-                            hierarchies={hierarchies}
-                            onChildCategoryInsert={handleChildCategoryInsert}
-                            onSiblingCategoryInsert={handleSiblingCategoryInsert}
-                            onTitleUpdate={handleCategoryTitleUpdate}
-                            onCategoryDelete={handleCategoryDelete}
-                            level={1}
-                        />
-                    ))}
-                </ul>
+                <div>
+                    <ul className="md:ms-10 lg:ms-96">
+                        {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
+                            <HierarchyTree
+                                key={id}
+                                categoryID={id}
+                                hierarchies={hierarchies}
+                                onChildCategoryInsert={handleChildCategoryInsert}
+                                onSiblingCategoryInsert={handleSiblingCategoryInsert}
+                                onTitleUpdate={handleCategoryTitleUpdate}
+                                onCategoryDelete={handleCategoryDelete}
+                                level={1}
+                            />
+                        ))}
+                    </ul>
+                </div>
             </HierarchyTabs>
         </div>
     );

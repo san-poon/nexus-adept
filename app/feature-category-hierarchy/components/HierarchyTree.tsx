@@ -5,6 +5,7 @@ import { HierarchyTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AddSiblingTooltipButton } from "./tootip-buttons";
+import { Transition } from '@headlessui/react';
 
 export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
@@ -18,7 +19,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
     const childIDs = category.childIDs;
 
     return (
-        <li>
+        <li className="flex flex-col gap-1">
             <div className="flex items-center">
                 <div>
                     <div className="flex justify-center">
@@ -50,23 +51,21 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
 
             </div>
             {isExpanded && childIDs.length > 0 && (
-                <div className=" border-s dark:border-neutral-700 border-neutral-300">
-                    <ul className=" ml-10 overflow-y-auto realtive">
-                        {childIDs.map((childID: string) => {
-                            const nextLevel = level + 1;
-                            return (<HierarchyTree
-                                key={childID}
-                                categoryID={childID}
-                                hierarchies={hierarchies}
-                                onChildCategoryInsert={onChildCategoryInsert}
-                                onSiblingCategoryInsert={onSiblingCategoryInsert}
-                                onTitleUpdate={onTitleUpdate}
-                                onCategoryDelete={onCategoryDelete}
-                                level={nextLevel}
-                            />)
-                        })}
-                    </ul>
-                </div>
+                <ul className="ms-3 md:ms-10">
+                    {childIDs.map((childID: string) => {
+                        const nextLevel = level + 1;
+                        return (<HierarchyTree
+                            key={childID}
+                            categoryID={childID}
+                            hierarchies={hierarchies}
+                            onChildCategoryInsert={onChildCategoryInsert}
+                            onSiblingCategoryInsert={onSiblingCategoryInsert}
+                            onTitleUpdate={onTitleUpdate}
+                            onCategoryDelete={onCategoryDelete}
+                            level={nextLevel}
+                        />)
+                    })}
+                </ul>
             )}
         </li>
 

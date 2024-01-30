@@ -17,9 +17,8 @@ export default function HierarchyTabs({ children, hierarchies }: { children: Rea
             <TabsContent value="create">
                 {children}
             </TabsContent>
-            <TabsContent value="preview" className='h-[90vh]'>
-                {/* This is where we need to load React Flow with 'hierarchies data' or 'hierarchiesNodes data' */}
-                <HierarchyPreview />
+            <TabsContent value="preview" className="min-h-screen">
+                <HierarchyPreview hierarchies={hierarchies} />
             </TabsContent>
         </Tabs>
     )
