@@ -10,11 +10,17 @@ export type HierarchyTreeViewProps = {
     onExpandedChange: any,
 };
 
-export default function HierarchyTreeView({ categoryID, hierarchies, expandedHierarchies, onExpandedChange }: HierarchyTreeViewProps) {
+export default function HierarchyTreeView({
+    categoryID,
+    hierarchies,
+    expandedHierarchies,
+    onExpandedChange
+}: HierarchyTreeViewProps) {
     const category = hierarchies[categoryID];
     const childIDs = category.childIDs;
     const hasChildIDs = childIDs.length > 0;
     const isExpanded = expandedHierarchies?.includes(categoryID);
+
     return (
         <li className="flex flex-col ps-4 md:ps-10 leading-loose">
             <div className="my-2 md:my-4">
@@ -35,9 +41,8 @@ export default function HierarchyTreeView({ categoryID, hierarchies, expandedHie
                 </Button>
 
             </div>
-            {hasChildIDs && (
+            {isExpanded && hasChildIDs && (
                 <ul className={cn("border-s border-neutral-300 dark:border-neutral-600 ms-1 md:ms-2 ",
-                    isExpanded ? "block h-auto" : "hidden h-0"
                 )}>
                     {childIDs.map((childID) => (
                         <HierarchyTreeView
