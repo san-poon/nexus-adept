@@ -25,7 +25,7 @@ export default function HierarchyPreview({ hierarchies }: { hierarchies: Hierarc
             <h1 className="text-3xl text-center mb-4 md:mb-12">
                 {root.title}
             </h1>
-            <ul className="transition-all  duration-500 ease-in-out motion-reduce:transition-none">
+            <ul className=" ">
                 {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                     <HierarchyTreeView
                         key={id}

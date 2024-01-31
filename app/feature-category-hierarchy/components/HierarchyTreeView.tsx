@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { HierarchyTreeData } from "../lib/types";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export type HierarchyTreeViewProps = {
@@ -16,7 +16,7 @@ export default function HierarchyTreeView({ categoryID, hierarchies, expandedHie
     const hasChildIDs = childIDs.length > 0;
     const isExpanded = expandedHierarchies?.includes(categoryID);
     return (
-        <li className="flex flex-col ps-4 md:ps-10 leading-loose transition-all  duration-500 ease-in-out motion-reduce:transition-none">
+        <li className="flex flex-col ps-4 md:ps-10 leading-loose">
             <div className="my-2 md:my-4">
                 <Button
                     type="button"
@@ -27,18 +27,18 @@ export default function HierarchyTreeView({ categoryID, hierarchies, expandedHie
                     )}
                 >
                     {category.title}
-                    <span className={cn("ms-4", childIDs.length > 0 ? "opacity-100" : "opacity-0 cursor-default")}>
-                        {isExpanded
-                            ? <ChevronDown className="w-4" />
-                            : <ChevronRight className="w-4" />
-                        }
+                    <span className={cn("ms-4",
+                        hasChildIDs ? "block" : " hidden",
+                        isExpanded ? 'rotate-90 transition-transform duration-200' : "")}>
+                        <ChevronRight className="w-4" />
                     </span>
                 </Button>
 
             </div>
             {hasChildIDs && (
-                <ul className={cn("border-s border-neutral-300 dark:border-neutral-600 ms-1 md:ms-2 transition-all  duration-300 ease-in-out motion-reduce:transition-none",
-                    isExpanded ? "h-auto opacity-100" : "opacity-0 h-0")}>
+                <ul className={cn("border-s border-neutral-300 dark:border-neutral-600 ms-1 md:ms-2 ",
+                    isExpanded ? "block h-auto" : "hidden h-0"
+                )}>
                     {childIDs.map((childID) => (
                         <HierarchyTreeView
                             key={childID}
