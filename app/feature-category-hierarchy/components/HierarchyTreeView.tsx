@@ -29,6 +29,7 @@ export default function HierarchyTreeView({
                     onClick={() => onExpandedChange(categoryID)}
                     className={cn(
                         "p-2 px-4 my-2 border dark:border-neutral-600 rounded-full ",
+                        hasChildIDs ? "dark:bg-neutral-900" : " dark:bg-emerald-950/40"
                     )}
                 >
                     {category.title}
