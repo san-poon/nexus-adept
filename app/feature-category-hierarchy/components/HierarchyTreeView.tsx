@@ -22,14 +22,13 @@ export default function HierarchyTreeView({
     const isExpanded = expandedHierarchies?.includes(categoryID);
 
     return (
-        <li className="flex flex-col ps-4 md:ps-10 leading-loose">
-            <div className="my-2 md:my-4">
+        <li className="flex flex-col ps-4 md:ps-10">
+            <div className="my-1 md:my-2">
                 <Button
                     type="button"
                     onClick={() => onExpandedChange(categoryID)}
                     className={cn(
-                        "p-2 px-4 my-2 ",
-                        hasChildIDs ? "border dark:border-neutral-600 rounded-full " : "border dark:border-neutral-600 rounded-full"
+                        "p-2 px-4 my-2 border dark:border-neutral-600 rounded-full ",
                     )}
                 >
                     {category.title}

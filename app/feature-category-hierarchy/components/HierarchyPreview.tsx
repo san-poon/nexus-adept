@@ -21,11 +21,11 @@ export default function HierarchyPreview({ hierarchies }: { hierarchies: Hierarc
     const root = hierarchies["ROOT"];
     const rootChildIDs = root?.childIDs;
     return (
-        <div className="">
+        <div>
             <h1 className="text-3xl text-center mb-4 md:mb-12">
                 {root.title}
             </h1>
-            <ul className=" ">
+            <ul>
                 {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                     <HierarchyTreeView
                         key={id}
