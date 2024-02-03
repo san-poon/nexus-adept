@@ -1,23 +1,12 @@
 'use client';
 
-import { useState } from "react";
 import { HierarchyTreeData } from "../lib/types";
 import HierarchyTreeView from "./HierarchyTreeView";
 
-export default function HierarchyPreview({ hierarchies }: { hierarchies: HierarchyTreeData }) {
-    const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
+export default function HierarchyPreview(
+    { expandedHierarchies, onExpandedChange, hierarchies }
+        : { expandedHierarchies: Array<string>, onExpandedChange: any, hierarchies: HierarchyTreeData }) {
 
-    const handleExpandedChange = (categoryID: string) => {
-        setExpandedHierarchies((prev: Array<string>) => {
-            const isExpanded = expandedHierarchies?.includes(categoryID);
-            if (isExpanded) {
-                return prev.filter((expandedID) => expandedID !== categoryID)
-            }
-            return [
-                ...prev, categoryID
-            ];
-        })
-    }
     const root = hierarchies["ROOT"];
     const rootChildIDs = root?.childIDs;
     return (
@@ -31,7 +20,7 @@ export default function HierarchyPreview({ hierarchies }: { hierarchies: Hierarc
                         key={id}
                         categoryID={id}
                         hierarchies={hierarchies}
-                        onExpandedChange={handleExpandedChange}
+                        onExpandedChange={onExpandedChange}
                         expandedHierarchies={expandedHierarchies}
                     />
                 ))}
