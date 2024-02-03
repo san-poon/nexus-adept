@@ -217,7 +217,7 @@ const CreateLessonPage = () => {
     const objectiveBlock = lessonContent.find((content) => content.contentType === 'text/objective');
 
     return (
-        <div className=' dark:text-neutral-200'>
+        <div className=' dark:text-neutral-200 bg-cyan-50 dark:bg-cyan-900/30'>
             <LessonTabs lessonContent={lessonContent}>
                 <div className={`flex flex-col md:flex-row my-4`}>
                     {/* Left Side - Content Buttons */}

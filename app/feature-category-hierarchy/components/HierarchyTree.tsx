@@ -5,7 +5,6 @@ import { HierarchyTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AddSiblingTooltipButton } from "./tootip-buttons";
-import { Transition } from '@headlessui/react';
 
 export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
