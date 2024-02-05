@@ -232,17 +232,17 @@ const CreateLessonPage = () => {
                     </div>
 
                     {/* Right Side - Input Fields/Forms */}
-                    <div className={`flex-shrink-0 w-full md:w-11/12 lg:w-2/3 px-4`}>
-                        <div className='my-4 flex-1 items-center justify-center max-w-md'>
+                    <div className={`w-full md:w-11/12 lg:w-2/3 px-4`}>
+                        <div className='my-4 '>
                             <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
                         </div>
-                        <div className="md:p-2 rounded shadow border dark:border-neutral-700">
+                        <div className="md:p-2 rounded border dark:border-neutral-600">
 
                             <div className='mt-2'>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900 rounded-full"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -253,7 +253,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4 rounded-full"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -272,7 +272,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-lg border-2 dark:border-neutral-700">
+                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-full border-2 dark:border-neutral-700">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
