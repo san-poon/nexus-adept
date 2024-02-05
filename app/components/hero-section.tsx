@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroComponent = () => {
     return (
-        <section className="relative dark:text-white py-16 h-screen">
+        <section className="relative dark:text-white py-16 h-screen bg-cyan-50 dark:bg-cyan-900/30">
             <div className="container mx-auto text-center">
                 {/* Logo Image */}
                 <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />
@@ -22,17 +22,17 @@ const HeroComponent = () => {
                         </Button>
                     </Link> */}
                     <Link href="/feature-lesson/create" title="Choose a learning path, create lesson">
-                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-900">
                             Create Lesson
                         </Button>
                     </Link>
                     <Link href="/feature-category-hierarchy/create" title="Structured Learning Path Editor">
-                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-900">
                             Create Learning Path
                         </Button>
                     </Link>
                     <Link href="/feature-quiz/mcqs/play" title="Play Javascript quizzes">
-                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-700">
+                        <Button className="text-lg mt-4 hover:text-black dark:hover:text-white dark:hover:bg-neutral-900">
                             Play JavaScript Quizzes
                         </Button>
                     </Link>

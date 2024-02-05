@@ -10,12 +10,12 @@ export default function Footer() {
                 {/* <p className="text-xs mb-2">Play, Learn, Create</p> */}
                 {/* Contact Information */}
                 <div className="flex justify-center space-x-8 mt-4">
-                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-4 rounded-full">
-                        <a href="mailto:sanjibpoon123@gmail.com" className="">
+                    <div className="hover:dark:bg-neutral-900 hover:bg-neutral-200 px-4 rounded-full">
+                        <a href="mailto:sanjibpoon123@gmail.com">
                             Email
                         </a>
                     </div>
-                    <div className="hover:dark:bg-neutral-700 hover:bg-neutral-200 px-4 rounded-full">
+                    <div className="hover:dark:bg-neutral-900 hover:bg-neutral-200 px-4 rounded-full">
                         <a
                             href="https://twitter.com/san_poon_2"
                             target="_blank"
