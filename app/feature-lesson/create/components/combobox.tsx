@@ -39,7 +39,7 @@ export function TextCombobox({ contentBlock, onTextContentTypeChange }: { conten
                     {value
                         ? textContentTypes.find((textType) => textType.value === value)?.label
                         : "Text"}
-                    <ChevronsUpDown className="ms-2 shrink-0 opacity-50 h-min" />
+                    <ChevronsUpDown className="ms-2 shrink-0 opacity-50 w-3 h-3" />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">

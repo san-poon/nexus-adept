@@ -47,10 +47,11 @@ export function TitleInputBlock({ content, onTitleChange }: any) {
         <>
             {/* Lesson Title input */}
             <Input
+                autoFocus
                 type="text"
                 placeholder="Lesson Title"
                 value={content.value}
-                className="rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2"
+                className=" bg-cyan-200 border-none rounded-full text-base focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2"
                 onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
         </>

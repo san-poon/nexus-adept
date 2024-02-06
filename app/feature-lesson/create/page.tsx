@@ -272,7 +272,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-full border-2 dark:border-neutral-700">
+                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-3xl border-2 dark:border-neutral-700">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
