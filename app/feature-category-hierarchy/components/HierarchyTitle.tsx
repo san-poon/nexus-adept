@@ -7,7 +7,8 @@ export default function HierarchyRootTitle({ category, onCategoryInsert, onTitle
     return (
         <div className=" flex-grow max-w-md my-2 md:my-3 flex py-1 rounded-full">
             <Input
-                className=" rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
+                autoFocus
+                className=" bg-cyan-200 rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
                 placeholder="Learning Path Title(Full-stack with Next.js)"
                 value={category.title}
