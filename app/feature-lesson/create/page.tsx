@@ -219,7 +219,11 @@ const CreateLessonPage = () => {
     return (
         <div className=' min-h-screen dark:text-neutral-200 bg-cyan-50 dark:bg-cyan-900/30'>
             <LessonTabs lessonContent={lessonContent}>
+                <div className=' flex items-center justify-center mx-2 md:mx-32 lg:mx-96 lg:my-8'>
+                    <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
+                </div>
                 <div className={`flex flex-col md:flex-row my-4`}>
+
                     {/* Left Side - Content Buttons */}
                     <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 sticky top-10 md:top-44 z-50 bg-emerald-50 md:bg-inherit dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
@@ -233,9 +237,7 @@ const CreateLessonPage = () => {
 
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`w-full md:w-11/12 lg:w-2/3 px-4`}>
-                        <div className='my-4 '>
-                            <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />
-                        </div>
+
                         <div className="md:p-2 rounded border dark:border-neutral-600">
 
                             <div className='mt-2'>
