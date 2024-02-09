@@ -14,8 +14,8 @@ export default function HierarchyTreeView({
     categoryID,
     hierarchies,
     expandedHierarchies,
-    onExpandedChange
-}: HierarchyTreeViewProps) {
+    onExpandedChange}: 
+    HierarchyTreeViewProps) {
     const category = hierarchies[categoryID];
     const childIDs = category.childIDs;
     const hasChildIDs = childIDs.length > 0;
