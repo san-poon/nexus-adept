@@ -6,8 +6,10 @@ import { HierarchyData, HierarchyTreeData } from '../lib/types'
 import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 import HierarchyTabs from "./HierarchyTabs";
+import HierarchyStore from "./HierarchyStore";
+import initialHierarchySample from '../lib/hieararchy-tree-sample-data.json';
 
-const rootID = "ROOT"
+const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
     [rootID]: {
         id: rootID,
@@ -18,7 +20,7 @@ const initialHierarchy: HierarchyTreeData = {
 };
 
 export default function HierarchyEditor() {
-    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchy);
+    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchySample);
 
     const handleChildCategoryInsert = (parentID: string) => {
         const newCategory: HierarchyData = {
@@ -146,6 +148,9 @@ export default function HierarchyEditor() {
                     </ul>
                 </div>
             </HierarchyTabs>
+            <div className="fixed bottom-4 right-4">
+                <HierarchyStore hierarchies={hierarchies} />
+            </div>
         </div>
     );
 }

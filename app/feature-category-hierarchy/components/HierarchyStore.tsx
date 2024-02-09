@@ -16,7 +16,7 @@ export default function HierarchyStore({ hierarchies }: { hierarchies: Hierarchy
 
     return (
         <>
-            <Button className=""
+            <Button className="dark:bg-neutral-900"
                 onClick={handleSaveClick}
                 disabled={isPending}
             >
