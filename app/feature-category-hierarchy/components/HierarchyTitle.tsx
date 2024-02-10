@@ -10,7 +10,7 @@ export default function HierarchyRootTitle({ category, onCategoryInsert, onTitle
                 autoFocus
                 className=" bg-cyan-200 rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
-                placeholder="Learning Path Title(Full-stack with Next.js)"
+                placeholder="Skill Learning Path title (e.g: React.js)"
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />

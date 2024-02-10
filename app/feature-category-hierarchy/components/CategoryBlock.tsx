@@ -5,7 +5,7 @@ import { AddHierarchyTooltipButton, DeleteTooltipButton } from "./tootip-buttons
 
 
 export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
-    const maxDepth = 5;
+    const maxDepth = 3;
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
