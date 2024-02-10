@@ -1,21 +1,28 @@
 {
     "ROOT": {
         "id": "ROOT",
-        "title": "Full-stack with Next.js",
+        "title": "React: The library for User Interfaces",
         "childIDs": [
             "1",
-            "2",
-            "3"
+            "11",
+            "19",
+            "27"
         ],
         "parentIDs": []
     },
     "1": {
         "id": "1",
-        "title": "HTML, CSS & JS",
+        "title": "Describing the UI",
         "childIDs": [
+            "2",
+            "3",
             "4",
             "5",
-            "6"
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
         ],
         "parentIDs": [
             "ROOT"
@@ -23,43 +30,39 @@
     },
     "2": {
         "id": "2",
-        "title": "React",
+        "title": "Your First Component",
         "childIDs": [],
         "parentIDs": [
-            "ROOT"
+            "1"
         ]
     },
     "3": {
         "id": "3",
-        "title": "Next.js",
+        "title": "Importing and Exporting Components",
         "childIDs": [],
         "parentIDs": [
-            "ROOT"
+            "1"
         ]
     },
     "4": {
         "id": "4",
-        "title": "HTML",
-        "childIDs": [
-            "7"
-        ],
+        "title": "Writing Markup with JSX",
+        "childIDs": [],
         "parentIDs": [
             "1"
         ]
     },
     "5": {
         "id": "5",
-        "title": "CSS",
-        "childIDs": [
-            "8"
-        ],
+        "title": "JavaScript in JSX with Curly Braces",
+        "childIDs": [],
         "parentIDs": [
             "1"
         ]
     },
     "6": {
         "id": "6",
-        "title": "JS",
+        "title": "Passing Props to a Component",
         "childIDs": [],
         "parentIDs": [
             "1"
@@ -67,18 +70,186 @@
     },
     "7": {
         "id": "7",
-        "title": "Semantic HTML",
+        "title": "Conditional Rendering",
         "childIDs": [],
         "parentIDs": [
-            "4"
+            "1"
         ]
     },
     "8": {
         "id": "8",
-        "title": "Layout & Positioning",
+        "title": "Rendering Lists",
         "childIDs": [],
         "parentIDs": [
-            "5"
+            "1"
+        ]
+    },
+    "9": {
+        "id": "9",
+        "title": "Keeping Components Pure",
+        "childIDs": [],
+        "parentIDs": [
+            "1"
+        ]
+    },
+    "10": {
+        "id": "10",
+        "title": "Your UI as a Tree",
+        "childIDs": [],
+        "parentIDs": [
+            "1"
+        ]
+    },
+    "11": {
+        "id": "11",
+        "title": "Adding Interactivity",
+        "childIDs": [
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"
+        ],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "12": {
+        "id": "12",
+        "title": "Responding to Events",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "13": {
+        "id": "13",
+        "title": "State: A Component's Memory",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "14": {
+        "id": "14",
+        "title": "Render and Commit",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "15": {
+        "id": "15",
+        "title": "State as a Snapshot",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "16": {
+        "id": "16",
+        "title": "Queueing a Series of State Updates",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "17": {
+        "id": "17",
+        "title": "Updating Objects in State",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "18": {
+        "id": "18",
+        "title": "Updating Arrays in State",
+        "childIDs": [],
+        "parentIDs": [
+            "11"
+        ]
+    },
+    "19": {
+        "id": "19",
+        "title": "Managing State",
+        "childIDs": [
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26"
+        ],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "20": {
+        "id": "20",
+        "title": "Reacting to Input with State",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "21": {
+        "id": "21",
+        "title": "Choosing the State Structure",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "22": {
+        "id": "22",
+        "title": "Sharing State Between Components",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "23": {
+        "id": "23",
+        "title": "Preserving and Resetting State",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "24": {
+        "id": "24",
+        "title": "Extracting State Logic into a Reducer",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "25": {
+        "id": "25",
+        "title": "Passing Data Deeply with Context",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "26": {
+        "id": "26",
+        "title": "Scaling Up with Reducer and Context",
+        "childIDs": [],
+        "parentIDs": [
+            "19"
+        ]
+    },
+    "27": {
+        "id": "27",
+        "title": "Excape Hatches",
+        "childIDs": [],
+        "parentIDs": [
+            "ROOT"
         ]
     }
 }
