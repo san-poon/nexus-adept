@@ -1,7 +1,7 @@
 {
     "ROOT": {
         "id": "ROOT",
-        "title": "React: The library for User Interfaces",
+        "title": "React: The library for Web User Interfaces",
         "childIDs": [
             "1",
             "11",

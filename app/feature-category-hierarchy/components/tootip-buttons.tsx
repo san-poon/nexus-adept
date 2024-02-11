@@ -24,7 +24,7 @@ export function DeleteTooltipButton({ onClick, className }: { onClick: () => voi
                         <Trash2Icon size={16} />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className=" bg-red-300 dark:bg-red-900">
+                <TooltipContent side="top" sideOffset={2} className=" bg-red-300 dark:bg-red-900 rounded-full">
                     <p >Delete Hierarchy?</p>
                 </TooltipContent>
             </Tooltip>
@@ -32,7 +32,7 @@ export function DeleteTooltipButton({ onClick, className }: { onClick: () => voi
     )
 }
 
-export function AddHierarchyTooltipButton({ onClick, className }: { onClick: () => void, className: string }) {
+export function AddTooltipButton({ onClick, className, children }: { onClick: () => void, className: string, children: React.ReactNode }) {
     return (
         <TooltipProvider delayDuration={300}>
             <Tooltip>
@@ -47,31 +47,8 @@ export function AddHierarchyTooltipButton({ onClick, className }: { onClick: () 
                         <PlusIcon size={16} />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-900">
-                    <p>Add Hierarchy</p>
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
-    )
-}
-
-export function AddSiblingTooltipButton({ onClick, className }: { onClick: () => void, className: string }) {
-    return (
-        <TooltipProvider delayDuration={300}>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button
-                        onClick={onClick}
-                        className={cn(
-                            "transition duration-200 ease-in-out transform active:scale-75",
-                            className
-                        )}
-                    >
-                        <PlusIcon size={16} />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-800">
-                    <p>Add Sibling</p>
+                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-900 rounded-full">
+                    {children}
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

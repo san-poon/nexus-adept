@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { AddHierarchyTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
+import { AddTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
 
 
@@ -22,10 +22,13 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
-            <AddHierarchyTooltipButton
+            <AddTooltipButton
                 onClick={onChildCategoryInsert}
                 className={`${canAddChildren ? "block" : "hidden"}`}
-            />
+            >
+                {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}
+                {level === 1 ? <p>Add sub-path or lesson</p> : <p>Add lesson</p>}
+            </AddTooltipButton>
         </div>
 
     )

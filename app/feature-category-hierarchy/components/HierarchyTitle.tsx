@@ -1,7 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { HierarchyData } from "../lib/types";
-import { AddHierarchyTooltipButton } from "./tootip-buttons";
+import { AddTooltipButton } from "./tootip-buttons";
 
 export default function HierarchyRootTitle({ category, onCategoryInsert, onTitleUpdate }: { category: HierarchyData, onCategoryInsert: any, onTitleUpdate: any }) {
     return (
@@ -10,14 +10,16 @@ export default function HierarchyRootTitle({ category, onCategoryInsert, onTitle
                 autoFocus
                 className=" bg-cyan-200 rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
-                placeholder="Skill Learning Path title (e.g: React.js)"
+                placeholder="Skill Title (React:The library for Web User Interfaces)"
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
-            <AddHierarchyTooltipButton
+            <AddTooltipButton
                 onClick={onCategoryInsert}
                 className="mx-2"
-            />
+            >
+                <p>Add Learning Path</p>
+            </AddTooltipButton>
         </div>
     )
 }
