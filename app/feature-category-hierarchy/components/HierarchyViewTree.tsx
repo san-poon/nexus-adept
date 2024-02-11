@@ -10,11 +10,11 @@ export type HierarchyTreeViewProps = {
     onExpandedChange: any,
 };
 
-export default function HierarchyTreeView({
+export default function HierarchyViewTree({
     categoryID,
     hierarchies,
     expandedHierarchies,
-    onExpandedChange}: 
+    onExpandedChange }:
     HierarchyTreeViewProps) {
     const category = hierarchies[categoryID];
     const childIDs = category.childIDs;
@@ -28,7 +28,7 @@ export default function HierarchyTreeView({
                     type="button"
                     onClick={() => onExpandedChange(categoryID)}
                     className={cn(
-                        "p-2 px-4 my-2 border dark:border-neutral-600 rounded-full bg-neutral-900 ",
+                        "p-2 px-4 my-2 rounded-full dark:bg-neutral-900 bg-cyan-200 ",
                     )}
                 >
                     {category.title}
@@ -44,7 +44,7 @@ export default function HierarchyTreeView({
                 <ul className={cn("border-s border-neutral-300 dark:border-neutral-600 ms-1 md:ms-2 ",
                 )}>
                     {childIDs.map((childID) => (
-                        <HierarchyTreeView
+                        <HierarchyViewTree
                             key={childID}
                             categoryID={childID}
                             hierarchies={hierarchies}

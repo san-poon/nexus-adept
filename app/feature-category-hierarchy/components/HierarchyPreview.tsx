@@ -1,7 +1,7 @@
 'use client';
 
 import { HierarchyTreeData } from "../lib/types";
-import HierarchyTreeView from "./HierarchyTreeView";
+import HierarchyViewTree from "./HierarchyViewTree";
 
 export default function HierarchyPreview(
     { expandedHierarchies, onExpandedChange, hierarchies }
@@ -16,7 +16,7 @@ export default function HierarchyPreview(
             </h1>
             <ul>
                 {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                    <HierarchyTreeView
+                    <HierarchyViewTree
                         key={id}
                         categoryID={id}
                         hierarchies={hierarchies}
