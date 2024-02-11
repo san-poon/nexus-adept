@@ -24,7 +24,7 @@ export function DeleteTooltipButton({ onClick, className }: { onClick: () => voi
                         <Trash2Icon size={16} />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className=" bg-red-300 dark:bg-red-900 rounded-full">
+                <TooltipContent side="top" sideOffset={2} className=" bg-red-300 dark:bg-red-900 rounded-full border-none">
                     <p >Delete Hierarchy?</p>
                 </TooltipContent>
             </Tooltip>
@@ -47,7 +47,7 @@ export function AddTooltipButton({ onClick, className, children }: { onClick: ()
                         <PlusIcon size={16} />
                     </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-900 rounded-full">
+                <TooltipContent side="top" sideOffset={2} className="bg-emerald-300 dark:bg-emerald-900 rounded-full border-none">
                     {children}
                 </TooltipContent>
             </Tooltip>

@@ -24,7 +24,7 @@ export default function Header() {
                 </Link>
                 {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
-                    <Link href="/feature-lesson/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
+                    <Link href="/feature-category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
                     <Link href="/feature-quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play</Button></Link>
                     <Link href="/feature-portfolio"><Button className="dark:hover:bg-neutral-900">Portfolio</Button></Link>
                 </nav>
