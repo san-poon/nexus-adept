@@ -48,7 +48,7 @@ export default function QuizPreview({ quiz }: { quiz: QuizProps }) {
 
     return (
         <div className="mt-4 flex justify-center">
-            <Card className=" w-full md:w-11/12 bg-teal-50 dark:bg-inherit rounded-3xl shadow-2xl dark:shadow-neutral-800 dark:border-neutral-700 dark:shadow-none">
+            <Card className=" w-full md:w-11/12 bg-teal-50 dark:bg-teal-800/50 rounded-3xl shadow-2xl dark:shadow-neutral-800">
                 <CardHeader>
                     <CardTitle>
                         <div className="flex justify-center">

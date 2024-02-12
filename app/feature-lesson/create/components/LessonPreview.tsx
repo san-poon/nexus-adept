@@ -1,4 +1,4 @@
-import { LessonContentProps } from "../types";
+import { LessonData } from "../types";
 import Markdown, { Components } from 'react-markdown';
 import QuizPreview from "./QuizPreview";
 import { Label } from "@/components/ui/label";
@@ -64,15 +64,15 @@ const markdownPitfallComponents: Components = {
 
 }
 
-export default function LessonPreview({ content }: { content: LessonContentProps }) {
+export default function LessonPreview({ content }: { content: LessonData }) {
     return (
         <div className={` flex justify-center leading-loose dark:text-neutral-100`}>
-            <div className=" w-screen lg:w-3/5 m-2 my-10 p-4 rounded border-2 dark:border-neutral-800 overflow-y-auto">
+            <div className=" w-screen lg:w-3/5 m-2 my-10 p-4 overflow-y-auto">
                 {
                     content.map((contentBlock) => (
                         <div key={contentBlock.id}>
                             {contentBlock.contentType === 'title' && (
-                                <h1 className={` text-4xl font-bold`}>{contentBlock.value}</h1>
+                                <h1 className={` text-4xl font-bold text-center`}>{contentBlock.value}</h1>
                             )}
                             {contentBlock.contentType === 'text/introduction' && (
                                 <div className="my-10">
@@ -82,7 +82,7 @@ export default function LessonPreview({ content }: { content: LessonContentProps
                                 </div>
                             )}
                             {contentBlock.contentType === 'text/objective' && (
-                                <div className="border-2 dark:border-neutral-700 shadow dark:shadow-neutral-800 rounded-3xl ps-4 md:ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200">
+                                <div className=" bg-teal-50 dark:bg-teal-800/50 shadow-2xl rounded-3xl ps-4 md:ps-10 py-10 mx-1 md:mx-4 my-10 text-neutral-800 dark:text-neutral-200 mb-20">
                                     <Label className={`text-2xl`}>We will Learn</Label>
                                     <div className="mt-4">
                                         <Markdown components={markdownObjectiveComponents}>

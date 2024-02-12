@@ -244,7 +244,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900 rounded-full"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900 rounded-3xl"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -255,7 +255,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4 rounded-full"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4 rounded-3xl"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
