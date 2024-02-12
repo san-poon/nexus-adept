@@ -6,12 +6,12 @@ import { DynamicTextarea, TitleInputBlock } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
 import { AddContentCombobox, CodeCombobox, TextCombobox } from './components/combobox';
 import { getImageUrlFromUser } from './utils';
-import { LessonContentBlockProps, LessonContentProps, AnOptionProps, CodeBlockProps } from './types';
+import { LessonContentData, LessonData, AnOptionProps, CodeBlockProps } from './types';
 import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
 import LessonTabs from './components/LessonTabs';
 
-const initialContent: LessonContentProps = [
+const initialContent: LessonData = [
     {
         id: uuidv4(),
         contentType: 'title',
@@ -30,13 +30,13 @@ const initialContent: LessonContentProps = [
 ];
 
 const CreateLessonPage = () => {
-    const [lessonContent, setLessonContent] = useState<LessonContentProps>(initialContent);
+    const [lessonContent, setLessonContent] = useState<LessonData>(initialContent);
 
     // Handle insertion of text field
     const handleInsertContentBlock = async (index: number, contentType: string) => {
         try {
             // based on content type, content value must be different
-            const newContent = async (): Promise<LessonContentBlockProps> => {
+            const newContent = async (): Promise<LessonContentData> => {
                 switch (contentType) {
                     case 'text': {
                         return {
@@ -89,7 +89,7 @@ const CreateLessonPage = () => {
             }
 
             const insertAt = index + 1;
-            const nextLessonContent: LessonContentProps = [
+            const nextLessonContent: LessonData = [
                 // Items before the insertion point:
                 ...lessonContent.slice(0, insertAt),
                 // New item:
@@ -104,7 +104,7 @@ const CreateLessonPage = () => {
         }
     };
 
-    const handleUpdateTextContent = (contentBlock: LessonContentBlockProps) => {
+    const handleUpdateTextContent = (contentBlock: LessonContentData) => {
         // Doesn't matter what user is updating: 'contentType' or 'value'
         const nextLessonContent = lessonContent.map((contentItem) => {
             if (contentItem.id === contentBlock.id) {
@@ -248,7 +248,7 @@ const CreateLessonPage = () => {
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
-                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...introductionBlock as LessonContentBlockProps, value: e.target.value })}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...introductionBlock as LessonContentData, value: e.target.value })}
                                 />
                             </div>
                             <div>
@@ -259,7 +259,7 @@ const CreateLessonPage = () => {
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
-                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...objectiveBlock as LessonContentBlockProps, value: e.target.value })}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleUpdateTextContent({ ...objectiveBlock as LessonContentData, value: e.target.value })}
                                 />
                             </div>
 

@@ -1,12 +1,12 @@
 export type ContentTypeProps = 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall' | 'title' | 'text/introduction' | 'text/objective';
 
-export interface LessonContentBlockProps {
+export interface LessonContentData {
     id: string;
     contentType: ContentTypeProps;
     value: any;
 };
 
-export type LessonContentProps = LessonContentBlockProps[];
+export type LessonData = LessonContentData[];
 
 export type AnOptionProps = {
     id: string,

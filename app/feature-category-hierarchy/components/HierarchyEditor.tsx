@@ -30,7 +30,7 @@ export default function HierarchyEditor() {
             parentIDs: [parentID],
         }
         setHierarchies((prevHierarchies) => {
-            // Updat the childIDs of the parent category
+            // Update the childIDs of the parent category
             const updatedParentCategory = {
                 ...prevHierarchies[parentID],
                 childIDs: [...prevHierarchies[parentID].childIDs, newCategory.id],
