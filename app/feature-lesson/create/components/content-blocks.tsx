@@ -33,7 +33,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
                     "appearance-none border-none outline-none focus:outline-none hover:outline-none resize-none overflow-hidden",
                     className
                 )}
-                maxLength={700}
+                maxLength={800}
                 minLength={1}
                 {...props}
             />

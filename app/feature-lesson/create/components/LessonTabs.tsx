@@ -4,10 +4,10 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs';
-import { LessonContentProps } from "../types";
+import { LessonData } from "../types";
 import LessonPreview from "./LessonPreview";
 
-export default function LessonTabs({ children, lessonContent }: { children: React.ReactNode, lessonContent: LessonContentProps }) {
+export default function LessonTabs({ children, lessonContent }: { children: React.ReactNode, lessonContent: LessonData }) {
     return (
         <Tabs defaultValue="create" >
             <TabsList className="grid w-full grid-cols-2 sticky top-0 z-50">
