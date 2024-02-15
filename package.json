@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed-jsQuizzes.js"
+    "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -29,6 +29,7 @@
     "@types/react-transition-group": "^4.4.10",
     "@types/uuid": "^9.0.7",
     "@vercel/postgres": "^0.5.1",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
