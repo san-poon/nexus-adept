@@ -1,8 +1,8 @@
 const { sql } = require('@vercel/postgres');
-
-const { users } = require('../lib/placeholder-data.js');
 const bcrypt = require('bcryptjs');
 
+const { users } = require('../lib/placeholder-data.js');
+const learningPathData = require('../lib/hieararchy-tree-sample-data.json');
 
 async function seedUsers() {
     try {
@@ -62,22 +62,33 @@ async function seedUsers() {
 async function seedCategories() {
     try {
 
-        const createTable = await sql`
-        CREATE TABLE IF NOT EXISTS categories (
-            id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-            name varchar(255) UNIQUE NOT NULL,
-            parent_id uuid REFERENCES categories(id)
-          );
-        `;
+        const createCategoriesTable = await sql`
+            CREATE TABLE IF NOT EXISTS categories (
+                id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+                name varchar(255) UNIQUE NOT NULL,
+            );
+          `;
 
         console.log(`Created "categories" table`);
+
+        // Many to many relationships: a category can have many children, and the category can belong to more than one parent
+        const createCategoryHierarchyTable = await sql`
+            CREATE TABLE IF NOT EXISTS category_hierarchy (
+                child_id uuid REFERENCES categories(id),
+                parent_id uuid REFERENCES categories(id) NOT NULL,
+                PRIMARY KEY (child_id, parent_id)
+            );
+        `
+        console.log(`Created category_hierarchy_table`)
+
 
         // Insert data into the "categories" table
 
 
 
         return {
-            createTable,
+            createCategoriesTable,
+            createCategoryHierarchyTable,
         }
 
 
@@ -125,12 +136,12 @@ async function seedLearningPath() {
 
         console.log(`Created "skills", "learning_path" & "learning_path_nodes" table`);
 
-        // Insert data into the "skills" table
+        // Insert data into tables
 
 
 
     } catch (error) {
-        console.error(`Error seeding 'skills':`, error);
+        console.error(`Error seeding 'skills' or 'learning_path' or 'learning_path_nodes':`, error);
         throw error;
     }
 }
@@ -143,7 +154,7 @@ async function seedContributions() {
                 id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
                 learning_path_id uuid REFERENCES learning_path(id) NOT NULL,
                 user_id uuid REFERENCES users(id) NOT NULL,
-                content json NOT NULL,
+                content jsonb NOT NULL,
                 status enum('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
                 submitted_at timestamp DEFAULT CURRENT_TIMESTAMP
             );

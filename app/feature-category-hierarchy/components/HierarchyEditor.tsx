@@ -7,7 +7,7 @@ import HierarchyRootTitle from "./HierarchyTitle";
 import HierarchyTree from "./HierarchyTree";
 import HierarchyTabs from "./HierarchyTabs";
 import HierarchyStore from "./HierarchyStore";
-import initialHierarchySample from '../lib/hieararchy-tree-sample-data.json';
+import initialHierarchySample from '@/lib/hieararchy-tree-sample-data.json';
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
