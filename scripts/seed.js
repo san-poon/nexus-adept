@@ -65,21 +65,21 @@ async function seedCategories() {
         const createCategoriesTable = await sql`
             CREATE TABLE IF NOT EXISTS categories (
                 id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-                name varchar(255) UNIQUE NOT NULL,
+                name varchar(255) UNIQUE NOT NULL
             );
-          `;
+        `;
 
-        console.log(`Created "categories" table`);
+        console.log(`Created "categories" table.\n`);
 
         // Many to many relationships: a category can have many children, and the category can belong to more than one parent
         const createCategoryHierarchyTable = await sql`
             CREATE TABLE IF NOT EXISTS category_hierarchy (
-                child_id uuid REFERENCES categories(id),
+                category_id uuid REFERENCES categories(id),
                 parent_id uuid REFERENCES categories(id) NOT NULL,
-                PRIMARY KEY (child_id, parent_id)
+                PRIMARY KEY (category_id, parent_id)
             );
-        `
-        console.log(`Created category_hierarchy_table`)
+        `;
+        console.log(`Created "category_hierarchy" table.\n`)
 
 
         // Insert data into the "categories" table
@@ -109,6 +109,7 @@ async function seedLearningPath() {
                 category_id uuid REFERENCES categories(id) NOT NULL
             );
         `;
+        console.log(`Created "skills" table.`)
 
         await sql`
             CREATE TABLE IF NOT EXISTS learning_path (
@@ -122,6 +123,7 @@ async function seedLearningPath() {
                 is_official boolean NOT NULL DEFAULT false
             );
         `;
+        console.log(`Created "learning_path" table`)
 
         await sql`
             CREATE TABLE IF NOT EXISTS learning_path_nodes (
@@ -134,7 +136,7 @@ async function seedLearningPath() {
             );
         `;
 
-        console.log(`Created "skills", "learning_path" & "learning_path_nodes" table`);
+        console.log(`Created "learning_path_nodes" table`);
 
         // Insert data into tables
 
