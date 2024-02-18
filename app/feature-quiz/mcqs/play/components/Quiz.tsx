@@ -2,14 +2,21 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import Code from './Code';
-import { shuffleArray } from '@/lib/utils';
+import { cn, shuffleArray } from '@/lib/utils';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
+} from '@/components/ui/accordion';
 
 type QuizProps = {
     quiz: {
         id: number,
         question: string,
         code: string,
-        options: optionType[];
+        options: optionType[],
+        explanation: string
     }
 }
 
@@ -35,11 +42,11 @@ export default function Quiz({ quiz }: QuizProps) {
 
     // Handler for when a choice is selected
     const handleChoiceSelection = useCallback((option: optionType) => {
-        setMessage(option.correct ? "Correct" : 'Try again!');
+        setMessage(option.correct ? "Correct" : 'Try Again!');
     }, []);
     return (
-        <div className='shadow-md rounded-lg p-4'>
-            <p className='text-gray-200 font-medium mb-4'>{quiz.question}</p>
+        <div className=' p-4'>
+            <p className='mb-4'>{quiz.question}</p>
             <div >
                 <Code code={quiz.code} />
             </div>
@@ -48,14 +55,26 @@ export default function Quiz({ quiz }: QuizProps) {
                     <li key={index} className='flex justify-center'>
                         <div
                             onClick={() => handleChoiceSelection(choice)}
-                            className=" p-2 md:p-4 m-2 md:m-4 bg-emerald-100 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer"
+                            className={cn(
+                                " p-2 md:p-4 m-2 md:m-4 bg-emerald-100 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
+                            )}
                         >
                             {choice.value}
                         </div>
                     </li>
                 ))}
             </ul>
-            {message && <p className='text-gray-400 mt-4'>{message}</p>}
+            {message && <p className='mt-4'>{message}</p>}
+            <Accordion type="single" collapsible className='w-full'>
+                <AccordionItem value="explanation">
+                    <AccordionTrigger>
+                        Explanation
+                    </AccordionTrigger>
+                    <AccordionContent className='text-lg'>
+                        {quiz.explanation}
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </div>
     );
 }
