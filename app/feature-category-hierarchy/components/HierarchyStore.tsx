@@ -1,5 +1,5 @@
 import { useTransition } from "react";
-import { storeHierarchyTree } from "../actions";
+import { storeHierarchyTree } from "../lib/actions";
 
 import { HierarchyTreeData } from "../lib/types";
 import { Button } from "@/components/ui/button";

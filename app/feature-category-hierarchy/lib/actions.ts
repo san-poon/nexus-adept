@@ -1,7 +1,7 @@
 'use server';
 
 import { QueryResult, sql } from '@vercel/postgres';
-import { HierarchyTreeData } from './lib/types';
+import { HierarchyTreeData } from './types';
 
 
 export async function storeHierarchyTree(hierarchies: HierarchyTreeData) {
