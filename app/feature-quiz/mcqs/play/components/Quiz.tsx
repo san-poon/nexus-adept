@@ -35,15 +35,15 @@ export default function Quiz({ quiz }: QuizProps) {
     }, [quiz.options])
 
     useEffect(() => {
-        setMessage("")
+        setMessage("");
     }, [quiz.question]);
-
-
 
     // Handler for when a choice is selected
     const handleChoiceSelection = useCallback((option: optionType) => {
         setMessage(option.correct ? "Correct" : 'Try Again!');
     }, []);
+
+
     return (
         <div className=' p-4'>
             <p className='mb-4'>{quiz.question}</p>
