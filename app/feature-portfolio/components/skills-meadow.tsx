@@ -36,7 +36,7 @@ export default function SkillsMeadow() {
             <h2 className="text-2xl font-bold dark:text-gray-200 text-center mb-2 md:mb-4">Skills | Tools</h2>
             <div className="grid grid-cols-1 gap-12 md:mx-12 lg:mx-60">
                 {skillsDetails.map((skill, index) => (
-                    <Card key={index} className=' dark:bg-inherit bg-inherit rounded-3xl shadow-lg'>
+                    <Card key={index} className=' dark:bg-inherit bg-inherit rounded-3xl shadow-none dark:border-teal-900'>
                         <CardHeader className=' text-center rounded-t-3xl'>
                             <CardTitle><h3 className=" tracking-wide text-lg">{skill.skill}</h3></CardTitle>
                         </CardHeader>

@@ -217,7 +217,7 @@ const CreateLessonPage = () => {
     const objectiveBlock = lessonContent.find((content) => content.contentType === 'text/objective');
 
     return (
-        <div className=' min-h-screen dark:text-neutral-200 bg-cyan-50 dark:bg-cyan-900/30'>
+        <div className=' min-h-screen dark:text-neutral-200'>
             <LessonTabs lessonContent={lessonContent}>
                 <div className=' flex items-center justify-center mx-2 md:mx-32 lg:mx-96 lg:my-8'>
                     <TitleInputBlock content={titleBlock} onTitleChange={handleUpdateTextContent} />

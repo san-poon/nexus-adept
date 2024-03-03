@@ -122,7 +122,7 @@ export default function HierarchyEditor() {
     const hasRootChildren = rootChildIDs.length > 0;
 
     return (
-        <div className="min-h-screen bg-cyan-50 dark:bg-cyan-900/30">
+        <div className="min-h-screen">
             <HierarchyTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <HierarchyRootTitle

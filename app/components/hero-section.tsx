@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const HeroComponent = () => {
     return (
-        <section className="relative dark:text-white py-16 h-screen bg-cyan-50 dark:bg-cyan-900/30">
+        <section className="relative dark:text-white py-16 h-screen">
             <div className="container mx-auto text-center">
                 {/* Logo Image */}
                 <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />

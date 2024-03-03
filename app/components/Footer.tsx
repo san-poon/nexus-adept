@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-r from-cyan-50 to-teal-50  dark:bg-gradient-to-r dark:from-cyan-700/15  dark:to-teal-700/15">
+        <footer className="bg-cyan-50 dark:bg-cyan-800/35">
             <div className="container text-center border-t dark:border-neutral-700 py-2">
                 <p className="text-xs">
                     &copy; 2023 PlayLearnForge.
