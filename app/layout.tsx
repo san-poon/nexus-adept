@@ -3,7 +3,7 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/theme-provider';
-import { inter, rubik } from '@/app/fonts';
+import { inter } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Autodidact: Play, Learn, Forge',
