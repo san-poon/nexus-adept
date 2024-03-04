@@ -13,7 +13,7 @@ export default function ProjectsBoulevard() {
 
     return (
         <div className="p-2 mt-6">
-            <h2 className="text-2xl font-bold dark:text-gray-200 mb-4 text-center">Projects Boulevard</h2>
+            <h2 className="text-2xl dark:text-gray-200 mb-4 text-center">Projects Boulevard</h2>
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${projectClass}`}>
                 {projects.map((project) => (
                     <div className={`rounded-lg overflow-hidden ${projectClass}`} key={project.name}>
