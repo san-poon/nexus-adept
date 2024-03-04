@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { HierarchyTreeData } from "../lib/types";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { rubik } from "@/app/fonts";
 
 export type HierarchyTreeViewProps = {
     categoryID: string,
@@ -28,7 +29,8 @@ export default function HierarchyViewTree({
                     type="button"
                     onClick={() => onExpandedChange(categoryID)}
                     className={cn(
-                        "p-2 px-4 my-2 rounded-full dark:bg-neutral-900 bg-cyan-200 ",
+                        "p-2 px-4 my-2 rounded-full dark:bg-neutral-900 bg-cyan-200 text-base",
+                        rubik.className,
                     )}
                 >
                     {category.title}
