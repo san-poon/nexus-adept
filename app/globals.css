@@ -6,3 +6,7 @@ body {
     scrollbar-gutter: stable;
     overflow-y: scroll;
 }
+
+p {
+    font-family: 'Rubik', sans-serif !important;
+}

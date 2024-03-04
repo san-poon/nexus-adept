@@ -22,13 +22,13 @@ export default function ProjectsBoulevard() {
                                 <Image
                                     src={project.imageSrc}
                                     alt={project.name}
-                                    className="rounded-full w-full h-auto md:h-full p-2 transition-transform hover:scale-105"
+                                    className="rounded-full w-full h-full p-2 transition-transform hover:scale-105"
                                 />
                             </Link>
                         </div>
                         <div className="p-4">
                             <Link href={project.projectUrl}>
-                                <h3 className="text-xl font-semibold">{project.name}</h3>
+                                <h3 className="text-xl font-normal">{project.name}</h3>
                             </Link>
                             <p className="mt-2">{project.description}</p>
                         </div>
