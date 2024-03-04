@@ -30,7 +30,6 @@ export default function HierarchyViewTree({
                     onClick={() => onExpandedChange(categoryID)}
                     className={cn(
                         "p-2 px-4 my-2 rounded-full dark:bg-neutral-900 bg-cyan-200 text-base",
-                        rubik.className,
                     )}
                 >
                     {category.title}
