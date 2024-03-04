@@ -41,7 +41,7 @@ export default function SkillsMeadow() {
                             <CardTitle className=' tracking-wider font-normal text-xl'>{skill.skill}</CardTitle>
                         </CardHeader>
                         <CardContent >
-                            <p className={` leading-8 dark:text-neutral-100 text-lg`}>{skill.details}</p>
+                            <p className={` leading-8 dark:text-neutral-100`}>{skill.details}</p>
                         </CardContent>
                     </Card>
                 ))}
