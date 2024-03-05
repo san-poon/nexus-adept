@@ -2,8 +2,8 @@
 
 export default function Footer() {
     return (
-        <footer className="bg-cyan-50 dark:bg-cyan-800/35">
-            <div className="container text-center border-t dark:border-neutral-700 py-2">
+        <footer className="">
+            <div className="container text-center border-t dark:border-neutral-700 py-16">
                 <p className="text-xs">
                     &copy; 2023 PlayLearnForge.
                 </p>
