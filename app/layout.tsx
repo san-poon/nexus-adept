@@ -24,7 +24,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className={` flex-1 text-xl bg-cyan-50 dark:bg-cyan-800/35`}>
+          <main className={` flex-1 text-lg bg-cyan-50 dark:bg-cyan-800/35`}>
             {children}
           </main>
           <Footer />
