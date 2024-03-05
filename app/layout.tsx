@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${inter.className}  flex flex-col min-h-screen dark:text-neutral-100 bg-cyan-50 dark:bg-cyan-300/10`}>
+      <body className={` ${inter.className}  flex flex-col min-h-screen dark:text-neutral-100 bg-cyan-50 dark:bg-[#212e2f]`}>
         <ThemeProvider attribute='class'
           defaultTheme='system'
           enableSystem
