@@ -6,3 +6,7 @@ body {
     scrollbar-gutter: stable;
     overflow-y: scroll;
 }
+
+p {
+    word-spacing: 0.05rem;
+}
