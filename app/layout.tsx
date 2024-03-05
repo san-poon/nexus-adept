@@ -3,7 +3,7 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/theme-provider';
-import { inter } from '@/app/fonts';
+import { rubik } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Autodidact: Play, Learn, Forge',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${inter.className}  flex flex-col min-h-screen dark:text-neutral-100 bg-cyan-50 dark:bg-[#212e2f]`}>
+      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:text-neutral-100 bg-cyan-50 dark:bg-[#212e2f]`}>
         <ThemeProvider attribute='class'
           defaultTheme='system'
           enableSystem
