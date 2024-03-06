@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:text-neutral-100 bg-cyan-50 dark:bg-[#212e2f]`}>
+      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:text-[#f6f9f9] bg-cyan-50 dark:bg-[#232f2f]`}>
         <ThemeProvider attribute='class'
           defaultTheme='system'
           enableSystem
