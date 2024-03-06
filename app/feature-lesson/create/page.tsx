@@ -225,7 +225,7 @@ const CreateLessonPage = () => {
                 <div className={`flex flex-col md:flex-row my-4`}>
 
                     {/* Left Side - Content Buttons */}
-                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 sticky top-40 z-10 bg-emerald-50 md:bg-inherit dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
+                    <div className={` flex justify-center items-center w-full md:w-1/12 lg:w-1/3 md:h-full p-4 sticky top-24 z-10 bg-emerald-50 md:bg-inherit dark:bg-emerald-950 md:dark:bg-inherit mb-2 md:mb-0`}>
                         {/* Content Buttons */}
                         <div className="flex md:flex-col md:space-y-6 justify-center">
                             <TextBlockButton onClick={() => handleInsertContentBlock(lessonContent.length, "text")} />
@@ -238,13 +238,13 @@ const CreateLessonPage = () => {
                     {/* Right Side - Input Fields/Forms */}
                     <div className={`w-full md:w-11/12 lg:w-2/3 px-4`}>
 
-                        <div className="md:p-2 rounded border dark:border-neutral-600">
+                        <div className="md:p-2">
 
                             <div className='mt-2'>
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900 rounded-3xl"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-teal-100 dark:bg-neutral-900 rounded-2xl"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -255,7 +255,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4 rounded-3xl"
+                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-teal-100 dark:bg-neutral-900 p-4 rounded-2xl"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -274,7 +274,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-3xl border-2 dark:border-neutral-700">
+                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-2xl border dark:border-neutral-800">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
