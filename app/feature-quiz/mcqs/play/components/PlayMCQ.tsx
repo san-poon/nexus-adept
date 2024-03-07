@@ -30,7 +30,7 @@ export default function PlayMcq({ mcqs }: { mcqs?: QuizData }) {
                 <>
                     <p className='text-xs mt-8 me-8 text-end'>{currentQuizIndex + 1} of {mcqs.length}</p>
                     <h3 className=" text-center mb-2 text-2xl">JavaScript Quizzes</h3>
-                    <Quiz quiz={mcqs[currentQuizIndex]} />
+                    <Quiz quiz={mcqs[currentQuizIndex]} key={currentQuizIndex} />
                     <div className='flex justify-between'>
                         <Button
                             onClick={goToPreviousQuestion}

@@ -28,15 +28,8 @@ interface optionType {
 
 export default function Quiz({ quiz }: QuizProps) {
     const [message, setMessage] = useState<string>("");
-    const [shuffledOptions, setShuffledOptions] = useState<optionType[]>([]);
 
-    useEffect(() => {
-        setShuffledOptions(shuffleArray(quiz.options));
-    }, [quiz.options])
-
-    useEffect(() => {
-        setMessage("");
-    }, [quiz.question]);
+    const shuffledOptions = shuffleArray(quiz.options);
 
     // Handler for when a choice is selected
     const handleChoiceSelection = useCallback((option: optionType) => {
