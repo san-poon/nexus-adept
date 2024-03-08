@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 import Code from './Code';
-import { cn, shuffleArray } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import {
     Accordion,
     AccordionContent,
