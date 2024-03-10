@@ -2,15 +2,13 @@
 import React, { useState } from 'react';
 import Quiz from './Quiz';
 import { Button } from '@/components/ui/button';
-import { QuizData } from '@/app/lib/definitions';
+import { QuizData } from '@/app/lib/types';
 
-export default function PlayMcq({ mcqs }: { mcqs?: QuizData }) {
+export default function Play({ mcqs }: { mcqs?: QuizData }) {
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
 
     // mcqs may be undefined
     if (!mcqs) { return <div>Loading...</div> }
-
-    const hasMoreQuestions = currentQuizIndex < mcqs.length - 1;
 
     const goToNextQuestion = () => {
         if (hasMoreQuestions) {
@@ -23,6 +21,9 @@ export default function PlayMcq({ mcqs }: { mcqs?: QuizData }) {
             setCurrentQuizIndex(currentQuizIndex - 1);
         }
     }
+
+    const hasMoreQuestions = currentQuizIndex < mcqs.length - 1;
+
 
     return (
         <section>

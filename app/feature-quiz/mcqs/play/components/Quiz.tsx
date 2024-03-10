@@ -34,12 +34,16 @@ export default function Quiz({ quiz }: QuizProps) {
         setMessage(option.correct ? "Correct" : 'Try Again!');
     };
 
+    const codeIsAvailable = quiz.code && quiz.code !== "";
+
     return (
         <div className=' p-4'>
             <p className='mb-4'>{quiz.question}</p>
-            <div >
-                <Code code={quiz.code} />
-            </div>
+            {codeIsAvailable &&
+                <div >
+                    <Code code={quiz.code} />
+                </div>
+            }
             <ul>
                 {quiz.options.map((option: OptionData, index) => (
                     <li key={index} className='flex justify-center'>
