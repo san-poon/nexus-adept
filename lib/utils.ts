@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { getHighlighter } from 'shiki';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -32,4 +33,19 @@ export const shuffleArray = <T>(array: T[]): T[] => {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+};
+
+export const codeToHtml = async ({ code, lang }: { code: string, lang: string }) => {
+  const highlighter = await getHighlighter({
+    themes: ['github-dark', 'github-light'],
+    langs: ['js', 'ts', 'jsx', 'tsx', 'css'],
+  });
+
+  return highlighter.codeToHtml(code, {
+    lang: lang,
+    themes: {
+      dark: 'github-dark',
+      light: 'github-light',
+    }
+  })
 };
