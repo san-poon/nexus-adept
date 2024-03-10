@@ -3,12 +3,17 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-export default function Code({ code }: { code: any }) {
+export default function Code({ code }: { code: string }) {
     return (
         <div className={cn(
             code === undefined || code === "" ? "hidden" : "block"
-        )}
-            dangerouslySetInnerHTML={{ __html: code }}
-        />
+        )}>
+            <SyntaxHighlighter
+                language='javascript'
+                style={a11yDark}
+            >
+                {code}
+            </SyntaxHighlighter>
+        </div>
     );
 }
