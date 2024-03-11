@@ -15,5 +15,6 @@ export default function Code({ code }: { code: string }) {
                 {code}
             </SyntaxHighlighter>
         </div>
+
     );
 }

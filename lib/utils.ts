@@ -38,7 +38,7 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 export const codeToHtml = async ({ code, lang }: { code: string, lang: string }) => {
   const highlighter = await getHighlighter({
     themes: ['github-dark', 'github-light'],
-    langs: ['js', 'ts', 'jsx', 'tsx', 'css'],
+    langs: ['javascript'],
   });
 
   return highlighter.codeToHtml(code, {
