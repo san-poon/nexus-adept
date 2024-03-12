@@ -26,7 +26,7 @@ interface OptionData {
     option: string;
 }
 
-export default function Quiz({ quiz }: QuizProps) {
+export default function Quiz({ quiz }: any) {
     const [message, setMessage] = useState<string>("");
 
     // Handler for when a choice is selected
@@ -44,20 +44,24 @@ export default function Quiz({ quiz }: QuizProps) {
                     <Code code={quiz.code} />
                 </div>
             }
-            <ul>
-                {quiz.options.map((option: OptionData, index) => (
-                    <li key={index} className='flex justify-center'>
-                        <div
-                            onClick={() => handleChoiceSelection(option)}
-                            className={cn(
-                                " p-2 md:p-4 m-2 md:m-4 bg-emerald-200 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
-                            )}
-                        >
-                            {option.value}
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            {
+                quiz.options && (
+                    <ul>
+                        {quiz.options.map((option: OptionData, index: number) => (
+                            <li key={index} className='flex justify-center'>
+                                <div
+                                    onClick={() => handleChoiceSelection(option)}
+                                    className={cn(
+                                        " p-2 md:p-4 m-2 md:m-4 bg-emerald-200 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
+                                    )}
+                                >
+                                    {option.value}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )
+            }
             <p className={cn("mt-4", message ? "opacity-100" : " opacity-100")}>{message}</p>
             <Accordion type="single" collapsible className='w-full'>
                 <AccordionItem value="explanation">

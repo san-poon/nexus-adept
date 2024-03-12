@@ -4,7 +4,7 @@ import Quiz from './Quiz';
 import { Button } from '@/components/ui/button';
 import { QuizData } from '@/app/lib/types';
 
-export default function Play({ mcqs }: { mcqs?: QuizData }) {
+export default function Play({ mcqs }: { mcqs?: any }) {
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
 
     // mcqs may be undefined

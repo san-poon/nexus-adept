@@ -40,10 +40,12 @@ export const initializeHighlighter = (() => {
 
   return async () => {
     if (!highlighterPromise) {
+      console.log('Creating highlighter.')
       highlighterPromise = await getHighlighter({
         themes: ['github-dark', 'github-light'],
         langs: ['javascript'],
       });
+      console.log('Highlighter Created.')
     }
     return highlighterPromise;
   };
@@ -52,13 +54,16 @@ export const initializeHighlighter = (() => {
 export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
   try {
     const highlighter = await initializeHighlighter();
-    return highlighter.codeToHtml(code, {
+    console.log('Transforming string to html string.')
+    const highlightedCode = highlighter.codeToHtml(code, {
       lang: lang,
       themes: {
         dark: 'github-dark',
         light: 'github-light'
       },
     });
+    console.log('Transformed string to html string and returning')
+    return highlightedCode;
   } catch (error) {
     console.error("Eror occured while highlighting code: ", error);
   }
