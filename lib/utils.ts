@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { getHighlighter } from 'shiki';
+import { BundledLanguage, BundledTheme, HighlighterGeneric, getHighlighter } from 'shiki';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -35,17 +35,31 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return shuffled;
 };
 
-export const codeToHtml = async ({ code, lang }: { code: string, lang: string }) => {
-  const highlighter = await getHighlighter({
-    themes: ['github-dark', 'github-light'],
-    langs: ['javascript'],
-  });
+export const initializeHighlighter = (() => {
+  let highlighterPromise: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null;
 
-  return highlighter.codeToHtml(code, {
-    lang: lang,
-    themes: {
-      dark: 'github-dark',
-      light: 'github-light',
+  return async () => {
+    if (!highlighterPromise) {
+      highlighterPromise = await getHighlighter({
+        themes: ['github-dark', 'github-light'],
+        langs: ['javascript'],
+      });
     }
-  })
+    return highlighterPromise;
+  };
+})();
+
+export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
+  try {
+    const highlighter = await initializeHighlighter();
+    return highlighter.codeToHtml(code, {
+      lang: lang,
+      themes: {
+        dark: 'github-dark',
+        light: 'github-light'
+      },
+    });
+  } catch (error) {
+    console.error("Eror occured while highlighting code: ", error);
+  }
 };
