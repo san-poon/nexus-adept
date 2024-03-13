@@ -36,22 +36,6 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return shuffled;
 };
 
-export const initializeHighlighter = (() => {
-  let highlighterPromise: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null;
-
-  return async () => {
-    if (!highlighterPromise) {
-      console.log('Creating highlighter.')
-      highlighterPromise = await getHighlighter({
-        themes: ['github-dark', 'github-light'],
-        langs: ['javascript'],
-      });
-      console.log('Highlighter Created.')
-    }
-    return highlighterPromise;
-  };
-})();
-
 export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
   try {
     const highlighter = await getShikiHighlighter();
