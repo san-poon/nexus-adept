@@ -39,7 +39,6 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
   try {
     const highlighter = await getShikiHighlighter();
-    console.log('Transforming string to html string.')
     const highlightedCode = highlighter.codeToHtml(code, {
       lang: lang,
       themes: {
@@ -47,7 +46,6 @@ export const highlightCode = async ({ code, lang }: { code: string, lang: string
         light: 'github-light'
       },
     });
-    console.log('Transformed string to html string and returning')
     return highlightedCode;
   } catch (error) {
     console.error("Eror occured while highlighting code: ", error);
