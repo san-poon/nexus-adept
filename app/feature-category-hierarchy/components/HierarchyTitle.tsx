@@ -8,7 +8,7 @@ export default function HierarchyRootTitle({ category, onCategoryInsert, onTitle
         <div className=" flex-grow max-w-md my-2 md:my-3 flex py-1 rounded-full">
             <Input
                 autoFocus
-                className=" dark:caret-teal-400 bg-cyan-200 rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
+                className="bg-cyan-100 rounded-full text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 "
                 type="text"
                 placeholder="Skill Title (React:The library for Web User Interfaces)"
                 value={category.title}
