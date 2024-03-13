@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { BundledLanguage, BundledTheme, HighlighterGeneric, getHighlighter } from 'shiki';
+import { cache } from "react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -53,7 +54,7 @@ export const initializeHighlighter = (() => {
 
 export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
   try {
-    const highlighter = await initializeHighlighter();
+    const highlighter = await getShikiHighlighter();
     console.log('Transforming string to html string.')
     const highlightedCode = highlighter.codeToHtml(code, {
       lang: lang,
@@ -68,3 +69,11 @@ export const highlightCode = async ({ code, lang }: { code: string, lang: string
     console.error("Eror occured while highlighting code: ", error);
   }
 };
+
+export const initializeShikiHighlighter = (async () =>
+  await getHighlighter({
+    themes: ['github-dark', 'github-light'],
+    langs: ['javascript'],
+  })
+);
+export const getShikiHighlighter = cache(initializeShikiHighlighter);
