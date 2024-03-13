@@ -3,7 +3,7 @@ import Link from "next/link";
 import logo from '@/app/images/logo.png';
 import { Button } from "@/components/ui/button";
 
-const HeroComponent = () => {
+export default function HeroSection() {
     return (
         <section className="relative py-16 min-h-screen">
             <div className="container mx-auto text-center">
@@ -21,17 +21,17 @@ const HeroComponent = () => {
                             Create Quiz
                         </Button>
                     </Link> */}
-                    <Link href="/feature-lesson/create" title="Create Lesson">
+                    <Link href="/feature/lesson/create" title="Create Lesson">
                         <Button className="text-lg mt-4 dark:hover:bg-neutral-900">
                             Create Lesson
                         </Button>
                     </Link>
-                    <Link href="/feature-category-hierarchy/create" title="Structured Learning Path Editor">
+                    <Link href="/feature/category-hierarchy/create" title="Structured Learning Path Editor">
                         <Button className="text-lg mt-4 dark:hover:bg-neutral-900">
                             Create Learning Path
                         </Button>
                     </Link>
-                    <Link href="/feature-quiz/mcqs/play" title="Play Javascript quizzes">
+                    <Link href="/feature/quiz/mcqs/play" title="Play Javascript quizzes">
                         <Button className="text-lg mt-4 dark:hover:bg-neutral-900">
                             Play JavaScript Quizzes
                         </Button>
@@ -45,4 +45,3 @@ const HeroComponent = () => {
     );
 };
 
-export default HeroComponent;

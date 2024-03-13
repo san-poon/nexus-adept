@@ -1,9 +1,9 @@
-import HeroComponent from './components/hero-section';
+import HeroSection from './components/HeroSection';
 
 export default function HomePage() {
   return (
     <main>
-      <HeroComponent />
+      <HeroSection />
     </main>
   );
 }
