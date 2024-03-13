@@ -36,6 +36,14 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   return shuffled;
 };
 
+export const initializeShikiHighlighter = (async () =>
+  await getHighlighter({
+    themes: ['github-dark', 'github-light'],
+    langs: ['javascript'],
+  })
+);
+export const getShikiHighlighter = cache(initializeShikiHighlighter);
+
 export const highlightCode = async ({ code, lang }: { code: string, lang: string }) => {
   try {
     const highlighter = await getShikiHighlighter();
@@ -52,10 +60,3 @@ export const highlightCode = async ({ code, lang }: { code: string, lang: string
   }
 };
 
-export const initializeShikiHighlighter = (async () =>
-  await getHighlighter({
-    themes: ['github-dark', 'github-light'],
-    langs: ['javascript'],
-  })
-);
-export const getShikiHighlighter = cache(initializeShikiHighlighter);
