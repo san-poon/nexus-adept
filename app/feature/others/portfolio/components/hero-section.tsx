@@ -1,5 +1,5 @@
 import Image from "next/image";
-import profilePic from '@/app/images/sanjib-pp-1178.png';
+import profilePic from '@/public/sanjib-pp-1178.png';
 
 // Hero Section Component
 export default function HeroSection() {

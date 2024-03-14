@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Logo from "@/app/images/logo.png";
+import Logo from "@/public/logo.png";
 import Link from "next/link";
 
 // Projects Boulevard Component
 export default function ProjectsBoulevard() {
     const projects = [
-        { name: 'PlayLearnForge', description: 'The Structured Learning Platform', imageSrc: Logo, projectUrl: "/" },
+        { name: 'PlayLearnForge', description: 'The Learning Platform', imageSrc: Logo, projectUrl: "/" },
         // Add more projects as needed
     ];
 
@@ -22,7 +22,7 @@ export default function ProjectsBoulevard() {
                                 <Image
                                     src={project.imageSrc}
                                     alt={project.name}
-                                    className="rounded-full w-full h-full p-2 transition-transform hover:scale-105"
+                                    className="rounded-full w-32 h-32 p-2 transition-transform hover:scale-105"
                                 />
                             </Link>
                         </div>

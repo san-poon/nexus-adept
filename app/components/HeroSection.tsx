@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from '@/app/images/logo.png';
+import logo from '@/public/logo.png';
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
