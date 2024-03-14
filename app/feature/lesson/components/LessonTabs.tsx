@@ -4,7 +4,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs';
-import { LessonData } from "../types";
+import { LessonData } from "../lib/types";
 import LessonPreview from "./LessonPreview";
 
 export default function LessonTabs({ children, lessonContent }: { children: React.ReactNode, lessonContent: LessonData }) {

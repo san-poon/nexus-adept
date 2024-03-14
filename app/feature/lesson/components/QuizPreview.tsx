@@ -15,8 +15,8 @@ import {
     AccordionTrigger
 } from '@/components/ui/accordion';
 
-import { QuizProps, AnOptionProps } from "../types";
-import { QuizBlockIcon } from '../icons';
+import { QuizProps, AnOptionProps } from "../lib/types";
+import { QuizBlockIcon } from './icons';
 
 type Status = 'idle' | 'in-progress' | 'submitted' | 'reviewing'
 
