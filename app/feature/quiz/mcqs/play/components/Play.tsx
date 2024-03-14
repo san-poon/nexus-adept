@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Quiz from './Quiz';
 import { Button } from '@/components/ui/button';
-import { QuizData } from '@/app/lib/types';
 
 export default function Play({ mcqs }: { mcqs?: any }) {
     const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
