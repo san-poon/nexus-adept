@@ -21,7 +21,7 @@ html.dark .shiki span {
     text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* Optional, for the code block we add overflow, borders and padding */
+/*For the code block we add overflow, borders and padding */
 .shiki {
     @apply overflow-x-auto rounded-xl p-5;
 }
