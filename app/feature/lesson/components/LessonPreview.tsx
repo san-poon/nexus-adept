@@ -72,7 +72,7 @@ export default function LessonPreview({ content }: { content: LessonData }) {
                     content.map((contentBlock) => (
                         <div key={contentBlock.id}>
                             {contentBlock.contentType === 'title' && (
-                                <h1 className={` text-4xl font-bold text-center`}>{contentBlock.value}</h1>
+                                <h1 className={` text-4xl text-center`}>{contentBlock.value}</h1>
                             )}
                             {contentBlock.contentType === 'text/introduction' && (
                                 <div className="my-10">

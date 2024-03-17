@@ -244,7 +244,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none p-4 bg-cyan-100 dark:bg-neutral-900 rounded-2xl"
+                                    className=" w-full appearance-none resize-none focus:outline-none p-4"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -255,7 +255,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none border-none focus:outline-none bg-cyan-100 dark:bg-neutral-900 p-4 rounded-2xl"
+                                    className=" w-full appearance-none resize-none focus:outline-none p-4"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -274,7 +274,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 dark:bg-neutral-900 rounded-2xl border dark:border-neutral-800">
+                                    <div className=" relative group/content md:m-2 border-2 dark:border-wash-900 rounded-2xl ">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
