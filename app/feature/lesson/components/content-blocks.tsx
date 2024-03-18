@@ -30,7 +30,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
         <>
             <Textarea ref={textareaRef}
                 className={cn(
-                    "border-2 dark:border-wash-900 rounded-2xl appearance-none outline-none focus:outline-none hover:outline-none resize-none overflow-hidden dark:bg-inherit",
+                    "border border-wash-350 dark:border-wash-650 rounded-2xl appearance-none outline-none focus:outline-none hover:outline-none resize-none overflow-hidden dark:bg-inherit",
                     className
                 )}
                 maxLength={800}
@@ -51,7 +51,7 @@ export function TitleInputBlock({ content, onTitleChange }: any) {
                 type="text"
                 placeholder="Lesson Title"
                 value={content.value}
-                className="dark:bg-wash-900 border-2 dark:border-none rounded-full text-base focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2 ps-4"
+                className="bg-cyan-100 dark:bg-wash-750 border-none rounded-full text-base focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2 ps-4"
                 onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
         </>
