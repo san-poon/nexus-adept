@@ -51,7 +51,7 @@ export function TitleInputBlock({ content, onTitleChange }: any) {
                 type="text"
                 placeholder="Lesson Title"
                 value={content.value}
-                className="bg-cyan-100 dark:bg-wash-900 border-none rounded-full text-base focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2 ps-4"
+                className="dark:bg-wash-900 border-2 dark:border-none rounded-full text-base focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 p-2 ps-4"
                 onChange={(e) => onTitleChange({ ...content, value: e.target.value })}
             />
         </>

@@ -3,20 +3,20 @@ import { AnOptionProps } from '../lib/types';
 
 export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationChange, onOptionsChange, onCheckedChange }: any) {
     return (
-        <div className="m-2">
+        <div className="m-1 md:m-2 p-1  md:p-4">
             <div>
-                <label>Question</label>
+                <label>Question:</label>
                 <DynamicTextarea
                     // autoFocus={true} // gets weird with lesson-tab switching
                     rows={1}
-                    className="px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800"
+                    className="p-4 my-2"
                     placeholder="Question..."
                     value={quiz.value.question}
                     onChange={(e) => onQuestionChange(quiz.id, e.target.value)}
                 />
             </div>
             <div>
-                <label>Options</label>
+                <label>Choices:</label>
                 {quiz.value.options.map((option: AnOptionProps, index: number) => (
                     <div key={option.id} className='flex items-center space-x-2 m-2'>
                         <input
@@ -27,7 +27,7 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationCh
                         />
                         <DynamicTextarea
                             rows={1}
-                            className='px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800'
+                            className='p-1 md:p-4 my-2'
                             placeholder={`Option: ${index + 1}`}
                             value={option.value}
                             onChange={(e) => onOptionsChange(quiz.id, option.id, e.target.value)}
@@ -36,11 +36,11 @@ export default function QuizInputBlock({ quiz, onQuestionChange, onExplanationCh
                 ))}
             </div>
             <div>
-                <label>Explanation</label>
+                <label>Explanation:</label>
                 <DynamicTextarea
-                    className='px-2 py-2 my-2 bg-neutral-100 dark:bg-neutral-800'
-                    rows={2}
-                    placeholder='Explanation... Make it clear and concise.'
+                    className='p-1 md:p-4 my-2'
+                    rows={1}
+                    placeholder='Clear and concise explanation here...'
                     value={quiz.value.explanation}
                     onChange={(e) => onExplanationChange(quiz.id, e.target.value)}
                 />
