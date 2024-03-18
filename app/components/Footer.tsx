@@ -47,6 +47,9 @@ export default function Footer() {
                     </p>
                 </div>
             </div>
+            <p className="text-xs text-right m-2">
+                NB: This app is a work in progress.
+            </p>
         </footer >
     )
 }

@@ -38,9 +38,6 @@ export default function HeroSection() {
                     </Link>
                 </div>
             </div>
-            <p className="text-xs absolute bottom-2 left-1/2 transform -translate-x-1/2">
-                NB: This app is a work in progress.
-            </p>
         </section>
     );
 };
