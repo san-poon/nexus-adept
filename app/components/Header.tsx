@@ -8,6 +8,7 @@ import {
     PopoverTrigger,
 } from '@/components/ui/popover';
 import { MenuIcon } from "../icons";
+import LoginButton from "./LoginButton";
 
 export default function Header() {
     return (
@@ -30,6 +31,11 @@ export default function Header() {
                 </nav>
 
                 <div className="flex">
+                    <LoginButton>
+                        <Button>
+                            Sign In
+                        </Button>
+                    </LoginButton>
                     <ThemeToggler />
                     {/* Mobile menu */}
                     <div

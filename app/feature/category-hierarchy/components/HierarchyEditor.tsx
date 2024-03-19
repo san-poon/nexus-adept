@@ -148,9 +148,9 @@ export default function HierarchyEditor() {
                     </ul>
                 </div>
             </HierarchyTabs>
-            <div className="fixed bottom-4 right-4">
+            {/* <div className="fixed bottom-4 right-4">
                 <HierarchyStore hierarchies={hierarchies} />
-            </div>
+            </div> */}
         </div>
     );
 }

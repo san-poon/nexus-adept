@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from '@/public/logo.png';
 import { Button } from "@/components/ui/button";
+import LoginButton from "./LoginButton";
 
 export default function HeroSection() {
     return (
@@ -36,6 +37,11 @@ export default function HeroSection() {
                             Play JavaScript Quizzes
                         </Button>
                     </Link>
+                    <LoginButton>
+                        <Button size="lg">
+                            Sign In
+                        </Button>
+                    </LoginButton>
                 </div>
             </div>
         </section>
