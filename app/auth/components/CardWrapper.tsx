@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/card';
 import Header from './Header';
 import SocialForm from './SocialForm';
+import BackButton from './BackButton';
 
 interface CardWrapperProps {
     children: React.ReactNode,
@@ -18,7 +19,7 @@ interface CardWrapperProps {
 export default function CardWrapper(
     { children, headerLabel, backButtonLabel, backButtonHref, showSocial }: CardWrapperProps) {
     return (
-        <Card className=" w-96 shadow-lg">
+        <Card className=" w-full md:w-[768px] shadow-lg">
             <CardHeader>
                 <Header label={headerLabel} />
             </CardHeader>
@@ -31,6 +32,9 @@ export default function CardWrapper(
                     <SocialForm />
                 </CardFooter>
             )}
+            <CardFooter>
+                <BackButton label={backButtonLabel} href={backButtonHref} />
+            </CardFooter>
         </Card>
     )
 }
