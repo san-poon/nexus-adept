@@ -33,7 +33,7 @@ export default function SkillsMeadow() {
 
     return (
         <div className="md:p-4 md:mt-6">
-            <h2 className="text-2xl dark:text-gray-200 text-center mb-2 md:mb-4">Skills | Tools</h2>
+            <h2 className="text-2xl text-center mb-2 md:mb-4">Skills | Tools</h2>
             <div className="grid grid-cols-1 gap-12 md:mx-12 lg:mx-60">
                 {skillsDetails.map((skill, index) => (
                     <Card key={index} className=' dark:bg-inherit bg-inherit rounded-3xl shadow-none dark:border-neutral-600'>
@@ -41,7 +41,7 @@ export default function SkillsMeadow() {
                             <CardTitle className=' tracking-wider font-normal text-xl'>{skill.skill}</CardTitle>
                         </CardHeader>
                         <CardContent >
-                            <p className={` leading-9 dark:text-neutral-100`}>{skill.details}</p>
+                            <p className={` leading-9 md:text-lg`}>{skill.details}</p>
                         </CardContent>
                     </Card>
                 ))}
