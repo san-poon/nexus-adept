@@ -17,14 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800`}>
+      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800 `}>
         <ThemeProvider attribute='class'
           defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
           <Header />
-          <main className={` flex-1 text-lg`}>
+          <main className="dark:text-neutral-200 md:text-lg">
             {children}
           </main>
           <Footer />

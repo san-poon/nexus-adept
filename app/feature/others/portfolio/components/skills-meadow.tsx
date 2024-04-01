@@ -32,7 +32,7 @@ export default function SkillsMeadow() {
     ];
 
     return (
-        <div className="p-4 mt-6">
+        <div className="md:p-4 md:mt-6">
             <h2 className="text-2xl dark:text-gray-200 text-center mb-2 md:mb-4">Skills | Tools</h2>
             <div className="grid grid-cols-1 gap-12 md:mx-12 lg:mx-60">
                 {skillsDetails.map((skill, index) => (
