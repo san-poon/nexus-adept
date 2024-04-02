@@ -9,7 +9,6 @@ export default function HierarchyRootTitle({ category, onCategoryInsert, onTitle
             <Input
                 autoFocus
                 type="text"
-                className="text-base"
                 placeholder="Skill Title"
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
