@@ -9,14 +9,14 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
-            "flex rounded-full border-2 border-neutral-300 dark:border-neutral-700",
+            "flex rounded-full border border-neutral-300 dark:border-neutral-700",
         )}>
             <DeleteTooltipButton
                 onClick={() => onCategoryDelete(category.id)}
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className=" md:w-80 text-base border-none focus-visible:ring-offset-0 dark:focus-visible:ring-0 focus-visible:ring-0 rounded-full bg-cyan-50"
+                className=" md:w-80 text-base"
                 type="text"
                 placeholder={`Level ${level}`}
                 value={category.title}

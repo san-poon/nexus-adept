@@ -11,7 +11,7 @@ export default function HierarchyPreview(
     const rootChildIDs = root?.childIDs;
     return (
         <div>
-            <h1 className="text-3xl text-center mb-4 md:mb-12">
+            <h1 className="text-3xl text-center m-4 ">
                 {root.title}
             </h1>
             <ul>
