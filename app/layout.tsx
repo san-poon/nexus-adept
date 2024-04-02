@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={` ${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800 `}>
         <ThemeProvider attribute='class'
-          defaultTheme='system'
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
