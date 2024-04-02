@@ -16,7 +16,7 @@ export default function CategoryBlock({ category, onChildCategoryInsert, onTitle
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className=" md:w-80 text-base"
+                className=" md:w-80 "
                 type="text"
                 placeholder={`Level ${level}`}
                 value={category.title}
