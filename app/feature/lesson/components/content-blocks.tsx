@@ -30,7 +30,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
         <>
             <Textarea ref={textareaRef}
                 className={cn(
-                    "appearance-none outline-none focus:outline-none hover:outline-none resize-none overflow-hidden dark:bg-inherit",
+                    "resize-none overflow-hidden",
                     className
                 )}
                 maxLength={800}

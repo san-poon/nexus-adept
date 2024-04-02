@@ -244,7 +244,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none focus:outline-none p-4"
+                                    className=" w-full p-4"
                                     placeholder='Captivating Introduction...'
                                     name={introductionBlock?.contentType}
                                     value={introductionBlock?.value}
@@ -255,7 +255,7 @@ const CreateLessonPage = () => {
                                 <DynamicTextarea
                                     // autoFocus={true} // gets weird with lesson-tab switching
                                     rows={1}
-                                    className=" w-full appearance-none resize-none focus:outline-none p-4"
+                                    className=" w-full p-4"
                                     placeholder='Concise Objective...'
                                     name={objectiveBlock?.contentType}
                                     value={objectiveBlock?.value}
@@ -274,7 +274,7 @@ const CreateLessonPage = () => {
                                     <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
                                         <AddContentCombobox index={index} onInsertContentField={handleInsertContentBlock} />
                                     </div>
-                                    <div className=" relative group/content md:m-2 border border-neutral-300 dark:border-neutral-600  rounded-2xl ">
+                                    <div className=" relative group/content md:m-2 border border-neutral-300 dark:border-neutral-600  rounded-2xl focus-within:border-neutral-400 dark:focus-within:border-neutral-500">
                                         <div>
                                             {/* Conditionally render based on 'contentType' */}
                                             {
@@ -291,7 +291,7 @@ const CreateLessonPage = () => {
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
-                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none bg-inherit"
+                                                            className=" w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0"
                                                             placeholder='Your paragraph or... Choose from dropdown menu'
                                                             name={item.contentType}
                                                             value={item.value}
