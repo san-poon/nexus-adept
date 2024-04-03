@@ -1,5 +1,4 @@
-'use client';
-
+"use client";
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +17,7 @@ import {
     FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function LoginForm() {
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -29,7 +29,7 @@ export default function LoginForm() {
     });
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        // Do something with the form vlaues.
+        // Do something with values
     }
 
     return (
@@ -41,22 +41,55 @@ export default function LoginForm() {
         >
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="joe@gmail.com" {...field} />
-                                </FormControl>
-                                <FormDescription>
-                                    Your email.
-                                </FormDescription>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                    <div className='space-y-4'>
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            placeholder="san@gmail.com"
+                                            type="email"
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Your email.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            placeholder="*****************"
+                                            type='password'
+                                        />
+                                    </FormControl>
+                                    <FormDescription>
+                                        Your Password
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <Button
+                        variant="secondary"
+                        type="submit"
+                        className='w-full'
+                    >
+                        Login
+                    </Button>
                 </form>
             </Form>
         </CardWrapper>
