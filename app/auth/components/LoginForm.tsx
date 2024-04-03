@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import FormSuccess from './FormSuccess';
 
 export default function LoginForm() {
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -83,6 +84,7 @@ export default function LoginForm() {
                             )}
                         />
                     </div>
+                    <FormSuccess message="Login success" />
                     <Button
                         variant="secondary"
                         type="submit"
