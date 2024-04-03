@@ -6,6 +6,7 @@ import * as z from 'zod';
 
 import CardWrapper from "./CardWrapper";
 import { LoginSchema } from "@/lib/schemas";
+import login from '@/actions/login';
 
 import {
     Form,
@@ -20,6 +21,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import FormError from '@/components/ui/FormError';
 import FormSuccess from '@/components/ui/FormSuccess';
+import { useFormStatus } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 export default function LoginForm() {
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -31,7 +34,7 @@ export default function LoginForm() {
     });
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        // Do something with values
+        login(values);
     }
 
     return (
@@ -87,15 +90,23 @@ export default function LoginForm() {
                     </div>
                     <FormError message='' />
                     <FormSuccess message='' />
-                    <Button
-                        variant="secondary"
-                        type="submit"
-                        className='w-full'
-                    >
-                        Login
-                    </Button>
+                    <Submit />
                 </form>
             </Form>
         </CardWrapper>
+    )
+}
+
+function Submit() {
+    const { pending } = useFormStatus();
+    return (
+        <Button
+            variant="secondary"
+            type="submit"
+            className={cn('w-full')}
+            disabled={pending}
+        >
+            Login
+        </Button>
     )
 }
