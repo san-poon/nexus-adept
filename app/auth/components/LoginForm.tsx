@@ -1,41 +1,35 @@
 "use client";
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-
 import CardWrapper from "./CardWrapper";
-import { LoginSchema } from "@/lib/schemas";
-import login from '@/actions/login';
+import loginUser from '@/actions/loginUser';
 
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import FormError from '@/components/ui/FormError';
 import FormSuccess from '@/components/ui/FormSuccess';
-import { useFormStatus } from 'react-dom';
+import { useFormStatus, useFormState } from 'react-dom';
 import { cn } from '@/lib/utils';
 
-export default function LoginForm() {
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    });
+const initialState = {
+    message: "",
+};
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-        login(values);
-    }
+function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+        <Button
+            variant="secondary"
+            type="submit"
+            className={cn('w-full')}
+            aria-disabled={pending}
+        >
+            {pending ? "Logging in..." : "Login"}
+        </Button>
+    )
+}
+
+export default function LoginForm() {
+    const [state, formAction] = useFormState(loginUser, initialState);
 
     return (
         <CardWrapper
@@ -44,69 +38,35 @@ export default function LoginForm() {
             backButtonHref="/auth/register"
             showSocial
         >
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-                    <div className='space-y-4'>
-                        <FormField
-                            control={form.control}
+            <form action={formAction} className='space-y-6'>
+                <div className='space-y-4'>
+                    <div>
+                        <label className='text-base' htmlFor='user email'>Email</label>
+                        <Input
+                            id="email"
                             name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Email</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="san@gmail.com"
-                                            type="email"
-                                        />
-                                    </FormControl>
-                                    <FormDescription>
-                                        Your email.
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="*****************"
-                                            type='password'
-                                        />
-                                    </FormControl>
-                                    <FormDescription>
-                                        Your Password
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
+                            placeholder="san@gmail.com"
+                            type="email"
+                            required
                         />
                     </div>
-                    <FormError message='' />
-                    <FormSuccess message='' />
-                    <Submit />
-                </form>
-            </Form>
+                    <div>
+                        <label className='text-base' htmlFor='user password'>Password</label>
+                        <Input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                        />
+                    </div>
+                </div>
+                <SubmitButton />
+                {state?.message === "Login Success!"
+                    ? <FormSuccess message={state.message} />
+                    : <FormError message={state.message} />
+                }
+            </form>
         </CardWrapper>
     )
 }
 
-function Submit() {
-    const { pending } = useFormStatus();
-    return (
-        <Button
-            variant="secondary"
-            type="submit"
-            className={cn('w-full')}
-            disabled={pending}
-        >
-            Login
-        </Button>
-    )
-}
