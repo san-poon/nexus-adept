@@ -20,7 +20,7 @@ function SubmitButton() {
         <Button
             variant="secondary"
             type="submit"
-            className={cn('w-full mt-4')}
+            className={cn('w-full')}
             aria-disabled={pending}
         >
             {pending ? "Logging in..." : "Login"}
@@ -39,24 +39,26 @@ export default function LoginForm() {
             showSocial
         >
             <form action={formAction} className='space-y-6'>
-                <div>
-                    <label className='text-base' htmlFor='user email'>Email</label>
-                    <Input
-                        id="email"
-                        name="email"
-                        placeholder="san@gmail.com"
-                        type="email"
-                        required
-                    />
-                </div>
-                <div>
-                    <label className='text-base' htmlFor='user password'>Password</label>
-                    <Input
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                    />
+                <div className='space-y-4 mb-8'>
+                    <div>
+                        <label className='text-base' htmlFor='user email'>Email</label>
+                        <Input
+                            id="email"
+                            name="email"
+                            placeholder="san@gmail.com"
+                            type="email"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className='text-base' htmlFor='user password'>Password</label>
+                        <Input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                        />
+                    </div>
                 </div>
                 <SubmitButton />
                 {state?.message === "Login Success!"
