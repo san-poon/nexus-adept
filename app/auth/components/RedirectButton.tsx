@@ -8,7 +8,7 @@ interface BackButtonProps {
     label: string;
 };
 
-export default function BackButton({ href, label }: BackButtonProps) {
+export default function RedirectButton({ href, label }: BackButtonProps) {
     return (
         <Button variant="link" className='font-normal w-full' size="sm" asChild>
             <Link href={href}>

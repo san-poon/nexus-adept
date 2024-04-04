@@ -1,39 +1,58 @@
 "use client";
-import { useFormState } from 'react-dom';
 
-import CardWrapper from "./CardWrapper";
+import { useFormState } from 'react-dom';
 import loginUser from '@/actions/loginUser';
 
+import CardWrapper from "./CardWrapper";
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import FormError from '@/components/ui/FormError';
 import FormSuccess from '@/components/ui/FormSuccess';
 import SubmitButton from '@/components/ui/SubmitButton';
 
-
 const initialState = {
     message: "",
 };
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const [state, formAction] = useFormState(loginUser, initialState);
 
     return (
         <CardWrapper
-            cardTitle="Login"
-            cardDescription="Welcome back!"
-            redirectLabel="Don't have an account? Sign Up"
-            redirectHref="/auth/register"
+            cardTitle="Sign Up"
+            cardDescription="Create an account"
+            redirectLabel="Already have an account? Sign In"
+            redirectHref="/auth/login"
             showSocial
         >
             <form action={formAction} className='space-y-6'>
                 <div className='space-y-4 mb-8'>
                     <div>
+                        <Label htmlFor='firstName'>Email</Label>
+                        <Input
+                            id="firstName"
+                            name="firstName"
+                            placeholder="John"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <Label htmlFor='lastName'>Email</Label>
+                        <Input
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Doe"
+                            type="text"
+                            required
+                        />
+                    </div>
+                    <div>
                         <Label htmlFor='email'>Email</Label>
                         <Input
                             id="email"
                             name="email"
-                            placeholder="johndoe@gmail.com"
+                            placeholder="johndoe@example.com"
                             type="email"
                             required
                         />
@@ -48,7 +67,7 @@ export default function LoginForm() {
                         />
                     </div>
                 </div>
-                <SubmitButton submitLabel='Login' />
+                <SubmitButton submitLabel='Sign Up' />
                 {state?.message === "Login Success!"
                     ? <FormSuccess message={state.message} />
                     : <FormError message={state.message} />

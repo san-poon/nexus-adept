@@ -1,39 +1,45 @@
 import {
     Card,
     CardHeader,
+    CardTitle,
     CardContent,
     CardFooter,
+    CardDescription
 } from '@/components/ui/card';
-import Header from './Header';
 import SocialForm from './SocialForm';
-import BackButton from './BackButton';
+import RedirectButton from './RedirectButton';
 
 interface CardWrapperProps {
     children: React.ReactNode,
-    headerLabel: string,
-    backButtonLabel: string,
-    backButtonHref: string,
+    cardTitle: string,
+    cardDescription: string,
+    redirectLabel: string,
+    redirectHref: string,
     showSocial?: boolean,
 };
 
 export default function CardWrapper(
-    { children, headerLabel, backButtonLabel, backButtonHref, showSocial }: CardWrapperProps) {
+    { children, cardTitle, cardDescription, redirectLabel, redirectHref, showSocial }: CardWrapperProps) {
     return (
         <Card className=" w-full md:w-8/12 lg:w-1/2 shadow-lg">
-            <CardHeader>
-                <Header label={headerLabel} />
+            <CardHeader className='w-full flex flex-col items-center'>
+                <CardTitle>
+                    {cardTitle}
+                </CardTitle>
+                <CardDescription>
+                    {cardDescription}
+                </CardDescription>
             </CardHeader>
+
             <CardContent>
                 {children}
-            </CardContent>
 
-            {showSocial && (
-                <CardFooter>
+                {showSocial && (
                     <SocialForm />
-                </CardFooter>
-            )}
+                )}
+            </CardContent>
             <CardFooter>
-                <BackButton label={backButtonLabel} href={backButtonHref} />
+                <RedirectButton label={redirectLabel} href={redirectHref} />
             </CardFooter>
         </Card>
     )
