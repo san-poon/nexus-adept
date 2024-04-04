@@ -4,6 +4,7 @@ import CardWrapper from "./CardWrapper";
 import loginUser from '@/actions/loginUser';
 
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import FormError from '@/components/ui/FormError';
 import FormSuccess from '@/components/ui/FormSuccess';
@@ -41,7 +42,7 @@ export default function LoginForm() {
             <form action={formAction} className='space-y-6'>
                 <div className='space-y-4 mb-8'>
                     <div>
-                        <label className='text-base' htmlFor='user email'>Email</label>
+                        <Label htmlFor='user email'>Email</Label>
                         <Input
                             id="email"
                             name="email"
@@ -51,7 +52,7 @@ export default function LoginForm() {
                         />
                     </div>
                     <div>
-                        <label className='text-base' htmlFor='user password'>Password</label>
+                        <Label htmlFor='user password'>Password</Label>
                         <Input
                             id="password"
                             name="password"
