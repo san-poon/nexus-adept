@@ -52,7 +52,7 @@ export default function Quiz({ quiz }: any) {
                                 <div
                                     onClick={() => handleChoiceSelection(option)}
                                     className={cn(
-                                        " p-2 md:p-4 m-2 md:m-4 bg-emerald-200 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
+                                        " p-2 md:p-4 m-2 md:m-4 bg-wash-100 dark:bg-neutral-800 rounded-xl md:w-80 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
                                     )}
                                 >
                                     {option.value}

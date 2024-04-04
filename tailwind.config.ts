@@ -17,9 +17,13 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Brand color:  Hue -> 180 (Cyan) Platform Color: Saturation -> 65 
+        // Brand color:  Hue -> 180 (Cyan)
         wash: {
           50: '#f5fcfc',
+          60: '#f1fafa',
+          70: '#eef7f7',
+          80: '#ebf4f4',
+          90: '#e8f1f1',
           100: '#e6eeee',
           150: '#d5e0e0',
           200: '#c6d2d2',

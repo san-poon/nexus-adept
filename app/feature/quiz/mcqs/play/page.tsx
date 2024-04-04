@@ -8,7 +8,7 @@ export default async function Page() {
     const transformedQuizzes: any = await getTransformedQuizzes(mcqs.slice(0, 20));
     return (
         <div className='flex justify-center py-4 min-h-screen'>
-            <div className="bg-cyan-50 dark:bg-wash-700 rounded-3xl shadow-2xl dark:shadow-none overflow-auto w-full max-w-xl min-h-[94vh]">
+            <div className="bg-wash-50 dark:bg-wash-770 rounded-3xl shadow-2xl dark:shadow-none overflow-auto w-full max-w-xl min-h-[94vh]">
                 <Play mcqs={transformedQuizzes} />
             </div>
         </div>
