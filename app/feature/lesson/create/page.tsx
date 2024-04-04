@@ -327,7 +327,7 @@ const CreateLessonPage = () => {
                                                         <DynamicTextarea
                                                             // autoFocus={true} // gets weird with lesson-tab switching
                                                             rows={1}
-                                                            className=" w-full px-2 appearance-none resize-none border-none focus:outline-none bg-inherit"
+                                                            className=" w-full px-2 border-none bg-inherit focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0"
                                                             placeholder='Paste your code here...'
                                                             name={item.contentType}
                                                             value={item.value.code}
