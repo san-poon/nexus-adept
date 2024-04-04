@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from 'react-dom';
-import loginUser from '@/actions/loginUser';
+import registerUser from '@/actions/registerUser';
 
 import CardWrapper from "./CardWrapper";
 import { Input } from '@/components/ui/input';
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export default function RegisterForm() {
-    const [state, formAction] = useFormState(loginUser, initialState);
+    const [state, formAction] = useFormState(registerUser, initialState);
 
     return (
         <CardWrapper
@@ -28,7 +28,7 @@ export default function RegisterForm() {
             <form action={formAction} className='space-y-6'>
                 <div className='space-y-4 mb-8'>
                     <div>
-                        <Label htmlFor='firstName'>Email</Label>
+                        <Label htmlFor='firstName'>First Name</Label>
                         <Input
                             id="firstName"
                             name="firstName"
@@ -38,7 +38,7 @@ export default function RegisterForm() {
                         />
                     </div>
                     <div>
-                        <Label htmlFor='lastName'>Email</Label>
+                        <Label htmlFor='lastName'>Last Name</Label>
                         <Input
                             id="lastName"
                             name="lastName"
@@ -68,7 +68,7 @@ export default function RegisterForm() {
                     </div>
                 </div>
                 <SubmitButton submitLabel='Sign Up' />
-                {state?.message === "Login Success!"
+                {state?.message === "Registration Complete!"
                     ? <FormSuccess message={state.message} />
                     : <FormError message={state.message} />
                 }
