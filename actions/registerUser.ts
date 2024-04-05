@@ -1,6 +1,6 @@
 "use server";
 
-import { RegisterSchema } from '@/lib/schemas';
+import { RegisterSchema } from '@/lib/zod-schemas';
 
 export default async function registerUser(
     prevState: {

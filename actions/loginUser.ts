@@ -1,6 +1,6 @@
 "use server";
 
-import { LoginSchema } from '@/lib/schemas';
+import { LoginSchema } from '@/lib/zod-schemas';
 
 export default async function loginUser(
     prevState: {
