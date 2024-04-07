@@ -27,24 +27,24 @@ export default async function registerUser(
     const { firstName, lastName, email, password } = parse.data;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const existingUser = await db.query.users.findFirst({
-        where: eq(users.email, email),
-    });
-
-    if (existingUser) {
-        return { message: "Email already in use. Try to login please." }
-    }
-
     try {
+        const existingUser = await db.query.users.findFirst({
+            where: eq(users.email, email),
+        });
+
+        if (existingUser) {
+            return { message: "Email already in use. Try to login please." }
+        }
         await db.insert(users).values({
             id: email,
             firstName: firstName,
             lastName: lastName,
             email: email,
-            password_encrypted: hashedPassword
+            password_encrypted: hashedPassword,
         });
         return { message: `Registration Complete!` }
     } catch (error) {
+        console.log(error);
         return { message: 'Something went wrong. Please try again later!' }
     }
 }
