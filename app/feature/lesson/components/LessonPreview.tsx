@@ -3,7 +3,7 @@ import Markdown, { Components } from 'react-markdown';
 import QuizPreview from "./QuizPreview";
 import { Label } from "@/components/ui/label";
 import { NoteIcon, PitfallIcon } from "./icons";
-import CodePreview from "./CodePreview";
+// import CodePreview from "./CodePreview";
 
 const markdownComponents: Components = {
     h2(props) {
@@ -129,9 +129,9 @@ export default function LessonPreview({ content }: { content: LessonData }) {
                             {contentBlock.contentType === 'quiz' && (
                                 <QuizPreview quiz={contentBlock.value} />
                             )}
-                            {contentBlock.contentType === 'code' && (
+                            {/* {contentBlock.contentType === 'code' && (
                                 <CodePreview codeBlock={contentBlock} />
-                            )}
+                            )} */}
                         </div>
                     ))
                 }
