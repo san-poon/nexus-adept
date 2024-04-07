@@ -1,6 +1,10 @@
 "use server";
+import bcrypt from 'bcrypt';
+import db from '@/db/drizzle';
 
 import { RegisterSchema } from '@/lib/zod-schemas';
+import { eq } from 'drizzle-orm';
+import { users } from '@/db/schema';
 
 export default async function registerUser(
     prevState: {
@@ -20,11 +24,13 @@ export default async function registerUser(
         return { message: 'Invalid email or, too short/long password.' }
     }
 
-    const data = parse.data;
+    const { firstName, lastName, email, password } = parse.data;
+    const hashedPassword = await bcrypt.hash(password, 8);
+    const existingUser = await db.query.users.findFirst({
+        where: eq(users.email, email),
+    });
+
     try {
-        await setTimeout(() => {
-            console.log(data);
-        }, 3000);
         return { message: `Registration Complete!` }
     } catch (error) {
         return { message: 'Something went wrong. Please try again later!' }

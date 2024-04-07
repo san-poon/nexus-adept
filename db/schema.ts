@@ -3,15 +3,19 @@ import {
     pgTable,
     text,
     primaryKey,
-    integer
+    integer,
+    varchar,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccount } from 'next-auth/adapters';
 
 export const users = pgTable("user", {
     id: text("id").notNull().primaryKey(),
+    firstname: varchar('first_name'),
+    lastName: varchar('last_name'),
     name: text("name"),
     email: text("email").notNull(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
+    password_encrypted: text("password_encrypted"),
     image: text("image"),
 });
 
