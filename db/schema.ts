@@ -10,7 +10,7 @@ import type { AdapterAccount } from 'next-auth/adapters';
 
 export const users = pgTable("user", {
     id: text("id").notNull().primaryKey(),
-    firstname: varchar('first_name'),
+    firstName: varchar('first_name'),
     lastName: varchar('last_name'),
     name: text("name"),
     email: text("email").notNull(),

@@ -1,6 +1,6 @@
 "use server";
 import bcrypt from 'bcrypt';
-import db from '@/db/drizzle';
+import { db } from '@/db/drizzle';
 
 import { RegisterSchema } from '@/lib/zod-schemas';
 import { eq } from 'drizzle-orm';
@@ -25,12 +25,24 @@ export default async function registerUser(
     }
 
     const { firstName, lastName, email, password } = parse.data;
-    const hashedPassword = await bcrypt.hash(password, 8);
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const existingUser = await db.query.users.findFirst({
         where: eq(users.email, email),
     });
 
+    if (existingUser) {
+        return { message: "Email already in use. Try to login please." }
+    }
+
     try {
+        await db.insert(users).values({
+            id: email,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password_encrypted: hashedPassword
+        });
         return { message: `Registration Complete!` }
     } catch (error) {
         return { message: 'Something went wrong. Please try again later!' }

@@ -1,5 +1,5 @@
 const { sql } = require('@vercel/postgres');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const { users } = require('../lib/placeholder-data.js');
 const learningPathData = require('../lib/hieararchy-tree-sample-data.json');
