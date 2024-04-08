@@ -13,7 +13,7 @@ export const users = pgTable("user", {
     firstName: varchar('first_name'),
     lastName: varchar('last_name'),
     name: text("name"),
-    email: text("email").notNull(),
+    email: text("email").notNull().unique(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     password_encrypted: text("password_encrypted"),
     image: text("image"),

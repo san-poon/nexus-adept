@@ -1,10 +1,11 @@
 "use server";
 import bcrypt from 'bcrypt';
-import { db } from '@/db/drizzle';
 
+import { db } from '@/db/drizzle';
+import { users } from '@/db/schema';
 import { RegisterSchema } from '@/lib/zod-schemas';
 import { eq } from 'drizzle-orm';
-import { users } from '@/db/schema';
+
 
 export default async function registerUser(
     prevState: {
@@ -12,7 +13,7 @@ export default async function registerUser(
     },
     formData: FormData
 ) {
-    console.log(formData);
+    // console.log(formData);
     const parse = RegisterSchema.safeParse({
         firstName: formData.get('firstName'),
         lastName: formData.get('lastName'),
@@ -29,22 +30,25 @@ export default async function registerUser(
 
     try {
         const existingUser = await db.query.users.findFirst({
-            where: eq(users.email, email),
+            where: eq(users.email, email)
         });
 
         if (existingUser) {
-            return { message: "Email already in use. Try to login please." }
+            return { message: 'Email already taken!' }
+        } else {
+            const insertedUsers = await db.insert(users).values({
+                id: email,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password_encrypted: hashedPassword,
+            }).returning();
+            if (insertedUsers) {
+                return { message: `Registration Complete!` }
+            }
         }
-        await db.insert(users).values({
-            id: email,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password_encrypted: hashedPassword,
-        });
-        return { message: `Registration Complete!` }
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return { message: 'Something went wrong. Please try again later!' }
     }
 }
