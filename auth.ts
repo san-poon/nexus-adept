@@ -1,17 +1,9 @@
-import NextAuth from 'next-auth';
-import logo from '@/public/logo.png';
+import NextAuth from "next-auth"
+import GitHub from "next-auth/providers/github"
 
-import GitHub from 'next-auth/providers/github';
-
-import type { NextAuthConfig } from 'next-auth';
-
-export const config = {
-    theme: {
-        logo: logo
-    },
-    providers: [
-        GitHub,
-    ],
-    basePath: "/auth"
-}
-
+export const {
+    handlers: { GET, POST },
+    auth,
+} = NextAuth({
+    providers: [GitHub],
+});
