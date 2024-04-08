@@ -45,6 +45,8 @@ export default async function registerUser(
             }).returning();
             if (insertedUsers) {
                 return { message: `Registration Complete!` }
+            } else {
+                return { message: 'Something went wrong with database insertion. Please try again later!' }
             }
         }
     } catch (error) {
