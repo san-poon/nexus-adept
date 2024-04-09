@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from 'react-dom';
-import registerUser from '@/actions/registerUser';
+import signup from '@/actions/signup';
 
 import CardWrapper from "./CardWrapper";
 import { Input } from '@/components/ui/input';
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export default function RegisterForm() {
-    const [state, formAction] = useFormState(registerUser, initialState);
+    const [state, formAction] = useFormState(signup, initialState);
 
     return (
         <CardWrapper

@@ -2,7 +2,7 @@
 import { useFormState } from 'react-dom';
 
 import CardWrapper from "./CardWrapper";
-import loginUser from '@/actions/loginUser';
+import login from '@/actions/login';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export default function LoginForm() {
-    const [state, formAction] = useFormState(loginUser, initialState);
+    const [state, formAction] = useFormState(login, initialState);
 
     return (
         <CardWrapper
