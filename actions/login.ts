@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from '@/data-access/supabase/client';
 
 import { LoginSchema } from '@/lib/zod-schemas';
 
@@ -28,10 +28,12 @@ export default async function login(
     try {
         const { error } = await supabase.auth.signInWithPassword(data);
         if (error) {
-            return { message: 'Something went wrong' };
+            return { message: `Something went wrong... ${error}` };
         }
-        return { message: `Login Success!` }
+        revalidatePath('/', 'layout');
+        // return { message: `Login Success!` }
+        redirect('/dashboard');
     } catch (error) {
-        return { message: 'Something went wrong. Please try again later!' }
+        return { message: `Something went wrong. Please try again later! + ${error}` }
     }
 }
