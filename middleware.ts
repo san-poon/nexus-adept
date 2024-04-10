@@ -27,18 +27,17 @@ export async function middleware(request: NextRequest) {
   const supabase = createClient();
 
   const userSession = await supabase.auth.getSession();
-  const currentUser = request.cookies.get('currentUser')?.name;
 
   const { nextUrl } = request;
 
   const isLoggedIn = !!userSession.data.session;
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
-  if (isApiAuthRoute) {
-    return;
-  }
+  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  // if (isApiAuthRoute) {
+  //   return;
+  // }
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
@@ -46,6 +45,9 @@ export async function middleware(request: NextRequest) {
     return;
   }
 
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
+  }
 }
 
 export const config = {
