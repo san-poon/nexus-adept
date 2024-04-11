@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -45,8 +45,14 @@ export default function Footer() {
                     <p className="text-xs">
                         Proudly created by Sanjib(sanjibpoon123@gmail.com), the Autodidact.
                     </p>
+                    <p className='mt-8'> My&nbsp;
+                        <Link href="/others/portfolio" className=" hover:underline">
+                            portfolio here.
+                        </Link>
+                    </p>
                 </div>
             </div>
+
             <p className="text-xs text-right m-2">
                 NB: This app is a work in progress.
             </p>

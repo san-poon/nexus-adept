@@ -27,7 +27,6 @@ export default function Header() {
                 <nav className="hidden md:flex space-x-4">
                     <Link href="/category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
                     <Link href="/quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play</Button></Link>
-                    <Link href="/others/portfolio"><Button className="dark:hover:bg-neutral-900">Portfolio</Button></Link>
                 </nav>
 
                 <div className="flex">
@@ -58,9 +57,15 @@ function MobileMenu() {
             </PopoverTrigger>
             <PopoverContent className="w-fit text-sm leading-loose rounded-xl">
                 <div className="flex flex-col">
-                    <Link href="/category-hierarchy/create" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Create</Link>
-                    <Link href="/quiz/mcqs/play" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Play</Link>
-                    <Link href="/others/portfolio" className="active:bg-neutral-500 active:dark:bg-neutral-500 hover:bg-neutral-100 hover:dark:bg-neutral-800 rounded px-2">Portfolio</Link>
+                    <Link href="/lesson/create" className="">
+                        Create a Lesson
+                    </Link>
+                    <Link href="/quiz/mcqs/play">
+                        Play Js Quiz
+                    </Link>
+                    <Link href="/category-hierarchy/create">
+                        Create Learning Path
+                    </Link>
                 </div>
             </PopoverContent>
         </Popover>
