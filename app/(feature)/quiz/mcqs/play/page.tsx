@@ -1,7 +1,7 @@
 import { getShikiHighlighter } from '@/lib/utils';
-import Play from './components/Play';
+import Play from '../../components/Play';
 import mcqs from '@/lib/js-quizzes.json';
-import getTransformedQuizzes from './lib/getTransformedQuizzes';
+import getTransformedQuizzes from '../../lib/getTransformedQuizzes';
 export default async function Page() {
     getShikiHighlighter(); // Cache the highlighter
     getTransformedQuizzes(mcqs.slice(0, 20)); // Cache the already transformed quizzes.

@@ -6,8 +6,8 @@
  */
 export const publicRoutes: string[] = [
     "/",
-    "/feature/potfolio",
-    "/feature/mcqs/play"
+    "/potfolio",
+    "/quiz/mcqs/play"
 ];
 
 /**
