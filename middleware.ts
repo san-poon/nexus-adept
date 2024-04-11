@@ -12,7 +12,8 @@ import {
 /*
 * Middleware must be lightweight for it runs on every request.
 * It is the first line of defense for authorization while
-* Data Access Layer being the last and true defense.
+* Data Access Layer (DAL) being the ultimate auth guard with
+* full correctness.
 * 
 * Good for centralizing redirect logic, allowing you
 * to specify public vs. protected routes.
