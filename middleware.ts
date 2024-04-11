@@ -25,15 +25,18 @@ import {
     * The bulk of security checks should be performed in the Data Access Layer (DAL).
 */
 export async function middleware(request: NextRequest) {
-  const supabase = createClient();
-
-  const userSession = await supabase.auth.getSession();
 
   const { nextUrl } = request;
-
-  const isLoggedIn = !!userSession.data.session;
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  if (isPublicRoute) {
+    return;
+  }
+
+  const supabase = createClient();
+  const userSession = await supabase.auth.getSession();
+  const isLoggedIn = !!userSession.data.session;
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
+
 
   // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   // if (isApiAuthRoute) {
