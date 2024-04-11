@@ -1,4 +1,4 @@
-import { QuizData } from "@/app/lib/types";
+import { QuizData } from "./types";
 import { highlightCode } from "@/lib/utils";
 
 export default async function transformQuiz(quizzes: QuizData) {
