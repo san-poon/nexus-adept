@@ -18,15 +18,12 @@ export default function Header() {
                     <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105 dark:hover:bg-neutral-900 rounded-full">
                         {/* Logo */}
                         <Logo />
-                        <span className=" text-lg">
-                            Autodidact
-                        </span>
                     </div>
                 </Link>
                 {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
                     <Link href="/category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
-                    <Link href="/quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play</Button></Link>
+                    <Link href="/quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play Quiz</Button></Link>
                 </nav>
 
                 <div className="flex">
