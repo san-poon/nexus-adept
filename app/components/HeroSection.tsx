@@ -45,7 +45,7 @@ export default function HeroSection() {
                 <p className="text-lg mb-8 opacity-80">
                     Hone your skills with curated learning path designed through collaboration.
                 </p>
-                <Button variant="secondary" className="dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-wash-200 dark:hover:text-neutral-950 w-60 h-12">
+                <Button variant="secondary" className="w-60 h-12">
                     <Link href="/auth/register">
                         Signup
                     </Link>
