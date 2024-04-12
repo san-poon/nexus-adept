@@ -7,7 +7,7 @@
 export const publicRoutes: string[] = [
     "/",
     "/others/portfolio",
-    "/quiz/mcqs/play",
+    "/quiz/mcqs/play", // This feature must not be public in future.
 ];
 
 /**
@@ -32,3 +32,18 @@ export const apiAuthPrefix = "/auth/api/";
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+
+/**
+ * Array of routes for content-creation.
+ * These routes are empty by defaults meaning it is just pure creation (no data fetching),
+ * and not a contribution to already existing contents.
+ * These routes must be available to everyone, logged-in and anonymous alike.
+ * 
+ * The 'Save' action in these routes checks if users are logged in,
+ * if they are not, they are routed to '/auth/login'.
+ */
+
+export const publicCreationRoutes = [
+    '/lesson/create',
+    '/category-hierarchy/create',
+];

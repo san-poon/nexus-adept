@@ -4,8 +4,8 @@ import { createClient } from '@/data-access/supabase/server';
 import {
   publicRoutes,
   authRoutes,
-  apiAuthPrefix,
-  DEFAULT_LOGIN_REDIRECT
+  DEFAULT_LOGIN_REDIRECT,
+  publicCreationRoutes,
 } from '@/lib/routes';
 
 
@@ -28,13 +28,14 @@ export async function middleware(request: NextRequest) {
 
   const { nextUrl } = request;
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  if (isPublicRoute) {
+  const isPublicCreationRoute = publicCreationRoutes.includes(nextUrl.pathname);
+  if (isPublicRoute || isPublicCreationRoute) {
     return;
   }
 
   const supabase = createClient();
-  const userSession = await supabase.auth.getSession();
-  const isLoggedIn = !!userSession.data.session;
+  const data = (await supabase.auth.getUser()).data;
+  const isLoggedIn = !!data.user;
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
 
@@ -64,8 +65,5 @@ export const config = {
      * Feel free to modify this pattern to include more paths.
      */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-
-    // Re-include any files in the api or trpc folders that might have an extension
-    "/(api|trpc)(.*)",
   ],
 };
