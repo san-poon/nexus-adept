@@ -1,14 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo from '@/public/logo.png';
+import Logo from "./logo";
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
     return (
         <section className="relative py-16 min-h-screen">
             <div className="container mx-auto text-center">
-                {/* Logo Image */}
-                <Image src={logo} alt="Play, Learn & Forge logo" className="mx-auto w-16 h-16 mb-4 rounded-full" />
+                <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105 dark:hover:bg-neutral-900 rounded-full">
+                    {/* Logo */}
+                    <Logo className="h-32 w-32" />
+                </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4">
                     Nexus Adept
                 </h1>

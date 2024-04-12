@@ -1,11 +1,13 @@
-export default function Logo() {
+import { cn } from "@/lib/utils";
+
+export default function Logo({ className }: { className?: string }) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className="h-8 w-8"
+            className={cn("h-8 w-8", className)}
         >
             {/* <!-- Play button icon --> */}
             <path
