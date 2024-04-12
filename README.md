@@ -1,42 +1,19 @@
-# PlayLearnForge
+# Nexus Adept
 
-Welcome to PlayLearnForge – where learning meets excitement!
+Welcome to Nexus Adept: A goal of connecting experts to collaborate on creating contents for relevant skills in today's rapidly growing world.
 
-## What is PlayLearnForge?
+## What is Nexus Adept?
 
-PlayLearnForge is not just a platform; it's a dynamic learning wonderland! Picture a lively town square where learners unite, exchange ideas, and embark on journeys of discovery together. Play, Learn, and Forge – the triple threat that defines our mission!
+Nexus Adept aims to be a platform; with intractively personalised rich learning wonderland! Like a town square where learners unite, exchange ideas, and embark on journeys of discovery together, with experts guiding through collaboration at real time.
 
-### 🎮 Play
-Immerse yourself in captivating courses featuring Multiple Choice Questions (MCQs) that turn learning into a game. Ready to level up your knowledge?
+## Why Nexus Adept?
 
-### 📚 Learn
-Experience a unique learning journey with quizzes enriched with dedicated explanations and bite-sized lessons. Text, images, and interactive quizzes – we've got it all to make learning a joy.
+I believe learning should be thrilling, interactive, and community-driven. Here's why NexusAdept could be a go-to learning hub:
 
-### 🔨 Forge
-Become a creator! Craft your quizzes and share your knowledge with others. Forge a path for fellow learners to follow, fostering a community built on collaboration and shared insights.
+- **Contribution**: Experts, newcomers and everyone in between mignt be able to contribute either through feedback, creation and any other method I am not capable of conceive right now.
 
-## Why PlayLearnForge?
-
-We believe learning should be thrilling, interactive, and community-driven. Here's why PlayLearnForge is your go-to learning hub:
-
-- **Gamified Learning**: Transform education into an adventure with our gamified approach. Learning is not just about absorbing facts; it's about enjoying the process.
-
-- **Community-Centric**: Join a thriving community where learners become contributors. Imagine the collective power of shared knowledge shaping the future of education.
-
-- **Just-In-Time Learning**: No more drowning in irrelevant information. We focus on the vital 20% that covers 80-99% of real-world scenarios. Just-In-Time learning – because your time is precious.
+- **Community-Centric**: Maybe a thriving community where learners become contributors. I imagine the collective power of collaborated real-world learning materials shaping the future of education.
 
 ## Getting Started
 
-1. **Sign Up**: Join the PlayLearnForge community and create your profile. Your learning journey begins here.
-
-2. **Explore**: Dive into quizzes, lessons, and interactive content. The town square is buzzing with knowledge – take your pick!
-
-3. **Create**: Feeling inspired? Forge your quizzes and lessons. Share your expertise and be a guiding light for fellow learners.
-
-4. **Connect**: Engage with other learners, exchange ideas, and contribute to the growing knowledge hub.
-
-## Let the Learning Adventure Begin!
-
-PlayLearnForge is more than a platform; it's a movement. Join us as we redefine the learning experience. Together, we'll turn every quiz into a quest, every lesson into an exploration, and every learner into a co-creator.
-
-Ready to Play, Learn, and Forge? The adventure awaits! 🚀✨
+### You can check it out here: [NexusAdept](https:nexusadept.vercel.app)
