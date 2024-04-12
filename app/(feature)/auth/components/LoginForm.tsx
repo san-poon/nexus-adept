@@ -24,7 +24,6 @@ export default function LoginForm() {
             cardDescription="Welcome back!"
             redirectLabel="Don't have an account? Sign Up"
             redirectHref="/auth/register"
-            showSocial
         >
             <form action={formAction} className='space-y-6'>
                 <div className='space-y-4 mb-8'>

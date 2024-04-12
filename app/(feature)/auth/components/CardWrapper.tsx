@@ -15,11 +15,10 @@ interface CardWrapperProps {
     cardDescription: string,
     redirectLabel: string,
     redirectHref: string,
-    showSocial?: boolean,
 };
 
 export default function CardWrapper(
-    { children, cardTitle, cardDescription, redirectLabel, redirectHref, showSocial }: CardWrapperProps) {
+    { children, cardTitle, cardDescription, redirectLabel, redirectHref }: CardWrapperProps) {
     return (
         <Card className="w-full md:w-8/12 lg:w-1/2 shadow-lg">
             <CardHeader className='w-full flex flex-col items-center'>
@@ -33,10 +32,7 @@ export default function CardWrapper(
 
             <CardContent>
                 {children}
-
-                {showSocial && (
-                    <SocialForm />
-                )}
+                <SocialForm />
             </CardContent>
             <CardFooter>
                 <RedirectButton label={redirectLabel} href={redirectHref} />

@@ -23,7 +23,6 @@ export default function RegisterForm() {
             cardDescription="Create an account"
             redirectLabel="Already have an account? Sign In"
             redirectHref="/auth/login"
-            showSocial
         >
             <form action={formAction} className='space-y-6'>
                 <div className='space-y-4 mb-8'>
