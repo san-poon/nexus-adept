@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
     return;
   }
 
-  if (!isLoggedIn && !isPublicRoute) {
+  if (!isLoggedIn) {
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
 }
