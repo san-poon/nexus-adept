@@ -16,4 +16,4 @@ I believe learning should be thrilling, interactive, and community-driven. Here'
 
 ## Getting Started
 
-### You can check it out here: [NexusAdept](https:nexusadept.vercel.app)
+### You can check it out here: [NexusAdept](https://nexusadept.vercel.app)
