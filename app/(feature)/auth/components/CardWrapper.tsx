@@ -33,7 +33,7 @@ export default function CardWrapper({ children, cardTitle, cardDescription, redi
                 <section>
                     {children}
                 </section>
-                <SocialForm />
+                {/* <SocialForm /> TODO: After regestering custom domain name. */}
             </CardContent>
             <CardFooter>
                 <RedirectButton label={redirectLabel} href={redirectHref} />
