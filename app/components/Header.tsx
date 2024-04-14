@@ -1,14 +1,14 @@
 import Link from "next/link";
 
 import ThemeToggler from "./theme-toggler";
-import Logo from "@/components/icons/logo";
+import Logo from "../../components/icons/logo";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { MenuIcon } from "../../../components/icons/icons";
+import { MenuIcon } from "@/components/icons/icons";
 import LoginButton from "./LoginButton";
 import {
     NavigationMenu,
@@ -29,6 +29,7 @@ const contributeRoutes = [
     {
         title: 'Learning Path',
         href: '/category-hierarchy/create',
+        description: '/Update learning path.'
     }
 ];
 
