@@ -6,7 +6,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useState } from "react";
 
-import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "./icons";
+import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons/icons";
 import { LessonContentData, ContentTypeProps, CodeBlockProps } from "../lib/types";
 
 const textContentTypes = [

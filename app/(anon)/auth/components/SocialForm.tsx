@@ -1,5 +1,5 @@
 import { GithubIcon } from "lucide-react"
-import { GoogleIcon } from '@/app/icons';
+import { GoogleIcon } from '@/components/icons//icons';
 import { Button } from "@/components/ui/button";
 
 export default function SocialForm() {

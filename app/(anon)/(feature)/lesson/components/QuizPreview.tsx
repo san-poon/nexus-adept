@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/accordion';
 
 import { QuizProps, AnOptionProps } from "../lib/types";
-import { QuizBlockIcon } from './icons';
+import { QuizBlockIcon } from '@/components/icons/icons';
 
 type Status = 'idle' | 'in-progress' | 'submitted' | 'reviewing'
 

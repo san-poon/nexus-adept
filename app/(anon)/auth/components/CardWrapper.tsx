@@ -6,7 +6,7 @@ import {
     CardFooter,
     CardDescription
 } from '@/components/ui/card';
-import SocialForm from './SocialForm';
+// import SocialForm from './SocialForm';
 import RedirectButton from './RedirectButton';
 
 interface CardWrapperProps {

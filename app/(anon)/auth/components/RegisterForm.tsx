@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from 'react-dom';
-import signup from '@/app/(feature)/auth/actions/signup';
+import signup from '@/app/(anon)/auth/actions/signup';
 
 import CardWrapper from "./CardWrapper";
 import { Input } from '@/components/ui/input';

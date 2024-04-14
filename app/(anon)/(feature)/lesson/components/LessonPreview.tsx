@@ -2,7 +2,7 @@ import { LessonData } from "../lib/types";
 import Markdown, { Components } from 'react-markdown';
 import QuizPreview from "./QuizPreview";
 import { Label } from "@/components/ui/label";
-import { NoteIcon, PitfallIcon } from "./icons";
+import { NoteIcon, PitfallIcon } from "@/components/icons/icons";
 // import CodePreview from "./CodePreview";
 
 const markdownComponents: Components = {

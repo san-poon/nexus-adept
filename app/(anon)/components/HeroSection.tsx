@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "./logo";
+import Logo from "../../../components/icons/logo";
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {

@@ -2,7 +2,7 @@
 import { useFormState } from 'react-dom';
 
 import CardWrapper from "./CardWrapper";
-import login from '@/app/(feature)/auth/actions/login';
+import login from '@/app/(anon)/auth/actions/login';
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

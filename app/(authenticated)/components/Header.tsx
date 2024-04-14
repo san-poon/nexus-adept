@@ -1,22 +1,38 @@
-'use client';
-
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
 
 import ThemeToggler from "./theme-toggler";
-import Logo from "./logo";
+import Logo from "@/components/icons/logo";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { MenuIcon } from "../icons";
+import { MenuIcon } from "../../../components/icons/icons";
 import LoginButton from "./LoginButton";
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuList,
+    NavigationMenuLink,
+    NavigationMenuTrigger,
+    navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu';
+
+const contributeRoutes = [
+    {
+        title: "Lesson",
+        href: "/lesson/create",
+        description: "Update a lesson."
+    },
+    {
+        title: 'Learning Path',
+        href: '/category-hierarchy/create',
+    }
+];
 
 export default function Header() {
-    const pathName = usePathname();
-
     return (
         <header className={`w-full z-50 top-0  border-b dark:border-neutral-700 h-16 sticky bg-[#fff] dark:bg-wash-800`}>
             <div className="container flex items-center justify-between mt-2">
@@ -26,11 +42,9 @@ export default function Header() {
                         <Logo />
                     </div>
                 </Link>
-
+                {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
-                    {pathName !== '/category-hierarchy' && (
-                        <Link href="/category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
-                    )}
+                    <Link href="/category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
                     <Link href="/quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play Quiz</Button></Link>
                 </nav>
 
@@ -40,9 +54,7 @@ export default function Header() {
                             Sign In
                         </Button>
                     </LoginButton>
-
                     <ThemeToggler />
-
                     <div
                         className="md:hidden p-0">
                         <MobileMenu />
