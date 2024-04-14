@@ -1,6 +1,5 @@
 import { type NextRequest } from 'next/server';
 
-import { createClient } from '@/data-access/supabase/server';
 import {
   publicRoutes,
   authRoutes,
@@ -33,26 +32,22 @@ export async function middleware(request: NextRequest) {
     return;
   }
 
-  const supabase = createClient();
-  const data = (await supabase.auth.getUser()).data;
-  const isLoggedIn = !!data.user;
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
 
   // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   // if (isApiAuthRoute) {
   //   return;
   // }
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
-    }
-    return;
-  }
+  // if (isAuthRoute) {
+  //   if (isLoggedIn) {
+  //     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+  //   }
+  //   return;
+  // }
 
-  if (!isLoggedIn) {
-    return Response.redirect(new URL("/auth/login", nextUrl));
-  }
+  // if (!isLoggedIn) {
+  //   return Response.redirect(new URL("/auth/login", nextUrl));
+  // }
 }
 
 export const config = {

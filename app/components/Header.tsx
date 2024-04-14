@@ -33,7 +33,7 @@ const contributeRoutes = [
     }
 ];
 
-export default function Header() {
+export default async function Header() {
     return (
         <header className={`w-full z-50 top-0  border-b dark:border-neutral-700 h-16 sticky bg-[#fff] dark:bg-wash-800`}>
             <div className="container flex items-center justify-between mt-2">

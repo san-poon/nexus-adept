@@ -1,16 +1,21 @@
 import { GithubIcon } from "lucide-react"
 import { GoogleIcon } from '@/components/icons//icons';
 import { Button } from "@/components/ui/button";
+import loginWithGitHub from "../actions/login";
 
 export default function SocialForm() {
     return (
-        <div className="flex items-center w-full gap-x-2 mt-6">
-            <Button size="lg" className="w-full" variant="outline">
-                <GoogleIcon />
-            </Button>
-            <Button size="lg" className="w-full" variant="outline">
-                <GithubIcon />
-            </Button>
-        </div>
+        <section className=" space-y-12">
+            <form>
+                <Button size="lg" className="w-full" variant="outline">
+                    <GoogleIcon />
+                </Button>
+            </form>
+            <form action={loginWithGitHub}>
+                <Button size="lg" className="w-full" variant="outline">
+                    <GithubIcon />
+                </Button>
+            </form>
+        </section>
     );
 }

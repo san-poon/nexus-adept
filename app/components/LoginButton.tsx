@@ -12,7 +12,7 @@ export default function LoginButton({ children, mode = "redirect", asChild }: Lo
     const router = useRouter();
 
     const handleLoginClick = () => {
-        router.push("/auth/login");
+        router.push("/auth/signin");
     };
 
     if (mode === 'modal') {

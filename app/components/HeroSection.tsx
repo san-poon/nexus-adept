@@ -14,7 +14,7 @@ export default function HeroSection() {
                     Nexus Adept
                 </h1>
                 <p className="text-xl mb-8 opacity-80">
-                    Master the craft, Together. Collaborate and Create...
+                    Master the craft, Together. Contribute and Learn...
                 </p>
 
                 <div className="my-12 grid grid-rows-3 place-items-center">
@@ -46,11 +46,11 @@ export default function HeroSection() {
                 <p className="text-lg mb-8 opacity-80">
                     Hone your skills with curated learning path designed through collaboration.
                 </p>
-                <Button variant="secondary" className="w-60 h-12">
-                    <Link href="/auth/register">
-                        Signup
-                    </Link>
-                </Button>
+                <Link href="/auth/signin">
+                    <Button variant="secondary" className="w-60 h-12">
+                        Sign In
+                    </Button>
+                </Link>
             </div>
         </section>
     );
