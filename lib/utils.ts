@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { BundledLanguage, BundledTheme, HighlighterGeneric, getHighlighter } from 'shiki';
+import { getHighlighter } from 'shiki';
 import { cache } from "react";
 
 export function cn(...inputs: ClassValue[]) {
