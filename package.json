@@ -31,7 +31,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@supabase/ssr": "^0.1.0",
-    "@supabase/supabase-js": "^2.42.3",
+    "@supabase/supabase-js": "^2.42.4",
     "@types/uuid": "^9.0.8",
     "@vercel/postgres": "^0.8.0",
     "bcrypt": "^5.1.1",
