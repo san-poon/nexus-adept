@@ -23,19 +23,19 @@ export default function HeroSection() {
                             Create Quiz
                         </Button>
                     </Link> */}
-                    <Link href="/lesson/create" title="Create Lesson">
+                    <Link href="/create/lesson" title="Create Lesson">
                         <Button className=" text-base mt-4 dark:hover:bg-neutral-900">
                             Create Lesson
                         </Button>
                     </Link>
-                    <Link href="/category-hierarchy/create" title="Structured Learning Path Editor">
+                    <Link href="/create/category-hierarchy" title="Structured Learning Path Editor">
                         <Button className="text-base mt-4 dark:hover:bg-neutral-900">
                             Create Learning Path
                         </Button>
                     </Link>
-                    <Link href="/quiz/mcqs/play" title="Play Javascript quizzes">
+                    <Link href="/learn/quiz/mcqs/" title="Play Javascript quizzes">
                         <Button className="text-base mt-4 dark:hover:bg-neutral-900">
-                            Play JavaScript Quizzes
+                            Learn JS through Quizzes
                         </Button>
                     </Link>
                 </div>

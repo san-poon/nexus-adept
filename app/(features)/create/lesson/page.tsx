@@ -1,15 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton } from '../components/tooltip-buttons';
+import { TextBlockButton, ImageBlockButton, CodeBlockButton, QuizBlockButton, DeleteButton } from './components/tooltip-buttons';
 import Image from 'next/image';
-import { DynamicTextarea, TitleInputBlock } from '../components/content-blocks';
+import { DynamicTextarea, TitleInputBlock } from './components/content-blocks';
 import { v4 as uuidv4 } from 'uuid';
-import { AddContentCombobox, CodeCombobox, TextCombobox } from '../components/combobox';
-import { getImageUrlFromUser } from '../lib/utils';
-import { LessonContentData, LessonData, AnOptionProps, CodeBlockProps } from '../lib/types';
-import QuizInputBlock from '../components/QuizInputBlock';
+import { AddContentCombobox, CodeCombobox, TextCombobox } from './components/combobox';
+import { getImageUrlFromUser } from './lib/utils';
+import { LessonContentData, LessonData, AnOptionProps, CodeBlockProps } from './lib/types';
+import QuizInputBlock from './components/QuizInputBlock';
 import { cn } from '@/lib/utils';
-import LessonTabs from '../components/LessonTabs';
+import LessonTabs from './components/LessonTabs';
 
 const initialContent: LessonData = [
     {

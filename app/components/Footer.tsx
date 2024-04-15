@@ -46,7 +46,7 @@ export default function Footer() {
                         Proudly created by Sanjib(sanjibpoon123@gmail.com), the Autodidact.
                     </p>
                     <p className='mt-8 text-xs'> My&nbsp;
-                        <Link href="/others/portfolio" className=" hover:underline">
+                        <Link href="/portfolio" className=" hover:underline">
                             portfolio here.
                         </Link>
                     </p>

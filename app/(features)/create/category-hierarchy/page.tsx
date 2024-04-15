@@ -1,4 +1,4 @@
-import HierarchyEditor from "../components/HierarchyEditor";
+import HierarchyEditor from "./components/HierarchyEditor";
 
 export default function CategoryHierarchyPage() {
     return (

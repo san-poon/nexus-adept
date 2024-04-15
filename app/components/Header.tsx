@@ -45,8 +45,8 @@ export default async function Header() {
                 </Link>
                 {/* Navigation Links */}
                 <nav className="hidden md:flex space-x-4">
-                    <Link href="/category-hierarchy/create"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
-                    <Link href="/quiz/mcqs/play"><Button className="dark:hover:bg-neutral-900">Play Quiz</Button></Link>
+                    <Link href="/create/lesson"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
+                    <Link href="/learn/quiz/mcqs/"><Button className="dark:hover:bg-neutral-900">Learn</Button></Link>
                 </nav>
 
                 <div className="flex">
@@ -76,13 +76,13 @@ function MobileMenu() {
             </PopoverTrigger>
             <PopoverContent className="w-fit text-sm leading-loose rounded-xl">
                 <div className="flex flex-col">
-                    <Link href="/lesson/create" className="">
+                    <Link href="/create/lesson" className="">
                         Create a Lesson
                     </Link>
-                    <Link href="/quiz/mcqs/play">
+                    <Link href="/learn/quiz/mcqs">
                         Play Js Quiz
                     </Link>
-                    <Link href="/category-hierarchy/create">
+                    <Link href="/create/category-hierarchy">
                         Create Learning Path
                     </Link>
                 </div>
