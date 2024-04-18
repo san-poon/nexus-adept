@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils';
 
 interface SubmitProps {
     className?: string,
-    submitLabel: string,
+    label: string,
 }
 
-export default function SubmitButton({ className, submitLabel }: SubmitProps) {
+export default function SubmitButton({ className, label }: SubmitProps) {
     const { pending } = useFormStatus();
     return (
         <Button
@@ -19,7 +19,7 @@ export default function SubmitButton({ className, submitLabel }: SubmitProps) {
             aria-disabled={pending}
             disabled={pending}
         >
-            {pending ? "Submitting" : submitLabel}
+            {pending ? "Submitting" : label}
         </Button>
     )
 }
