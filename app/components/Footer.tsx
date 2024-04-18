@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="">
             <div className="container text-center border-t dark:border-neutral-700 py-16">
                 <p className="text-xs">
-                    &copy; 2023 Nexus Adept.
+                    &copy; 2024 Nexus Adept.
                 </p>
                 {/* <p className="text-xs mb-2">Play, Learn, Create</p> */}
                 {/* Contact Information */}
