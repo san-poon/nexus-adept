@@ -1,6 +1,6 @@
 import SigninForm from "../components/SigninForm";
 
-export default function LoginPage() {
+export default function SigninPage() {
     return (
         <SigninForm />
     );

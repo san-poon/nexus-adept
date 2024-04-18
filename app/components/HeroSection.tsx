@@ -8,7 +8,7 @@ export default function HeroSection() {
             <div className="container mx-auto text-center">
                 <figure className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105 rounded-full">
                     {/* Logo */}
-                    <Logo className="h-32 w-32" />
+                    <Logo className="h-16 w-16" />
                 </figure>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4">
                     Nexus Adept

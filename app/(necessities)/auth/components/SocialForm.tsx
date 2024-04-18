@@ -1,7 +1,7 @@
 import { GithubIcon } from "lucide-react"
 import { GoogleIcon } from '@/components/icons//icons';
 import { Button } from "@/components/ui/button";
-import loginWithGitHub from "../actions/login";
+import signinWithGitHub from "../actions/signIn";
 
 export default function SocialForm() {
     return (
@@ -11,7 +11,7 @@ export default function SocialForm() {
                     <GoogleIcon />
                 </Button>
             </form>
-            <form action={loginWithGitHub}>
+            <form action={signinWithGitHub}>
                 <Button size="lg" className="w-full" variant="outline">
                     <GithubIcon />
                 </Button>
