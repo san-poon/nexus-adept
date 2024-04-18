@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from '@/lib/utils';
+import NextLink from 'next/link';
 
 import {
     NavigationMenu,
@@ -10,7 +11,9 @@ import {
     NavigationMenuList,
     NavigationMenuLink,
     NavigationMenuTrigger,
+    navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
+import { usePathname } from "next/navigation";
 
 interface Routes {
     title: string,
@@ -79,25 +82,36 @@ export default function Nav() {
 const ListItem = React.forwardRef<
     React.ElementRef<"a">,
     React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+>(({ className, title, children, href, ...props }, ref) => {
     return (
         <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-2xl p-3 leading-none no-underline outline-none transition-colors hover:bg-wash-850 focus:bg-wash-850",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className=" text-base font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
+            <Link
+                ref={ref}
+                href={href}
+                className={cn(
+                    "block select-none space-y-1 rounded-2xl p-3 leading-none no-underline outline-none transition-colors hover:bg-wash-850 focus:bg-wash-850",
+                    className
+                )}
+                {...props}
+            >
+                <div className=" text-base font-medium leading-none">{title}</div>
+                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                    {children}
+                </p>
+            </Link>
         </li>
-    )
-})
+    );
+});
 ListItem.displayName = "ListItem"
+
+
+const Link = ({ href, ...props }: any) => {
+    const pathname = usePathname();
+    const isActive = href === pathname;
+
+    return (
+        <NavigationMenuLink asChild active={isActive}>
+            <NextLink href={href} className={navigationMenuTriggerStyle()} {...props} />
+        </NavigationMenuLink>
+    );
+};
