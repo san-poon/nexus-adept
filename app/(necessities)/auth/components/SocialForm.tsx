@@ -1,12 +1,12 @@
 import { GithubIcon } from "lucide-react"
 import { GoogleIcon } from '@/components/icons//icons';
 import { Button } from "@/components/ui/button";
-import signinWithGitHub from "../actions/signin";
+import { signinWithGitHub, signinWithGoogle } from "../actions/signin";
 
 export default function SocialForm() {
     return (
         <section className=" space-y-12">
-            <form>
+            <form action={signinWithGoogle}>
                 <Button size="lg" className="w-full" variant="outline">
                     <GoogleIcon />
                 </Button>
