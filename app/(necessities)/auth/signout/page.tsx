@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import signout from '../actions/signOut';
+import signout from '../actions/signout';
 import { Button } from '@/components/ui/button';
 
 export default async function SignoutPage() {
