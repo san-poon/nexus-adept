@@ -25,7 +25,7 @@ export default function LoginButton({ children, mode = "redirect", asChild }: Lo
         )
     }
     return (
-        <Button onClick={handleLoginClick} className=" cursor-pointer p-0 m-0">
+        <Button onClick={handleLoginClick} className=" cursor-pointer m-0">
             {children}
         </Button>
     )

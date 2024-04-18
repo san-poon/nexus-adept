@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { auth } from '@/auth';
+
 import ThemeToggler from "./theme-toggler";
 import Logo from "../../components/icons/logo";
 import { Button } from "@/components/ui/button";
@@ -13,6 +15,8 @@ import LoginButton from "./LoginButton";
 import Nav from "./Nav";
 
 export default async function Header() {
+    const session = await auth();
+
     return (
         <header className={`w-full z-50 top-0  border-b dark:border-neutral-700 h-16 sticky bg-[#fff] dark:bg-wash-800`}>
             <div className="container flex items-center justify-between mt-2">
@@ -25,14 +29,16 @@ export default async function Header() {
 
                 <Nav />
 
-                <div className="flex">
-                    <LoginButton>
-                        <Button>
+                {!session?.user ? (
+                    <div className="flex">
+                        <LoginButton>
                             Sign In
-                        </Button>
-                    </LoginButton>
-                    <ThemeToggler />
-                </div>
+                        </LoginButton>
+                    </div>
+                ) : (
+                    null
+                )}
+                <ThemeToggler />
             </div>
         </header >
     )

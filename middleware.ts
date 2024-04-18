@@ -37,13 +37,12 @@ export default async function middleware(request: NextRequest) {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const session = await auth();
   const isLoggedIn = session?.user;
-  const isLandingPage = nextUrl.pathname === '/';
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   if (isApiAuthRoute) {
     return;
   }
-  if (isAuthRoute || isLandingPage) {
+  if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_SIGNIN_REDIRECT, nextUrl))
     }
