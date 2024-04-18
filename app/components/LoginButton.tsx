@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
+import { Button } from '@/components/ui/button';
+
 interface LoginButtonProps {
     children: React.ReactNode;
     mode?: "modal" | "redirect";
@@ -23,8 +25,8 @@ export default function LoginButton({ children, mode = "redirect", asChild }: Lo
         )
     }
     return (
-        <span onClick={handleLoginClick} className=" cursor-pointer">
+        <Button onClick={handleLoginClick} className=" cursor-pointer p-0 m-0">
             {children}
-        </span>
+        </Button>
     )
 }
