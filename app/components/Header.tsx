@@ -10,28 +10,7 @@ import {
 } from '@/components/ui/popover';
 import { MenuIcon } from "@/components/icons/icons";
 import LoginButton from "./LoginButton";
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuList,
-    NavigationMenuLink,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle
-} from '@/components/ui/navigation-menu';
-
-const contributeRoutes = [
-    {
-        title: "Lesson",
-        href: "/lesson/create",
-        description: "Update a lesson."
-    },
-    {
-        title: 'Learning Path',
-        href: '/category-hierarchy/create',
-        description: '/Update learning path.'
-    }
-];
+import Nav from "./Nav";
 
 export default async function Header() {
     return (
@@ -44,10 +23,7 @@ export default async function Header() {
                     </div>
                 </Link>
                 {/* Navigation Links */}
-                <nav className="hidden md:flex space-x-4">
-                    <Link href="/create/lesson"><Button className="dark:hover:bg-neutral-900">Create</Button></Link>
-                    <Link href="/learn/quiz/mcqs/"><Button className="dark:hover:bg-neutral-900">Learn</Button></Link>
-                </nav>
+                <Nav />
 
                 <div className="flex">
                     <LoginButton>
