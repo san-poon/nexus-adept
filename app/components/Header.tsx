@@ -22,7 +22,7 @@ export default async function Header() {
                         <Logo />
                     </div>
                 </Link>
-                {/* Navigation Links */}
+
                 <Nav />
 
                 <div className="flex">
@@ -32,10 +32,6 @@ export default async function Header() {
                         </Button>
                     </LoginButton>
                     <ThemeToggler />
-                    <div
-                        className="md:hidden p-0">
-                        <MobileMenu />
-                    </div>
                 </div>
             </div>
         </header >
