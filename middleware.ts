@@ -1,10 +1,12 @@
 import { type NextRequest } from 'next/server';
+import { auth } from '@/auth';
 
 import {
   publicRoutes,
   authRoutes,
-  DEFAULT_LOGIN_REDIRECT,
+  DEFAULT_SIGNIN_REDIRECT,
   publicCreationRoutes,
+  apiAuthPrefix
 } from '@/lib/routes';
 
 
@@ -23,7 +25,7 @@ import {
     * While Middleware can be useful for initial validation, it should not be the sole line of defense in protecting your data. 
     * The bulk of security checks should be performed in the Data Access Layer (DAL).
 */
-export async function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
 
   const { nextUrl } = request;
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
@@ -32,22 +34,24 @@ export async function middleware(request: NextRequest) {
     return;
   }
 
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  const session = await auth();
+  const isLoggedIn = session?.user;
 
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  if (isApiAuthRoute) {
+    return;
+  }
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL(DEFAULT_SIGNIN_REDIRECT, nextUrl))
+    }
+    return;
+  }
 
-  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  // if (isApiAuthRoute) {
-  //   return;
-  // }
-  // if (isAuthRoute) {
-  //   if (isLoggedIn) {
-  //     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
-  //   }
-  //   return;
-  // }
-
-  // if (!isLoggedIn) {
-  //   return Response.redirect(new URL("/auth/login", nextUrl));
-  // }
+  if (!isLoggedIn) {
+    return Response.redirect(new URL("/auth/signin", nextUrl));
+  }
 }
 
 export const config = {

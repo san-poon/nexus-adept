@@ -6,8 +6,8 @@
  */
 export const publicRoutes: string[] = [
     "/",
-    "/others/portfolio",
-    "/quiz/mcqs/play", // This feature must not be public in future.
+    "/portfolio",
+    "/learn/quiz/mcqs/", // This feature must not be public in future.
 ];
 
 /**
@@ -16,8 +16,7 @@ export const publicRoutes: string[] = [
  * @type {string[]}
  */
 export const authRoutes = [
-    "/auth/login",
-    "/auth/register"
+    "/auth/signin",
 ];
 
 /**
@@ -25,13 +24,13 @@ export const authRoutes = [
  * Routes that start with this prefix are used for API authentication purposes.
  * @type {string}
  */
-export const apiAuthPrefix = "/auth/api/";
+export const apiAuthPrefix = "/api/auth/";
 
 /**
  * The default redirect path after logging in.
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+export const DEFAULT_SIGNIN_REDIRECT = '/dashboard';
 
 /**
  * Array of routes for content-creation.
@@ -42,8 +41,7 @@ export const DEFAULT_LOGIN_REDIRECT = '/dashboard';
  * The 'Save' action in these routes checks if users are logged in,
  * if they are not, they are routed to '/auth/login'.
  */
-
 export const publicCreationRoutes = [
-    '/lesson/create',
-    '/category-hierarchy/create',
+    '/create/lesson',
+    '/create/category-hierarchy',
 ];
