@@ -1,18 +1,15 @@
 "use server";
 
-import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 import { signIn } from "@/auth";
 
 export async function signinWithGitHub() {
-    await signIn("github",);
-    revalidatePath("/");
+    await signIn("github", { redirectTo: "/dashboard" });
 }
 
 export async function signinWithGoogle() {
-    await signIn("google",);
-    revalidatePath("/");
+    await signIn("google", { redirectTo: "/dashboard" });
 }
 
 export async function signinWithEmail(
