@@ -5,5 +5,5 @@ export default async function Dashboard() {
         <section>
             <p>This is a dashboard page.</p>
         </section>
-    )
+    );
 }

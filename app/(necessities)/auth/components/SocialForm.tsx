@@ -17,12 +17,12 @@ export default function SocialForm() {
         <section className=" space-y-12">
             <form action={signinWithGoogle}>
                 <Button size="lg" className="w-full" variant="outline">
-                    Sign In with <GoogleIcon />
+                    Sign In with &nbsp;<GoogleIcon />
                 </Button>
             </form>
             <form action={signinWithGitHub}>
                 <Button size="lg" className="w-full" variant="outline">
-                    Sing In with <GithubIcon />
+                    Sign In with &nbsp; <GithubIcon />
                 </Button>
             </form>
             {/* <form action={signinWithEmailAction} className="space-y-6">
