@@ -28,7 +28,7 @@ export default function HeroSection() {
                             Create Lesson
                         </Button>
                     </Link>
-                    <Link href="/create/category-hierarchy" title="Structured Learning Path Editor">
+                    <Link href="/create/learning-path" title="Structured Learning Path Editor">
                         <Button className="text-base mt-4 dark:hover:bg-neutral-900">
                             Create Learning Path
                         </Button>

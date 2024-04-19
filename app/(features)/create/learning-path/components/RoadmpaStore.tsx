@@ -5,7 +5,7 @@ import { HierarchyTreeData } from "../lib/types";
 import { Button } from "@/components/ui/button";
 
 
-export default function HierarchyStore({ hierarchies }: { hierarchies: HierarchyTreeData }) {
+export default function RoadmapStore({ hierarchies }: { hierarchies: HierarchyTreeData }) {
     const [isPending, startTransition] = useTransition();
 
     const handleSaveClick = () => {

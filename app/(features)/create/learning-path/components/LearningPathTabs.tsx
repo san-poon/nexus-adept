@@ -5,10 +5,10 @@ import {
     TabsTrigger,
 } from '@/components/ui/tabs';
 import { HierarchyTreeData } from '../lib/types';
-import HierarchyPreview from './HierarchyPreview';
+import LearningPathPreview from './LearningPathPreview';
 import { useState } from 'react';
 
-export default function HierarchyTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: HierarchyTreeData }) {
+export default function LearningPathTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: HierarchyTreeData }) {
     const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
 
     const handleExpandedChange = (categoryID: string) => {
@@ -24,7 +24,7 @@ export default function HierarchyTabs({ children, hierarchies }: { children: Rea
     }
     return (
         <Tabs defaultValue="create" >
-            <TabsList className="grid w-full grid-cols-2 sticky top-16 z-50">
+            <TabsList className="grid w-full grid-cols-2 sticky top-16 z-10">
                 <TabsTrigger value="create">Create</TabsTrigger>
                 <TabsTrigger value='preview'>Preview</TabsTrigger>
             </TabsList>
@@ -32,7 +32,7 @@ export default function HierarchyTabs({ children, hierarchies }: { children: Rea
                 {children}
             </TabsContent>
             <TabsContent value="preview" className="min-h-screen">
-                <HierarchyPreview
+                <LearningPathPreview
                     expandedHierarchies={expandedHierarchies}
                     onExpandedChange={handleExpandedChange}
                     hierarchies={hierarchies}

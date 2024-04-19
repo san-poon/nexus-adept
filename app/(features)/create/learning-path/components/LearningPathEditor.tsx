@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { HierarchyData, HierarchyTreeData } from '../lib/types'
-import HierarchyRootTitle from "./HierarchyTitle";
-import HierarchyTree from "./HierarchyTree";
-import HierarchyTabs from "./HierarchyTabs";
-import HierarchyStore from "./HierarchyStore";
-import initialHierarchySample from '@/lib/hieararchy-tree-sample-data.json';
+import LearningPathTitle from "./LearningPathTitle";
+import RoadmapTree from "./RoadmapTree";
+import LearningPathTabs from "./LearningPathTabs";
+import RoadmapStore from "./RoadmpaStore";
+import reactRoadmapData from '@/lib/hieararchy-tree-sample-data.json';
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
@@ -19,8 +19,8 @@ const initialHierarchy: HierarchyTreeData = {
     }
 };
 
-export default function HierarchyEditor() {
-    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchySample);
+export default function LearningPathEditor() {
+    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchy);
 
     const handleChildCategoryInsert = (parentID: string) => {
         const newCategory: HierarchyData = {
@@ -123,9 +123,9 @@ export default function HierarchyEditor() {
 
     return (
         <div className="min-h-screen">
-            <HierarchyTabs hierarchies={hierarchies}>
+            <LearningPathTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
-                    <HierarchyRootTitle
+                    <LearningPathTitle
                         category={root}
                         onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
                         onTitleUpdate={handleCategoryTitleUpdate}
@@ -134,7 +134,7 @@ export default function HierarchyEditor() {
                 <div>
                     <ul className="md:ms-10 lg:ms-96">
                         {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                            <HierarchyTree
+                            <RoadmapTree
                                 key={id}
                                 categoryID={id}
                                 hierarchies={hierarchies}
@@ -147,9 +147,9 @@ export default function HierarchyEditor() {
                         ))}
                     </ul>
                 </div>
-            </HierarchyTabs>
+            </LearningPathTabs>
             {/* <div className="fixed bottom-4 right-4">
-                <HierarchyStore hierarchies={hierarchies} />
+                <RoadmapStore hierarchies={hierarchies} />
             </div> */}
         </div>
     );

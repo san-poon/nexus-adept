@@ -1,12 +1,12 @@
 import { useState } from "react";
-import CategoryBlock from "./CategoryBlock";
+import RoadmapItem from "./RoadmapItem";
 import { Button } from "@/components/ui/button";
 import { HierarchyTreeProps } from "../lib/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AddTooltipButton } from "./tootip-buttons";
 
-export default function HierarchyTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
+export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
@@ -32,7 +32,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
                         </AddTooltipButton>
                     </div>
                     <div className="flex justify-center">
-                        <CategoryBlock
+                        <RoadmapItem
                             category={category}
                             onChildCategoryInsert={() => { onChildCategoryInsert(category.id) }}
                             onTitleUpdate={onTitleUpdate}
@@ -55,7 +55,7 @@ export default function HierarchyTree({ categoryID, hierarchies, onChildCategory
                 <ul className="border-s dark:border-neutral-700 ms-1 md:ms-2 space-y-1">
                     {childIDs.map((childID: string) => {
                         const nextLevel = level + 1;
-                        return (<HierarchyTree
+                        return (<RoadmapTree
                             key={childID}
                             categoryID={childID}
                             hierarchies={hierarchies}

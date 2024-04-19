@@ -10,7 +10,7 @@ export type HierarchyTreeViewProps = {
     onExpandedChange: any,
 };
 
-export default function HierarchyViewTree({
+export default function RoadmapViewTree({
     categoryID,
     hierarchies,
     expandedHierarchies,
@@ -44,7 +44,7 @@ export default function HierarchyViewTree({
                 <ul className={cn("border-s border-neutral-300 dark:border-neutral-600 ms-1 md:ms-2 ",
                 )}>
                     {childIDs.map((childID) => (
-                        <HierarchyViewTree
+                        <RoadmapViewTree
                             key={childID}
                             categoryID={childID}
                             hierarchies={hierarchies}

@@ -29,7 +29,7 @@ const createRoutes: Routes[] = [
     },
     {
         title: 'Learning Path',
-        href: '/create/category-hierarchy',
+        href: '/create/learning-path',
         description: 'Create learning-path, a curriculum.'
     }
 ];

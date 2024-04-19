@@ -4,7 +4,7 @@ import { AddTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
 
 
-export default function CategoryBlock({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
+export default function LearningPathItem({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
     const maxDepth = 3;
     const canAddChildren = level < maxDepth;
     return (
