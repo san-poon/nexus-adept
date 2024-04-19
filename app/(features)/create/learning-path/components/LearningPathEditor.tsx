@@ -8,6 +8,7 @@ import RoadmapTree from "./RoadmapTree";
 import LearningPathTabs from "./LearningPathTabs";
 import RoadmapStore from "./RoadmpaStore";
 import reactRoadmapData from '@/lib/hieararchy-tree-sample-data.json';
+import LearningPathSaver from "./LearningPathSaver";
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
@@ -122,7 +123,7 @@ export default function LearningPathEditor() {
     const hasRootChildren = rootChildIDs.length > 0;
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-[92vh]">
             <LearningPathTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <LearningPathTitle
@@ -151,6 +152,10 @@ export default function LearningPathEditor() {
             {/* <div className="fixed bottom-4 right-4">
                 <RoadmapStore hierarchies={hierarchies} />
             </div> */}
+
+            <div className="fixed bottom-4 right-2">
+                <LearningPathSaver />
+            </div>
         </div>
     );
 }

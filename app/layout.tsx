@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { rubik } from '@/app/fonts';
+import { Toaster } from 'sonner';
+
 import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/theme-provider';
-import { rubik } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Nexus Adept: Collaborate & Master, Together!',
@@ -28,6 +30,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

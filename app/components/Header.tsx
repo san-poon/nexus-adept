@@ -28,7 +28,7 @@ export default async function Header() {
                     </div>
                 </Link>
                 <Nav />
-                <div className="space-x-2">
+                <div className="flex space-x-2">
                     {!isUserSignedin ? (
                         <SigninButton>
                             Sign In
