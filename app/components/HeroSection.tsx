@@ -44,7 +44,7 @@ export default function HeroSection() {
                     Start your journey to Adept.
                 </h1>
                 <p className="text-lg mb-8 opacity-80">
-                    Hone your skills with curated learning path designed through collaboration.
+                    Hone your skills with curated learning path; designed through collaboration.
                 </p>
                 <Link href="/auth/signin">
                     <Button variant="secondary" className="w-60 h-12">

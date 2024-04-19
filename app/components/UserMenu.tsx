@@ -1,4 +1,5 @@
-
+'use client';
+import { signOut } from "next-auth/react";
 import { CircleUserIcon } from "lucide-react";
 import {
     DropdownMenu,
@@ -23,10 +24,10 @@ export default function UserMenu() {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Progress</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Sign Out</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

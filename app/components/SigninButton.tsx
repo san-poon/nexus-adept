@@ -10,7 +10,7 @@ interface LoginButtonProps {
     asChild?: boolean;
 };
 
-export default function LoginButton({ children, mode = "redirect", asChild }: LoginButtonProps) {
+export default function SigninButton({ children, mode = "redirect", asChild }: LoginButtonProps) {
     const router = useRouter();
 
     const handleLoginClick = () => {
@@ -28,5 +28,5 @@ export default function LoginButton({ children, mode = "redirect", asChild }: Lo
         <Button onClick={handleLoginClick} className=" cursor-pointer m-0">
             {children}
         </Button>
-    )
+    );
 }
