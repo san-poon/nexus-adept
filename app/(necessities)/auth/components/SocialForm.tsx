@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 // import { useFormState, useFormStatus } from "react-dom";
 import { GithubIcon } from "lucide-react"
 import { GoogleIcon } from '@/components/icons//icons';
