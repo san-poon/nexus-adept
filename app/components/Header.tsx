@@ -13,6 +13,7 @@ import {
 import { MenuIcon } from "@/components/icons/icons";
 import LoginButton from "./LoginButton";
 import Nav from "./Nav";
+import UserMenu from './UserMenu';
 
 export default async function Header() {
     const session = await auth();
@@ -29,16 +30,16 @@ export default async function Header() {
 
                 <Nav />
 
-                {!session?.user ? (
-                    <div className="flex">
+                <div className="space-x-2">
+                    {!session?.user ? (
                         <LoginButton>
                             Sign In
                         </LoginButton>
-                    </div>
-                ) : (
-                    null
-                )}
-                <ThemeToggler />
+                    ) : (
+                        <UserMenu />
+                    )}
+                    <ThemeToggler />
+                </div>
             </div>
         </header >
     )
