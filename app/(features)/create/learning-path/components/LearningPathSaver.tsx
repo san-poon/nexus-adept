@@ -8,7 +8,7 @@ export default function LearningPathSaver() {
     return (
         <Button
             variant="secondary"
-            className=' w-[90vw] md:w-32 text-base'
+            className='w-96 text-base'
             onClick={() => {
                 toast.promise(saveLearningPath, {
                     loading: 'Saving...',
