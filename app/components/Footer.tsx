@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="">
+        <footer className=" z-20 bg-[#fff] dark:bg-wash-800">
             <div className="container text-center border-t dark:border-neutral-700 py-16">
                 <p className="text-xs">
                     &copy; 2024 Nexus Adept.

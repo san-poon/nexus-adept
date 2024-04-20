@@ -123,7 +123,7 @@ export default function LearningPathEditor() {
     const hasRootChildren = rootChildIDs.length > 0;
 
     return (
-        <div className="min-h-[92vh]">
+        <div className="min-h-[92vh] mb-96">
             <LearningPathTabs hierarchies={hierarchies}>
                 <div className="flex item-center justify-center">
                     <LearningPathTitle
