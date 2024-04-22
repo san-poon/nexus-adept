@@ -125,15 +125,13 @@ export default function LearningPathEditor() {
     return (
         <div className="min-h-[78vh]">
             <LearningPathTabs hierarchies={hierarchies}>
-                <div className="flex justify-end me-2 mb-2 lg:me-96">
-                    <DetailsEditor />
-                </div>
-                <div className="flex item-center justify-center">
+                <div className="flex justify-center my-4">
                     <LearningPathTitle
                         category={root}
                         onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
                         onTitleUpdate={handleCategoryTitleUpdate}
                     />
+                    <DetailsEditor />
                 </div>
                 <div>
                     <ul className="md:ms-10 lg:ms-96">

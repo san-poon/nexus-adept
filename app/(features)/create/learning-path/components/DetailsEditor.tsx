@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function DetailsEditor() {
 
@@ -22,15 +22,14 @@ export default function DetailsEditor() {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Topics</DialogTitle>
-                    <DialogDescription>
-                        Start from a high level category. Then specifics.
-                    </DialogDescription>
+                    <DialogTitle>Edit Learning Path Details</DialogTitle>
                 </DialogHeader>
                 <form>
-                    <div className="my-4">
+                    <div className="my-4 space-y-2">
+                        <Label htmlFor="topics">Topics:
+                            <span className="font-normal text-sm opacity-70">&#40;Separate with comma and space.&#41;</span>
+                        </Label>
                         <Input id="topics" placeholder="Front-end development, Javascript" className="w-full" />
-                        <span className="text-xs ps-4">Separate with comma and space.</span>
                     </div>
                     <DialogFooter>
                         <Button type="submit" variant="secondary" size="sm">Confirm</Button>

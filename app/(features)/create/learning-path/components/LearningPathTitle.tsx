@@ -5,7 +5,7 @@ import { AddTooltipButton } from "./tootip-buttons";
 
 export default function LearningPathTitle({ category, onCategoryInsert, onTitleUpdate }: { category: HierarchyData, onCategoryInsert: any, onTitleUpdate: any }) {
     return (
-        <div className=" flex-grow max-w-md my-2 md:my-3 flex py-1 rounded-full">
+        <div className="flex">
             <Input
                 autoFocus
                 type="text"
