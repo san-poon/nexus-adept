@@ -1,5 +1,5 @@
 
-import { TriangleAlert } from '@/components/icons/icons';
+import { TriangleAlert } from '@/components/icons';
 
 interface FormErrorProps {
     message?: string;

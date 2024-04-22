@@ -21,7 +21,7 @@ export function DeleteTooltipButton({ onClick, className }: { onClick: () => voi
                             className
                         )}
                     >
-                        <Trash2Icon size={16} />
+                        <Trash2Icon className='h-3 w-3' />
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top" sideOffset={2} className=" bg-red-200 dark:bg-red-500/40">
@@ -44,7 +44,7 @@ export function AddTooltipButton({ onClick, className, children }: { onClick: ()
                             className
                         )}
                     >
-                        <PlusIcon size={16} />
+                        <PlusIcon className='h-3 w-3' />
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top" sideOffset={2}>

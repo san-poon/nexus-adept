@@ -17,7 +17,7 @@ export default function LearningPathTitle({ category, onCategoryInsert, onTitleU
                 onClick={onCategoryInsert}
                 className="mx-2"
             >
-                <p>Add Path or Lesson Title</p>
+                <p>Add Chapter or Lesson</p>
             </AddTooltipButton>
         </div>
     )

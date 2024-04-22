@@ -3,14 +3,14 @@ import Link from "next/link";
 import { auth } from '@/auth';
 
 import ThemeToggler from "./theme-toggler";
-import Logo from "../../components/icons/logo";
+import Logo from "../../components/logo";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { MenuIcon } from "@/components/icons/icons";
+import { MenuIcon } from "@/components/icons";
 import SigninButton from "./SigninButton";
 import Nav from "./Nav";
 import UserMenu from './UserMenu';

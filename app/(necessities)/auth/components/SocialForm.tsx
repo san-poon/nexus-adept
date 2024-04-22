@@ -1,7 +1,7 @@
 // "use client";
 // import { useFormState, useFormStatus } from "react-dom";
 import { GithubIcon } from "lucide-react"
-import { GoogleIcon } from '@/components/icons//icons';
+import { GoogleIcon } from '@/components/icons';
 import { Button } from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
 import { signinWithGitHub, signinWithGoogle, signinWithEmail } from "../actions/signin";

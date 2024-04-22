@@ -27,7 +27,7 @@ export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUp
                 className={`${canAddChildren ? "block" : "hidden"}`}
             >
                 {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}
-                {level === 1 ? <p>Add Sub-path or Lesson title</p> : <p>Add Lesson title</p>}
+                {level === 1 ? <p>Add subchapter or lesson</p> : <p>Add lesson</p>}
             </AddTooltipButton>
         </div>
 

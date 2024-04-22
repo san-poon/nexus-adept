@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "@/components/icons/icons"
-import { DeleteIcon } from "@/components/icons/icons";
+import { CodeBlockIcon, ImageBlockIcon, QuizBlockIcon, TextBlockIcon } from "@/components/icons"
+import { DeleteIcon } from "@/components/icons";
 import {
     Tooltip,
     TooltipContent,

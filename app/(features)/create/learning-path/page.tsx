@@ -1,4 +1,3 @@
-"use client";
 import LearningPathEditor from "./components/LearningPathEditor";
 import LearningPathSaver from "./components/LearningPathSaver";
 
