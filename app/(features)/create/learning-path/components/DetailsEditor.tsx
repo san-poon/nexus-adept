@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
-export default function Topics() {
+export default function DetailsEditor() {
 
     return (
         <Dialog>

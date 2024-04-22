@@ -8,7 +8,7 @@ import RoadmapTree from "./RoadmapTree";
 import LearningPathTabs from "./LearningPathTabs";
 import RoadmapStore from "./RoadmpaStore";
 import reactRoadmapData from '@/lib/hieararchy-tree-sample-data.json';
-import Topics from "./Topics";
+import DetailsEditor from "./DetailsEditor";
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
@@ -126,7 +126,7 @@ export default function LearningPathEditor() {
         <div className="min-h-[78vh]">
             <LearningPathTabs hierarchies={hierarchies}>
                 <div className="flex justify-end me-2 mb-2 lg:me-96">
-                    <Topics />
+                    <DetailsEditor />
                 </div>
                 <div className="flex item-center justify-center">
                     <LearningPathTitle
