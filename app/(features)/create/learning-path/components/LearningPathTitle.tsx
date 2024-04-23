@@ -7,6 +7,7 @@ export default function LearningPathTitle({ category, onCategoryInsert, onTitleU
     return (
         <div className="flex">
             <Input
+                className="md:min-w-80"
                 autoFocus
                 type="text"
                 placeholder="Learning Path Title"

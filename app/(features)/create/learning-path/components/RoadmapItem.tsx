@@ -15,7 +15,7 @@ export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUp
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className=" md:w-80 "
+                className="md:min-w-72"
                 type="text"
                 placeholder={`Level ${level}`}
                 value={category.title}

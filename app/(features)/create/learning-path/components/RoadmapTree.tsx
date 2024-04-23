@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { AddTooltipButton } from "./tootip-buttons";
 
 export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, level }: HierarchyTreeProps) {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     const handleHierarchyToggle = () => {
         setIsExpanded((prev) => !prev);
