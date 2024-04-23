@@ -7,8 +7,9 @@ import LearningPathTitle from "./LearningPathTitle";
 import RoadmapTree from "./RoadmapTree";
 import LearningPathTabs from "./LearningPathTabs";
 import RoadmapStore from "./RoadmpaStore";
-import reactRoadmapData from '@/lib/hieararchy-tree-sample-data.json';
+import reactHierarchySample from '@/lib/hieararchy-tree-sample-data.json';
 import DetailsEditor from "./DetailsEditor";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
@@ -21,7 +22,7 @@ const initialHierarchy: HierarchyTreeData = {
 };
 
 export default function LearningPathEditor() {
-    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchy);
+    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(reactHierarchySample);
 
     const handleChildCategoryInsert = (parentID: string) => {
         const newCategory: HierarchyData = {
@@ -133,8 +134,8 @@ export default function LearningPathEditor() {
                     />
                     <DetailsEditor />
                 </div>
-                <div>
-                    <ul className="md:ms-10 lg:ms-96">
+                <ScrollArea className="h-[78vh] lg:w-1/3">
+                    <ul >
                         {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                             <RoadmapTree
                                 key={id}
@@ -148,13 +149,12 @@ export default function LearningPathEditor() {
                             />
                         ))}
                     </ul>
-                </div>
+                    <ScrollBar />
+                </ScrollArea>
+                <section className="lg:w-2/3">
+                    <p></p>
+                </section>
             </LearningPathTabs>
-            {/* <div className="fixed bottom-4 right-4">
-                <RoadmapStore hierarchies={hierarchies} />
-            </div> */}
-
-
         </div>
     );
 }

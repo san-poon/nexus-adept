@@ -11,7 +11,7 @@ export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryIn
 
     const handleHierarchyToggle = () => {
         setIsExpanded((prev) => !prev);
-    }
+    };
 
     const category = hierarchies[categoryID];
 

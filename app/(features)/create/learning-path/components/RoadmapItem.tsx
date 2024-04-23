@@ -2,9 +2,8 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { AddTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
 
-
-
 export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
+
     const maxDepth = 3;
     const canAddChildren = level < maxDepth;
     return (
