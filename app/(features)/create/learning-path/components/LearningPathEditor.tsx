@@ -126,15 +126,15 @@ export default function LearningPathEditor() {
     return (
         <div className="min-h-[78vh]">
             <LearningPathTabs hierarchies={hierarchies}>
-                <div className="flex justify-center my-4">
-                    <LearningPathTitle
-                        category={root}
-                        onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
-                        onTitleUpdate={handleCategoryTitleUpdate}
-                    />
-                    <DetailsEditor />
-                </div>
-                <ScrollArea className="h-[78vh] lg:w-1/3">
+                <ScrollArea className="lg:h-[80vh] lg:w-1/3">
+                    <div className="flex justify-center my-4">
+                        <LearningPathTitle
+                            category={root}
+                            onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
+                            onTitleUpdate={handleCategoryTitleUpdate}
+                        />
+                        <DetailsEditor />
+                    </div>
                     <ul >
                         {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
                             <RoadmapTree
