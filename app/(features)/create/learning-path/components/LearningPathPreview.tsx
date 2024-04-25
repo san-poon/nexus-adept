@@ -3,9 +3,7 @@
 import { HierarchyTreeData } from "../lib/types";
 import RoadmapViewTree from "./RoadmapViewTree";
 
-export default function LearningPathPreview(
-    { expandedHierarchies, onExpandedChange, hierarchies }
-        : { expandedHierarchies: Array<string>, onExpandedChange: any, hierarchies: HierarchyTreeData }) {
+export default function LearningPathPreview({ expandedHierarchies, onExpandedChange, hierarchies }: { expandedHierarchies: Array<string>, onExpandedChange: any, hierarchies: HierarchyTreeData }) {
 
     const root = hierarchies["ROOT"];
     const rootChildIDs = root?.childIDs;

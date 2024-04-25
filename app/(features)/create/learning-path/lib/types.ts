@@ -14,5 +14,7 @@ export type HierarchyTreeProps = {
     onSiblingCategoryInsert: (siblingID: string) => void,
     onChildCategoryInsert: (parentID: string) => void,
     onCategoryDelete: (categoryID: string) => void,
-    onTitleUpdate: (id: string, title: string) => void
+    onTitleUpdate: (id: string, title: string) => void,
+    onItemClick: (id: string) => void,
+    activeRoadmapItem: string[],
 };

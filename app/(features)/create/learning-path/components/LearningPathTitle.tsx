@@ -1,7 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { HierarchyData } from "../lib/types";
-import { AddTooltipButton } from "./tootip-buttons";
+import { AddButton } from "./tootip-buttons";
 
 export default function LearningPathTitle({ category, onCategoryInsert, onTitleUpdate }: { category: HierarchyData, onCategoryInsert: any, onTitleUpdate: any }) {
     return (
@@ -14,12 +14,12 @@ export default function LearningPathTitle({ category, onCategoryInsert, onTitleU
                 value={category.title}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
-            <AddTooltipButton
+            <AddButton
                 onClick={onCategoryInsert}
                 className="mx-2"
             >
                 <p>Add Chapter or Lesson</p>
-            </AddTooltipButton>
+            </AddButton>
         </div>
     )
 }

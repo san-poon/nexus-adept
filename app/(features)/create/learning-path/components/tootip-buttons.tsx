@@ -8,8 +8,9 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { PencilSquareIcon } from '@/components/icons';
 
-export function DeleteTooltipButton({ onClick, className }: { onClick: () => void, className: string }) {
+export function DeleteButton({ onClick, className }: { onClick: () => void, className: string }) {
     return (
         <TooltipProvider delayDuration={300}>
             <Tooltip>
@@ -29,10 +30,10 @@ export function DeleteTooltipButton({ onClick, className }: { onClick: () => voi
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
-    )
+    );
 }
 
-export function AddTooltipButton({ onClick, className, children }: { onClick: () => void, className: string, children: React.ReactNode }) {
+export function AddButton({ onClick, className, children }: { onClick: () => void, className: string, children: React.ReactNode }) {
     return (
         <TooltipProvider delayDuration={300}>
             <Tooltip>
@@ -52,5 +53,29 @@ export function AddTooltipButton({ onClick, className, children }: { onClick: ()
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
-    )
+    );
+}
+
+export function EditContentButton({ onClick, className, children }: { onClick: () => void, className?: string, children: React.ReactNode }) {
+    return (
+        <TooltipProvider delayDuration={300}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button
+                        size="icon"
+                        onClick={onClick}
+                        className={cn(
+                            "transition duration-500 ease-in-out transform active:scale-75",
+                            className
+                        )}
+                    >
+                        <PencilSquareIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent side="top" sideOffset={2}>
+                    {children}
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    );
 }

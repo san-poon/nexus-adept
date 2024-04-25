@@ -1,8 +1,8 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { AddTooltipButton, DeleteTooltipButton } from "./tootip-buttons";
+import { AddButton, DeleteButton } from "./tootip-buttons";
 
-export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level }: any) {
+export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level, onInputClick }: any) {
 
     const maxDepth = 3;
     const canAddChildren = level < maxDepth;
@@ -10,7 +10,7 @@ export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUp
         <div className={cn(
             "flex rounded-full border border-neutral-300 dark:border-neutral-700",
         )}>
-            <DeleteTooltipButton
+            <DeleteButton
                 onClick={() => onCategoryDelete(category.id)}
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
@@ -19,15 +19,16 @@ export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUp
                 type="text"
                 placeholder={`Level ${level}`}
                 value={category.title}
+                onClick={() => { onInputClick(category.id) }}
                 onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
             />
-            <AddTooltipButton
+            <AddButton
                 onClick={onChildCategoryInsert}
                 className={`${canAddChildren ? "block" : "hidden"}`}
             >
                 {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}
                 {level === 1 ? <p>Add subchapter or lesson</p> : <p>Add lesson</p>}
-            </AddTooltipButton>
+            </AddButton>
         </div>
 
     )

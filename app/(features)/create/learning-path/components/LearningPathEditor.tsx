@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { HierarchyData, HierarchyTreeData } from '../lib/types'
+import { HierarchyData, HierarchyTreeData } from '../lib/types';
 import LearningPathTitle from "./LearningPathTitle";
 import RoadmapTree from "./RoadmapTree";
 import LearningPathTabs from "./LearningPathTabs";
-import RoadmapStore from "./RoadmpaStore";
-import reactHierarchySample from '@/lib/hieararchy-tree-sample-data.json';
 import DetailsEditor from "./DetailsEditor";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import reactHierarchySample from '@/lib/hieararchy-tree-sample-data.json';
 
 const rootID = "ROOT";
 const initialHierarchy: HierarchyTreeData = {
@@ -22,7 +21,16 @@ const initialHierarchy: HierarchyTreeData = {
 };
 
 export default function LearningPathEditor() {
-    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(reactHierarchySample);
+    const [hierarchies, setHierarchies] = useState<HierarchyTreeData>(initialHierarchy);
+    const [activeItem, setActiveItem] = useState<string[]>(['ROOT']);
+
+    const handleRoadmapItemClick = (itemId: string) => {
+        if (activeItem.includes(itemId)) return;
+        setActiveItem((ai) => {
+            const newActiveItems = ai.slice(0, 0);
+            return [...newActiveItems, itemId];
+        });
+    }
 
     const handleChildCategoryInsert = (parentID: string) => {
         const newCategory: HierarchyData = {
@@ -126,33 +134,35 @@ export default function LearningPathEditor() {
     return (
         <div className="min-h-[78vh]">
             <LearningPathTabs hierarchies={hierarchies}>
-                <ScrollArea className="lg:h-[80vh] lg:w-1/3">
-                    <div className="flex justify-center my-4">
-                        <LearningPathTitle
-                            category={root}
-                            onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
-                            onTitleUpdate={handleCategoryTitleUpdate}
-                        />
-                        <DetailsEditor />
-                    </div>
-                    <ul >
-                        {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                            <RoadmapTree
-                                key={id}
-                                categoryID={id}
-                                hierarchies={hierarchies}
-                                onChildCategoryInsert={handleChildCategoryInsert}
-                                onSiblingCategoryInsert={handleSiblingCategoryInsert}
+                <section className="lg:flex" id="edit-learning-path">
+                    <ScrollArea className=" lg:h-[82vh] lg:w-1/3 lg:border-e dark:border-neutral-700 pb-8 mx-4">
+                        <div className="flex justify-center my-4">
+                            <LearningPathTitle
+                                category={root}
+                                onCategoryInsert={() => { handleChildCategoryInsert(root.id) }}
                                 onTitleUpdate={handleCategoryTitleUpdate}
-                                onCategoryDelete={handleCategoryDelete}
-                                level={1}
                             />
-                        ))}
-                    </ul>
-                    <ScrollBar />
-                </ScrollArea>
-                <section className="lg:w-2/3">
-                    <p></p>
+                            <DetailsEditor />
+                        </div>
+                        <ul >
+                            {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
+                                <RoadmapTree
+                                    key={id}
+                                    categoryID={id}
+                                    hierarchies={hierarchies}
+                                    onChildCategoryInsert={handleChildCategoryInsert}
+                                    onSiblingCategoryInsert={handleSiblingCategoryInsert}
+                                    onTitleUpdate={handleCategoryTitleUpdate}
+                                    onCategoryDelete={handleCategoryDelete}
+                                    level={1}
+
+                                    activeRoadmapItem={activeItem}
+                                    onItemClick={handleRoadmapItemClick}
+                                />
+                            ))}
+                        </ul>
+                        <ScrollBar />
+                    </ScrollArea>
                 </section>
             </LearningPathTabs>
         </div>
