@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import LessonEditor from "./LessonEditor";
 import Menu from "@/components/ui/Menu";
 import { usePaths } from "./PathsContext";
+import { ActivePathContext } from "./ActivePathContext";
+import { LessonsProvider } from "./LessonContext";
 
 export default function LearningPathEditor() {
     const [activePathID, setActivePathID] = useState('ROOT'); // Default active path.
@@ -56,7 +58,11 @@ export default function LearningPathEditor() {
                     <section className={cn(
                         "mx-2 lg:mx-4", isMenuOpen ? "hidden lg:block" : "block"
                     )}>
-                        <p>This is the content editor section.</p>
+                        <ActivePathContext.Provider value={activePathID}>
+                            <LessonsProvider>
+                                <p>This is the content editor section.</p>
+                            </LessonsProvider>
+                        </ActivePathContext.Provider>
                     </section>
                 </section>
             </LearningPathTabs>

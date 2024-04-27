@@ -38,17 +38,17 @@ export function usePathsDispatch() {
 
 
 type PathsAction =
-    | { type: "child-path-added"; parentID: Path["id"] }
-    | { type: "sibling-path-added"; siblingID: Path["id"] }
-    | { type: "path-title-updated"; updatedPath: Path }
-    | { type: 'path-deleted'; pathID: Path["id"] }
+    | { type: "added_child_path"; parentID: Path["id"] }
+    | { type: "added_sibling_path"; siblingID: Path["id"] }
+    | { type: "changed_path_title"; updatedPath: Path }
+    | { type: 'deleted_path'; pathID: Path["id"] }
 
 
 
 function pathsReducer(paths: Paths, action: PathsAction): Paths {
     switch (action.type) {
 
-        case 'child-path-added': {
+        case 'added_child_path': {
             const newChildPath: Path = {
                 id: uuidv4(),
                 title: "",
@@ -67,7 +67,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             }
         }
 
-        case 'sibling-path-added': {
+        case 'added_sibling_path': {
             const newPath: Path = {
                 id: uuidv4(),
                 title: "",
@@ -102,14 +102,14 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             };
         }
 
-        case 'path-title-updated': {
+        case 'changed_path_title': {
             return {
                 ...paths,
                 [action.updatedPath.id]: action.updatedPath
             };
         }
 
-        case 'path-deleted': {
+        case 'deleted_path': {
             const pathToDelete = paths[action.pathID];
             const parentID = pathToDelete.parentIDs[0]; // A path must have only one parentID
 

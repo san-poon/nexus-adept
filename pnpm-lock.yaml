@@ -128,6 +128,9 @@ importers:
       use-debounce:
         specifier: ^10.0.0
         version: 10.0.0(react@18.2.0)
+      use-immer:
+        specifier: ^0.9.0
+        version: 0.9.0(immer@10.0.4)(react@18.2.0)
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -2191,6 +2194,9 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
+  immer@10.0.4:
+    resolution: {integrity: sha512-cuBuGK40P/sk5IzWa9QPUaAdvPHjkk1c+xYsd9oZw+YQQEV+10G0P5uMpGctZZKnyQ+ibRO08bD25nWLmYi2pw==}
+
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -3357,6 +3363,12 @@ packages:
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       react: '>=16.8.0'
+
+  use-immer@0.9.0:
+    resolution: {integrity: sha512-/L+enLi0nvuZ6j4WlyK0US9/ECUtV5v9RUbtxnn5+WbtaXYUaOBoKHDNL9I5AETdurQ4rIFIj/s+Z5X80ATyKw==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
 
   use-sidecar@1.1.2:
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
@@ -5680,6 +5692,8 @@ snapshots:
 
   ignore@5.3.1: {}
 
+  immer@10.0.4: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -7030,6 +7044,11 @@ snapshots:
 
   use-debounce@10.0.0(react@18.2.0):
     dependencies:
+      react: 18.2.0
+
+  use-immer@0.9.0(immer@10.0.4)(react@18.2.0):
+    dependencies:
+      immer: 10.0.4
       react: 18.2.0
 
   use-sidecar@1.1.2(@types/react@18.2.78)(react@18.2.0):

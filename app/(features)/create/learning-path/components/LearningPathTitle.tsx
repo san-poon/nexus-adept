@@ -16,7 +16,7 @@ export default function LearningPathTitle() {
                 value={root.title}
                 onChange={(e) => {
                     dispatch({
-                        type: 'path-title-updated',
+                        type: "changed_path_title",
                         updatedPath: {
                             ...root,
                             title: e.target.value
@@ -27,7 +27,7 @@ export default function LearningPathTitle() {
             <AddButton
                 onClick={() => {
                     dispatch({
-                        type: 'child-path-added',
+                        type: 'added_child_path',
                         parentID: root.id,
                     });
                     console.log(paths);

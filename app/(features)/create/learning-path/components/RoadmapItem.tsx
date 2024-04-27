@@ -14,7 +14,7 @@ export default function RoadmapItem({ path, level, onInputClick }: any) {
             <DeleteButton
                 onClick={() => {
                     dispatch({
-                        type: 'path-deleted',
+                        type: 'deleted_path',
                         pathID: path.id,
                     })
                 }}
@@ -28,7 +28,7 @@ export default function RoadmapItem({ path, level, onInputClick }: any) {
                 onClick={() => { onInputClick(path.id) }}
                 onChange={(e) => {
                     dispatch({
-                        type: 'path-title-updated',
+                        type: 'changed_path_title',
                         updatedPath: {
                             ...path,
                             title: e.target.value
@@ -39,7 +39,7 @@ export default function RoadmapItem({ path, level, onInputClick }: any) {
             <AddButton
                 onClick={() => {
                     dispatch({
-                        'type': 'child-path-added',
+                        'type': 'added_child_path',
                         'parentID': path.id,
                     });
                 }}

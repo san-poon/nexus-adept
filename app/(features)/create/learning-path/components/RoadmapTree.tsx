@@ -31,7 +31,7 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
                             className="opacity-30 transition-opacity duration-300 hover:opacity-100"
                             onClick={() => {
                                 dispatch({
-                                    type: "sibling-path-added",
+                                    type: 'added_sibling_path',
                                     siblingID: pathID,
                                 });
                             }}
