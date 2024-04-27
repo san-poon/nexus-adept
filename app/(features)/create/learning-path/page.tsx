@@ -1,13 +1,15 @@
-import LearningPathEditor from "./components/LearningPathEditor";
+'use client';
 import LearningPathSaver from "./components/LearningPathSaver";
+import { PathsProvider } from "./components/PathsContext";
+import PathsEditor from "./components/PathsEditor";
 
-export default function LearningPathEditorPage() {
+export default function PathEditorPage() {
     return (
-        <>
-            <LearningPathEditor />
+        <PathsProvider>
+            <PathsEditor />
             <div className=" flex justify-center my-16">
                 <LearningPathSaver />
             </div>
-        </>
-    )
+        </PathsProvider>
+    );
 }

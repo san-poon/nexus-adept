@@ -1,4 +1,4 @@
-import { Dispatch, createContext, useContext, useReducer } from 'react';
+import { Dispatch, createContext, use, useReducer } from 'react';
 import { Path, Paths } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,15 +9,16 @@ const initialPaths: Paths = {
         title: "",
         childIDs: [],
         parentIDs: [],
-        content: [],
-    }
+    },
 };
 
-export const PathsContext = createContext<Paths | null>(null);
-export const PathsDispatchContext = createContext<Dispatch<PathsAction> | null>(null);
+export const PathsContext = createContext<Paths>(initialPaths);
+export const PathsDispatchContext = createContext((() => { }) as Dispatch<PathsAction>)
 
 export function PathsProvider({ children }: { children: React.ReactNode }) {
-    const [paths, dispatch] = useReducer(pathsReducer, initialPaths);
+    const [paths, dispatch] = useReducer(
+        pathsReducer, initialPaths
+    );
 
     return (
         <PathsContext.Provider value={paths}>
@@ -29,10 +30,10 @@ export function PathsProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function usePaths() {
-    return useContext(PathsContext);
+    return use(PathsContext);
 }
 export function usePathsDispatch() {
-    return useContext(PathsDispatchContext);
+    return use(PathsDispatchContext);
 }
 
 
@@ -43,7 +44,8 @@ type PathsAction =
     | { type: 'path-deleted'; pathID: Path["id"] }
 
 
-function pathsReducer(paths: Paths, action: PathsAction) {
+
+function pathsReducer(paths: Paths, action: PathsAction): Paths {
     switch (action.type) {
 
         case 'child-path-added': {
@@ -52,7 +54,6 @@ function pathsReducer(paths: Paths, action: PathsAction) {
                 title: "",
                 childIDs: [],
                 parentIDs: [action.parentID],
-                content: [],
             }
             // Update the childIDs of the Parent Path
             const updatedParentPath = {
@@ -72,7 +73,6 @@ function pathsReducer(paths: Paths, action: PathsAction) {
                 title: "",
                 childIDs: [],
                 parentIDs: [],
-                content: [],
             };
             const sibling = paths[action.siblingID];
             const parentID = sibling.parentIDs[0]; // A hierarchy has always one parent
@@ -135,5 +135,3 @@ function pathsReducer(paths: Paths, action: PathsAction) {
         }
     }
 }
-
-

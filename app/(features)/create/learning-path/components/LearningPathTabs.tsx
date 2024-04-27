@@ -8,7 +8,7 @@ import { HierarchyTreeData } from '../lib/types';
 import LearningPathPreview from './LearningPathPreview';
 import { useState } from 'react';
 
-export default function LearningPathTabs({ children, hierarchies }: { children: React.ReactNode, hierarchies: HierarchyTreeData }) {
+export default function LearningPathTabs({ children }: { children: React.ReactNode }) {
     const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
 
     const handleExpandedChange = (categoryID: string) => {
@@ -32,11 +32,11 @@ export default function LearningPathTabs({ children, hierarchies }: { children: 
                 {children}
             </TabsContent>
             <TabsContent value="preview" className="min-h-screen">
-                <LearningPathPreview
+                This is a preview section.
+                {/* <LearningPathPreview
                     expandedHierarchies={expandedHierarchies}
                     onExpandedChange={handleExpandedChange}
-                    hierarchies={hierarchies}
-                />
+                /> */}
             </TabsContent>
         </Tabs>
     )

@@ -1,9 +1,10 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { AddButton, DeleteButton } from "./tootip-buttons";
+import { usePathsDispatch } from "./PathsContext";
 
-export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUpdate, onCategoryDelete, level, onInputClick }: any) {
-
+export default function RoadmapItem({ path, level, onInputClick }: any) {
+    const dispatch = usePathsDispatch();
     const maxDepth = 3;
     const canAddChildren = level < maxDepth;
     return (
@@ -11,19 +12,37 @@ export default function RoadmapItem({ category, onChildCategoryInsert, onTitleUp
             "flex rounded-full border border-neutral-300 dark:border-neutral-700",
         )}>
             <DeleteButton
-                onClick={() => onCategoryDelete(category.id)}
+                onClick={() => {
+                    dispatch({
+                        type: 'path-deleted',
+                        pathID: path.id,
+                    })
+                }}
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
                 className="md:min-w-72"
                 type="text"
                 placeholder={`Level ${level}`}
-                value={category.title}
-                onClick={() => { onInputClick(category.id) }}
-                onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
+                value={path.title}
+                onClick={() => { onInputClick(path.id) }}
+                onChange={(e) => {
+                    dispatch({
+                        type: 'path-title-updated',
+                        updatedPath: {
+                            ...path,
+                            title: e.target.value
+                        }
+                    });
+                }}
             />
             <AddButton
-                onClick={onChildCategoryInsert}
+                onClick={() => {
+                    dispatch({
+                        'type': 'child-path-added',
+                        'parentID': path.id,
+                    });
+                }}
                 className={`${canAddChildren ? "block" : "hidden"}`}
             >
                 {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}

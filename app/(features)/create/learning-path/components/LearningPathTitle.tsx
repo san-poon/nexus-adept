@@ -1,9 +1,11 @@
-
 import { Input } from "@/components/ui/input";
-import { HierarchyData } from "../lib/types";
 import { AddButton } from "./tootip-buttons";
+import { usePaths, usePathsDispatch } from "./PathsContext";
 
-export default function LearningPathTitle({ category, onCategoryInsert, onTitleUpdate }: { category: HierarchyData, onCategoryInsert: any, onTitleUpdate: any }) {
+export default function LearningPathTitle() {
+    const paths = usePaths();
+    const dispatch = usePathsDispatch();
+    const root = paths['ROOT'];
     return (
         <div className="flex">
             <Input
@@ -11,11 +13,25 @@ export default function LearningPathTitle({ category, onCategoryInsert, onTitleU
                 autoFocus
                 type="text"
                 placeholder="Learning Path Title"
-                value={category.title}
-                onChange={(e) => { onTitleUpdate(category.id, e.target.value) }}
+                value={root.title}
+                onChange={(e) => {
+                    dispatch({
+                        type: 'path-title-updated',
+                        updatedPath: {
+                            ...root,
+                            title: e.target.value
+                        }
+                    });
+                }}
             />
             <AddButton
-                onClick={onCategoryInsert}
+                onClick={() => {
+                    dispatch({
+                        type: 'child-path-added',
+                        parentID: root.id,
+                    });
+                    console.log(paths);
+                }}
                 className="mx-2"
             >
                 <p>Add Chapter or Lesson</p>

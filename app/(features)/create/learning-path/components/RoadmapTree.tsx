@@ -5,19 +5,22 @@ import { HierarchyTreeProps } from "../lib/types";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AddButton, EditContentButton } from "./tootip-buttons";
+import { usePaths, usePathsDispatch } from "./PathsContext";
 
-export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryInsert, onSiblingCategoryInsert, onTitleUpdate, onCategoryDelete, onItemClick, activeRoadmapItem, level }: HierarchyTreeProps) {
+export default function RoadmapTree({ pathID, onItemClick, activeRoadmapItem, level }: HierarchyTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
+    const paths = usePaths();
+    const dispatch = usePathsDispatch();
 
     const handleHierarchyToggle = () => {
         setIsExpanded((prev) => !prev);
     };
 
-    const category = hierarchies[categoryID];
+    const path = paths[pathID];
 
-    const childIDs = category.childIDs;
+    const childIDs = path.childIDs;
 
-    const isActiveItem = activeRoadmapItem.includes(categoryID);
+    const isActiveItem = activeRoadmapItem.includes(pathID);
 
     return (
         <li className=" ps-1 md:ps-4">
@@ -27,7 +30,10 @@ export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryIn
                         <AddButton
                             className="opacity-30 transition-opacity duration-300 hover:opacity-100"
                             onClick={() => {
-                                onSiblingCategoryInsert(category.id)
+                                dispatch({
+                                    type: "sibling-path-added",
+                                    siblingID: pathID,
+                                });
                             }}
                         >
                             <p>Add Sibling</p>
@@ -45,10 +51,7 @@ export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryIn
                             </span>
                         </Button>
                         <RoadmapItem
-                            category={category}
-                            onChildCategoryInsert={() => { onChildCategoryInsert(category.id) }}
-                            onTitleUpdate={onTitleUpdate}
-                            onCategoryDelete={onCategoryDelete}
+                            path={path}
                             level={level}
                             onInputClick={onItemClick}
                         />
@@ -70,12 +73,7 @@ export default function RoadmapTree({ categoryID, hierarchies, onChildCategoryIn
                         const nextLevel = level + 1;
                         return (<RoadmapTree
                             key={childID}
-                            categoryID={childID}
-                            hierarchies={hierarchies}
-                            onChildCategoryInsert={onChildCategoryInsert}
-                            onSiblingCategoryInsert={onSiblingCategoryInsert}
-                            onTitleUpdate={onTitleUpdate}
-                            onCategoryDelete={onCategoryDelete}
+                            pathID={childID}
                             level={nextLevel}
                             onItemClick={onItemClick}
                             activeRoadmapItem={activeRoadmapItem}
