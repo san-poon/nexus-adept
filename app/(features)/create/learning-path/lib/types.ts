@@ -1,27 +1,10 @@
-export type HierarchyData = {
-    id: string,
-    title: string,
-    childIDs: Array<string>,
-    parentIDs: Array<string>,
-    content: Lesson,
-};
-export type HierarchyTreeData = Record<string, HierarchyData>;
 
-export type HierarchyTreeProps = {
+export type RoadmapTreeProps = {
     level: number,
     pathID: string,
-    hierarchies?: HierarchyTreeData,
-    onSiblingCategoryInsert?: (siblingID: string) => void,
-    onChildCategoryInsert?: (parentID: string) => void,
-    onCategoryDelete?: (categoryID: string) => void,
-    onTitleUpdate?: (id: string, title: string) => void,
-    onItemClick: (id: string) => void,
-    activeRoadmapItem: string[],
+    onPathClick: (id: string) => void,
+    activePathID: string,
 };
-
-
-
-
 
 export type LessonElements = 'text' | 'image' | 'code' | 'maths' | 'quiz' | 'text/note' | 'text/deep-dive' | 'text/pitfall' | 'title' | 'text/introduction' | 'text/objective';
 export interface LessonBlock {

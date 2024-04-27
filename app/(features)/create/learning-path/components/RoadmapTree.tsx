@@ -1,13 +1,13 @@
 import { useState } from "react";
 import RoadmapItem from "./RoadmapItem";
 import { Button } from "@/components/ui/button";
-import { HierarchyTreeProps } from "../lib/types";
+import { RoadmapTreeProps } from "../lib/types";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AddButton, EditContentButton } from "./tootip-buttons";
 import { usePaths, usePathsDispatch } from "./PathsContext";
 
-export default function RoadmapTree({ pathID, onItemClick, activeRoadmapItem, level }: HierarchyTreeProps) {
+export default function RoadmapTree({ pathID, onPathClick, activePathID, level }: RoadmapTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
     const paths = usePaths();
     const dispatch = usePathsDispatch();
@@ -20,7 +20,7 @@ export default function RoadmapTree({ pathID, onItemClick, activeRoadmapItem, le
 
     const childIDs = path.childIDs;
 
-    const isActiveItem = activeRoadmapItem.includes(pathID);
+    const isActiveItem = activePathID.includes(pathID);
 
     return (
         <li className=" ps-1 md:ps-4">
@@ -53,7 +53,7 @@ export default function RoadmapTree({ pathID, onItemClick, activeRoadmapItem, le
                         <RoadmapItem
                             path={path}
                             level={level}
-                            onInputClick={onItemClick}
+                            onInputClick={onPathClick}
                         />
                         <div className="w-6 md:w-10 rounded-full">
                             {isActiveItem && (
@@ -75,8 +75,8 @@ export default function RoadmapTree({ pathID, onItemClick, activeRoadmapItem, le
                             key={childID}
                             pathID={childID}
                             level={nextLevel}
-                            onItemClick={onItemClick}
-                            activeRoadmapItem={activeRoadmapItem}
+                            onPathClick={onPathClick}
+                            activePathID={activePathID}
                         />)
                     })}
                 </ul>

@@ -11,7 +11,7 @@ import Menu from "@/components/ui/Menu";
 import { usePaths } from "./PathsContext";
 
 export default function LearningPathEditor() {
-    const [activeItem, setActiveItem] = useState<string[]>(['ROOT']); // Default active lesson.
+    const [activePathID, setActivePathID] = useState('ROOT'); // Default active path.
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const paths = usePaths();
 
@@ -19,12 +19,9 @@ export default function LearningPathEditor() {
         setIsMenuOpen(!isMenuOpen);
     }
 
-    const handleRoadmapItemClick = (itemId: string) => {
-        if (activeItem.includes(itemId)) return;
-        setActiveItem((ai) => {
-            const newActiveItems = ai.slice(0, 0);
-            return [...newActiveItems, itemId];
-        });
+    const handlePathClick = (pathID: string) => {
+        if (activePathID === pathID) return;
+        else setActivePathID(pathID);
     }
 
     // Root represents the title of the learning path and
@@ -50,8 +47,8 @@ export default function LearningPathEditor() {
                                     key={id}
                                     pathID={id}
                                     level={1}
-                                    activeRoadmapItem={activeItem}
-                                    onItemClick={handleRoadmapItemClick}
+                                    activePathID={activePathID}
+                                    onPathClick={handlePathClick}
                                 />
                             ))}
                         </ul>

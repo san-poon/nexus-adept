@@ -4,7 +4,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs';
-import { HierarchyTreeData } from '../lib/types';
+import { Paths } from '../lib/types';
 import LearningPathPreview from './LearningPathPreview';
 import { useState } from 'react';
 
