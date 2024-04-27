@@ -5,7 +5,7 @@ import { usePathsDispatch } from "./PathsContext";
 
 export default function RoadmapItem({ path, level, onInputClick }: any) {
     const dispatch = usePathsDispatch();
-    const maxDepth = 3;
+    const maxDepth = 2;
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
