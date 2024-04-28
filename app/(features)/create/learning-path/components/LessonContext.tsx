@@ -1,4 +1,4 @@
-import { Dispatch, createContext, useContext, useReducer } from 'react';
+import { Dispatch, createContext, useReducer } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Lesson, LessonBlock, LessonElements, Lessons } from '../lib/types';
 import { getImageUrlFromUser } from '../lib/utils';
@@ -28,10 +28,12 @@ const defaultLesson: Lesson = {
 }
 
 const initialLessons: Lessons = {
-    'ROOT': defaultLesson,
+    // Every key in Lessons, is a Paths' `id`
+    'ROOT': defaultLesson, // This is the root `id` of Paths which is used as key in Lessons 
 }
 
-// Here initialLessons represent fallback default value.
+
+// Here initialLessons represent default fallback value.
 const LessonsContext = createContext<Lessons>(initialLessons);
 const LessonsDispatchContext = createContext((() => { }) as Dispatch<LessonsAction>);
 
@@ -50,16 +52,17 @@ export function LessonsProvider({ children }: { children: React.ReactNode }) {
 }
 
 type LessonsAction =
-    | { type: 'lesson-block-added'; block: LessonBlock; elementType: LessonBlock["elementType"]; }
-    | { type: 'lesson-block-deleted'; blockID: LessonBlock["id"]; }
-    | { type: 'lesson-text-block-changed' }
-    | { type: 'lesson-code-block-changed' }
-    | { type: 'lesson-mcqs-block-changed' }
+    | { type: 'added_block'; activePathID: string, block: LessonBlock; elementType: LessonBlock["elementType"]; }
+    | { type: 'deleted_block'; blockID: LessonBlock["id"]; }
+    | { type: 'changed_text_block' }
+    | { type: 'changed_code_block' }
+    | { type: 'changed_mcqs_block' }
 
 function lessonsReducer(lessons: Lessons, action: LessonsAction): Lessons {
     switch (action.type) {
-        case 'lesson-block-added': {
-            const { elementType, block } = action;
+        case 'added_block': {
+            const { activePathID, elementType, block } = action;
+            const lesson = lessons[activePathID]; // A Paths' `id` is equal to one of Lessons' key
             const prevBlockID = block.id;
             const nextBlockID = block.nextBlockID; // null if it's the last element
             const newBlock = getNewBlock(elementType, prevBlockID, nextBlockID);
@@ -75,19 +78,19 @@ function lessonsReducer(lessons: Lessons, action: LessonsAction): Lessons {
             }
         }
 
-        case 'lesson-block-deleted': {
+        case 'deleted_block': {
 
         }
 
-        case 'lesson-text-block-changed': {
+        case 'changed_text_block': {
 
         }
 
-        case 'lesson-code-block-changed': {
+        case 'changed_code_block': {
 
         }
 
-        case 'lesson-mcqs-block-changed': {
+        case 'changed_mcqs_block': {
 
         }
         default: {

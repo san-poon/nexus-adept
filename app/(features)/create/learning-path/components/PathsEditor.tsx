@@ -59,9 +59,7 @@ export default function LearningPathEditor() {
                         "mx-2 lg:mx-4", isMenuOpen ? "hidden lg:block" : "block"
                     )}>
                         <ActivePathContext.Provider value={activePathID}>
-                            <LessonsProvider>
-                                <p>This is the content editor section.</p>
-                            </LessonsProvider>
+                            <LessonEditor />
                         </ActivePathContext.Provider>
                     </section>
                 </section>

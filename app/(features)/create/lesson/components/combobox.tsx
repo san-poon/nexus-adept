@@ -138,7 +138,7 @@ export function AddContentCombobox({ index, onInsertContentField }: any) {
                             <CommandItem
                                 key={type.value}
                                 value={type.value}
-                                onSelect={(currentValue) => {
+                                onSelect={() => {
                                     setOpen(false);
                                     onInsertContentField(index, type.value);
                                 }}

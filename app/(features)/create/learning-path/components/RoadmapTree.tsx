@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { RoadmapTreeProps } from "../lib/types";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { AddButton, EditContentButton } from "./tootip-buttons";
+import { AddButton } from "./tootip-buttons";
 import { usePaths, usePathsDispatch } from "./PathsContext";
 
 export default function RoadmapTree({ pathID, onPathClick, activePathID, level }: RoadmapTreeProps) {
@@ -20,7 +20,7 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
 
     const childIDs = path.childIDs;
 
-    const isActiveItem = activePathID.includes(pathID);
+    const isActiveItem = pathID === activePathID;
 
     return (
         <li className=" ps-1 md:ps-4">
@@ -55,14 +55,6 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
                             level={level}
                             onInputClick={onPathClick}
                         />
-                        <div className="w-6 md:w-10 rounded-full">
-                            {isActiveItem && (
-                                <EditContentButton className="" onClick={() => { }}>
-                                    <p>Edit Lesson</p>
-                                </EditContentButton>
-                            )}
-                        </div>
-
                     </div>
                 </div>
 

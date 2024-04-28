@@ -22,11 +22,22 @@ export type Path = {
     title: string,
     childIDs: Array<string>,
     parentIDs: Array<string>,
+    lesson: Lesson, // Anything either exercise or guide is a lesson, for it teaches us.
 };
 export type Paths = Record<string, Path>;
 
 
+export type PathsAction =
+    | { type: "added_child_path"; parentID: Path["id"] }
+    | { type: "added_sibling_path"; siblingID: Path["id"] }
+    | { type: "changed_path_title"; updatedPath: Path }
+    | { type: 'deleted_path'; pathID: Path["id"] }
 
+    | { type: 'added_lesson_block'; activePathID: string, topBlock: LessonBlock; elementType: LessonElements; }
+    | { type: 'deleted_lesson_block'; blockID: LessonBlock["id"]; }
+    | { type: 'changed_lesson_text_block' }
+    | { type: 'changed_lesson_code_block' }
+    | { type: 'changed_lesson_mcqs_block' };
 
 
 
