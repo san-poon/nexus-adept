@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
-import { PathsProvider, usePaths, usePathsDispatch } from "../../learning-path/components/PathsContext";
+import { usePaths, usePathsDispatch } from "../../learning-path/components/PathsContext";
 import { useActivePathID } from "../../learning-path/components/ActivePathContext";
 import { Lesson, LessonBlock } from "../../learning-path/lib/types";
 
@@ -30,18 +30,16 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
     }, []);
 
     return (
-        <>
-            <Textarea ref={textareaRef}
-                className={cn(
-                    "resize-none overflow-hidden w-full p-4 min-h-16",
-                    className
-                )}
-                maxLength={800}
-                minLength={1}
-                {...props}
-            />
-        </>
-    )
+        <Textarea ref={textareaRef}
+            className={cn(
+                "resize-none overflow-hidden w-full p-4 min-h-16",
+                className
+            )}
+            maxLength={800}
+            minLength={1}
+            {...props}
+        />
+    );
 }
 
 
@@ -90,5 +88,5 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
                 })
             }}
         />
-    )
+    );
 }

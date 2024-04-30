@@ -1,4 +1,4 @@
-import { Dispatch, createContext, use, useReducer } from 'react';
+import { Dispatch, createContext, use } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { Lesson, LessonBlock, LessonElements, Path, Paths, PathsAction } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';

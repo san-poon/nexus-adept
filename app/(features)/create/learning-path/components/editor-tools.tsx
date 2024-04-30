@@ -6,8 +6,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { usePathsDispatch } from './PathsContext';
 import { useActivePathID } from './ActivePathContext';
 import { LessonBlock, LessonElements } from '../lib/types';
-import { PlusIcon } from 'lucide-react';
+import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
 import { DeleteButton } from './tootip-buttons';
+import clsx from 'clsx';
 
 
 interface ContentType {
@@ -115,5 +116,83 @@ export function DeleteBlock({ blockID }: { blockID: LessonBlock["id"] }) {
                 }}
             />
         </div>
+    );
+}
+
+
+// For users to choose from available languages
+const languages = [
+    {
+        value: 'javascript',
+        label: 'JavaScript',
+    },
+    {
+        value: 'css',
+        label: 'CSS',
+    },
+    {
+        value: 'html',
+        label: 'HTML',
+    },
+];
+
+export function CodeLangSelector({ blockData }: { blockData: LessonBlock }) {
+    const [open, setOpen] = useState(false);
+    const [lang, setLang] = useState("");
+    const activePathID = useActivePathID();
+    const dispatch = usePathsDispatch();
+
+    return (
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <Button
+                    role="combobox"
+                    aria-expanded={open}
+                    className="justify-between text-xs h-min"
+                >
+                    {lang
+                        ? languages.find((textType) => textType.value === lang)?.label
+                        : "JavaScript"}
+                    <ChevronsUpDown className="ms-2 shrink-0 opacity-50 h-min" />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[200px] p-0">
+                <Command>
+                    <CommandInput placeholder="Search text type..." />
+                    <CommandEmpty>No language found!</CommandEmpty>
+                    <CommandGroup className="">
+                        {languages.map((language) => (
+                            <CommandItem
+                                key={language.value}
+                                value={language.value}
+                                onSelect={(currentLang) => {
+                                    setLang(currentLang === lang ? "" : currentLang);
+                                    setOpen(false);
+                                    dispatch({
+                                        "type": "changed_lesson_code_block",
+                                        "activePathID": activePathID,
+                                        "block": {
+                                            ...blockData,
+                                            value: {
+                                                ...blockData.value,
+                                                lang: currentLang,
+                                            }
+                                        }
+                                    })
+                                }}
+                            >
+                                <Check
+                                    className={clsx(`
+                                        "mr-2 h-4 w-4",
+                                        ${lang === language.value ? "opacity-100" : "opacity-0"}
+                                    `)}
+                                />
+                                {language.label}
+                            </CommandItem>
+                        ))}
+                    </CommandGroup>
+                </Command>
+            </PopoverContent>
+        </Popover>
     );
 }

@@ -36,7 +36,7 @@ export type PathsAction =
     | { type: 'added_lesson_block'; activePathID: string; topBlockID: LessonBlock["id"]; elementType: LessonElements; }
     | { type: 'deleted_lesson_block'; activePathID: string; blockID: LessonBlock["id"]; }
     | { type: 'changed_lesson_text_block'; activePathID: string, block: LessonBlock }
-    | { type: 'changed_lesson_code_block'; activePathID: string }
+    | { type: 'changed_lesson_code_block'; activePathID: string, block: LessonBlock }
     | { type: 'changed_lesson_mcqs_block'; activePathID: string };
 
 
