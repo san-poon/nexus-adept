@@ -5,7 +5,7 @@ export const initialLesson: Lesson = {
         id: 'introduction',
         elementType: 'text/introduction',
         value: "",
-        prevBlockID: null, // for first node
+        prevBlockID: null, // for first node. Lesson title is part of Paths itself
         nextBlockID: 'objective',
     },
     'objective': {

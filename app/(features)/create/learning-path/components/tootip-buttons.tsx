@@ -8,28 +8,17 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { PencilSquareIcon } from '@/components/icons';
+import { DeleteIcon, PencilSquareIcon } from '@/components/icons';
 
-export function DeleteButton({ onClick, className }: { onClick: () => void, className: string }) {
+export const DeleteButton = ({ onClick, className }: { onClick: () => void, className: string }) => {
     return (
-        <TooltipProvider delayDuration={300}>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button
-                        onClick={onClick}
-                        className={cn(
-                            "transition duration-200 ease-in-out transform active:scale-75",
-                            className
-                        )}
-                    >
-                        <Trash2Icon className='h-3 w-3' />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent side="top" sideOffset={2} className=" bg-red-200 dark:bg-red-500/40">
-                    <p >Delete Hierarchy?</p>
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
+        <Button
+            onClick={onClick}
+            className={cn("rounded-full", className)}
+            size="icon"
+        >
+            <DeleteIcon />
+        </Button>
     );
 }
 

@@ -33,11 +33,11 @@ export type PathsAction =
     | { type: "changed_path_title"; updatedPath: Path }
     | { type: 'deleted_path'; pathID: Path["id"] }
 
-    | { type: 'added_lesson_block'; activePathID: string, topBlock: LessonBlock; elementType: LessonElements; }
-    | { type: 'deleted_lesson_block'; blockID: LessonBlock["id"]; }
-    | { type: 'changed_lesson_text_block' }
-    | { type: 'changed_lesson_code_block' }
-    | { type: 'changed_lesson_mcqs_block' };
+    | { type: 'added_lesson_block'; activePathID: string; topBlockID: LessonBlock["id"]; elementType: LessonElements; }
+    | { type: 'deleted_lesson_block'; activePathID: string; blockID: LessonBlock["id"]; }
+    | { type: 'changed_lesson_text_block'; activePathID: string }
+    | { type: 'changed_lesson_code_block'; activePathID: string }
+    | { type: 'changed_lesson_mcqs_block'; activePathID: string };
 
 
 

@@ -69,18 +69,20 @@ export function TitleBlock() {
     );
 }
 
-export function TextBlock({ blockData, placeholder }: { blockData: LessonBlock, placeholder: string }) {
+export function TextBlock({ blockData, placeholder, className }: { blockData: LessonBlock, placeholder: string, className?: string }) {
     const dispatch = usePathsDispatch();
+    const activePathID = useActivePathID();
     return (
         <DynamicTextarea
             rows={1}
-            className=""
+            className={className}
             placeholder={placeholder}
             name={blockData.id}
             value={blockData.value}
             onChange={() => {
                 dispatch({
                     'type': 'changed_lesson_text_block',
+                    'activePathID': activePathID,
                 })
             }}
         />

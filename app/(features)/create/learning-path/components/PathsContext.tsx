@@ -30,7 +30,12 @@ export function usePathsDispatch() {
 }
 
 
-
+/**
+ * 
+ * @param paths state draft
+ * @param action what happened?
+ * @returns updated state
+ */
 function pathsReducer(paths: Paths, action: PathsAction): Paths {
     switch (action.type) {
 
@@ -45,16 +50,6 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             paths[action.parentID].childIDs.push(newChildPath.id); // Update the childIDs of the Parent Path
             paths[newChildPath.id] = newChildPath; // Add new path
             return paths;
-            // // Update the childIDs of the Parent Path
-            // const updatedParentPath = {
-            //     ...paths[action.parentID],
-            //     childIDs: [...paths[action.parentID].childIDs, newChildPath.id],
-            // }
-            // return {
-            //     ...paths,
-            //     [action.parentID]: updatedParentPath,
-            //     [newChildPath.id]: newChildPath,
-            // }
         }
 
         case 'added_sibling_path': {
@@ -74,23 +69,6 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             paths[parentID].childIDs.splice(siblingIndex, 0, newPath.id);
             paths[newPath.id] = newPath;
             return paths;
-
-            // // Update the sibling's parent's `childIDs` by inserting 
-            // // the new sibling's id before the current sibling's id
-            // const updatedParentPath = {
-            //     ...paths[parentID],
-            //     childIDs: [
-            //         ...paths[parentID].childIDs.slice(0, siblingIndex),
-            //         newPath.id, // Add before the sibling
-            //         ...paths[parentID].childIDs.slice(siblingIndex),
-            //     ],
-            // };
-
-            // return {
-            //     ...paths,
-            //     [newPath.id]: newPath,
-            //     [parentID]: updatedParentPath,
-            // };
         }
 
         case 'changed_path_title': {
@@ -107,75 +85,43 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             parentPath.childIDs.splice(index, 1); // Delete the pathID from parent's `childIDs`
             delete paths[pathID];
             return paths;
-            // // Filter out the path to be deleted from the parent's childIDs
-            // const updatedParentPath = {
-            //     ...paths[parentID],
-            //     childIDs: paths[parentID].childIDs.filter((id) => id !== pathID),
-            // };
-
-            // //Create a copy of the previous hierarchies without the deleted category
-            // const updatedPaths = { ...paths };
-            // delete updatedPaths[pathID];
-
-            // return {
-            //     ...updatedPaths,
-            //     [parentID]: updatedParentPath,
-            // }
         }
 
 
         case "added_lesson_block": {
-            const { activePathID, elementType, topBlock } = action;
+            const { activePathID, elementType, topBlockID } = action;
+            const lesson = paths[activePathID].lesson;
+            const topBlock = lesson[topBlockID];
             const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID);
-            // Update the `nextBlockID` of the top block (the block that triggered this action)
-            topBlock.nextBlockID = newBlock.id;
             if (topBlock.nextBlockID) {
-                const bottomBlock = paths[activePathID].lesson[topBlock.nextBlockID];
+                const bottomBlock = lesson[topBlock.nextBlockID];
                 bottomBlock.prevBlockID = newBlock.id;
-                return paths;
-            } return paths;
-            //     // Update the `nextBlockID` of the top block (the block that triggered this action)
-            //     const newTopBlock = {
-            //         ...topBlock,
-            //         nextBlockID: newBlock.id
-            //     };
-            //     if (topBlock.nextBlockID) { // Make sure it's not the last block
-            //         const bottomBlock = paths[activePathID].lesson[topBlock.nextBlockID];
-            //         // Update the `prevBlockID` of the bottom block
-            //         const newBottomBlock = {
-            //             ...bottomBlock,
-            //             prevBlockID: newBlock.id
-            //         }
-            //         return {
-            //             ...paths,
-            //             [activePathID]: {
-            //                 ...paths[activePathID],
-            //                 lesson: {
-            //                     ...paths[activePathID].lesson,
-            //                     [topBlock.id]: newTopBlock,
-            //                     [newBlock.id]: newBlock,
-            //                     [bottomBlock.id]: newBottomBlock,
-            //                 }
-            //             }
-            //         }
-            //     }
-            //     else {
-            //         return {
-            //             ...paths,
-            //             [activePathID]: {
-            //                 ...paths[activePathID],
-            //                 lesson: {
-            //                     ...paths[activePathID].lesson,
-            //                     [topBlock.id]: newTopBlock,
-            //                     [newBlock.id]: newBlock,
-            //                 }
-            //             }
-            //         }
-            //     }
+            }
+            topBlock.nextBlockID = newBlock.id;
+            lesson[newBlock.id] = newBlock;
+            return paths;
+
         }
 
         case 'deleted_lesson_block': {
-            return paths;
+            const {activePathID, blockID} = action;
+            const lesson = paths[activePathID].lesson;
+            const block = lesson[blockID];
+
+            // `prevBlockID` is never `null` except for the 'introduction' block which user must not be able to delete
+            if(block.prevBlockID) { 
+                const topBlock = lesson[block.prevBlockID];
+                if(block.nextBlockID) {
+                    const bottomBlock = lesson[block.nextBlockID];
+                    topBlock.nextBlockID = block.nextBlockID;
+                    bottomBlock.prevBlockID = block.prevBlockID;
+                } else {
+                    topBlock.nextBlockID = null;
+                }
+                delete lesson[blockID];
+                return paths; 
+            }
+            return paths; // If user delete the root block ('introduction'), do nothing and return.
         }
         case 'changed_lesson_code_block': {
             return paths;

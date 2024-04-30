@@ -85,7 +85,7 @@ export const DeleteButton = ({ onClick, className }: { onClick: () => void, clas
         <Button onClick={onClick} className={className}>
             <DeleteIcon />
         </Button>
-    )
+    );
 }
 
 export const CreateButton = ({ onClick, ...rest }: { onClick: () => void }) => {

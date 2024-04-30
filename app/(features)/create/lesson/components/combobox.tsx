@@ -151,7 +151,7 @@ export function AddContentCombobox({ index, onInsertContentField }: any) {
                 </Command>
             </PopoverContent>
         </Popover>
-    )
+    );
 }
 
 
