@@ -104,14 +104,14 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
         }
 
         case 'deleted_lesson_block': {
-            const {activePathID, blockID} = action;
+            const { activePathID, blockID } = action;
             const lesson = paths[activePathID].lesson;
             const block = lesson[blockID];
 
             // `prevBlockID` is never `null` except for the 'introduction' block which user must not be able to delete
-            if(block.prevBlockID) { 
+            if (block.prevBlockID) {
                 const topBlock = lesson[block.prevBlockID];
-                if(block.nextBlockID) {
+                if (block.nextBlockID) {
                     const bottomBlock = lesson[block.nextBlockID];
                     topBlock.nextBlockID = block.nextBlockID;
                     bottomBlock.prevBlockID = block.prevBlockID;
@@ -119,14 +119,20 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                     topBlock.nextBlockID = null;
                 }
                 delete lesson[blockID];
-                return paths; 
+                return paths;
             }
             return paths; // If user delete the root block ('introduction'), do nothing and return.
         }
-        case 'changed_lesson_code_block': {
+
+
+        case 'changed_lesson_text_block': {
+            const { activePathID, block } = action;
+            paths[activePathID].lesson[block.id] = block;
             return paths;
         }
-        case 'changed_lesson_text_block': {
+
+
+        case 'changed_lesson_code_block': {
             return paths;
         }
         case 'changed_lesson_mcqs_block': {

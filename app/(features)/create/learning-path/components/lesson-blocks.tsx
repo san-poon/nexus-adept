@@ -79,10 +79,14 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
             placeholder={placeholder}
             name={blockData.id}
             value={blockData.value}
-            onChange={() => {
+            onChange={(e) => {
                 dispatch({
                     'type': 'changed_lesson_text_block',
                     'activePathID': activePathID,
+                    'block': {
+                        ...blockData,
+                        value: e.target.value,
+                    }
                 })
             }}
         />
