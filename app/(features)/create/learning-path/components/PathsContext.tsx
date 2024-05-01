@@ -1,6 +1,6 @@
 import { Dispatch, createContext, use } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { Lesson, LessonBlock, LessonElements, Path, Paths, PathsAction, QuizData } from '../lib/types';
+import { LessonBlock, LessonElements, Path, Paths, PathsAction, QuizData } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import { initialLesson, initialPaths } from '../lib/data';
 import { findAndAddElement, findAndRemoveElement, getImageUrlFromUser } from '../lib/utils';

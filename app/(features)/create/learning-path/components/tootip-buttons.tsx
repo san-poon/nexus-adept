@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Trash2Icon, PlusIcon } from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import {

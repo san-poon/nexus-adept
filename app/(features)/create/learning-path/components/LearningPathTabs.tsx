@@ -5,7 +5,6 @@ import {
     TabsTrigger,
 } from '@/components/ui/tabs';
 import { Paths } from '../lib/types';
-import LearningPathPreview from './LearningPathPreview';
 import { useState } from 'react';
 
 export default function LearningPathTabs({ children }: { children: React.ReactNode }) {
@@ -33,10 +32,6 @@ export default function LearningPathTabs({ children }: { children: React.ReactNo
             </TabsContent>
             <TabsContent value="preview" className="min-h-screen">
                 This is a preview section.
-                {/* <LearningPathPreview
-                    expandedHierarchies={expandedHierarchies}
-                    onExpandedChange={handleExpandedChange}
-                /> */}
             </TabsContent>
         </Tabs>
     )

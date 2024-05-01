@@ -10,7 +10,6 @@ import LessonEditor from "./LessonEditor";
 import Menu from "@/components/ui/Menu";
 import { usePaths } from "./PathsContext";
 import { ActivePathContext } from "./ActivePathContext";
-import { LessonsProvider } from "./LessonContext";
 
 export default function LearningPathEditor() {
     const [activePathID, setActivePathID] = useState('ROOT'); // Default active path.
