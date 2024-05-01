@@ -7,6 +7,7 @@ export const initialLesson: Lesson = {
         value: "",
         prevBlockID: null, // for first node. Lesson title is part of Paths itself
         nextBlockID: 'objective',
+        parentID: null,
     },
     'objective': {
         id: 'objective',
@@ -14,6 +15,7 @@ export const initialLesson: Lesson = {
         value: "",
         prevBlockID: 'introduction',
         nextBlockID: null, // for last node
+        parentID: null,
     },
 }
 export const initialPaths: Paths = {

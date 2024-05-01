@@ -6,7 +6,6 @@ export type RoadmapTreeProps = {
     activePathID: string,
 };
 
-
 //'maths' is not currently supported due the complexity with user input interface.
 export type LessonElements = 'text' | 'image' | 'code' | 'quiz' | 'note' | 'deep-dive' | 'pitfall' | 'text/introduction' | 'text/objective';
 
@@ -52,36 +51,6 @@ export type PathsAction =
 
     | { type: 'added_lesson_block'; activePathID: string; topBlockID: LessonBlock["id"]; elementType: LessonElements; }
     | { type: 'deleted_lesson_block'; activePathID: string; blockID: LessonBlock["id"]; }
-    | { type: 'changed_lesson_block'; activePathID: string, block: LessonBlock | QuizData }
+    | { type: 'changed_lesson_block'; activePathID: string, block: LessonBlock | QuizData };
 
 
-
-
-
-
-export type AnOptionProps = {
-    id: string,
-    value: string,
-    isCorrect: boolean
-};
-
-export type OptionsProps = AnOptionProps[];
-export type QuizProps = {
-    question: string,
-    options: OptionsProps,
-    explanation: string,
-};
-export type QuizBlockProps = {
-    id: string,
-    contentType: LessonElements,
-    value: QuizProps,
-};
-
-export type CodeBlockProps = {
-    id: string,
-    contentType: LessonElements,
-    value: {
-        lang: string,
-        code: string,
-    },
-}
