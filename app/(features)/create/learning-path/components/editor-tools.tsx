@@ -84,7 +84,7 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
                                         "type": 'added_lesson_block',
                                         "activePathID": activePathID,
                                         "elementType": type.value,
-                                        "topBlockID": topBlock["id"]
+                                        "topBlockID": topBlock["id"],
                                     });
                                 }}
                             >
@@ -100,7 +100,7 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
 }
 
 
-export function DeleteBlock({ blockID }: { blockID: LessonBlock["id"] }) {
+export function DeleteBlock({ blockID }: { blockID: LessonBlock['id'] }) {
     const activePathID = useActivePathID();
     const dispatch = usePathsDispatch();
     return (
@@ -108,10 +108,11 @@ export function DeleteBlock({ blockID }: { blockID: LessonBlock["id"] }) {
             <DeleteButton
                 className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100'
                 onClick={() => {
+                    console.log(blockID);
                     dispatch({
                         "type": "deleted_lesson_block",
                         "activePathID": activePathID,
-                        "blockID": blockID
+                        "blockID": blockID,
                     });
                 }}
             />
@@ -169,7 +170,7 @@ export function CodeLangSelector({ blockData }: { blockData: LessonBlock }) {
                                     setLang(currentLang === lang ? "" : currentLang);
                                     setOpen(false);
                                     dispatch({
-                                        "type": "changed_lesson_code_block",
+                                        "type": "changed_lesson_block",
                                         "activePathID": activePathID,
                                         "block": {
                                             ...blockData,

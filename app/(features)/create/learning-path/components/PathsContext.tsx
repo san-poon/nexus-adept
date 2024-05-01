@@ -1,9 +1,9 @@
 import { Dispatch, createContext, use } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { Lesson, LessonBlock, LessonElements, Path, Paths, PathsAction } from '../lib/types';
+import { Lesson, LessonBlock, LessonElements, Path, Paths, PathsAction, QuizData } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import { initialLesson, initialPaths } from '../lib/data';
-import { getImageUrlFromUser } from '../lib/utils';
+import { findAndAddElement, findAndRemoveElement, getImageUrlFromUser } from '../lib/utils';
 
 export const PathsContext = createContext<Paths>(initialPaths);
 export const PathsDispatchContext = createContext((() => { }) as Dispatch<PathsAction>)
@@ -92,15 +92,38 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const { activePathID, elementType, topBlockID } = action;
             const lesson = paths[activePathID].lesson;
             const topBlock = lesson[topBlockID];
-            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID);
+
+            // Every block(e.g: quiz's question block, or deep dive) block will have initial block which will have parentID set, which the newBlock will use.
+            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentID); // Root block for every composed block must be initially defined.
             if (topBlock.nextBlockID) {
                 const bottomBlock = lesson[topBlock.nextBlockID];
                 bottomBlock.prevBlockID = newBlock.id;
             }
             topBlock.nextBlockID = newBlock.id;
+
+            //For quiz blocks.
+            if (elementType === 'quiz') {
+                // Here, newBlock is the quiz block.
+                const defaultQBlock = getNewBlock('text', null, null, newBlock.id); // Default question block, parentBlock is newBlock(quiz block)'s `id`
+                paths[activePathID].lesson[defaultQBlock.id] = defaultQBlock; // Add block to lesson data. Must be deleted if the quiz block is deleted.
+                (newBlock as QuizData).value.questionIDs.push(defaultQBlock.id);
+            }
+            if (topBlock.parentID) { // We need to add the `id` of the new block to one of the array of the parent which triggered this action
+                const parentBlock = lesson[topBlock.parentID];
+                // Find where topBlock's 'id' is stored, and add the `id` of the new block just right after it.
+                if (parentBlock.elementType === 'quiz') {
+                    const quizBlock: QuizData = parentBlock;
+                    const qIDs = quizBlock.value.questionIDs;
+                    const options = quizBlock.value.options;
+                    const allIDs = [qIDs];
+                    for (const item of options) {
+                        allIDs.push(item.feedbackIDs);
+                    }
+                    findAndAddElement(allIDs, topBlock.id, newBlock.id)
+                }
+            }
             lesson[newBlock.id] = newBlock;
             return paths;
-
         }
 
         case 'deleted_lesson_block': {
@@ -108,7 +131,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const lesson = paths[activePathID].lesson;
             const block = lesson[blockID];
 
-            // `prevBlockID` is never `null` except for the 'introduction' block which user must not be able to delete
+            // `prevBlockID` is never `null` except for the root block which user must not be able to delete
             if (block.prevBlockID) {
                 const topBlock = lesson[block.prevBlockID];
                 if (block.nextBlockID) {
@@ -118,24 +141,42 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 } else {
                     topBlock.nextBlockID = null;
                 }
+                if (block.elementType === 'quiz') {
+                    const questionIDs = (block as QuizData).value.questionIDs;
+                    const feedbackIDs = (block as QuizData).value.options.reduce((acc: string[], current) => {
+                        return [...acc, ...current.feedbackIDs]
+                    }, []);
+                    for (let id of questionIDs) {
+                        delete lesson[id];
+                    }
+                    for (let id of feedbackIDs) {
+                        delete lesson[id];
+                    }
+                }
+                if (block.parentID) {
+                    const parentBlock = lesson[block.parentID];
+                    if (parentBlock.elementType === 'quiz') {
+                        const quizBlock: QuizData = parentBlock;
+                        const qIDs = quizBlock.value.questionIDs;
+                        const options = quizBlock.value.options;
+                        const allIDs = [qIDs];
+                        for (const item of options) {
+                            allIDs.push(item.feedbackIDs);
+                        }
+                        findAndRemoveElement(allIDs, block.id);
+                    }
+                    //TODO: implement a way to remove 'ID' in parent component of other element types.
+                }
                 delete lesson[blockID];
                 return paths;
             }
-            return paths; // If user delete the root block ('introduction'), do nothing and return.
+            return paths; // In rare cases if user delete the root block, do nothing and return.
         }
 
 
-        case 'changed_lesson_text_block': {
+        case 'changed_lesson_block': {
             const { activePathID, block } = action;
             paths[activePathID].lesson[block.id] = block;
-            return paths;
-        }
-
-
-        case 'changed_lesson_code_block': {
-            return paths;
-        }
-        case 'changed_lesson_mcqs_block': {
             return paths;
         }
 
@@ -149,8 +190,9 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
 
 function getNewBlock(
     element: LessonElements,
-    prevBlockID: string,
-    nextBlockID: string | null
+    prevBlockID: LessonBlock['prevBlockID'],
+    nextBlockID: LessonBlock['nextBlockID'],
+    parentID: string | null,
 ): LessonBlock {
     switch (element) {
         case 'text': return {
@@ -159,6 +201,7 @@ function getNewBlock(
             value: "",
             prevBlockID,
             nextBlockID,
+            parentID,
         }
         case 'code': {
             return {
@@ -170,6 +213,7 @@ function getNewBlock(
                 },
                 prevBlockID,
                 nextBlockID,
+                parentID,
             };
         }
         case 'image': {
@@ -181,6 +225,7 @@ function getNewBlock(
                     value: imageUrl,
                     prevBlockID,
                     nextBlockID,
+                    parentID,
                 };
             } catch (error) {
                 console.log(`Error: ${error}`);
@@ -191,16 +236,17 @@ function getNewBlock(
                 id: uuidv4(),
                 elementType: 'quiz',
                 value: {
-                    question: '',
+                    questionIDs: [], // (Default: TextBlock) IDs in lesson blocks: 'text', 'image' & 'code'. ('maths' not supported)
                     options: [
-                        { id: uuidv4(), value: '', isCorrect: false },
-                        { id: uuidv4(), value: '', isCorrect: false },
-                        { id: uuidv4(), value: '', isCorrect: false },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] }, // feedbackIDs represent IDs in lesson blocks.
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
                     ],
-                    explanation: '',
                 },
                 prevBlockID,
                 nextBlockID,
+                parentID,
             };
         }
         default: {

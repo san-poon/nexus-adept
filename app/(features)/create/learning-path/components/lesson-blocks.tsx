@@ -5,7 +5,42 @@ import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
 import { usePaths, usePathsDispatch } from "../../learning-path/components/PathsContext";
 import { useActivePathID } from "../../learning-path/components/ActivePathContext";
-import { Lesson, LessonBlock } from "../../learning-path/lib/types";
+import { LessonBlock, QuizData } from "../../learning-path/lib/types";
+import { AddBlock, CodeLangSelector } from "./editor-tools";
+import { Checkbox } from "@/components/ui/checkbox";
+
+export function Block({ block }: { block: LessonBlock }) {
+    switch (block.elementType) {
+
+        case 'text': {
+            return (
+                <TextBlock blockData={block} placeholder="A paragraph..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
+            );
+        }
+
+        case 'code': {
+            return (
+                <div>
+                    <div className='text-xs flex items-center justify-end opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 my-0'>
+                        <CodeLangSelector blockData={block} />
+                    </div>
+                    <TextBlock blockData={block} placeholder="Paste your code here..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
+                </div>
+            );
+        }
+
+        case 'quiz': {
+            return (
+                <QuizBlock block={block} />
+            )
+        }
+
+
+        default: {
+            return null;
+        }
+    }
+}
 
 export function DynamicTextarea({ className, ...props }: TextareaProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -79,7 +114,7 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
             value={blockData.value}
             onChange={(e) => {
                 dispatch({
-                    'type': 'changed_lesson_text_block',
+                    'type': 'changed_lesson_block',
                     'activePathID': activePathID,
                     'block': {
                         ...blockData,
@@ -88,5 +123,93 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
                 })
             }}
         />
+    );
+}
+
+/*
+* A question can contain text and/or code. // Probably 'maths' in the future
+* An option's value can only contain text (for now). 
+* An option's feedback can contain 'text' block's `IDs` (for now)
+*/
+export function QuizBlock({ block }: { block: QuizData }) {
+    const activePathID = useActivePathID();
+    const paths = usePaths();
+    const dispatch = usePathsDispatch();
+    const questionIDs = block.value.questionIDs;
+    const options = block.value.options;
+    return (
+        <section>
+            <label>Question</label>
+            {questionIDs.length > 0 && questionIDs.map((id) => (
+                <div key={id}>
+                    <Block block={paths[activePathID].lesson[id]} />
+                    <AddBlock topBlock={paths[activePathID].lesson[id]} />
+                </div>
+            ))}
+
+            <label>Options</label>
+            {options.map((option) => (
+                <div key={option.id}>
+                    <Checkbox
+                        checked={option.isCorrect}
+                        onCheckedChange={(checked) => {
+
+                            const updatedOptions = options.map((choice) => {
+                                if (choice.id === option.id) {
+                                    return {
+                                        ...choice,
+                                        isCorrect: checked,
+                                    }
+                                } else return choice;
+                            });
+                            dispatch({
+                                "type": "changed_lesson_block",
+                                "activePathID": activePathID,
+                                "block": {
+                                    ...block,
+                                    value: {
+                                        ...block.value,
+                                        options: [
+                                            updatedOptions
+                                        ]
+                                    }
+                                }
+                            });
+
+                        }}
+                    />
+                    <Input
+                        type="text"
+                        placeholder="option..."
+                        value={option.value}
+                        onChange={(e) => {
+                            const updatedOptions = options.map((choice) => {
+                                if (choice.id === option.id) {
+                                    return {
+                                        ...choice,
+                                        value: e.target.value
+                                    }
+                                } else return choice;
+                            });
+                            dispatch({
+                                "type": "changed_lesson_block",
+                                "activePathID": activePathID,
+                                "block": {
+                                    ...block,
+                                    value: {
+                                        ...block.value,
+                                        options: [
+                                            updatedOptions
+                                        ]
+                                    }
+                                }
+                            });
+                        }}
+                    />
+                </div>
+            ))}
+
+
+        </section>
     );
 }
