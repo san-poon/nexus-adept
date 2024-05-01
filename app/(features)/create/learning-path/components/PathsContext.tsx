@@ -104,9 +104,15 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             //For quiz blocks.
             if (elementType === 'quiz') {
                 // Here, newBlock is the quiz block.
-                const defaultQBlock = getNewBlock('text', null, null, newBlock.id); // Default question block, parentBlock is newBlock(quiz block)'s `id`
+                const quizBlock: QuizData = newBlock;
+                const defaultQBlock = getNewBlock('text', null, null, quizBlock.id); // Default question block, parentBlock is newBlock(quiz block)'s `id`
                 paths[activePathID].lesson[defaultQBlock.id] = defaultQBlock; // Add block to lesson data. Must be deleted if the quiz block is deleted.
-                (newBlock as QuizData).value.questionIDs.push(defaultQBlock.id);
+                quizBlock.value.questionIDs.push(defaultQBlock.id);
+                for (let option of quizBlock.value.options) {
+                    const defaultFBlock = getNewBlock('text', null, null, quizBlock.id); // Default feedback block
+                    paths[activePathID].lesson[defaultFBlock.id] = defaultFBlock;
+                    option.feedbackIDs.push(defaultFBlock.id);
+                }
             }
             if (topBlock.parentID) { // We need to add the `id` of the new block to one of the array of the parent which triggered this action
                 const parentBlock = lesson[topBlock.parentID];
@@ -142,8 +148,9 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                     topBlock.nextBlockID = null;
                 }
                 if (block.elementType === 'quiz') {
-                    const questionIDs = (block as QuizData).value.questionIDs;
-                    const feedbackIDs = (block as QuizData).value.options.reduce((acc: string[], current) => {
+                    const quizBlock: QuizData = block;
+                    const questionIDs = quizBlock.value.questionIDs;
+                    const feedbackIDs = quizBlock.value.options.reduce((acc: string[], current) => {
                         return [...acc, ...current.feedbackIDs]
                     }, []);
                     for (let id of questionIDs) {

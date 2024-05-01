@@ -8,13 +8,14 @@ import { useActivePathID } from "../../learning-path/components/ActivePathContex
 import { LessonBlock, QuizData } from "../../learning-path/lib/types";
 import { AddBlock, CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
+import LessonChain from "./LessonChain";
 
 export function Block({ block }: { block: LessonBlock }) {
     switch (block.elementType) {
 
         case 'text': {
             return (
-                <TextBlock blockData={block} placeholder="A paragraph..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
+                <TextBlock blockData={block} placeholder="Text here..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
             );
         }
 
@@ -31,7 +32,9 @@ export function Block({ block }: { block: LessonBlock }) {
 
         case 'quiz': {
             return (
-                <QuizBlock block={block} />
+                <div className="m-1 md:m-2 p-1  md:p-4">
+                    <QuizBlock block={block} />
+                </div>
             )
         }
 
@@ -140,12 +143,9 @@ export function QuizBlock({ block }: { block: QuizData }) {
     return (
         <section>
             <label>Question</label>
-            {questionIDs.length > 0 && questionIDs.map((id) => (
-                <div key={id}>
-                    <Block block={paths[activePathID].lesson[id]} />
-                    <AddBlock topBlock={paths[activePathID].lesson[id]} />
-                </div>
-            ))}
+            {questionIDs.length > 0 && (
+                <LessonChain block={paths[activePathID].lesson[questionIDs[0]]} /> // Loop through the first id.
+            )}
 
             <label>Options</label>
             {options.map((option) => (

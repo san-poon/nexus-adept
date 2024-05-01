@@ -108,7 +108,6 @@ export function DeleteBlock({ blockID }: { blockID: LessonBlock['id'] }) {
             <DeleteButton
                 className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100'
                 onClick={() => {
-                    console.log(blockID);
                     dispatch({
                         "type": "deleted_lesson_block",
                         "activePathID": activePathID,
