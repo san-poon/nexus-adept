@@ -31,14 +31,14 @@ export default function LearningPathEditor() {
     const rootChildIDs = root?.childIDs;
 
     return (
-        <div className="min-h-[78vh]">
+        <div className="min-h-[78vh] w-full">
             <LearningPathTabs>
                 <div className="flex justify-between lg:justify-end mx-2 md:mx-8">
                     <Menu className="lg:hidden" isOpen={isMenuOpen} onClick={handleMenuToggle} />
                     <DetailsEditor />
                 </div>
                 <section className=" min-h-[60vh] lg:flex">
-                    <section className={cn("lg:w-1/3 lg:border-e border-neutral-300 dark:border-neutral-600", isMenuOpen ? 'block' : "hidden lg:block")}>
+                    <section className={cn("lg:w-1/3", isMenuOpen ? 'block' : "hidden lg:block")}>
                         <div className="flex justify-center my-4">
                             <LearningPathTitle />
                         </div>
@@ -55,7 +55,7 @@ export default function LearningPathEditor() {
                         </ul>
                     </section>
                     <section className={cn(
-                        "mx-2 lg:mx-4", isMenuOpen ? "hidden lg:block" : "block"
+                        "mx-2 lg:mx-24 lg:w-2/3", isMenuOpen ? "hidden lg:block" : "block"
                     )}>
                         <ActivePathContext.Provider value={activePathID}>
                             <LessonEditor />

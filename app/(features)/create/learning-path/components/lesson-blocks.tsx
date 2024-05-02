@@ -149,12 +149,11 @@ export function QuizBlock({ block }: { block: QuizData }) {
 
             <label>Options</label>
             {options.map((option) => (
-                <div key={option.id}>
+                <div key={option.id} className="flex items-center space-x-2 space-y-2">
                     <Checkbox
                         checked={option.isCorrect}
                         onCheckedChange={(checked) => {
-
-                            const updatedOptions = options.map((choice) => {
+                            const updatedOptions = block.value.options.map((choice) => {
                                 if (choice.id === option.id) {
                                     return {
                                         ...choice,
@@ -170,7 +169,7 @@ export function QuizBlock({ block }: { block: QuizData }) {
                                     value: {
                                         ...block.value,
                                         options: [
-                                            updatedOptions
+                                            ...updatedOptions, // Haha, don't forget to spread
                                         ]
                                     }
                                 }
@@ -179,6 +178,7 @@ export function QuizBlock({ block }: { block: QuizData }) {
                         }}
                     />
                     <Input
+                        className="w-full md:w-1/2"
                         type="text"
                         placeholder="option..."
                         value={option.value}
@@ -199,7 +199,7 @@ export function QuizBlock({ block }: { block: QuizData }) {
                                     value: {
                                         ...block.value,
                                         options: [
-                                            updatedOptions
+                                            ...updatedOptions // Haha.Dont' forget to spread. 
                                         ]
                                     }
                                 }

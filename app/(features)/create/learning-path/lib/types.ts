@@ -7,7 +7,9 @@ export type RoadmapTreeProps = {
 };
 
 //'maths' is not currently supported due the complexity with user input interface.
-export type LessonElements = 'text' | 'image' | 'code' | 'quiz' | 'note' | 'deep-dive' | 'pitfall' | 'text/introduction' | 'text/objective';
+export type LessonElements =
+    | 'text' | 'image' | 'code' | 'quiz' | 'note'
+    | 'deep-dive' | 'pitfall' | 'text/introduction' | 'text/objective';
 
 
 export interface LessonBlock {

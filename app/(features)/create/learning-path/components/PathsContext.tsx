@@ -160,7 +160,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                         delete lesson[id];
                     }
                 }
-                if (block.parentID) {
+                if (block.parentID) { // Remove the `id` referencing the block being deleted
                     const parentBlock = lesson[block.parentID];
                     if (parentBlock.elementType === 'quiz') {
                         const quizBlock: QuizData = parentBlock;
