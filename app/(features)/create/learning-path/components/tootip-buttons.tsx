@@ -22,7 +22,7 @@ export const DeleteButton = ({ onClick, className }: { onClick: () => void, clas
     );
 }
 
-export function AddButton({ onClick, className, children }: { onClick: () => void, className: string, children: React.ReactNode }) {
+export function AddButton({ onClick, className, children }: { onClick: () => void, className?: string, children: React.ReactNode }) {
     return (
         <TooltipProvider delayDuration={300}>
             <Tooltip>

@@ -9,8 +9,6 @@ export default function LearningPathTitle() {
     return (
         <div className="flex">
             <Input
-                className="md:min-w-80"
-                autoFocus
                 type="text"
                 placeholder="Learning Path Title"
                 value={root.title}
@@ -32,7 +30,6 @@ export default function LearningPathTitle() {
                     });
                     console.log(paths);
                 }}
-                className="mx-2"
             >
                 <p>Add Chapter or Lesson</p>
             </AddButton>

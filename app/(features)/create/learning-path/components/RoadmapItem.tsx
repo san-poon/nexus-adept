@@ -21,7 +21,7 @@ export default function RoadmapItem({ path, level, onInputClick }: any) {
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className="md:min-w-72"
+                className=""
                 type="text"
                 placeholder={`Level ${level}`}
                 value={path.title}

@@ -23,7 +23,7 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
     const isActiveItem = pathID === activePathID;
 
     return (
-        <li className=" ps-1 md:ps-4">
+        <li className="">
             <div className="flex items-center">
                 <div>
                     <div className="flex justify-center">
