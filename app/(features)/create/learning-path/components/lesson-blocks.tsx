@@ -9,6 +9,7 @@ import { LessonBlock, QuizData } from "../../learning-path/lib/types";
 import { AddBlock, CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
 import LessonChain from "./LessonChain";
+import { Label } from "@/components/ui/label";
 
 export function Block({ block }: { block: LessonBlock }) {
     switch (block.elementType) {
@@ -43,41 +44,6 @@ export function Block({ block }: { block: LessonBlock }) {
             return null;
         }
     }
-}
-
-export function DynamicTextarea({ className, ...props }: TextareaProps) {
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-    // Automatically increase the height with content
-    useEffect(() => {
-        const adjustHeight = () => {
-            if (textareaRef.current) {
-                textareaRef.current.style.height = 'auto';
-                textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
-            }
-        }
-        const currentTextarea = textareaRef.current; // Capture the current value
-
-        currentTextarea?.addEventListener('input', adjustHeight);
-
-        //Initial adjustment
-        adjustHeight();
-        return () => {
-            currentTextarea?.removeEventListener('input', adjustHeight); // Use the captured value
-        };
-    }, []);
-
-    return (
-        <Textarea ref={textareaRef}
-            className={cn(
-                "resize-none overflow-hidden w-full p-4 min-h-16",
-                className
-            )}
-            maxLength={800}
-            minLength={1}
-            {...props}
-        />
-    );
 }
 
 
@@ -142,74 +108,142 @@ export function QuizBlock({ block }: { block: QuizData }) {
     const options = block.value.options;
     return (
         <section>
-            <label>Question</label>
+            <Label>Question</Label>
             {questionIDs.length > 0 && (
-                <LessonChain block={paths[activePathID].lesson[questionIDs[0]]} /> // Loop through the first id.
+                <LessonChain block={paths[activePathID].lesson[questionIDs[0]]} /> // Loop starting with the first id.
             )}
 
-            <label>Options</label>
+            <Label>Options</Label>
             {options.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2 space-y-2">
-                    <Checkbox
-                        checked={option.isCorrect}
-                        onCheckedChange={(checked) => {
-                            const updatedOptions = block.value.options.map((choice) => {
-                                if (choice.id === option.id) {
-                                    return {
-                                        ...choice,
-                                        isCorrect: checked,
+                <div>
+                    <div key={option.id} className="flex items-center space-x-2 space-y-2">
+                        <Checkbox
+                            checked={option.isCorrect}
+                            onCheckedChange={(checked) => {
+                                const updatedOptions = block.value.options.map((choice) => {
+                                    if (choice.id === option.id) {
+                                        return {
+                                            ...choice,
+                                            isCorrect: checked,
+                                        }
+                                    } else return choice;
+                                });
+                                dispatch({
+                                    "type": "changed_lesson_block",
+                                    "activePathID": activePathID,
+                                    "block": {
+                                        ...block,
+                                        value: {
+                                            ...block.value,
+                                            options: [
+                                                ...updatedOptions, // Haha, don't forget to spread
+                                            ]
+                                        }
                                     }
-                                } else return choice;
-                            });
-                            dispatch({
-                                "type": "changed_lesson_block",
-                                "activePathID": activePathID,
-                                "block": {
-                                    ...block,
-                                    value: {
-                                        ...block.value,
-                                        options: [
-                                            ...updatedOptions, // Haha, don't forget to spread
-                                        ]
-                                    }
-                                }
-                            });
+                                });
 
-                        }}
-                    />
-                    <Input
-                        className="w-full md:w-1/2"
-                        type="text"
-                        placeholder="option..."
-                        value={option.value}
-                        onChange={(e) => {
-                            const updatedOptions = options.map((choice) => {
-                                if (choice.id === option.id) {
-                                    return {
-                                        ...choice,
-                                        value: e.target.value
+                            }}
+                        />
+                        <Input
+                            className="w-full md:w-2/3"
+                            type="text"
+                            placeholder="option..."
+                            value={option.value}
+                            onChange={(e) => {
+                                const updatedOptions = options.map((choice) => {
+                                    if (choice.id === option.id) {
+                                        return {
+                                            ...choice,
+                                            value: e.target.value
+                                        }
+                                    } else return choice;
+                                });
+                                dispatch({
+                                    "type": "changed_lesson_block",
+                                    "activePathID": activePathID,
+                                    "block": {
+                                        ...block,
+                                        value: {
+                                            ...block.value,
+                                            options: [
+                                                ...updatedOptions // Haha.Dont' forget to spread. 
+                                            ]
+                                        }
                                     }
-                                } else return choice;
-                            });
-                            dispatch({
-                                "type": "changed_lesson_block",
-                                "activePathID": activePathID,
-                                "block": {
-                                    ...block,
-                                    value: {
-                                        ...block.value,
-                                        options: [
-                                            ...updatedOptions // Haha.Dont' forget to spread. 
-                                        ]
+                                });
+                            }}
+                        />
+                    </div>
+                    <div className=" ms-12 md:ms-24">
+                        <Label className="text-sm">Feedback:</Label>
+                        <DynamicTextarea
+                            rows={1}
+                            className=""
+                            placeholder="Instant feedback..."
+                            name={option.id}
+                            value={option.feedback}
+                            onChange={(e) => {
+                                const updatedOptions = options.map((choice) => {
+                                    if (choice.id === option.id) {
+                                        return {
+                                            ...choice,
+                                            feedback: e.target.value
+                                        }
+                                    } else return choice;
+                                });
+                                dispatch({
+                                    'type': 'changed_lesson_block',
+                                    'activePathID': activePathID,
+                                    'block': {
+                                        ...block,
+                                        value: {
+                                            ...block.value,
+                                            options: [
+                                                ...updatedOptions,
+                                            ]
+                                        }
                                     }
-                                }
-                            });
-                        }}
-                    />
+                                })
+                            }}
+                        />
+                    </div>
                 </div>
             ))}
-
-
         </section>
+    );
+}
+
+export function DynamicTextarea({ className, ...props }: TextareaProps) {
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    // Automatically increase the height with content
+    useEffect(() => {
+        const adjustHeight = () => {
+            if (textareaRef.current) {
+                textareaRef.current.style.height = 'auto';
+                textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+            }
+        }
+        const currentTextarea = textareaRef.current; // Capture the current value
+
+        currentTextarea?.addEventListener('input', adjustHeight);
+
+        //Initial adjustment
+        adjustHeight();
+        return () => {
+            currentTextarea?.removeEventListener('input', adjustHeight); // Use the captured value
+        };
+    }, []);
+
+    return (
+        <Textarea ref={textareaRef}
+            className={cn(
+                "resize-none overflow-hidden w-full p-4",
+                className
+            )}
+            maxLength={800}
+            minLength={1}
+            {...props}
+        />
     );
 }

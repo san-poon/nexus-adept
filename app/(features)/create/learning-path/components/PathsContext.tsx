@@ -108,11 +108,6 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 const defaultQBlock = getNewBlock('text', null, null, quizBlock.id); // Default question block, parentBlock is newBlock(quiz block)'s `id`
                 paths[activePathID].lesson[defaultQBlock.id] = defaultQBlock; // Add block to lesson data. Must be deleted if the quiz block is deleted.
                 quizBlock.value.questionIDs.push(defaultQBlock.id);
-                for (let option of quizBlock.value.options) {
-                    const defaultFBlock = getNewBlock('text', null, null, quizBlock.id); // Default feedback block
-                    paths[activePathID].lesson[defaultFBlock.id] = defaultFBlock;
-                    option.feedbackIDs.push(defaultFBlock.id);
-                }
             }
             if (topBlock.parentID) { // We need to add the `id` of the new block to one of the array of the parent which triggered this action
                 const parentBlock = lesson[topBlock.parentID];
@@ -120,11 +115,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 if (parentBlock.elementType === 'quiz') {
                     const quizBlock: QuizData = parentBlock;
                     const qIDs = quizBlock.value.questionIDs;
-                    const options = quizBlock.value.options;
                     const allIDs = [qIDs];
-                    for (const item of options) {
-                        allIDs.push(item.feedbackIDs);
-                    }
                     findAndAddElement(allIDs, topBlock.id, newBlock.id)
                 }
             }
@@ -150,13 +141,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 if (block.elementType === 'quiz') {
                     const quizBlock: QuizData = block;
                     const questionIDs = quizBlock.value.questionIDs;
-                    const feedbackIDs = quizBlock.value.options.reduce((acc: string[], current) => {
-                        return [...acc, ...current.feedbackIDs]
-                    }, []);
                     for (let id of questionIDs) {
-                        delete lesson[id];
-                    }
-                    for (let id of feedbackIDs) {
                         delete lesson[id];
                     }
                 }
@@ -167,9 +152,6 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                         const qIDs = quizBlock.value.questionIDs;
                         const options = quizBlock.value.options;
                         const allIDs = [qIDs];
-                        for (const item of options) {
-                            allIDs.push(item.feedbackIDs);
-                        }
                         findAndRemoveElement(allIDs, block.id);
                     }
                     //TODO: implement a way to remove 'ID' in parent component of other element types.
@@ -245,10 +227,10 @@ function getNewBlock(
                 value: {
                     questionIDs: [], // (Default: TextBlock) IDs in lesson blocks: 'text', 'image' & 'code'. ('maths' not supported)
                     options: [
-                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] }, // feedbackIDs represent IDs in lesson blocks.
-                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
-                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
-                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: [] },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' }, // feedbackIDs represent IDs in lesson blocks.
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                     ],
                 },
                 prevBlockID,

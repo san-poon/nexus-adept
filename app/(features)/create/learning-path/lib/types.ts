@@ -25,10 +25,10 @@ export interface QuizData extends LessonBlock {
     value: {
         questionIDs: Array<string>, // (Default: TextBlock) IDs in lesson blocks: 'text', 'image' & 'code'. ('maths' is not supported)
         options: [
-            { id: string, value: string, isCorrect: boolean, feedbackIDs: Array<string> }, // feedbackIDs represent IDs in lesson blocks.
-            { id: string, value: string, isCorrect: boolean, feedbackIDs: Array<string> },
-            { id: string, value: string, isCorrect: boolean, feedbackIDs: Array<string> },
-            { id: string, value: string, isCorrect: boolean, feedbackIDs: Array<string> },
+            { id: string, value: string, isCorrect: boolean, feedback: string }, // feedbackIDs represent IDs in lesson blocks.
+            { id: string, value: string, isCorrect: boolean, feedback: string },
+            { id: string, value: string, isCorrect: boolean, feedback: string },
+            { id: string, value: string, isCorrect: boolean, feedback: string },
         ],
     }
 }
