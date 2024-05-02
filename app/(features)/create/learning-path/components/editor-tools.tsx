@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { usePathsDispatch } from './PathsContext';
+import { usePaths, usePathsDispatch } from './PathsContext';
 import { useActivePathID } from './ActivePathContext';
 import { LessonBlock, LessonElements } from '../lib/types';
 import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
@@ -11,11 +11,11 @@ import { DeleteButton } from './tootip-buttons';
 import clsx from 'clsx';
 
 
-interface ContentType {
+interface Elements {
     value: LessonElements,
     label: string
 }
-const contentTypes: ContentType[] = [
+const elements: Elements[] = [
     {
         value: 'text',
         label: 'Text',
@@ -33,6 +33,22 @@ const contentTypes: ContentType[] = [
         label: 'Code',
     },
 ];
+function getLegalElements(parentType: LessonElements) {
+    switch (parentType) {
+        case 'quiz':
+        case 'note': {
+            return elements.filter((element) => {
+                switch (element.value) {
+                    case 'text':
+                    case 'code':
+                    case 'image': return element;
+                    default: return;
+                }
+            });
+        }
+        default: return elements;
+    }
+}
 
 const BlockIcon = ({ element }: { element: LessonElements }) => {
     switch (element) {
@@ -56,8 +72,14 @@ const BlockIcon = ({ element }: { element: LessonElements }) => {
 
 export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
     const [open, setOpen] = useState(false);
+    const paths = usePaths();
     const dispatch = usePathsDispatch();
     const activePathID = useActivePathID();
+    let legalElements = elements;
+    if (topBlock.parentID) {
+        const parentElementType = paths[activePathID].lesson[topBlock.parentID].elementType;
+        legalElements = getLegalElements(parentElementType);
+    }
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -69,12 +91,12 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
                     <PlusIcon />  <span className="ms-2">Add here..</span>
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="p-0 w-52">
+            <PopoverContent className="p-0 max-w-60">
                 <Command>
                     <CommandInput placeholder="Search..." />
                     <CommandEmpty>Not found</CommandEmpty>
                     <CommandGroup>
-                        {contentTypes.map((type) => (
+                        {legalElements.map((type) => (
                             <CommandItem
                                 key={type.value}
                                 value={type.value}
@@ -84,7 +106,7 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
                                         "type": 'added_lesson_block',
                                         "activePathID": activePathID,
                                         "elementType": type.value,
-                                        "topBlockID": topBlock["id"],
+                                        "topBlockID": topBlock.id,
                                     });
                                 }}
                             >
