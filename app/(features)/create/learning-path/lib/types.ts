@@ -7,9 +7,9 @@ export type RoadmapTreeProps = {
 };
 
 //'maths' is not currently supported due the complexity with user input interface.
-export type LessonElements =
-    | 'text' | 'image' | 'code' | 'quiz' | 'note'
-    | 'deep-dive' | 'pitfall' | 'text/introduction' | 'text/objective';
+export type elements = 'text' | 'image' | 'code';
+export type compositeElements = 'quiz' | 'note' | 'deep-dive' | 'pitfall' | 'caveats';
+export type LessonElements = elements | compositeElements;
 
 
 export interface LessonBlock {
@@ -30,6 +30,7 @@ export interface QuizData extends LessonBlock {
             { id: string, value: string, isCorrect: boolean, feedback: string },
             { id: string, value: string, isCorrect: boolean, feedback: string },
         ],
+        explanationIDs: Array<string>,
     }
 }
 export type Lesson = Record<string, LessonBlock>;

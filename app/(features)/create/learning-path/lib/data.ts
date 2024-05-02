@@ -3,7 +3,7 @@ import { Lesson, Paths } from "./types";
 export const initialLesson: Lesson = {
     'introduction': {
         id: 'introduction',
-        elementType: 'text/introduction',
+        elementType: 'text',
         value: "",
         prevBlockID: null, // for first node. Lesson title is part of Paths itself
         nextBlockID: 'objective',
@@ -11,7 +11,7 @@ export const initialLesson: Lesson = {
     },
     'objective': {
         id: 'objective',
-        elementType: 'text/objective',
+        elementType: 'text',
         value: "",
         prevBlockID: 'introduction',
         nextBlockID: null, // for last node

@@ -101,23 +101,35 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             }
             topBlock.nextBlockID = newBlock.id;
 
-            //For quiz blocks.
+            //Additional data for quiz block.
             if (elementType === 'quiz') {
                 // Here, newBlock is the quiz block.
                 const quizBlock: QuizData = newBlock;
-                const defaultQBlock = getNewBlock('text', null, null, quizBlock.id); // Default question block, parentBlock is newBlock(quiz block)'s `id`
-                paths[activePathID].lesson[defaultQBlock.id] = defaultQBlock; // Add block to lesson data. Must be deleted if the quiz block is deleted.
+                const defaultQBlock = getNewBlock('text', null, null, quizBlock.id); // Default question block, parentBlock is newBlock(quiz-block)'s `id`
+                const defaultEblock = getNewBlock('text', null, null, quizBlock.id); // Default explanation block
+                paths[activePathID].lesson[defaultQBlock.id] = defaultQBlock; // Add block to lesson data. Must be manually deleted if the quiz block is deleted.
+                paths[activePathID].lesson[defaultEblock.id] = defaultEblock; // Add default explanation block to lesson data. Must be manually deleted if the quiz block is deleted.
                 quizBlock.value.questionIDs.push(defaultQBlock.id);
+                quizBlock.value.explanationIDs.push(defaultEblock.id);
             }
-            if (topBlock.parentID) { // We need to add the `id` of the new block to one of the array of the parent which triggered this action
+
+            /**
+             * If the block that triggered this action (topBlock) has parentID,
+             * then it means the parent is of type composite element.
+             * So, we need to save the `id` of the new block to the parent block.
+             */
+            if (topBlock.parentID) {
+                // Find the location of topBlock's 'id' in parentBlock, and add the `id` of the new block just right after it.
+                // Finding the location differs according to composite types.
                 const parentBlock = lesson[topBlock.parentID];
-                // Find where topBlock's 'id' is stored, and add the `id` of the new block just right after it.
                 if (parentBlock.elementType === 'quiz') {
                     const quizBlock: QuizData = parentBlock;
                     const qIDs = quizBlock.value.questionIDs;
-                    const allIDs = [qIDs];
+                    const eIDs = quizBlock.value.explanationIDs;
+                    const allIDs = [qIDs, eIDs];
                     findAndAddElement(allIDs, topBlock.id, newBlock.id)
                 }
+                //TODO: Logic to add `id` to block of remaining composite elements.
             }
             lesson[newBlock.id] = newBlock;
             return paths;
@@ -128,7 +140,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const lesson = paths[activePathID].lesson;
             const block = lesson[blockID];
 
-            // `prevBlockID` is never `null` except for the root block which user must not be able to delete
+            // Don't allow the defaultBlock(`prevBlockID: null`) to be deleted.
             if (block.prevBlockID) {
                 const topBlock = lesson[block.prevBlockID];
                 if (block.nextBlockID) {
@@ -138,28 +150,38 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 } else {
                     topBlock.nextBlockID = null;
                 }
+
+                // Delete all blocks that only the quiz block has reference to. 
                 if (block.elementType === 'quiz') {
                     const quizBlock: QuizData = block;
-                    const questionIDs = quizBlock.value.questionIDs;
-                    for (let id of questionIDs) {
+                    const qIDs = quizBlock.value.questionIDs;
+                    const eIDs = quizBlock.value.explanationIDs;
+                    for (let id of qIDs) {
+                        delete lesson[id];
+                    }
+                    for (let id of eIDs) {
                         delete lesson[id];
                     }
                 }
-                if (block.parentID) { // Remove the `id` referencing the block being deleted
+
+                // Like when adding block we insert the new block's `id`, we delete the `id` of block being deleted.
+                if (block.parentID) {
                     const parentBlock = lesson[block.parentID];
                     if (parentBlock.elementType === 'quiz') {
                         const quizBlock: QuizData = parentBlock;
                         const qIDs = quizBlock.value.questionIDs;
+                        const eIDs = quizBlock.value.explanationIDs;
                         const options = quizBlock.value.options;
-                        const allIDs = [qIDs];
+                        const allIDs = [qIDs, eIDs];
                         findAndRemoveElement(allIDs, block.id);
                     }
-                    //TODO: implement a way to remove 'ID' in parent component of other element types.
+                    //TODO: implement logic to remove `id` from other composite elements.
                 }
+
                 delete lesson[blockID];
                 return paths;
             }
-            return paths; // In rare cases if user delete the root block, do nothing and return.
+            return paths; // In rare cases if user tries to delete the default block, do nothing and return.
         }
 
 
@@ -232,6 +254,7 @@ function getNewBlock(
                         { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                         { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                     ],
+                    explanationIDs: [],
                 },
                 prevBlockID,
                 nextBlockID,

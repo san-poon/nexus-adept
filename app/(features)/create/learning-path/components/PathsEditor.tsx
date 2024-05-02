@@ -55,7 +55,7 @@ export default function LearningPathEditor() {
                         </ul>
                     </section>
                     <section className={cn(
-                        "mx-2 lg:mx-24 lg:w-2/3", isMenuOpen ? "hidden lg:block" : "block"
+                        " mx-1 md:mx-12 lg:mx-24 lg:w-2/3", isMenuOpen ? "hidden lg:block" : "block"
                     )}>
                         <ActivePathContext.Provider value={activePathID}>
                             <LessonEditor />

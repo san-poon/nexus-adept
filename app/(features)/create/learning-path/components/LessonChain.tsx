@@ -11,7 +11,7 @@ export default function LessonChain({ block }: { block: LessonBlock }) {
     const lesson = paths[activePathID].lesson;
     return (
         <div>
-            <div className=" relative group/content md:m-2 border border-neutral-300 dark:border-neutral-600  rounded-2xl focus-within:border-neutral-400 dark:focus-within:border-neutral-500">
+            <div className=" relative group/content md:m-2 border border-neutral-300 dark:border-neutral-600  rounded-2xl focus-within:border-neutral-400 dark:focus-within:border-neutral-400">
                 <Block block={block} />
                 {block.prevBlockID && (
                     <DeleteBlock blockID={block.id} />

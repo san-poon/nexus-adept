@@ -16,7 +16,7 @@ export function Block({ block }: { block: LessonBlock }) {
 
         case 'text': {
             return (
-                <TextBlock blockData={block} placeholder="Text here..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
+                <TextBlock blockData={block} placeholder="Text/Markdown..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
             );
         }
 
@@ -106,11 +106,12 @@ export function QuizBlock({ block }: { block: QuizData }) {
     const dispatch = usePathsDispatch();
     const questionIDs = block.value.questionIDs;
     const options = block.value.options;
+    const explanationIDs = block.value.explanationIDs;
     return (
         <section>
             <Label>Question</Label>
             {questionIDs.length > 0 && (
-                <LessonChain block={paths[activePathID].lesson[questionIDs[0]]} /> // Loop starting with the first id.
+                <LessonChain block={paths[activePathID].lesson[questionIDs[0]]} /> //starting with the first id.
             )}
 
             <Label>Options</Label>
@@ -147,7 +148,6 @@ export function QuizBlock({ block }: { block: QuizData }) {
                         <Input
                             className="w-full md:w-2/3"
                             type="text"
-                            placeholder="option..."
                             value={option.value}
                             onChange={(e) => {
                                 const updatedOptions = options.map((choice) => {
@@ -209,6 +209,11 @@ export function QuizBlock({ block }: { block: QuizData }) {
                     </div>
                 </div>
             ))}
+
+            <Label>Explanation</Label>
+            {explanationIDs.length > 0 && (
+                <LessonChain block={paths[activePathID].lesson[explanationIDs[0]]} /> // Starting with the first `id`
+            )}
         </section>
     );
 }
@@ -238,7 +243,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
     return (
         <Textarea ref={textareaRef}
             className={cn(
-                "resize-none overflow-hidden w-full p-4",
+                "resize-none overflow-hidden w-full p-4 min-h-16",
                 className
             )}
             maxLength={800}
