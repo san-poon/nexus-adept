@@ -3,14 +3,122 @@ import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
-import { usePaths, usePathsDispatch } from "../../learning-path/components/PathsContext";
-import { useActivePathID } from "../../learning-path/components/ActivePathContext";
-import { LessonBlock, QuizData } from "../../learning-path/lib/types";
+import { usePaths, usePathsDispatch } from "./PathsContext";
+import { useActivePathID } from "./ActivePathContext";
+import { LessonBlock, QuizData } from "../lib/types";
 import { CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
 import LessonChain from "./LessonChain";
 import { Label } from "@/components/ui/label";
-import Image from "next/image";
+import { AddButton, DeleteButton } from "./tootip-buttons";
+import { useActivePathDispatch } from "./ActivePathContext";
+
+
+export function PathTitle() {
+    const paths = usePaths();
+    const activePathDispatch = useActivePathDispatch();
+    const dispatch = usePathsDispatch();
+    const root = paths['ROOT'];
+    return (
+        <div className="flex items-center">
+            <Input
+                type="text"
+                placeholder="Learning Path Title"
+                value={root.title}
+                onClick={() => {
+                    activePathDispatch({
+                        type: "changed_active_path",
+                        nextActivePathID: root.id,
+                    });
+                }}
+                onChange={(e) => {
+                    dispatch({
+                        type: "changed_path_title",
+                        updatedPath: {
+                            ...root,
+                            title: e.target.value
+                        }
+                    });
+                }}
+            />
+            <AddButton
+                onClick={() => {
+                    dispatch({
+                        type: 'added_child_path',
+                        parentID: root.id,
+                    });
+                    console.log(paths);
+                }}
+            >
+                <p>Add Chapter</p>
+            </AddButton>
+        </div>
+    )
+}
+
+
+export function Path({ path, level }: any) {
+    const paths = usePaths();
+    const pathsDispatch = usePathsDispatch();
+    const activePathDispatch = useActivePathDispatch();
+    const maxDepth = 2;
+    const canAddChildren = level < maxDepth;
+    return (
+        <div className={cn(
+            "flex items-center rounded-full border border-neutral-300 dark:border-neutral-700",
+        )}>
+            <DeleteButton
+                onClick={() => {
+                    activePathDispatch({ // We need to change the active path user deletes the path that is currently active.
+                        type: "changed_active_path",
+                        nextActivePathID: paths['ROOT'].id,
+                    });
+                    pathsDispatch({
+                        type: 'deleted_path',
+                        pathID: path.id,
+                    })
+                }}
+                className="opacity-30 transition-opacity duration-300 hover:opacity-100"
+            />
+            <Input
+                className=""
+                type="text"
+                placeholder={`Level ${level}`}
+                value={path.title}
+                onClick={() => {
+                    activePathDispatch({
+                        type: "changed_active_path",
+                        nextActivePathID: path.id,
+                    });
+                }}
+                onChange={(e) => {
+                    pathsDispatch({
+                        type: 'changed_path_title',
+                        updatedPath: {
+                            ...path,
+                            title: e.target.value
+                        }
+                    });
+                }}
+            />
+            <AddButton
+                onClick={() => {
+                    pathsDispatch({
+                        'type': 'added_child_path',
+                        'parentID': path.id,
+                    });
+                }}
+                className={cn(canAddChildren ? "block" : "hidden",)}
+            >
+                <p>Add lesson</p>
+            </AddButton>
+        </div>
+
+    )
+}
+
+
+
 
 export function Block({ block }: { block: LessonBlock }) {
     switch (block.elementType) {
@@ -26,7 +134,7 @@ export function Block({ block }: { block: LessonBlock }) {
                 <div className='flex items-center justify-center p-2'>
                     <img src={block.value} className=" h-auto max-h-fit w-auto" alt='image' />
                 </div>
-            )
+            );
         }
 
         case 'code': {
@@ -53,32 +161,6 @@ export function Block({ block }: { block: LessonBlock }) {
         }
     }
 }
-
-
-// A path's `title` data is the Lesson's title.
-export function TitleBlock() {
-    const dispatch = usePathsDispatch();
-    const paths = usePaths();
-    const activePathID = useActivePathID();
-    return (
-        <Input
-            autoFocus
-            type="text"
-            placeholder="Lesson Title"
-            value={paths[activePathID].title}
-            onChange={(e) => {
-                dispatch({
-                    type: 'changed_path_title',
-                    updatedPath: {
-                        ...paths[activePathID],
-                        title: e.target.value,
-                    }
-                });
-            }}
-        />
-    );
-}
-
 export function TextBlock({ blockData, placeholder, className }: { blockData: LessonBlock, placeholder: string, className?: string }) {
     const dispatch = usePathsDispatch();
     const activePathID = useActivePathID();
@@ -102,7 +184,6 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
         />
     );
 }
-
 /*
 * A question can contain text and/or code. // Probably 'maths' in the future
 * An option's value can only contain text (for now). 
@@ -224,6 +305,32 @@ export function QuizBlock({ block }: { block: QuizData }) {
         </section>
     );
 }
+
+
+// A path's `title` data is the Lesson's title.
+export function TitleBlock() {
+    const dispatch = usePathsDispatch();
+    const paths = usePaths();
+    const activePathID = useActivePathID();
+    return (
+        <Input
+            autoFocus
+            type="text"
+            placeholder="Lesson Title"
+            value={paths[activePathID].title}
+            onChange={(e) => {
+                dispatch({
+                    type: 'changed_path_title',
+                    updatedPath: {
+                        ...paths[activePathID],
+                        title: e.target.value,
+                    }
+                });
+            }}
+        />
+    );
+}
+
 
 export function DynamicTextarea({ className, ...props }: TextareaProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);

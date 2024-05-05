@@ -1,4 +1,4 @@
-import { TextBlock, TitleBlock } from './lesson-blocks';
+import { TextBlock, TitleBlock } from './editor-blocks';
 
 import { useActivePathID } from './ActivePathContext';
 import { usePaths } from './PathsContext';

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons";
+import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { usePaths, usePathsDispatch } from './PathsContext';
@@ -9,7 +9,37 @@ import { LessonBlock, LessonElements } from '../lib/types';
 import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
 import { DeleteButton } from './tootip-buttons';
 import clsx from 'clsx';
-import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export function DetailsEditor() {
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button size="icon">
+                    <GearIcon className="w-6 h-6" />
+                </Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Edit Learning Path Details</DialogTitle>
+                </DialogHeader>
+                <form>
+                    <div className="my-4 space-y-2">
+                        <Label htmlFor="topics">Topics:
+                            <span className="font-normal text-sm opacity-70">&#40;Separate with comma and space.&#41;</span>
+                        </Label>
+                        <Input id="topics" placeholder="Front-end development, Javascript" className="w-full" />
+                    </div>
+                    <DialogFooter>
+                        <Button type="submit" variant="secondary" size="sm">Confirm</Button>
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
+    )
+}
 
 
 interface Elements {
@@ -50,7 +80,6 @@ function getLegalElements(parentType: LessonElements) {
         default: return elements;
     }
 }
-
 const BlockIcon = ({ element }: { element: LessonElements }) => {
     switch (element) {
         case 'text': {
@@ -70,7 +99,6 @@ const BlockIcon = ({ element }: { element: LessonElements }) => {
         }
     }
 };
-
 export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
     const [open, setOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -184,7 +212,6 @@ const languages = [
         label: 'HTML',
     },
 ];
-
 export function CodeLangSelector({ blockData }: { blockData: LessonBlock }) {
     const [open, setOpen] = useState(false);
     const [lang, setLang] = useState("");

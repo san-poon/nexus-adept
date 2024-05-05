@@ -6,7 +6,7 @@ export type RoadmapTreeProps = {
 
 //'maths' is not currently supported due the complexity with user input interface.
 export type elements = 'text' | 'image' | 'code';
-export type compositeElements = 'quiz' | 'note' | 'deep-dive' | 'pitfall' | 'caveats';
+export type compositeElements = 'quiz' | 'note' | 'deep-dive' | 'pitfall' | 'recap' | 'challenges';
 export type LessonElements = elements | compositeElements;
 
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Path from "./Path";
+import { Path } from "./editor-blocks";
 import { Button } from "@/components/ui/button";
 import { RoadmapTreeProps } from "../lib/types";
 import { ChevronRight } from "lucide-react";

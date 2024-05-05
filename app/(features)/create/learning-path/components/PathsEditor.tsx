@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from "react";
-import LearningPathTitle from "./LearningPathTitle";
+import { PathTitle } from "./editor-blocks";
 import PathsTree from "./PathsTree";
 import LearningPathTabs from "./LearningPathTabs";
-import DetailsEditor from "./DetailsEditor";
+import { DetailsEditor } from "./editor-tools";
 import { cn } from "@/lib/utils";
 import LessonEditor from "./LessonEditor";
 import Menu from "@/components/ui/Menu";
@@ -30,7 +30,7 @@ export default function LearningPathEditor() {
                 <section className=" min-h-[60vh] lg:flex">
                     <section className={cn("lg:w-1/3", isMenuOpen ? 'block' : "hidden lg:block")}>
                         <div className="flex justify-center my-4">
-                            <LearningPathTitle />
+                            <PathTitle />
                         </div>
                         <ul >
                             {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (

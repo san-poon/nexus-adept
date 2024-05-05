@@ -2,7 +2,7 @@ import { LessonBlock } from "../lib/types";
 import { useActivePathID } from "./ActivePathContext";
 import { usePaths } from "./PathsContext";
 import { AddBlock, DeleteBlock } from "./editor-tools";
-import { Block } from "./lesson-blocks";
+import { Block } from "./editor-blocks";
 
 
 export default function LessonChain({ block }: { block: LessonBlock }) {
