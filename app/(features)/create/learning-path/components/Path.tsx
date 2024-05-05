@@ -3,13 +3,13 @@ import { cn } from "@/lib/utils";
 import { AddButton, DeleteButton } from "./tootip-buttons";
 import { usePathsDispatch } from "./PathsContext";
 
-export default function RoadmapItem({ path, level, onInputClick }: any) {
+export default function Path({ path, level, onInputClick }: any) {
     const dispatch = usePathsDispatch();
     const maxDepth = 2;
     const canAddChildren = level < maxDepth;
     return (
         <div className={cn(
-            "flex rounded-full border border-neutral-300 dark:border-neutral-700",
+            "flex items-center rounded-full border border-neutral-300 dark:border-neutral-700",
         )}>
             <DeleteButton
                 onClick={() => {
@@ -43,7 +43,7 @@ export default function RoadmapItem({ path, level, onInputClick }: any) {
                         'parentID': path.id,
                     });
                 }}
-                className={`${canAddChildren ? "block" : "hidden"}`}
+                className={cn(canAddChildren ? "block" : "hidden",)}
             >
                 {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}
                 {level === 1 ? <p>Add subchapter or lesson</p> : <p>Add lesson</p>}

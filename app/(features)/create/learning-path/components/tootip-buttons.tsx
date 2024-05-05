@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import {
@@ -8,13 +7,13 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { DeleteIcon, PencilSquareIcon } from '@/components/icons';
+import { DeleteIcon, PencilSquareIcon, PlusIcon } from '@/components/icons';
 
 export const DeleteButton = ({ onClick, className }: { onClick: () => void, className: string }) => {
     return (
         <Button
             onClick={onClick}
-            className={cn("rounded-full", className)}
+            className={className}
             size="icon"
         >
             <DeleteIcon />
@@ -28,13 +27,13 @@ export function AddButton({ onClick, className, children }: { onClick: () => voi
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button
+                        size="icon"
                         onClick={onClick}
                         className={cn(
-                            "transition duration-500 ease-in-out transform active:scale-75",
                             className
                         )}
                     >
-                        <PlusIcon className='h-3 w-3' />
+                        <PlusIcon className='h-4 w-4' />
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top" sideOffset={2}>

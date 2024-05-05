@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RoadmapItem from "./RoadmapItem";
+import Path from "./Path";
 import { Button } from "@/components/ui/button";
 import { RoadmapTreeProps } from "../lib/types";
 import { ChevronRight } from "lucide-react";
@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { AddButton } from "./tootip-buttons";
 import { usePaths, usePathsDispatch } from "./PathsContext";
 
-export default function RoadmapTree({ pathID, onPathClick, activePathID, level }: RoadmapTreeProps) {
+export default function PathsTree({ pathID, onPathClick, activePathID, level }: RoadmapTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
     const paths = usePaths();
     const dispatch = usePathsDispatch();
@@ -50,7 +50,7 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
                                 <ChevronRight className="w-4" />
                             </span>
                         </Button>
-                        <RoadmapItem
+                        <Path
                             path={path}
                             level={level}
                             onInputClick={onPathClick}
@@ -63,7 +63,7 @@ export default function RoadmapTree({ pathID, onPathClick, activePathID, level }
                 <ul className="border-s dark:border-neutral-700 ms-5 space-y-1">
                     {childIDs.map((childID: string) => {
                         const nextLevel = level + 1;
-                        return (<RoadmapTree
+                        return (<PathsTree
                             key={childID}
                             pathID={childID}
                             level={nextLevel}

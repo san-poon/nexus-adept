@@ -7,7 +7,7 @@ export default function LearningPathTitle() {
     const dispatch = usePathsDispatch();
     const root = paths['ROOT'];
     return (
-        <div className="flex">
+        <div className="flex items-center">
             <Input
                 type="text"
                 placeholder="Learning Path Title"

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import LearningPathTitle from "./LearningPathTitle";
-import RoadmapTree from "./RoadmapTree";
+import PathsTree from "./PathsTree";
 import LearningPathTabs from "./LearningPathTabs";
 import DetailsEditor from "./DetailsEditor";
 import { cn } from "@/lib/utils";
@@ -44,7 +44,7 @@ export default function LearningPathEditor() {
                         </div>
                         <ul >
                             {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                                <RoadmapTree
+                                <PathsTree
                                     key={id}
                                     pathID={id}
                                     level={1}
