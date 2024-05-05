@@ -3,7 +3,7 @@ import { useImmerReducer } from 'use-immer';
 import { LessonBlock, LessonElements, Path, Paths, PathsAction, QuizData } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import { initialLesson, initialPaths } from '../lib/data';
-import { findAndAddElement, findAndRemoveElement, getImageUrlFromUser } from '../lib/utils';
+import { findAndAddElement, findAndRemoveElement } from '../lib/utils';
 
 export const PathsContext = createContext<Paths>(initialPaths);
 export const PathsDispatchContext = createContext((() => { }) as Dispatch<PathsAction>)
@@ -28,7 +28,6 @@ export function usePaths() {
 export function usePathsDispatch() {
     return use(PathsDispatchContext);
 }
-
 
 /**
  * 
@@ -89,12 +88,12 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
 
 
         case "added_lesson_block": {
-            const { activePathID, elementType, topBlockID } = action;
+            const { activePathID, elementType, topBlockID, imageSrc } = action;
             const lesson = paths[activePathID].lesson;
             const topBlock = lesson[topBlockID];
 
             // Every block(e.g: quiz's question block, or deep dive) block will have initial block which will have parentID set, which the newBlock will use.
-            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentID); // Root block for every composed block must be initially defined.
+            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentID, imageSrc); // Root block for every composed block must be initially defined.
             if (topBlock.nextBlockID) {
                 const bottomBlock = lesson[topBlock.nextBlockID];
                 bottomBlock.prevBlockID = newBlock.id;
@@ -204,6 +203,7 @@ function getNewBlock(
     prevBlockID: LessonBlock['prevBlockID'],
     nextBlockID: LessonBlock['nextBlockID'],
     parentID: string | null,
+    imageSrc?: string
 ): LessonBlock {
     switch (element) {
         case 'text': return {
@@ -228,19 +228,14 @@ function getNewBlock(
             };
         }
         case 'image': {
-            try {
-                const imageUrl = getImageUrlFromUser();
-                return {
-                    id: uuidv4(),
-                    elementType: 'image',
-                    value: imageUrl,
-                    prevBlockID,
-                    nextBlockID,
-                    parentID,
-                };
-            } catch (error) {
-                console.log(`Error: ${error}`);
-            }
+            return {
+                id: uuidv4(),
+                elementType: 'image',
+                value: imageSrc,
+                prevBlockID,
+                nextBlockID,
+                parentID,
+            };
         }
         case 'quiz': {
             return {

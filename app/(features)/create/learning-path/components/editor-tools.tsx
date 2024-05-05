@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { TextBlockIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
@@ -9,6 +9,7 @@ import { LessonBlock, LessonElements } from '../lib/types';
 import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
 import { DeleteButton } from './tootip-buttons';
 import clsx from 'clsx';
+import { Input } from '@/components/ui/input';
 
 
 interface Elements {
@@ -72,6 +73,7 @@ const BlockIcon = ({ element }: { element: LessonElements }) => {
 
 export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
     const [open, setOpen] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const paths = usePaths();
     const dispatch = usePathsDispatch();
     const activePathID = useActivePathID();
@@ -101,17 +103,45 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
                                 key={type.value}
                                 value={type.value}
                                 onSelect={() => {
-                                    setOpen(false);
-                                    dispatch({
-                                        "type": 'added_lesson_block',
-                                        "activePathID": activePathID,
-                                        "elementType": type.value,
-                                        "topBlockID": topBlock.id,
-                                    });
+                                    if (type.value === 'image') {
+                                        fileInputRef.current && fileInputRef.current.click();
+                                    } else {
+                                        setOpen(false);
+                                        dispatch({
+                                            "type": 'added_lesson_block',
+                                            "activePathID": activePathID,
+                                            "elementType": type.value,
+                                            "topBlockID": topBlock.id,
+                                        });
+                                    }
                                 }}
                             >
                                 <BlockIcon element={type.value} />
                                 <span className="ps-4 md:ps-6"> {type.label} </span>
+                                {type.value === 'image' && (
+                                    <input
+                                        ref={fileInputRef}
+                                        type="file"
+                                        accept='image/*'
+                                        className='hidden'
+                                        onChange={(e) => {
+                                            setOpen(false);
+                                            const file = e.target.files && e.target.files[0];
+                                            if (file) {
+                                                const imageSrc = URL.createObjectURL(file);
+                                                if (imageSrc) {
+                                                    dispatch({
+                                                        "type": "added_lesson_block",
+                                                        "activePathID": activePathID,
+                                                        "elementType": type.value,
+                                                        "topBlockID": topBlock.id,
+                                                        "imageSrc": imageSrc
+                                                    });
+                                                }
+                                            }
+                                        }}
+                                    />
+                                )}
                             </CommandItem>
                         ))}
                     </CommandGroup>
@@ -120,7 +150,6 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
         </Popover>
     );
 }
-
 
 export function DeleteBlock({ blockID }: { blockID: LessonBlock['id'] }) {
     const activePathID = useActivePathID();

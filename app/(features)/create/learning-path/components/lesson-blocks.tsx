@@ -6,10 +6,11 @@ import { TextareaProps } from "@/components/ui/textarea";
 import { usePaths, usePathsDispatch } from "../../learning-path/components/PathsContext";
 import { useActivePathID } from "../../learning-path/components/ActivePathContext";
 import { LessonBlock, QuizData } from "../../learning-path/lib/types";
-import { AddBlock, CodeLangSelector } from "./editor-tools";
+import { CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
 import LessonChain from "./LessonChain";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 
 export function Block({ block }: { block: LessonBlock }) {
     switch (block.elementType) {
@@ -18,6 +19,14 @@ export function Block({ block }: { block: LessonBlock }) {
             return (
                 <TextBlock blockData={block} placeholder="Text/Markdown..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
             );
+        }
+
+        case 'image': {
+            return (
+                <div className='flex items-center justify-center p-2'>
+                    <img src={block.value} className=" h-96 w-auto" alt='image' />
+                </div>
+            )
         }
 
         case 'code': {
@@ -38,7 +47,6 @@ export function Block({ block }: { block: LessonBlock }) {
                 </div>
             )
         }
-
 
         default: {
             return null;
@@ -98,7 +106,6 @@ export function TextBlock({ blockData, placeholder, className }: { blockData: Le
 /*
 * A question can contain text and/or code. // Probably 'maths' in the future
 * An option's value can only contain text (for now). 
-* An option's feedback can contain 'text' block's `IDs` (for now)
 */
 export function QuizBlock({ block }: { block: QuizData }) {
     const activePathID = useActivePathID();
@@ -116,8 +123,8 @@ export function QuizBlock({ block }: { block: QuizData }) {
 
             <Label>Options</Label>
             {options.map((option) => (
-                <div>
-                    <div key={option.id} className="flex items-center space-x-2 space-y-2">
+                <div key={option.id}>
+                    <div className="flex items-center space-x-2 space-y-2">
                         <Checkbox
                             checked={option.isCorrect}
                             onCheckedChange={(checked) => {
@@ -235,6 +242,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
 
         //Initial adjustment
         adjustHeight();
+        // Return a cleanup function.
         return () => {
             currentTextarea?.removeEventListener('input', adjustHeight); // Use the captured value
         };

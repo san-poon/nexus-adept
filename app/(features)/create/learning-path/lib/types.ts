@@ -52,7 +52,7 @@ export type PathsAction =
     | { type: "changed_path_title"; updatedPath: Path }
     | { type: 'deleted_path'; pathID: Path["id"] }
 
-    | { type: 'added_lesson_block'; activePathID: string; topBlockID: LessonBlock["id"]; elementType: LessonElements; }
+    | { type: 'added_lesson_block'; activePathID: string; topBlockID: LessonBlock["id"]; elementType: LessonElements; imageSrc?: string }
     | { type: 'deleted_lesson_block'; activePathID: string; blockID: LessonBlock["id"]; }
     | { type: 'changed_lesson_block'; activePathID: string, block: LessonBlock | QuizData };
 

@@ -26,7 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="dark:text-neutral-200 text-base md:text-lg min-h-[80vh]">
+          <main className="dark:text-neutral-200 text-base min-h-[80vh]">
             {children}
           </main>
           <Footer />
