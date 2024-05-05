@@ -1,27 +1,30 @@
+import { LessonBlock, QuizData } from "../lib/types";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
-import { usePaths, usePathsDispatch } from "./PathsContext";
-import { useActivePathID } from "./ActivePathContext";
-import { LessonBlock, QuizData } from "../lib/types";
 import { CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
 import LessonChain from "./LessonChain";
 import { Label } from "@/components/ui/label";
 import { AddButton, DeleteButton } from "./tootip-buttons";
-import { useActivePathDispatch } from "./ActivePathContext";
+import { usePaths, usePathsDispatch } from "./PathsContext";
+import { useActivePathDispatch, useActivePathID } from "./ActivePathContext";
 
 
 export function PathTitle() {
     const paths = usePaths();
-    const activePathDispatch = useActivePathDispatch();
     const dispatch = usePathsDispatch();
+    const activePathID = useActivePathID();
+    const activePathDispatch = useActivePathDispatch();
     const root = paths['ROOT'];
     return (
         <div className="flex items-center">
             <Input
+                className={cn(
+                    activePathID === root.id && "border-emerald-300 dark:border-emerald-700"
+                )}
                 type="text"
                 placeholder="Learning Path Title"
                 value={root.title}
@@ -60,6 +63,7 @@ export function PathTitle() {
 export function Path({ path, level }: any) {
     const paths = usePaths();
     const pathsDispatch = usePathsDispatch();
+    const activePathID = useActivePathID();
     const activePathDispatch = useActivePathDispatch();
     const maxDepth = 2;
     const canAddChildren = level < maxDepth;
@@ -81,7 +85,9 @@ export function Path({ path, level }: any) {
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className=""
+                className={cn(
+                    activePathID === path.id && "border-emerald-300 dark:border-emerald-700"
+                )}
                 type="text"
                 placeholder={`Level ${level}`}
                 value={path.title}
