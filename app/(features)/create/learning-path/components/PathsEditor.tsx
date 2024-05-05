@@ -9,24 +9,14 @@ import { cn } from "@/lib/utils";
 import LessonEditor from "./LessonEditor";
 import Menu from "@/components/ui/Menu";
 import { usePaths } from "./PathsContext";
-import { ActivePathContext } from "./ActivePathContext";
 
 export default function LearningPathEditor() {
-    const [activePathID, setActivePathID] = useState('ROOT'); // Default active path.
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const paths = usePaths();
 
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     }
-
-    const handlePathClick = (pathID: string) => {
-        if (activePathID === pathID) return;
-        else setActivePathID(pathID);
-    }
-
-    // Root represents the title of the learning path and
-    // make sure not to place delete button rendering it.
     const root = paths["ROOT"];
     const rootChildIDs = root?.childIDs;
 
@@ -48,8 +38,6 @@ export default function LearningPathEditor() {
                                     key={id}
                                     pathID={id}
                                     level={1}
-                                    activePathID={activePathID}
-                                    onPathClick={handlePathClick}
                                 />
                             ))}
                         </ul>
@@ -57,9 +45,7 @@ export default function LearningPathEditor() {
                     <section className={cn(
                         " mx-1 md:mx-12 lg:mx-24 lg:w-2/3", isMenuOpen ? "hidden lg:block" : "block"
                     )}>
-                        <ActivePathContext.Provider value={activePathID}>
-                            <LessonEditor />
-                        </ActivePathContext.Provider>
+                        <LessonEditor />
                     </section>
                 </section>
             </LearningPathTabs>

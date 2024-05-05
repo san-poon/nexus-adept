@@ -2,8 +2,6 @@
 export type RoadmapTreeProps = {
     level: number,
     pathID: string,
-    onPathClick: (id: string) => void,
-    activePathID: string,
 };
 
 //'maths' is not currently supported due the complexity with user input interface.

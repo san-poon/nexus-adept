@@ -9,10 +9,11 @@ import {
 } from '@/components/ui/tooltip';
 import { DeleteIcon, PencilSquareIcon, PlusIcon } from '@/components/icons';
 
-export const DeleteButton = ({ onClick, className }: { onClick: () => void, className: string }) => {
+export const DeleteButton = ({ onClick, className }: { onClick: () => void, className?: string }) => {
     return (
         <Button
             onClick={onClick}
+            variant="destructive"
             className={className}
             size="icon"
         >
@@ -27,10 +28,9 @@ export function AddButton({ onClick, className, children }: { onClick: () => voi
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button
-                        size="icon"
                         onClick={onClick}
                         className={cn(
-                            className
+                            className,
                         )}
                     >
                         <PlusIcon className='h-4 w-4' />

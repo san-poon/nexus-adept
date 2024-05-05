@@ -21,13 +21,13 @@ export function ActivePathProvider({ children }: { children: React.ReactNode }) 
     )
 }
 
-
-type ActivePathAction = { type: 'changed_active_path'; pathID: string }
+type ActivePathAction = { type: 'changed_active_path'; nextActivePathID: string }
 
 function activePathReducer(pathID: string, action: ActivePathAction) {
     switch (action.type) {
         case 'changed_active_path': {
-            return pathID;
+            const { nextActivePathID } = action;
+            return nextActivePathID;
         }
         default: {
             throw Error(`Unknown action: ${action.type}`);

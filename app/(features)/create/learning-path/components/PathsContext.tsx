@@ -78,10 +78,10 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
 
         case 'deleted_path': {
             const { pathID } = action;
-            const parentID = paths[pathID].parentIDs[0]; // A path must have only one parentID
+            const parentID = paths[pathID].parentIDs[0];
             const parentPath = paths[parentID];
             const index = parentPath.childIDs.indexOf(pathID);
-            parentPath.childIDs.splice(index, 1); // Delete the pathID from parent's `childIDs`
+            parentPath.childIDs.splice(index, 1);
             delete paths[pathID];
             return paths;
         }

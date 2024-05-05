@@ -1,10 +1,13 @@
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { AddButton, DeleteButton } from "./tootip-buttons";
-import { usePathsDispatch } from "./PathsContext";
+import { usePaths, usePathsDispatch } from "./PathsContext";
+import { useActivePathDispatch } from "./ActivePathContext";
 
-export default function Path({ path, level, onInputClick }: any) {
-    const dispatch = usePathsDispatch();
+export default function Path({ path, level }: any) {
+    const paths = usePaths();
+    const pathsDispatch = usePathsDispatch();
+    const activePathDispatch = useActivePathDispatch();
     const maxDepth = 2;
     const canAddChildren = level < maxDepth;
     return (
@@ -13,7 +16,11 @@ export default function Path({ path, level, onInputClick }: any) {
         )}>
             <DeleteButton
                 onClick={() => {
-                    dispatch({
+                    activePathDispatch({ // We need to change the active path user deletes the path that is currently active.
+                        type: "changed_active_path",
+                        nextActivePathID: paths['ROOT'].id,
+                    });
+                    pathsDispatch({
                         type: 'deleted_path',
                         pathID: path.id,
                     })
@@ -25,9 +32,14 @@ export default function Path({ path, level, onInputClick }: any) {
                 type="text"
                 placeholder={`Level ${level}`}
                 value={path.title}
-                onClick={() => { onInputClick(path.id) }}
+                onClick={() => {
+                    activePathDispatch({
+                        type: "changed_active_path",
+                        nextActivePathID: path.id,
+                    });
+                }}
                 onChange={(e) => {
-                    dispatch({
+                    pathsDispatch({
                         type: 'changed_path_title',
                         updatedPath: {
                             ...path,
@@ -38,15 +50,14 @@ export default function Path({ path, level, onInputClick }: any) {
             />
             <AddButton
                 onClick={() => {
-                    dispatch({
+                    pathsDispatch({
                         'type': 'added_child_path',
                         'parentID': path.id,
                     });
                 }}
                 className={cn(canAddChildren ? "block" : "hidden",)}
             >
-                {/* Level 1 is learning-paths, Level 2 can be either lesson or paths within learning-paths. Level 3 must be a lesson */}
-                {level === 1 ? <p>Add subchapter or lesson</p> : <p>Add lesson</p>}
+                <p>Add lesson</p>
             </AddButton>
         </div>
 

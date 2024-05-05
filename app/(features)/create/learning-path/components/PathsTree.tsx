@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { AddButton } from "./tootip-buttons";
 import { usePaths, usePathsDispatch } from "./PathsContext";
 
-export default function PathsTree({ pathID, onPathClick, activePathID, level }: RoadmapTreeProps) {
+export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
     const [isExpanded, setIsExpanded] = useState(true);
     const paths = usePaths();
     const dispatch = usePathsDispatch();
@@ -20,7 +20,6 @@ export default function PathsTree({ pathID, onPathClick, activePathID, level }: 
 
     const childIDs = path.childIDs;
 
-    const isActiveItem = pathID === activePathID;
 
     return (
         <li className="">
@@ -53,7 +52,6 @@ export default function PathsTree({ pathID, onPathClick, activePathID, level }: 
                         <Path
                             path={path}
                             level={level}
-                            onInputClick={onPathClick}
                         />
                     </div>
                 </div>
@@ -67,8 +65,6 @@ export default function PathsTree({ pathID, onPathClick, activePathID, level }: 
                             key={childID}
                             pathID={childID}
                             level={nextLevel}
-                            onPathClick={onPathClick}
-                            activePathID={activePathID}
                         />)
                     })}
                 </ul>

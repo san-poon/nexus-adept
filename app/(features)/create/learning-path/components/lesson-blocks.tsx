@@ -24,7 +24,7 @@ export function Block({ block }: { block: LessonBlock }) {
         case 'image': {
             return (
                 <div className='flex items-center justify-center p-2'>
-                    <img src={block.value} className=" h-96 w-auto" alt='image' />
+                    <img src={block.value} className=" h-auto max-h-fit w-auto" alt='image' />
                 </div>
             )
         }
