@@ -4,7 +4,6 @@ import { usePaths } from "./PathsContext";
 import { AddBlock, DeleteBlock } from "./editor-tools";
 import { Block } from "./editor-blocks";
 
-
 export default function LessonChain({ block }: { block: LessonBlock }) {
     const paths = usePaths();
     const activePathID = useActivePathID();

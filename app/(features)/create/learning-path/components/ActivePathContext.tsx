@@ -18,11 +18,10 @@ export function ActivePathProvider({ children }: { children: React.ReactNode }) 
                 {children}
             </ActivePathDispatchContext.Provider>
         </ActivePathContext.Provider>
-    )
+    );
 }
 
-type ActivePathAction = { type: 'changed_active_path'; nextActivePathID: string }
-
+type ActivePathAction = { type: 'changed_active_path'; nextActivePathID: string };
 function activePathReducer(pathID: string, action: ActivePathAction) {
     switch (action.type) {
         case 'changed_active_path': {

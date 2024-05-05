@@ -17,9 +17,7 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
     };
 
     const path = paths[pathID];
-
     const childIDs = path.childIDs;
-
 
     return (
         <li className="">
@@ -38,7 +36,6 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
                             <p>Add Sibling</p>
                         </AddButton>
                     </div>
-
                     <div className="flex justify-center">
                         <Button
                             size="icon"
@@ -55,8 +52,8 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
                         />
                     </div>
                 </div>
-
             </div>
+
             {isExpanded && childIDs.length > 0 && (
                 <ul className="border-s dark:border-neutral-700 ms-5 space-y-1">
                     {childIDs.map((childID: string) => {
@@ -70,6 +67,5 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
                 </ul>
             )}
         </li>
-
-    )
+    );
 }

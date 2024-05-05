@@ -17,6 +17,7 @@ export default function LearningPathEditor() {
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     }
+
     const root = paths["ROOT"];
     const rootChildIDs = root?.childIDs;
 
