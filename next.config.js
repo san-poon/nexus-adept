@@ -2,9 +2,13 @@
 
 
 const nextConfig = {
-    // Configure `pageExtensions` to include MDX files
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-    // Optionally, add any other Next.js config below
+
+    experimental: {
+        optimizePackageImports: [
+            'shiki',
+        ],
+    }
 }
 
 module.exports = nextConfig
