@@ -6,8 +6,9 @@ import {
 } from '@/components/ui/tabs';
 import { Paths } from '../lib/types';
 import { useState } from 'react';
+import Editor from './Editor';
 
-export default function LearningPathTabs({ children }: { children: React.ReactNode }) {
+export default function EditorTabs() {
     const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
 
     const handleExpandedChange = (categoryID: string) => {
@@ -22,13 +23,13 @@ export default function LearningPathTabs({ children }: { children: React.ReactNo
         })
     }
     return (
-        <Tabs defaultValue="edit">
+        <Tabs defaultValue="edit" className='min-h-[78vh] w-full'>
             <TabsList className="grid w-full grid-cols-2 sticky top-16 z-10">
                 <TabsTrigger value="edit">Edit</TabsTrigger>
                 <TabsTrigger value='preview'>Preview</TabsTrigger>
             </TabsList>
             <TabsContent value="edit">
-                {children}
+                <Editor />
             </TabsContent>
             <TabsContent value="preview" className="min-h-screen">
                 This is a preview section.

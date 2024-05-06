@@ -12,6 +12,29 @@ import clsx from 'clsx';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from 'sonner';
+import saveLearningPath from '../actions/saveLearningPath';
+
+export function SavePaths() {
+
+    return (
+        <Button
+            variant="secondary"
+            className='w-96 text-base'
+            onClick={() => {
+                toast.promise(saveLearningPath, {
+                    loading: 'Saving...',
+                    success: (data) => {
+                        return `${data} is the email you signed in with!`
+                    },
+                    error: 'Something went wrong. Please try again later!'
+                });
+            }}
+        >
+            Save
+        </Button>
+    )
+}
 
 export function DetailsEditor() {
     return (
