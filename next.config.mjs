@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 
@@ -11,4 +10,4 @@ const nextConfig = {
     }
 }
 
-module.exports = nextConfig
+export default nextConfig
