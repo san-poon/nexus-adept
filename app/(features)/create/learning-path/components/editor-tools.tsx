@@ -129,8 +129,8 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
     const dispatch = usePathsDispatch();
     const activePathID = useActivePathID();
     let legalElements = elements;
-    if (topBlock.parentID) {
-        const parentElementType = paths[activePathID].lesson[topBlock.parentID].elementType;
+    if (topBlock.parentBlockID) {
+        const parentElementType = paths[activePathID].lesson[topBlock.parentBlockID].elementType;
         legalElements = getLegalElements(parentElementType);
     }
     return (

@@ -16,7 +16,7 @@ export interface LessonBlock {
     value: any;
     prevBlockID: string | null; // nullable for the first block
     nextBlockID: string | null; // nullable to indicate the last block
-    parentID: string | null;
+    parentBlockID: string | null;
 };
 
 export interface QuizData extends LessonBlock {

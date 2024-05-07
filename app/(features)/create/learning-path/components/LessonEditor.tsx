@@ -9,8 +9,8 @@ export default function LessonEditor() {
     const paths = usePaths();
     const activePathID = useActivePathID();
     const lesson = paths[activePathID].lesson;
-    const introductionBlock = lesson['introduction'];
-    const objectiveBlock = lesson['objective'];
+    const introductionBlock = lesson['INTRODUCTION'];
+    const objectiveBlock = lesson['OBJECTIVE'];
     return (
         <section>
             <div className=' flex items-center justify-center mx-2'>

@@ -93,7 +93,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const topBlock = lesson[topBlockID];
 
             // Every block(e.g: quiz's question block, or deep dive) block will have initial block which will have parentID set, which the newBlock will use.
-            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentID, imageSrc); // Root block for every composed block must be initially defined.
+            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentBlockID, imageSrc); // Root block for every composed block must be initially defined.
             if (topBlock.nextBlockID) {
                 const bottomBlock = lesson[topBlock.nextBlockID];
                 bottomBlock.prevBlockID = newBlock.id;
@@ -117,10 +117,10 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
              * then it means the parent is of type composite element.
              * So, we need to save the `id` of the new block to the parent block.
              */
-            if (topBlock.parentID) {
+            if (topBlock.parentBlockID) {
                 // Find the location of topBlock's 'id' in parentBlock, and add the `id` of the new block just right after it.
                 // Finding the location differs according to composite types.
-                const parentBlock = lesson[topBlock.parentID];
+                const parentBlock = lesson[topBlock.parentBlockID];
                 if (parentBlock.elementType === 'quiz') {
                     const quizBlock: QuizData = parentBlock;
                     const qIDs = quizBlock.value.questionIDs;
@@ -164,8 +164,8 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 }
 
                 // Like when adding block we insert the new block's `id`, we delete the `id` of block being deleted.
-                if (block.parentID) {
-                    const parentBlock = lesson[block.parentID];
+                if (block.parentBlockID) {
+                    const parentBlock = lesson[block.parentBlockID];
                     if (parentBlock.elementType === 'quiz') {
                         const quizBlock: QuizData = parentBlock;
                         const qIDs = quizBlock.value.questionIDs;
@@ -202,7 +202,7 @@ function getNewBlock(
     element: LessonElements,
     prevBlockID: LessonBlock['prevBlockID'],
     nextBlockID: LessonBlock['nextBlockID'],
-    parentID: string | null,
+    parentBlockID: string | null,
     imageSrc?: string
 ): LessonBlock {
     switch (element) {
@@ -212,7 +212,7 @@ function getNewBlock(
             value: "",
             prevBlockID,
             nextBlockID,
-            parentID,
+            parentBlockID,
         }
         case 'code': {
             return {
@@ -224,7 +224,7 @@ function getNewBlock(
                 },
                 prevBlockID,
                 nextBlockID,
-                parentID,
+                parentBlockID,
             };
         }
         case 'image': {
@@ -234,7 +234,7 @@ function getNewBlock(
                 value: imageSrc,
                 prevBlockID,
                 nextBlockID,
-                parentID,
+                parentBlockID,
             };
         }
         case 'quiz': {
@@ -253,7 +253,7 @@ function getNewBlock(
                 },
                 prevBlockID,
                 nextBlockID,
-                parentID,
+                parentBlockID,
             };
         }
         default: {
