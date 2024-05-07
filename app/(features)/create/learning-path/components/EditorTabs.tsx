@@ -4,9 +4,9 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/ui/tabs';
-import { Paths } from '../lib/types';
 import { useState } from 'react';
 import Editor from './Editor';
+import Preview from './preview/Preview';
 
 export default function EditorTabs() {
     const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
@@ -31,8 +31,8 @@ export default function EditorTabs() {
             <TabsContent value="edit">
                 <Editor />
             </TabsContent>
-            <TabsContent value="preview" className="min-h-screen">
-                This is a preview section.
+            <TabsContent value="preview">
+                <Preview />
             </TabsContent>
         </Tabs>
     )

@@ -20,7 +20,7 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
     const childIDs = path.childIDs;
 
     return (
-        <li className="">
+        <li>
             <div className="flex items-center">
                 <div>
                     <div className="flex justify-center">
@@ -55,7 +55,7 @@ export default function PathsTree({ pathID, level }: RoadmapTreeProps) {
             </div>
 
             {isExpanded && childIDs.length > 0 && (
-                <ul className="border-s dark:border-neutral-700 ms-5 space-y-1">
+                <ul className="border-s dark:border-neutral-700 ms-4">
                     {childIDs.map((childID: string) => {
                         const nextLevel = level + 1;
                         return (<PathsTree
