@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Menu from "@/components/ui/Menu";
 import { cn } from '@/lib/utils';
 import Paths from './Paths';
+import Lesson from './Lesson';
 
 export default function Preview() {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -23,7 +24,7 @@ export default function Preview() {
                 <div className={cn(
                     " mx-1 md:mx-12 lg:mx-24 lg:w-2/3", isMenuOpen ? "hidden lg:block" : "block"
                 )}>
-
+                    <Lesson />
                 </div>
             </section>
         </section>
