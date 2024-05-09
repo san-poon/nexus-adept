@@ -16,9 +16,11 @@ export default function LessonChain({ block }: { block: LessonBlock }) {
                     <DeleteBlock blockID={block.id} />
                 )}
             </div>
-            <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
-                <AddBlock topBlock={block} />
-            </div>
+            {block.elementType !== 'recap' && (
+                <div className='flex justify-center items-center opacity-70 md:opacity-25 hover:opacity-100 transition-opacity duration-700'>
+                    <AddBlock topBlock={block} />
+                </div>
+            )}
             {block?.nextBlockID !== null && (
                 <LessonChain block={lesson[block?.nextBlockID]} />
             )}

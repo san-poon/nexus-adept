@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon, NoteIcon, PitfallIcon, BookIcon } from "@/components/icons";
+import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon, NoteIcon, PitfallIcon, BookIcon, BulletListIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { usePaths, usePathsDispatch } from './PathsContext';
@@ -78,30 +78,31 @@ const elements: Elements[] = [
         value: 'image',
         label: 'Image',
     },
-    {
-        value: 'quiz',
-        label: 'Quiz',
-    },
+
     {
         value: 'code',
         label: 'Code',
     },
     {
-        value: 'recap',
-        label: 'Recap',
+        value: 'quiz',
+        label: 'Quiz',
     },
     {
-        value: 'deep-dive',
-        label: 'Deep-Dive',
+        value: 'note',
+        label: 'Note',
     },
     {
         value: 'pitfall',
         label: 'Pitfall',
     },
     {
-        value: 'note',
-        label: 'Note',
-    }
+        value: 'deep-dive',
+        label: 'Deep-Dive',
+    },
+    {
+        value: 'recap',
+        label: 'Recap',
+    },
 ];
 function getLegalElements(parentType: LessonElements) {
     switch (parentType) {
@@ -136,28 +137,31 @@ function getLegalElements(parentType: LessonElements) {
         default: return elements;
     }
 }
-const BlockIcon = ({ element }: { element: LessonElements }) => {
+export const BlockIcon = ({ className, element }: { className?: string, element: LessonElements }) => {
     switch (element) {
         case 'text': {
-            return <TextBlockIcon />
+            return <TextBlockIcon className={className} />
         }
         case 'image': {
-            return <ImageBlockIcon />
+            return <ImageBlockIcon className={className} />
         }
         case 'quiz': {
-            return <QuizBlockIcon />
+            return <QuizBlockIcon className={className} />
         }
         case 'code': {
-            return <CodeBlockIcon />
+            return <CodeBlockIcon className={className} />
         }
         case 'note': {
-            return <NoteIcon />
+            return <NoteIcon className={className} />
         }
         case 'pitfall': {
-            return <PitfallIcon />
+            return <PitfallIcon className={className} />
         }
         case 'deep-dive': {
-            return <BookIcon />
+            return <BookIcon className={className} />
+        }
+        case 'recap': {
+            return <BulletListIcon className={className} />
         }
         default: {
             return null;
@@ -171,6 +175,9 @@ export function AddBlock({ topBlock }: { topBlock: LessonBlock }) {
     const dispatch = usePathsDispatch();
     const activePathID = useActivePathID();
     let legalElements = elements;
+    if (topBlock.nextBlockID) { // Filter out ability to add 'recap' block except at the end.
+        legalElements = legalElements.filter((element) => element.value !== 'recap');
+    }
     if (topBlock.parentBlockID) {
         const parentElementType = paths[activePathID].lesson[topBlock.parentBlockID].elementType;
         legalElements = getLegalElements(parentElementType);
@@ -249,7 +256,7 @@ export function DeleteBlock({ blockID }: { blockID: LessonBlock['id'] }) {
     const dispatch = usePathsDispatch();
     return (
         <DeleteButton
-            className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100'
+            className=' absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100'
             onClick={() => {
                 dispatch({
                     "type": "deleted_lesson_block",

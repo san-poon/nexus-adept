@@ -17,7 +17,7 @@ export const DeleteButton = ({ onClick, className }: { onClick: () => void, clas
             className={className}
             size="icon"
         >
-            <DeleteIcon />
+            <DeleteIcon className='w-4 h-4' />
         </Button>
     );
 }

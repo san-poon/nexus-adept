@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
 import { cn } from '@/lib/utils';
 import { TextareaProps } from "@/components/ui/textarea";
-import { CodeLangSelector } from "./editor-tools";
+import { BlockIcon, CodeLangSelector } from "./editor-tools";
 import { Checkbox } from "@/components/ui/checkbox";
 import LessonChain from "./LessonChain";
 import { Label } from "@/components/ui/label";
@@ -152,7 +152,7 @@ export function Block({ block }: { block: LessonBlock }) {
         }
         case 'quiz': {
             return (
-                <div className="m-1 md:m-2 p-1  md:p-4">
+                <div className="m-1 md:m-2 p-1 md:p-4">
                     <QuizBlock block={block} />
                 </div>
             )
@@ -167,7 +167,10 @@ export function Block({ block }: { block: LessonBlock }) {
             const compositeBlock: CompositeBlock = block;
             const defaultRootBlock = lesson[compositeBlock.value[0]];
             return (
-                <LessonChain block={defaultRootBlock} />
+                <div className="m-1 md:m-2 p-1 md:p-4">
+                    <BlockIcon element={compositeBlock.elementType} className="mb-4" />
+                    <LessonChain block={defaultRootBlock} />
+                </div>
             );
         }
         default: {
