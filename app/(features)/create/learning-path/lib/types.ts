@@ -31,6 +31,9 @@ export interface QuizData extends LessonBlock {
         explanationIDs: Array<string>,
     }
 }
+export interface CompositeBlock extends LessonBlock {
+    value: Array<LessonBlock['id']>
+}
 export type Lesson = Record<string, LessonBlock>;
 export type Lessons = Record<string, Lesson>;
 

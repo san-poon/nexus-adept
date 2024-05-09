@@ -1,4 +1,4 @@
-import { LessonBlock, QuizData } from "../lib/types";
+import { CompositeBlock, LessonBlock, QuizData } from "../lib/types";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useRef, useEffect } from "react";
@@ -128,13 +128,11 @@ export function Path({ path, level }: any) {
 
 export function Block({ block }: { block: LessonBlock }) {
     switch (block.elementType) {
-
         case 'text': {
             return (
                 <TextBlock blockData={block} placeholder="Text/Markdown..." className="w-full px-2 border-none focus:outline-0 focus-visible:outline-0 dark:focus-visible:outline-0" />
             );
         }
-
         case 'image': {
             return (
                 <div className='flex items-center justify-center p-2'>
@@ -142,7 +140,6 @@ export function Block({ block }: { block: LessonBlock }) {
                 </div>
             );
         }
-
         case 'code': {
             return (
                 <div>
@@ -153,7 +150,6 @@ export function Block({ block }: { block: LessonBlock }) {
                 </div>
             );
         }
-
         case 'quiz': {
             return (
                 <div className="m-1 md:m-2 p-1  md:p-4">
@@ -161,7 +157,19 @@ export function Block({ block }: { block: LessonBlock }) {
                 </div>
             )
         }
-
+        case 'note':
+        case 'pitfall':
+        case 'recap':
+        case 'deep-dive': {
+            const paths = usePaths();
+            const activePathID = useActivePathID();
+            const lesson = paths[activePathID].lesson;
+            const compositeBlock: CompositeBlock = block;
+            const defaultRootBlock = lesson[compositeBlock.value[0]];
+            return (
+                <LessonChain block={defaultRootBlock} />
+            );
+        }
         default: {
             return null;
         }

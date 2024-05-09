@@ -1,6 +1,6 @@
 import { Dispatch, createContext, use } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { LessonBlock, LessonElements, Path, Paths, PathsAction, QuizData } from '../lib/types';
+import { LessonBlock, LessonElements, Path, Paths, PathsAction, CompositeBlock, QuizData } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import { initialLesson, initialPaths } from '../lib/data';
 import { findAndAddElement, findAndRemoveElement } from '../lib/utils';
@@ -47,14 +47,14 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 lesson: initialLesson,
             }
             paths[action.parentID].childIDs.push(newChildPath.id); // Update the childIDs of the Parent Path
-            paths[newChildPath.id] = newChildPath; // Add new path
+            paths[newChildPath.id] = newChildPath;
             return paths;
         }
 
         case 'added_sibling_path': {
             const { siblingID } = action;
             const sibling = paths[siblingID];
-            const parentID = sibling.parentIDs[0]; // A hierarchy has always one parent
+            const parentID = sibling.parentIDs[0]; // A hierarchy has always one parent (for now)
             const newPath: Path = {
                 id: uuidv4(),
                 title: "",
@@ -62,7 +62,6 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 parentIDs: [parentID],
                 lesson: initialLesson,
             };
-            // Sibling index in the parent's childIDs
             const siblingIndex = paths[parentID].childIDs.indexOf(action.siblingID);
 
             paths[parentID].childIDs.splice(siblingIndex, 0, newPath.id);
@@ -91,18 +90,16 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const { activePathID, elementType, topBlockID, imageSrc } = action;
             const lesson = paths[activePathID].lesson;
             const topBlock = lesson[topBlockID];
-
-            // Every block(e.g: quiz's question block, or deep dive) block will have initial block which will have parentID set, which the newBlock will use.
-            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentBlockID, imageSrc); // Root block for every composed block must be initially defined.
+            // Root block for every composite block must be initially defined.
+            const newBlock = getNewBlock(elementType, topBlock.id, topBlock.nextBlockID, topBlock.parentBlockID, imageSrc);
             if (topBlock.nextBlockID) {
                 const bottomBlock = lesson[topBlock.nextBlockID];
                 bottomBlock.prevBlockID = newBlock.id;
             }
             topBlock.nextBlockID = newBlock.id;
 
-            //Additional data for quiz block.
+            // --------------- Addition of new composite block triggered ------------ 
             if (elementType === 'quiz') {
-                // Here, newBlock is the quiz block.
                 const quizBlock: QuizData = newBlock;
                 const defaultQBlock = getNewBlock('text', null, null, quizBlock.id); // Default question block, parentBlock is newBlock(quiz-block)'s `id`
                 const defaultEblock = getNewBlock('text', null, null, quizBlock.id); // Default explanation block
@@ -111,12 +108,19 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                 quizBlock.value.questionIDs.push(defaultQBlock.id);
                 quizBlock.value.explanationIDs.push(defaultEblock.id);
             }
+            if (
+                elementType === 'pitfall'
+                || elementType === 'recap'
+                || elementType === 'deep-dive'
+                || elementType === 'note'
+            ) {
+                const compositeBlock: CompositeBlock = newBlock;
+                const defaultBlock = getNewBlock('text', null, null, compositeBlock.id);
+                lesson[defaultBlock.id] = defaultBlock;
+                compositeBlock.value.push(defaultBlock.id);
+            }
 
-            /**
-             * If the block that triggered this action (topBlock) has parentID,
-             * then it means the parent is of type composite element.
-             * So, we need to save the `id` of the new block to the parent block.
-             */
+            // ----------- Addition of new block inside composite block triggered -----------
             if (topBlock.parentBlockID) {
                 // Find the location of topBlock's 'id' in parentBlock, and add the `id` of the new block just right after it.
                 // Finding the location differs according to composite types.
@@ -128,7 +132,16 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                     const allIDs = [qIDs, eIDs];
                     findAndAddElement(allIDs, topBlock.id, newBlock.id)
                 }
-                //TODO: Logic to add `id` to block of remaining composite elements.
+                if (
+                    parentBlock.elementType === 'pitfall'
+                    || parentBlock.elementType === 'deep-dive'
+                    || parentBlock.elementType === 'recap'
+                    || parentBlock.elementType === 'note'
+                ) {
+                    const compositeBlock: CompositeBlock = parentBlock;
+                    compositeBlock.value.push(newBlock.id);
+                }
+                //TODO: Logic to add `id` to remaining composite blocks.
             }
             lesson[newBlock.id] = newBlock;
             return paths;
@@ -139,7 +152,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
             const lesson = paths[activePathID].lesson;
             const block = lesson[blockID];
 
-            // Don't allow the defaultBlock(`prevBlockID: null`) to be deleted.
+            // Do not allow the defaultBlock(`prevBlockID: null`) to be deleted.
             if (block.prevBlockID) {
                 const topBlock = lesson[block.prevBlockID];
                 if (block.nextBlockID) {
@@ -150,7 +163,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                     topBlock.nextBlockID = null;
                 }
 
-                // Delete all blocks that only the quiz block has reference to. 
+                // ------ Deletion of composite block trirggered --------
                 if (block.elementType === 'quiz') {
                     const quizBlock: QuizData = block;
                     const qIDs = quizBlock.value.questionIDs;
@@ -162,8 +175,19 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                         delete lesson[id];
                     }
                 }
+                if (
+                    block.elementType === 'pitfall'
+                    || block.elementType === 'recap'
+                    || block.elementType === 'deep-dive'
+                    || block.elementType === 'note'
+                ) {
+                    const compositeBlock: CompositeBlock = block;
+                    for (let id of compositeBlock.value) {
+                        delete lesson[id];
+                    }
+                }
 
-                // Like when adding block we insert the new block's `id`, we delete the `id` of block being deleted.
+                // ---------- Deletion of a block inside composite block triggered ------------
                 if (block.parentBlockID) {
                     const parentBlock = lesson[block.parentBlockID];
                     if (parentBlock.elementType === 'quiz') {
@@ -174,13 +198,22 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
                         const allIDs = [qIDs, eIDs];
                         findAndRemoveElement(allIDs, block.id);
                     }
+                    if (
+                        parentBlock.elementType === 'pitfall'
+                        || block.elementType === 'recap'
+                        || block.elementType === 'deep-dive'
+                        || block.elementType === 'note'
+                    ) {
+                        const compositeBlock: CompositeBlock = parentBlock;
+                        findAndRemoveElement([compositeBlock.value], block.id);
+                    }
                     //TODO: implement logic to remove `id` from other composite elements.
                 }
 
                 delete lesson[blockID];
                 return paths;
             }
-            return paths; // In rare cases if user tries to delete the default block, do nothing and return.
+            return paths; // In rare cases, if deletion of default block is triggered.
         }
 
 
@@ -191,8 +224,7 @@ function pathsReducer(paths: Paths, action: PathsAction): Paths {
         }
 
         default: {
-            //@ts-expect-error
-            throw Error(`Unknown action ${action.type}`)
+            return paths;
         }
     }
 }
@@ -242,9 +274,9 @@ function getNewBlock(
                 id: uuidv4(),
                 elementType: 'quiz',
                 value: {
-                    questionIDs: [], // (Default: TextBlock) IDs in lesson blocks: 'text', 'image' & 'code'. ('maths' not supported)
+                    questionIDs: [],
                     options: [
-                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' }, // feedbackIDs represent IDs in lesson blocks.
+                        { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                         { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                         { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
                         { id: uuidv4(), value: '', isCorrect: false, feedbackIDs: '' },
@@ -255,6 +287,46 @@ function getNewBlock(
                 nextBlockID,
                 parentBlockID,
             };
+        }
+        case 'note': {
+            return {
+                id: uuidv4(),
+                elementType: 'note',
+                value: [],
+                prevBlockID,
+                nextBlockID,
+                parentBlockID,
+            }
+        }
+        case 'deep-dive': {
+            return {
+                id: uuidv4(),
+                elementType: 'deep-dive',
+                value: [],
+                prevBlockID,
+                nextBlockID,
+                parentBlockID,
+            }
+        }
+        case 'pitfall': {
+            return {
+                id: uuidv4(),
+                elementType: 'pitfall',
+                value: [],
+                prevBlockID,
+                nextBlockID,
+                parentBlockID,
+            }
+        }
+        case 'recap': {
+            return {
+                id: uuidv4(),
+                elementType: 'recap',
+                value: [],
+                prevBlockID,
+                nextBlockID,
+                parentBlockID,
+            }
         }
         default: {
             throw new Error('Not a valid element of a lesson ' + element);

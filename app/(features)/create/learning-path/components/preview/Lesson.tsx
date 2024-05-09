@@ -140,8 +140,7 @@ function Quiz({ block }: { block: LessonBlock }) {
                     </ul>
                 </div>
                 <CardFooter className='flex-col'>
-
-                    <div className="flex justify-between items-center w-full my-12">
+                    <div className="flex justify-between items-center w-full mt-12">
                         <span className='me-4'>
                             {hasSubmitted && (
                                 isPlayerCorrect

@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon } from "@/components/icons";
+import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon, NoteIcon, PitfallIcon, BookIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { usePaths, usePathsDispatch } from './PathsContext';
 import { useActivePathID } from './ActivePathContext';
-import { LessonBlock, LessonElements } from '../lib/types';
+import { LessonBlock, LessonElements, compositeElements } from '../lib/types';
 import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
 import { DeleteButton } from './tootip-buttons';
 import clsx from 'clsx';
@@ -86,17 +86,50 @@ const elements: Elements[] = [
         value: 'code',
         label: 'Code',
     },
+    {
+        value: 'recap',
+        label: 'Recap',
+    },
+    {
+        value: 'deep-dive',
+        label: 'Deep-Dive',
+    },
+    {
+        value: 'pitfall',
+        label: 'Pitfall',
+    },
+    {
+        value: 'note',
+        label: 'Note',
+    }
 ];
 function getLegalElements(parentType: LessonElements) {
     switch (parentType) {
         case 'quiz':
+        case 'recap':
         case 'note': {
             return elements.filter((element) => {
                 switch (element.value) {
                     case 'text':
                     case 'code':
-                    case 'image': return element;
-                    default: return;
+                    case 'image': {
+                        return element
+                    };
+                    default: break;
+                }
+            });
+        }
+        case 'pitfall':
+        case 'deep-dive': {
+            return elements.filter((element) => {
+                switch (element.value) {
+                    case 'text':
+                    case 'code':
+                    case 'image':
+                    case 'quiz': {
+                        return element
+                    };
+                    default: break;
                 }
             });
         }
@@ -116,6 +149,15 @@ const BlockIcon = ({ element }: { element: LessonElements }) => {
         }
         case 'code': {
             return <CodeBlockIcon />
+        }
+        case 'note': {
+            return <NoteIcon />
+        }
+        case 'pitfall': {
+            return <PitfallIcon />
+        }
+        case 'deep-dive': {
+            return <BookIcon />
         }
         default: {
             return null;
