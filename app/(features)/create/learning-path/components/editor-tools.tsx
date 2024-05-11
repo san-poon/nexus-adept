@@ -5,7 +5,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { usePaths, usePathsDispatch } from './PathsContext';
 import { useActivePathID } from './ActivePathContext';
-import { LessonBlock, LessonElements, compositeElements } from '../lib/types';
+import { LessonBlock, LessonElements } from '../lib/types';
 import { Check, ChevronsUpDown, PlusIcon } from 'lucide-react';
 import { DeleteButton } from './tootip-buttons';
 import clsx from 'clsx';

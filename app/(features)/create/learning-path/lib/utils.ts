@@ -17,5 +17,5 @@ export function findAndAddElement(arrays: Array<Array<string>>, topBlockID: stri
             return array.splice(index + 1, 0, newBlockID);
         }
     }
-    // If topBlockID is not found, something is wrong with the logic
+    // If topBlockID is not found, something is wrong with this logic
 }
