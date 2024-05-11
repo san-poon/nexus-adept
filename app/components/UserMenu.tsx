@@ -10,9 +10,10 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation';
 
-export default function UserMenu() {
-
+export default function UserMenu({ isUserSignedin }: { isUserSignedin: boolean }) {
+    const router = useRouter();
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -21,14 +22,21 @@ export default function UserMenu() {
                     <span className="sr-only">Toggle user menu</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
-            </DropdownMenuContent>
+            {isUserSignedin
+                ?
+                <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>My account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+                </DropdownMenuContent>
+                :
+                <DropdownMenuContent>
+                    <DropdownMenuItem onClick={() => router.push('/auth/signin')}>Sign In</DropdownMenuItem>
+                </DropdownMenuContent>
+            }
         </DropdownMenu>
     )
 }

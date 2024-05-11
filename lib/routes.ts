@@ -7,7 +7,7 @@
 export const publicRoutes: string[] = [
     "/",
     "/portfolio",
-    "/learn/quiz/mcqs/", // This feature must not be public in future.
+    "/learn/quiz/mcqs", // This feature must not be public in future.
 ];
 
 /**
@@ -42,6 +42,5 @@ export const DEFAULT_SIGNIN_REDIRECT = '/dashboard';
  * if they are not, they are routed to '/auth/login'.
  */
 export const publicCreationRoutes = [
-    '/create/lesson',
     '/create/learning-path',
 ];
