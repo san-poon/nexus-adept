@@ -127,6 +127,9 @@ export function Path({ path, level }: any) {
 
 
 export function Block({ block }: { block: LessonBlock }) {
+    const paths = usePaths();
+    const activePathID = useActivePathID();
+    const lesson = paths[activePathID].lesson;
     switch (block.elementType) {
         case 'text': {
             return (
@@ -161,9 +164,6 @@ export function Block({ block }: { block: LessonBlock }) {
         case 'pitfall':
         case 'recap':
         case 'deep-dive': {
-            const paths = usePaths();
-            const activePathID = useActivePathID();
-            const lesson = paths[activePathID].lesson;
             const compositeBlock: CompositeBlock = block;
             const defaultRootBlock = lesson[compositeBlock.value[0]];
             return (

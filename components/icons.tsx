@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { IconURL } from "next/dist/lib/metadata/types/metadata-types";
 
 interface Icon {
     className?: string;
