@@ -1,17 +1,43 @@
 import { Dispatch, createContext, use } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { LessonBlock, LessonElements, Path, Paths, PathsAction, CompositeBlock, QuizData } from '../lib/types';
+import { LessonBlock, LessonElements, Path, Paths, PathsAction, CompositeBlock, QuizData, Lesson } from '../lib/types';
 import { v4 as uuidv4 } from 'uuid';
-import { initialLesson, initialPaths } from '../lib/data';
 import { findAndAddElement, findAndRemoveElement } from '../lib/utils';
+import samplePaths from '@/lib/hieararchy-tree-sample-data.json';
+
+export const initialLesson: Lesson = {
+    'INTRODUCTION': {
+        id: 'INTRODUCTION',
+        elementType: 'text',
+        value: "",
+        prevBlockID: null, // for first node. Lesson title is part of Paths itself
+        nextBlockID: 'OBJECTIVE',
+        parentBlockID: null,
+    },
+    'OBJECTIVE': {
+        id: 'OBJECTIVE',
+        elementType: 'text',
+        value: "",
+        prevBlockID: 'INTRODUCTION',
+        nextBlockID: null, // for last node
+        parentBlockID: null,
+    },
+}
+export const initialPaths: Paths = {
+    ['ROOT']: {
+        id: 'ROOT',
+        title: "",
+        childIDs: [],
+        parentIDs: [],
+        lesson: initialLesson,
+    },
+};
 
 export const PathsContext = createContext<Paths>(initialPaths);
 export const PathsDispatchContext = createContext((() => { }) as Dispatch<PathsAction>)
 
 export function PathsProvider({ children }: { children: React.ReactNode }) {
-    const [paths, dispatch] = useImmerReducer(
-        pathsReducer, initialPaths
-    );
+    const [paths, dispatch] = useImmerReducer(pathsReducer, samplePaths as Paths);
 
     return (
         <PathsContext.Provider value={paths}>

@@ -13,7 +13,7 @@ export default function LessonEditor() {
     const objectiveBlock = lesson['OBJECTIVE'];
     return (
         <section>
-            <div className=' flex items-center justify-center mx-2'>
+            <div className=' flex items-center justify-center'>
                 <TitleBlock />
             </div>
             <div className='my-8'>

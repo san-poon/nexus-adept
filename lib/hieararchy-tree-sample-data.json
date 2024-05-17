@@ -8,7 +8,25 @@
             "19",
             "27"
         ],
-        "parentIDs": []
+        "parentIDs": [],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "1": {
         "id": "1",
@@ -26,7 +44,25 @@
         ],
         "parentIDs": [
             "ROOT"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "2": {
         "id": "2",
@@ -34,7 +70,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "3": {
         "id": "3",
@@ -42,7 +96,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "4": {
         "id": "4",
@@ -50,7 +122,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "5": {
         "id": "5",
@@ -58,7 +148,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "6": {
         "id": "6",
@@ -66,7 +174,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "7": {
         "id": "7",
@@ -74,7 +200,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "8": {
         "id": "8",
@@ -82,7 +226,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "9": {
         "id": "9",
@@ -90,7 +252,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "10": {
         "id": "10",
@@ -98,7 +278,25 @@
         "childIDs": [],
         "parentIDs": [
             "1"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "11": {
         "id": "11",
@@ -114,7 +312,25 @@
         ],
         "parentIDs": [
             "ROOT"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "12": {
         "id": "12",
@@ -122,7 +338,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "13": {
         "id": "13",
@@ -130,7 +364,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "14": {
         "id": "14",
@@ -138,7 +390,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "15": {
         "id": "15",
@@ -146,7 +416,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "16": {
         "id": "16",
@@ -154,7 +442,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "17": {
         "id": "17",
@@ -162,7 +468,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "18": {
         "id": "18",
@@ -170,7 +494,25 @@
         "childIDs": [],
         "parentIDs": [
             "11"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "19": {
         "id": "19",
@@ -186,7 +528,25 @@
         ],
         "parentIDs": [
             "ROOT"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "20": {
         "id": "20",
@@ -194,7 +554,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "21": {
         "id": "21",
@@ -202,7 +580,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "22": {
         "id": "22",
@@ -210,7 +606,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "23": {
         "id": "23",
@@ -218,7 +632,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "24": {
         "id": "24",
@@ -226,7 +658,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "25": {
         "id": "25",
@@ -234,7 +684,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "26": {
         "id": "26",
@@ -242,7 +710,25 @@
         "childIDs": [],
         "parentIDs": [
             "19"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     },
     "27": {
         "id": "27",
@@ -250,6 +736,24 @@
         "childIDs": [],
         "parentIDs": [
             "ROOT"
-        ]
+        ],
+        "lesson": {
+            "INTRODUCTION": {
+                "id": "INTRODUCTION",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": null,
+                "nextBlockID": "OBJECTIVE",
+                "parentBlockID": null
+            },
+            "OBJECTIVE": {
+                "id": "OBJECTIVE",
+                "elementType": "text",
+                "value": "",
+                "prevBlockID": "INTRODUCTION",
+                "nextBlockID": null,
+                "parentBlockID": null
+            }
+        }
     }
 }

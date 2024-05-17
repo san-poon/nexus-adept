@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
-import { Path } from "../../lib/types";
-import { useActivePathID } from "../ActivePathContext";
-import { usePaths } from "../PathsContext";
+import { Path } from "../lib/types";
+import { useActivePathID } from "./ActivePathContext";
+import { usePaths } from "./PathsContext";
 
-export default function Paths() {
+export default function PathsPreview() {
     const paths = usePaths();
     const root = paths["ROOT"];
     const rootChildIDs = root?.childIDs;

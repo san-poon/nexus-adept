@@ -2,13 +2,15 @@
 import { PathsProvider } from "./components/PathsContext";
 import { ActivePathProvider } from './components/ActivePathContext';
 import { SavePaths } from './components/editor-tools';
-import EditorTabs from "./components/EditorTabs";
+import Editor from "./components/Editor";
 
 export default function PathEditorPage() {
     return (
         <PathsProvider>
             <ActivePathProvider>
-                <EditorTabs />
+                <div className="min-h-[78vh]">
+                    <Editor />
+                </div>
                 <div className=" flex justify-center my-16">
                     <SavePaths />
                 </div>

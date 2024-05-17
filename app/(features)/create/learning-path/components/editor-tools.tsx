@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon, NoteIcon, PitfallIcon, BookIcon, BulletListIcon } from "@/components/icons";
+import { TextBlockIcon, GearIcon, QuizBlockIcon, ImageBlockIcon, CodeBlockIcon, NoteIcon, PitfallIcon, BookIcon, BulletListIcon, HamburgerIcon } from "@/components/icons";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { usePaths, usePathsDispatch } from './PathsContext';
@@ -256,7 +256,7 @@ export function DeleteBlock({ blockID }: { blockID: LessonBlock['id'] }) {
     const dispatch = usePathsDispatch();
     return (
         <DeleteButton
-            className=' absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100'
+            className='absolute bottom-0 right-0 opacity-0 transition-opacity duration-300 group-hover/content:opacity-100 p-0 m-0'
             onClick={() => {
                 dispatch({
                     "type": "deleted_lesson_block",

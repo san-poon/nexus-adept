@@ -1,16 +1,16 @@
 import Markdown, { Components } from 'react-markdown';
-import { useActivePathID } from "../ActivePathContext";
-import { usePaths } from "../PathsContext";
-import { LessonBlock, QuizData } from '../../lib/types';
+import { useActivePathID } from "./ActivePathContext";
+import { usePaths } from "./PathsContext";
+import { LessonBlock, QuizData } from '../lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { QuizBlockIcon } from '@/components/icons';
-import { cn, shuffleArray } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 
-export default function Lesson() {
+export default function LessonPreview() {
     const paths = usePaths();
     const activePathID = useActivePathID();
     const lesson = paths[activePathID].lesson;

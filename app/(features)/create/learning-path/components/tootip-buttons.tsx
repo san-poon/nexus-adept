@@ -31,6 +31,7 @@ export function AddButton({ onClick, className, children }: { onClick: () => voi
                         onClick={onClick}
                         className={cn(
                             className,
+                            "px-2 py-2"
                         )}
                     >
                         <PlusIcon className='h-4 w-4' />

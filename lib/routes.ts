@@ -43,4 +43,5 @@ export const DEFAULT_SIGNIN_REDIRECT = '/dashboard';
  */
 export const publicCreationRoutes = [
     '/create/learning-path',
+    '/create/lesson',
 ];
