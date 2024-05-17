@@ -50,7 +50,6 @@ export function PathTitle() {
                         type: 'added_child_path',
                         parentID: root.id,
                     });
-                    console.log(paths);
                 }}
             >
                 <p>Add Chapter</p>
@@ -85,7 +84,7 @@ export function Path({ path, level }: any) {
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className={cn(
+                className={cn("w-full",
                     activePathID === path.id && "border-emerald-300 dark:border-emerald-700"
                 )}
                 type="text"
