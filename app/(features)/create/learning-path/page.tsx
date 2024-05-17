@@ -6,15 +6,17 @@ import Editor from "./components/Editor";
 
 export default function PathEditorPage() {
     return (
-        <PathsProvider>
-            <ActivePathProvider>
-                <div className="min-h-[78vh]">
-                    <Editor />
-                </div>
-                <div className=" flex justify-center my-16">
-                    <SavePaths />
-                </div>
-            </ActivePathProvider>
-        </PathsProvider>
+        <div className="mx-1 md:mx-4 my-2">
+            <PathsProvider>
+                <ActivePathProvider>
+                    <div className="min-h-[78vh]">
+                        <Editor />
+                    </div>
+                    <div className=" flex justify-center my-16">
+                        <SavePaths />
+                    </div>
+                </ActivePathProvider>
+            </PathsProvider>
+        </div>
     );
 }

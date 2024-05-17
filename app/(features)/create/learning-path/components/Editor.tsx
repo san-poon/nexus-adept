@@ -4,25 +4,19 @@ import LessonEditor from "./LessonEditor";
 import Menu from "@/components/ui/Menu";
 import LessonPreview from "./LessonPreview";
 import PathsEditor from "./PathsEditor";
-import PathsPreview from "./PathsPreview";
 
 export default function Editor() {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     }
-
-
     return (
         <div>
-            <div className="flex justify-between lg:justify-end mx-2 md:mx-8">
-                <div className=" flex-1">
-                    <Menu isOpen={isMenuOpen} onClick={handleMenuToggle} />
-                </div>
-                {/* <DetailsEditor /> */}
+            <div className="">
+                <Menu isOpen={isMenuOpen} onClick={handleMenuToggle} />
             </div>
             {isMenuOpen ? (
-                <section className="flex-1 items-center jusitify-center">
+                <section className="">
                     <PathsEditor />
                 </section>
             ) : (
@@ -35,7 +29,6 @@ export default function Editor() {
                     </div>
                 </section>
             )}
-
         </div>
     );
 }

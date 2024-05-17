@@ -11,15 +11,18 @@ export default function PathsEdtior() {
             <div className="flex justify-center">
                 <PathTitle />
             </div>
-            <ul>
-                {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
-                    <PathsTree
-                        key={id}
-                        pathID={id}
-                        level={1}
-                    />
-                ))}
-            </ul>
+            <div className="flex justify-center">
+                <ul >
+                    {rootChildIDs.length > 0 && rootChildIDs.map((id: string) => (
+                        <PathsTree
+                            key={id}
+                            pathID={id}
+                            level={1}
+                        />
+                    ))}
+                </ul>
+            </div>
+
         </>
     )
 }

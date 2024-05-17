@@ -84,7 +84,8 @@ export function Path({ path, level }: any) {
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                className={cn("w-full",
+                size={30}
+                className={cn(
                     activePathID === path.id && "border-emerald-300 dark:border-emerald-700"
                 )}
                 type="text"
