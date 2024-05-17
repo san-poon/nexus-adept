@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { auth } from '@/auth';
 import ThemeToggler from "./theme-toggler";
-import Logo from "../../components/logo";
 import { Button } from "@/components/ui/button";
 import {
     Popover,
@@ -26,7 +25,7 @@ export default async function Header() {
                 <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
                     <Link href="/" title="Master the craft, Together. Contribute and Learn...">
                         <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105 rounded-full">
-                            <Logo />
+                            NexusAdept
                         </div>
                     </Link>
                     <div className="md:space-x-2">
