@@ -22,7 +22,7 @@ export function PathTitle() {
     return (
         <div className="flex items-center">
             <Input
-                className={cn(
+                className={cn("md:w-96",
                     activePathID === root.id && "border-emerald-300 dark:border-emerald-700"
                 )}
                 type="text"
@@ -84,8 +84,7 @@ export function Path({ path, level }: any) {
                 className="opacity-30 transition-opacity duration-300 hover:opacity-100"
             />
             <Input
-                size={30}
-                className={cn(
+                className={cn("md:w-96",
                     activePathID === path.id && "border-emerald-300 dark:border-emerald-700"
                 )}
                 type="text"
@@ -331,6 +330,7 @@ export function TitleBlock() {
     const activePathID = useActivePathID();
     return (
         <Input
+            className="md:w-96"
             autoFocus
             type="text"
             placeholder="Lesson Title"
