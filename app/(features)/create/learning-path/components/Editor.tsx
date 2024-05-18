@@ -8,6 +8,20 @@ import { SavePaths } from "./editor-tools";
 
 export default function Editor() {
     const [isMenuOpen, setIsMenuOpen] = useState(true);
+    const [expandedHierarchies, setExpandedHierarchies] = useState(['ROOT']);
+
+    const handleExpandedChange = (categoryID: string) => {
+        setExpandedHierarchies((prev: Array<string>) => {
+            const isExpanded = expandedHierarchies?.includes(categoryID);
+            if (isExpanded) {
+                return prev.filter((expandedID) => expandedID !== categoryID)
+            }
+            return [
+                ...prev, categoryID
+            ];
+        })
+    };
+
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     }
