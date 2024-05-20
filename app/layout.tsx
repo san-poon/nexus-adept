@@ -19,14 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800 `}>
+      <body className={`${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base`}>
         <ThemeProvider attribute='class'
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <Header />
-          <main className="dark:text-neutral-200 text-base">
+          <main className="min-h-screen mx-1 md:mx-2 lg:mx-4">
             {children}
           </main>
           <Footer />

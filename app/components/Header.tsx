@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/popover';
 import { MenuIcon } from "@/components/icons";
 import UserMenu from './UserMenu';
+import Search from "./Search";
 
 export default async function Header() {
     const session = await auth();
@@ -24,21 +25,12 @@ export default async function Header() {
             <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-white dark:bg-wash-800 dark:bg-opacity-95 px-1.5 lg:pe-2.5 lg:ps-4 z-50 dark:shadow-wash-780 shadow">
                 <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
                     <Link href="/" title="Master the craft, Together. Contribute and Learn...">
-                        <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105 rounded-full">
-                            NexusAdept
+                        <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105">
+                            NexusA
                         </div>
                     </Link>
-                    <div className="md:space-x-2">
-                        <Button>
-                            <Link href="/create/learning-path" title="Create from a part of the lesson to whole new learning-path.">
-                                Create
-                            </Link>
-                        </Button>
-                        <Button>
-                            <Link href="/learn/quiz/mcqs" title="Learn JS through quizzes">
-                                Learn
-                            </Link>
-                        </Button>
+                    <div className="flex">
+                        <Search />
                     </div>
                     <div className="flex space-x-2">
                         <UserMenu isUserSignedin={isUserSignedin} />
