@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { rubik } from '@/app/fonts';
+import { defaultFont } from '@/app/fonts';
 import { Toaster } from 'sonner';
 
 import './globals.css';
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${rubik.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base`}>
+      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base`}>
         <ThemeProvider attribute='class'
           defaultTheme="dark"
           enableSystem
