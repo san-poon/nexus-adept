@@ -7,6 +7,7 @@
 export const publicRoutes: string[] = [
     "/",
     "/portfolio",
+    "/create",
     "/learn/quiz/mcqs", // This feature must not be public in future.
 ];
 

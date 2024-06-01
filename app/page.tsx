@@ -13,7 +13,7 @@ export default async function HomePage() {
 
   return (
     <div className='z-10 sticky top-16 w-full h-32 flex justify-center items-end'>
-      <div className='flex items-center w-full md:w-[32rem] bg-wash-70 dark:bg-wash-900 rounded-full focus-within:shadow-2xl ps-2 md:ps-4 md:p-2'>
+      <div className='flex items-center w-full md:w-[32rem] bg-wash-70 dark:bg-wash-750 rounded-full focus-within:shadow-2xl ps-2 md:ps-4 md:p-2'>
         <SearchIcon />
         <Input
           type='search'
