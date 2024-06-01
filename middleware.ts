@@ -26,7 +26,7 @@ import {
     * The bulk of security checks should be performed in the Data Access Layer (DAL).
 */
 export default async function middleware(request: NextRequest) {
-
+  return;
   const { nextUrl } = request;
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isPublicCreationRoute = publicCreationRoutes.includes(nextUrl.pathname);
