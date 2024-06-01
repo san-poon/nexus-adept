@@ -7,7 +7,6 @@
 export const publicRoutes: string[] = [
     "/",
     "/portfolio",
-    "/create",
     "/learn/quiz/mcqs", // This feature must not be public in future.
 ];
 
@@ -45,4 +44,5 @@ export const DEFAULT_SIGNIN_REDIRECT = '/dashboard';
 export const publicCreationRoutes = [
     '/create/learning-path',
     '/create/lesson',
+    '/create',
 ];
