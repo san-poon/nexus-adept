@@ -1,9 +1,12 @@
 import type { Klass, LexicalNode } from 'lexical';
 
-import { HeadingNode, QuoteNode } from '@lexical/rich-text';
-import { ListNode, ListItemNode } from '@lexical/list';
 import { CodeNode, CodeHighlightNode } from '@lexical/code';
+import { HeadingNode, QuoteNode } from '@lexical/rich-text';
+import { HorizontalRuleNode } from '@lexical/react/LexicalHorizontalRuleNode';
+import { ListNode, ListItemNode } from '@lexical/list';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
+import { MarkNode } from '@lexical/mark';
+import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -14,6 +17,11 @@ const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   CodeHighlightNode,
   LinkNode,
   AutoLinkNode,
+  HorizontalRuleNode,
+  MarkNode,
+  TableNode,
+  TableCellNode,
+  TableRowNode,
 ];
 
 export default defaultEditorNodes;

@@ -1,4 +1,4 @@
-import Editor from "./components/LexicalEditor";
+import Editor from "./components/Editor";
 
 export default function EditorPage() {
   return (

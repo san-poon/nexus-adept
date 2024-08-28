@@ -5,9 +5,10 @@ const theme: EditorThemeClasses = {
   rtl: ' text-right',
   paragraph: 'leading-8 my-4',
   heading: {
-    h1: 'text-4xl mb-6 font-medium tracking-tight',
-    h2: 'text-3xl mt-8 mb-4 font-medium',
-    h3: 'text-2xl mt-6 mb-2 font-medium',
+    h1: 'text-3xl mb-6 font-medium tracking-tight',
+    h2: 'text-2xl mt-8 mb-4 font-medium',
+    h3: 'text-xl mt-6 mb-2 font-medium',
+    h4: "text-lg mt-4 mb-2 font-medium"
   },
   text: {
     bold: 'font-bold dark:opacity-90',
