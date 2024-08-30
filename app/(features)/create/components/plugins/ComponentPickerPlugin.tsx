@@ -13,6 +13,8 @@ import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontal
 
 import { cn } from '@/lib/utils';
 import useModal from '@/hooks/useModal';
+import { INSERT_TABLE_COMMAND } from '@lexical/table';
+import { InsertTableDialog } from './TablePlugin';
 
 
 
@@ -31,6 +33,7 @@ export default function ComponentPickerPlugin() {
         if (!queryString) return baseOptions;
         const regex = new RegExp(queryString, 'i');
         return [
+            ...getDynamicOptions(editor, queryString),
             ...baseOptions.filter(
                 (option) =>
                     regex.test(option.title) ||
@@ -126,8 +129,46 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
                 editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined),
         }),
 
+        new ComponentPickerOption('Table', {
+            icon: <i />,
+            keywords: ['table', 'grid', 'spreadsheet', 'rows', 'columns'],
+            onSelect: () =>
+                showModal('Insert Table', (onClose) => (
+                    <InsertTableDialog activeEditor={editor} onClose={onClose} />
+                )),
+        }),
+
     ];
 }
+
+function getDynamicOptions(editor: LexicalEditor, queryString: string) {
+    const options: Array<ComponentPickerOption> = [];
+    if (queryString === null) {
+        return options;
+    }
+    const tableMatch = queryString.match(/^([1-9]\d?)(?:x([1-9]\d?)?)?$/);
+    if (tableMatch !== null) {
+        const rows = tableMatch[1];
+        const colOptions = tableMatch[2]
+            ? [tableMatch[2]]
+            : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(String);
+
+        options.push(
+            ...colOptions.map(
+                (columns) =>
+                    new ComponentPickerOption(`${rows}x${columns} Table`, {
+                        icon: <i />,
+                        keywords: ['table'],
+                        onSelect: () =>
+                            editor.dispatchCommand(INSERT_TABLE_COMMAND, { columns, rows }),
+                    }),
+            ),
+        );
+    }
+
+    return options;
+}
+
 
 
 

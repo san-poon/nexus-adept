@@ -1,0 +1,21 @@
+.textCode {
+    font-family: "JetBrains Mono", Menlo, Consolas, Monaco, monospace;
+}
+
+.code {
+    position: relative;
+    padding: 8px 8px 8px 52px;
+    font-family: "JetBrains Mono", Menlo, Consolas, Monaco, monospace;
+}
+
+.code:before {
+    content: attr(data-gutter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 8px;
+    color: #888;
+    white-space: pre-wrap;
+    text-align: right;
+    min-width: 25px;
+}
