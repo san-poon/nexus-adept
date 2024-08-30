@@ -46,7 +46,8 @@ const theme: EditorThemeClasses = {
     h3: 'text-2xl mt-6 mb-3 font-medium',
     h4: 'text-xl mt-4 mb-2 font-medium'
   },
-  link: " no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-100 transition-colors cursor-pointer",
+  hr: 'hr',
+  link: "no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-100 transition-colors cursor-pointer",
   list: {
     checklist: '',
     listitem: 'ps-1 lg:ps-6',
@@ -81,7 +82,7 @@ const theme: EditorThemeClasses = {
     underline: 'underline underline-offset-4',
     strikethrough: 'line-through',
     underlineStrikethrough: 'underline line-through',
-    code: 'bg-wash-80 dark:bg-wash-720 px-1 rounded text-sm',
+    code: 'codeText bg-wash-80 dark:bg-wash-720 px-1 rounded text-sm',
     subscript: 'text-[0.8em] align-sub !important',
     superscript: 'text-[0.8em] align-super',
   },

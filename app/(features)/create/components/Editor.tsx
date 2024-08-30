@@ -11,7 +11,6 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 
-import { TRANSFORMERS } from '@lexical/markdown';
 
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
 import defaultEditorNodes from '../nodes/defaultEditorNodes';
@@ -42,7 +41,7 @@ export default function Editor() {
             </div>
             <HistoryPlugin />
             <AutoFocusPlugin />
-            <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+            <MarkdownShortcutPlugin />
             <CodeHighlightPlugin />
             <ComponentPickerPlugin />
             <HorizontalRulePlugin />
