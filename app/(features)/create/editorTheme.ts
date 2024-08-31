@@ -6,6 +6,7 @@ const theme: EditorThemeClasses = {
   rtl: ' text-right',
   blockquote: 'border-l-4 border-gray-300 pl-4 italic',
   quote: 'bg-wash-90 dark:bg-wash-750 pl-4 pr-2 py-2 rounded-3xl border-l-4 border-wash-500 italic',
+
   code: ' code block rounded-xl shadow-xl dark:bg-neutral-900 overflow-x-auto text-sm',
   codeHighlight: {
     atrule: 'text-purple-600 dark:text-purple-400', // Purple for @rules
@@ -38,19 +39,19 @@ const theme: EditorThemeClasses = {
     tag: 'text-blue-700 dark:text-blue-300', // Blue for tags
     url: 'text-blue-600 dark:text-blue-300', // Blue for URLs
     variable: 'text-orange-600 dark:text-orange-400', // Orange for variables
-  }
-  ,
+  },
+
   heading: {
-    h1: 'text-4xl mb-6 font-medium tracking-tight',
-    h2: 'text-3xl mt-8 mb-4 font-medium',
-    h3: 'text-2xl mt-6 mb-3 font-medium',
-    h4: 'text-xl mt-4 mb-2 font-medium'
+    h1: 'text-4xl mb-4 font-medium tracking-tight',
+    h2: 'text-2xl mt-6 mb-3 font-medium',
+    h3: 'text-xl mt-4 mb-2 font-medium',
+    h4: 'text-lg mt-2 mb-1 font-medium'
   },
   hr: 'hr',
   link: "no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-100 transition-colors cursor-pointer",
   list: {
     checklist: '',
-    listitem: 'ps-1 lg:ps-6',
+    listitem: 'my-0 ps-1 lg:ps-6',
     listitemChecked: '',
     listitemUnchecked: '',
     nested: {
@@ -59,23 +60,25 @@ const theme: EditorThemeClasses = {
     ol: 'list-decimal leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300',
     ul: 'list-disc leading-8 list-inside marker:text-neutral-500',
   },
-  paragraph: 'leading-8 my-4',
-  table: 'border-collapse overflow-x-scroll overflow-y-scroll table-fixed w-max my-6 mr-6',
-  tableCell: "border border-gray-400 w-[75px] min-w-[75px] align-top text-start p-2 relative outline-none",
-  tableCellActionButton: 'bg-gray-200 block border-0 rounded-full w-5 h-5 text-gray-900 cursor-pointer',
-  tableCellActionButtonContainer: 'block right-1 top-1.5 absolute z-4 w-5 h-5',
-  tableCellEditing: 'shadow-lg rounded-sm',
-  tableCellHeader: 'bg-wash-70 dark:bg-wash-750 text-start',
-  tableCellPrimarySelected: 'border border-blue-500 block h-[calc(100%-2px)] absolute w-[calc(100%-2px)] left-[-1px] top-[-1px] z-2',
-  tableCellResizer: 'absolute right-[-4px] h-full w-2 cursor-ew-resize z-10 top-0',
-  tableCellSelected: 'bg-blue-100',
-  tableCellSortedIndicator: 'block opacity-50 absolute bottom-0 left-0 w-full h-1 bg-gray-600',
-  tableResizeRuler: '',
-  tableSelected: 'outline-[2px] outline-blue-500',
+  paragraph: 'leading-8 m-0 realtive',
+
+  table: 'table',
+  tableCell: "tableCell",
+  tableCellActionButton: 'tableCellActionButton',
+  tableCellActionButtonContainer: 'tableCellActionButtonContainer',
+  tableCellEditing: 'tableCellEditing',
+  tableCellHeader: 'tableCellHeader',
+  tableCellPrimarySelected: 'tableCellPrimarySelected',
+  tableCellResizer: 'tableCellResizer',
+  tableCellSelected: 'tableCellSelected',
+  tableCellSortedIndicator: 'tableCellSortedIndicator',
+  tableResizeRuler: 'tableResizeRuler',
+  tableSelected: 'tableSelected',
   tableRow: '',
-  tableAddRows: 'absolute w-[calc(100%-25px)] bg-gray-200 animate-[table-controls_0.2s_ease] border-0 cursor-pointer',
-  tableAddColumns: 'absolute bg-gray-200 h-full animate-[table-controls_0.2s_ease] border-0 cursor-pointer',
-  tableCellResizeRuler: 'absolute w-1 bg-blue-500 h-full top-0',
+  tableAddRows: 'tableAddRows',
+  tableAddColumns: 'tableAddColumns',
+  tableCellResizeRuler: 'tableCellResizeRuler',
+
   text: {
     bold: 'font-bold dark:opacity-90',
     italic: 'italic',

@@ -110,18 +110,6 @@ type ShowModal = ReturnType<typeof useModal>[1];
 function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
     return [
 
-        new ComponentPickerOption('Paragraph', {
-            icon: <i />,
-            keywords: ['p', 'paragraph', 'normal', 'text'],
-            onSelect: () =>
-                editor.update(() => {
-                    const selection = $getSelection();
-                    if ($isRangeSelection(selection)) {
-                        $setBlocksType(selection, () => $createParagraphNode());
-                    }
-                }),
-        }),
-
         new ComponentPickerOption('Divider', {
             icon: <i />,
             keywords: ['horizontal rule', 'divider', 'hr'],

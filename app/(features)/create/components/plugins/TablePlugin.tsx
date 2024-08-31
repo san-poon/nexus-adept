@@ -34,35 +34,39 @@ export function InsertTableDialog({
     };
 
     return (
-        <div className="flex-col space-y-1">
-            <div className="flex items-center">
-                <Label className="pe-8">Rows</Label>
-                <Input
-                    className="w-24"
-                    type="number"
-                    placeholder="# of rows (1-500)"
-                    onChange={(e) => setRows(e.target.value)}
-                    value={rows}
-                />
+        <>
+            <div className="flex-col space-y-1">
+                <div className="flex items-center">
+                    <Label className="pe-8">Rows</Label>
+                    <Input
+                        className="w-24"
+                        type="number"
+                        placeholder="# of rows (1-500)"
+                        onChange={(e) => setRows(e.target.value)}
+                        value={rows}
+                    />
+                </div>
+                <div className="flex items-center">
+                    <Label className="pe-2">Columns</Label>
+                    <Input
+                        className=" w-24"
+                        type="number"
+                        placeholder="# of columns (1-50)"
+                        value={columns}
+                        onChange={(e) => setColumns(e.target.value)}
+                    />
+                </div>
             </div>
-            <div className="flex items-center">
-                <Label className="pe-2">Columns</Label>
-                <Input
-                    className=" w-24"
-                    type="number"
-                    placeholder="# of columns (1-50)"
-                    value={columns}
-                    onChange={(e) => setColumns(e.target.value)}
-                />
+            <div className="flex justify-center">
+                <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isDisabled}
+                    onClick={onConfirmClick}
+                >
+                    Confirm
+                </Button>
             </div>
-            <Button
-                type="button"
-                variant="outline"
-                disabled={isDisabled}
-                onClick={onConfirmClick}
-            >
-                Confirm
-            </Button>
-        </div>
+        </>
     )
 }
