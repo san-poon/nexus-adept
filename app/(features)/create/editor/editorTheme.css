@@ -131,7 +131,7 @@ html.dark .tableCellHeader {
 }
 
 .tableAddColumns:after {
-    background-image: url(./lib/images/plus.svg);
+    background-image: url(../lib/images/plus.svg);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,7 +160,7 @@ html.dark .tableCellHeader {
 }
 
 .tableAddRows:after {
-    background-image: url(./lib/images/plus.svg);
+    background-image: url(../lib/images/plus.svg);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

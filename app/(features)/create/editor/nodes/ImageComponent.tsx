@@ -30,11 +30,10 @@ import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
 import { $isImageNode } from "./ImageNode";
 import { mergeRegister } from "@lexical/utils";
 
-import brokenImage from '../lib/images/image-broken.svg';
+import brokenImage from '../../lib/images/image-broken.svg';
 import { useSharedHistoryContext } from "../context/SharedHistoryContext";
 import { LinkNode } from "@lexical/link";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
