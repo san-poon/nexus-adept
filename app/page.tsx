@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import HeroSection from './components/HeroSection';
 import { auth } from '@/auth';
 import { Input } from '@/components/ui/input';
 import { SearchIcon } from 'lucide-react';
