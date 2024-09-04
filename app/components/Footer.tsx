@@ -4,7 +4,7 @@ export default function Footer() {
         <footer>
             <div className="container text-center border-t dark:border-neutral-700 py-16">
                 <p className="text-xs">
-                    &copy; 2024 Nexus Adept.
+                    &copy; 2024 nexusA.
                 </p>
                 <div className="mt-4">
                     <p className="text-xs">
