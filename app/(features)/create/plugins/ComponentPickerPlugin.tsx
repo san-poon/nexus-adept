@@ -15,6 +15,8 @@ import { cn } from '@/lib/utils';
 import useModal from '@/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { InsertTableDialog } from './TablePlugin';
+import { ImageBlockIcon } from '@/components/icons';
+import { InsertImageDialog } from './ImagesPlugin';
 
 
 
@@ -73,7 +75,7 @@ export default function ComponentPickerPlugin() {
                     anchorElementRef.current && options.length
                         ? ReactDOM.createPortal(
                             <div className=" w-40 md:w-60 rounded-xl px-2 py-1 md:px-4 md:py-2 bg-wash-80 dark:bg-wash-750">
-                                <ul>
+                                <ul className="space-y-1">
                                     {options.map((option, i: number) => (
                                         <ComponentPickerMenuItem
                                             index={i}
@@ -109,6 +111,15 @@ type ShowModal = ReturnType<typeof useModal>[1];
 
 function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
     return [
+
+        new ComponentPickerOption('Image', {
+            icon: <ImageBlockIcon />,
+            keywords: ['image', 'photo', 'picture'],
+            onSelect: () =>
+                showModal('Insert Image', (onClose) => (
+                    <InsertImageDialog activeEditor={editor} onClose={onClose} />
+                ))
+        }),
 
         new ComponentPickerOption('Divider', {
             icon: <i />,
@@ -218,8 +229,10 @@ function ComponentPickerMenuItem({
             onMouseEnter={onMouseEnter}
             onClick={onClick}
         >
-            {option.icon}
-            <span>{option.title}</span>
+            <div className='flex items-center space-x-2'>
+                {option.icon}
+                <span>{option.title}</span>
+            </div>
         </li>
     )
 

@@ -7,6 +7,7 @@ import { ListNode, ListItemNode } from '@lexical/list';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { MarkNode } from '@lexical/mark';
 import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
+import { ImageNode } from './ImageNode';
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
@@ -18,6 +19,7 @@ const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   LinkNode,
   AutoLinkNode,
   HorizontalRuleNode,
+  ImageNode,
   MarkNode,
   TableNode,
   TableCellNode,

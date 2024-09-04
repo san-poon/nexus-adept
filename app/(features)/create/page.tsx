@@ -1,8 +1,8 @@
-import Editor from "./components/Editor";
+import Editor from "./Editor";
 
 export default function EditorPage() {
   return (
-    <div className='flex items-center justify-center'>
+    <div className='editor-shell flex items-center justify-center'>
       <Editor />
     </div>
   );

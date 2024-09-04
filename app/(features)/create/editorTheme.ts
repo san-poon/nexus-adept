@@ -48,6 +48,8 @@ const theme: EditorThemeClasses = {
     h4: 'text-lg mt-2 mb-1 font-medium'
   },
   hr: 'hr',
+  image: 'editor-image',
+  inlineImage: 'inline-editor-image',
   link: "no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-100 transition-colors cursor-pointer",
   list: {
     checklist: '',

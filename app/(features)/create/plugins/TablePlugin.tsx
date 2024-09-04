@@ -37,7 +37,7 @@ export function InsertTableDialog({
         <>
             <div className="flex-col space-y-1">
                 <div className="flex items-center">
-                    <Label className="pe-8">Rows</Label>
+                    <Label className="w-1/3">Rows</Label>
                     <Input
                         className="w-24"
                         type="number"
@@ -47,7 +47,7 @@ export function InsertTableDialog({
                     />
                 </div>
                 <div className="flex items-center">
-                    <Label className="pe-2">Columns</Label>
+                    <Label className=" w-1/3">Columns</Label>
                     <Input
                         className=" w-24"
                         type="number"
@@ -57,10 +57,9 @@ export function InsertTableDialog({
                     />
                 </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-5">
                 <Button
                     type="button"
-                    variant="outline"
                     disabled={isDisabled}
                     onClick={onConfirmClick}
                 >
