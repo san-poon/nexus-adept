@@ -20,6 +20,7 @@ import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import { $createHeadingNode } from '@lexical/rich-text';
 import { $createListItemNode, $createListNode } from '@lexical/list';
 import ImagesPlugin from './plugins/ImagesPlugin';
+import EquationsPlugin from './plugins/EquationsPlugin';
 
 
 export default function Editor() {
@@ -33,8 +34,9 @@ export default function Editor() {
                     ErrorBoundary={LexicalErrorBoundary}
                 />
             </div>
-            <HistoryPlugin />
             <AutoFocusPlugin />
+            <EquationsPlugin />
+            <HistoryPlugin />
             <MarkdownShortcutPlugin />
             <CodeHighlightPlugin />
             <ComponentPickerPlugin />

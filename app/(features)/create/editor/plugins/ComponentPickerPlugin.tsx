@@ -7,16 +7,16 @@ import {
     MenuOption,
     useBasicTypeaheadTriggerMatch,
 } from '@lexical/react/LexicalTypeaheadMenuPlugin';
-import { $setBlocksType } from '@lexical/selection';
-import { $createParagraphNode, $getSelection, $isRangeSelection, INSERT_LINE_BREAK_COMMAND, LexicalEditor, TextNode } from 'lexical';
+import { LexicalEditor, TextNode } from 'lexical';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
 
 import { cn } from '@/lib/utils';
-import useModal from '@/hooks/useModal';
+import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { InsertTableDialog } from './TablePlugin';
 import { ImageBlockIcon } from '@/components/icons';
 import { InsertImageDialog } from './ImagesPlugin';
+import { InsertEquationDialog } from './EquationsPlugin';
 
 
 
@@ -119,6 +119,15 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
                 showModal('Insert Image', (onClose) => (
                     <InsertImageDialog activeEditor={editor} onClose={onClose} />
                 ))
+        }),
+
+        new ComponentPickerOption('Equation', {
+            icon: <i />,
+            keywords: ['equation', 'latex', 'math'],
+            onSelect: () =>
+                showModal('Insert Equation', (onClose) => (
+                    <InsertEquationDialog activeEditor={editor} onClose={onClose} />
+                )),
         }),
 
         new ComponentPickerOption('Divider', {

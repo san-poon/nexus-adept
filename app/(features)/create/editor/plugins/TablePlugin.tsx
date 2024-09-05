@@ -67,5 +67,5 @@ export function InsertTableDialog({
                 </Button>
             </div>
         </>
-    )
+    );
 }

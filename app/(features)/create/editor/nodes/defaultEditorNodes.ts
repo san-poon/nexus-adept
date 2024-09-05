@@ -8,8 +8,10 @@ import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { MarkNode } from '@lexical/mark';
 import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
 import { ImageNode } from './ImageNode';
+import { EquationNode } from './EquationNode';
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [
+  EquationNode,
   HeadingNode,
   QuoteNode,
   ListNode,

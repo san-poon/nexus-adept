@@ -452,3 +452,14 @@ html.dark .editor-shell .editor-image .image-caption-button:hover {
     color: #000;
     overflow: hidden;
 }
+
+
+/* Equations */
+.editor-equation {
+    cursor: default;
+    user-select: none;
+}
+
+.editor-equation.focused {
+    outline: 2px solid rgb(60, 132, 244);
+}
