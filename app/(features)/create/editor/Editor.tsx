@@ -21,6 +21,7 @@ import { $createHeadingNode } from '@lexical/rich-text';
 import { $createListItemNode, $createListNode } from '@lexical/list';
 import ImagesPlugin from './plugins/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
+import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
 
 
 export default function Editor() {
@@ -35,6 +36,7 @@ export default function Editor() {
                 />
             </div>
             <AutoFocusPlugin />
+            <CollapsiblePlugin />
             <EquationsPlugin />
             <HistoryPlugin />
             <MarkdownShortcutPlugin />

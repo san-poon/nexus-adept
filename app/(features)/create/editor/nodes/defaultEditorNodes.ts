@@ -9,8 +9,14 @@ import { MarkNode } from '@lexical/mark';
 import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
 import { ImageNode } from './ImageNode';
 import { EquationNode } from './EquationNode';
+import { CollapsibleContentNode } from '../plugins/collapsible/CollapsibleContentNode';
+import { CollapsibleContainerNode } from '../plugins/collapsible/CollapsibleContainerNode';
+import { CollapsibleTitleNode } from '../plugins/collapsible/CollapsibleTitleNode';
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [
+  CollapsibleContentNode,
+  CollapsibleContainerNode,
+  CollapsibleTitleNode,
   EquationNode,
   HeadingNode,
   QuoteNode,

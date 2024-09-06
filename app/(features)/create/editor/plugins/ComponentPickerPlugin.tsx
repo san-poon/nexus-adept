@@ -14,9 +14,11 @@ import { cn } from '@/lib/utils';
 import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { InsertTableDialog } from './TablePlugin';
-import { EquationIcon, HorizontalRuleIcon, ImageBlockIcon, TableIcon } from '@/components/icons';
+import { ImageBlockIcon, SigmaPiIcon } from '@/components/icons';
 import { InsertImageDialog } from './ImagesPlugin';
 import { InsertEquationDialog } from './EquationsPlugin';
+import { INSERT_COLLAPSIBLE_COMMAND } from './collapsible/CollapsiblePlugin';
+import { ChevronRightIcon, SplitSquareVerticalIcon, TableIcon } from 'lucide-react';
 
 
 
@@ -122,7 +124,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
         }),
 
         new ComponentPickerOption('Equation', {
-            icon: <EquationIcon />,
+            icon: <SigmaPiIcon />,
             keywords: ['equation', 'latex', 'math'],
             onSelect: () =>
                 showModal('Insert Equation', (onClose) => (
@@ -131,7 +133,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
         }),
 
         new ComponentPickerOption('Divider', {
-            icon: <HorizontalRuleIcon />,
+            icon: <SplitSquareVerticalIcon />,
             keywords: ['horizontal rule', 'divider', 'hr'],
             onSelect: () =>
                 editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined),
@@ -144,6 +146,13 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
                 showModal('Insert Table', (onClose) => (
                     <InsertTableDialog activeEditor={editor} onClose={onClose} />
                 )),
+        }),
+
+        new ComponentPickerOption('Collapsible', {
+            icon: <ChevronRightIcon className='w-6 h-6' />,
+            keywords: ['collapse', 'collapsible', 'toggle'],
+            onSelect: () =>
+                editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined),
         }),
 
     ];
