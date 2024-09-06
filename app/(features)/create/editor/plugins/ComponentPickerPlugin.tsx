@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { InsertTableDialog } from './TablePlugin';
-import { ImageBlockIcon } from '@/components/icons';
+import { EquationIcon, HorizontalRuleIcon, ImageBlockIcon, TableIcon } from '@/components/icons';
 import { InsertImageDialog } from './ImagesPlugin';
 import { InsertEquationDialog } from './EquationsPlugin';
 
@@ -122,7 +122,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
         }),
 
         new ComponentPickerOption('Equation', {
-            icon: <i />,
+            icon: <EquationIcon />,
             keywords: ['equation', 'latex', 'math'],
             onSelect: () =>
                 showModal('Insert Equation', (onClose) => (
@@ -131,14 +131,14 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
         }),
 
         new ComponentPickerOption('Divider', {
-            icon: <i />,
+            icon: <HorizontalRuleIcon />,
             keywords: ['horizontal rule', 'divider', 'hr'],
             onSelect: () =>
                 editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined),
         }),
 
         new ComponentPickerOption('Table', {
-            icon: <i />,
+            icon: <TableIcon />,
             keywords: ['table', 'grid', 'spreadsheet', 'rows', 'columns'],
             onSelect: () =>
                 showModal('Insert Table', (onClose) => (
@@ -239,8 +239,7 @@ function ComponentPickerMenuItem({
             onClick={onClick}
         >
             <div className='flex items-center space-x-2'>
-                {option.icon}
-                <span>{option.title}</span>
+                {option.icon} <span>{option.title}</span>
             </div>
         </li>
     )
