@@ -9,7 +9,6 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
 
@@ -23,10 +22,10 @@ import ImagesPlugin from './plugins/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
 
-
 export default function Editor() {
     return (
         <LexicalComposer initialConfig={initialConfig}>
+
             <div className='min-h-[92vh] w-full max-w-screen-lg dark:lg:border border-wash-600 rounded-3xl lg:shadow-2xl dark:shadow-none my-4 lg:my-8 p-6 lg:p-12'>
                 <RichTextPlugin
                     contentEditable={
@@ -34,18 +33,18 @@ export default function Editor() {
                     }
                     ErrorBoundary={LexicalErrorBoundary}
                 />
+
+                <AutoFocusPlugin />
+                <CollapsiblePlugin />
+                <EquationsPlugin />
+                <HistoryPlugin />
+                <MarkdownShortcutPlugin />
+                <CodeHighlightPlugin />
+                <ComponentPickerPlugin />
+                <HorizontalRulePlugin />
+                <ImagesPlugin />
+                <ListPlugin />
             </div>
-            <AutoFocusPlugin />
-            <CollapsiblePlugin />
-            <EquationsPlugin />
-            <HistoryPlugin />
-            <MarkdownShortcutPlugin />
-            <CodeHighlightPlugin />
-            <ComponentPickerPlugin />
-            <HorizontalRulePlugin />
-            <ImagesPlugin />
-            <ListPlugin />
-            <TablePlugin />
 
         </LexicalComposer>
     );

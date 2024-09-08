@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { getHighlighter } from 'shiki';
+import { createHighlighter } from 'shiki';
 import { cache } from "react";
 
 export function cn(...inputs: ClassValue[]) {
@@ -37,7 +37,7 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 };
 
 export const initializeShikiHighlighter = (async () =>
-  await getHighlighter({
+  await createHighlighter({
     themes: ['github-dark', 'github-light'],
     langs: ['javascript'],
   })

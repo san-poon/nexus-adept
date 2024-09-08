@@ -13,12 +13,11 @@ import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontal
 import { cn } from '@/lib/utils';
 import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
-import { InsertTableDialog } from './TablePlugin';
 import { ImageBlockIcon, SigmaPiIcon } from '@/components/icons';
 import { InsertImageDialog } from './ImagesPlugin';
 import { InsertEquationDialog } from './EquationsPlugin';
 import { INSERT_COLLAPSIBLE_COMMAND } from './collapsible/CollapsiblePlugin';
-import { ChevronRightIcon, SplitSquareVerticalIcon, TableIcon } from 'lucide-react';
+import { ChevronRightIcon, SplitSquareVerticalIcon } from 'lucide-react';
 
 
 
@@ -137,15 +136,6 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
             keywords: ['horizontal rule', 'divider', 'hr'],
             onSelect: () =>
                 editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined),
-        }),
-
-        new ComponentPickerOption('Table', {
-            icon: <TableIcon />,
-            keywords: ['table', 'grid', 'spreadsheet', 'rows', 'columns'],
-            onSelect: () =>
-                showModal('Insert Table', (onClose) => (
-                    <InsertTableDialog activeEditor={editor} onClose={onClose} />
-                )),
         }),
 
         new ComponentPickerOption('Collapsible', {
