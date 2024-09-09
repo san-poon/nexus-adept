@@ -28,12 +28,13 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
     return (
         <Textarea ref={textareaRef}
             className={cn(
-                "resize-none overflow-hidden w-full p-4 min-h-16",
+                "resize-none overflow-hidden px-4 py-3 w-full",
                 className
             )}
             maxLength={800}
             minLength={1}
             {...props}
+            rows={1}
         />
     );
 }
