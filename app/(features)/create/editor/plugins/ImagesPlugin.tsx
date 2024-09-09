@@ -39,7 +39,7 @@ export function InsertImageDialog({ activeEditor, onClose }: {
     activeEditor: LexicalEditor;
     onClose: () => void;
 }) {
-    const [mode, setMode] = useState<null | 'url' | 'file'>(null);
+    const [mode, setMode] = useState<'url' | 'file'>('file');
 
     const onClick = (payload: InsertImagePayload) => {
         activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
@@ -48,26 +48,34 @@ export function InsertImageDialog({ activeEditor, onClose }: {
 
     return (
         <>
-            {!mode && (
-                <div className="flex flex-col justify-start mt-5">
-                    <Button
-                        variant='outline'
-                        className="mb-5"
-                        onClick={() => setMode('url')}
-                    >
-                        URL
-                    </Button>
-                    <Button
-                        variant='outline'
-                        className="mb-5"
-                        onClick={() => setMode('file')}
-                    >
-                        File
-                    </Button>
+            {mode === 'url' &&
+                <div>
+                    <InsertImageUriDialogBody onClick={onClick} />
+                    <div className="flex justify-end">
+                        <Button
+                            variant='outline'
+                            className="mb-5 size-4 p-0 m-0"
+                            onClick={() => setMode('file')}
+                        >
+                            File
+                        </Button>
+                    </div>
                 </div>
-            )}
-            {mode === 'url' && <InsertImageUriDialogBody onClick={onClick} />}
-            {mode === 'file' && <InsertImageUploadedDialogBody onClick={onClick} />}
+            }
+            {mode === 'file' &&
+                <div>
+                    <InsertImageUploadedDialogBody onClick={onClick} />
+                    <div className="flex justify-end">
+                        <Button
+                            variant='outline'
+                            className="mb-5 size-4 p-0 m-0"
+                            onClick={() => setMode('url')}
+                        >
+                            URL
+                        </Button>
+                    </div>
+                </div>
+            }
         </>
     )
 }
