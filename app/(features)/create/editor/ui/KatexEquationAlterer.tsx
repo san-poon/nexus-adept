@@ -32,45 +32,47 @@ export default function KatexEquationAlterer({
     }, [setInline, inline]);
 
     return (
-        <div className="flex flex-col space-y-2">
-            <div className="flex justify-between">
-                <Label>Inline</Label>
-                <Input
-                    type="checkbox"
-                    checked={inline}
-                    onChange={onCheckboxChange}
-                    className="w-6 h-6 rounded-lg"
-                />
-            </div>
-            <div className="flex flex-col space-y-1 ">
-                <Label>Equation</Label>
-                {inline ? (
+        <div className="flex flex-col space-y-3">
+            <div className='flex flex-col space-y-2'>
+                <div className="flex items-center">
+                    <Label className=' me-4'>Inline: </Label>
                     <Input
-                        onChange={(event) => {
-                            setEquation(event.target.value);
-                        }}
-                        value={equation}
+                        type="checkbox"
+                        checked={inline}
+                        onChange={onCheckboxChange}
+                        className=" size-5 rounded-lg"
                     />
-                ) : (
-                    <DynamicTextarea
-                        onChange={(event) => {
-                            setEquation(event.target.value);
-                        }}
-                        value={equation}
-                    />
-                )}
+                </div>
+                <div className="flex flex-col space-y-1 ">
+                    <Label>Equation</Label>
+                    {inline ? (
+                        <Input
+                            onChange={(event) => {
+                                setEquation(event.target.value);
+                            }}
+                            value={equation}
+                        />
+                    ) : (
+                        <DynamicTextarea
+                            onChange={(event) => {
+                                setEquation(event.target.value);
+                            }}
+                            value={equation}
+                        />
+                    )}
+                </div>
+                <div className="flex flex-col">
+                    <Label>Visualization</Label>
+                    <ErrorBoundary onError={(e) => editor._onError(e)} fallback={null}>
+                        <KatexRenderer
+                            equation={equation}
+                            inline={false}
+                            onDoubleClick={() => null}
+                        />
+                    </ErrorBoundary>
+                </div>
             </div>
-            <div className="flex flex-col space-y-1">
-                <Label>Visualization</Label>
-                <ErrorBoundary onError={(e) => editor._onError(e)} fallback={null}>
-                    <KatexRenderer
-                        equation={equation}
-                        inline={false}
-                        onDoubleClick={() => null}
-                    />
-                </ErrorBoundary>
-            </div>
-            <div className="flex justify-right">
+            <div className="flex justify-center">
                 <Button onClick={onClick}>Confirm</Button>
             </div>
         </div>

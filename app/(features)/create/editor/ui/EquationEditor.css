@@ -4,9 +4,9 @@
     margin: 0;
     border: 0;
     outline: 0;
-    color: #8421a2;
-    background-color: inherit;
+    color: #088d8d;
     resize: none;
+    background-color: inherit;
 }
 
 .EquationEditor_blockEditor {
@@ -15,16 +15,20 @@
     margin: 0;
     border: 0;
     outline: 0;
-    color: #8421a2;
+    color: #088d8d;
     background-color: inherit;
     resize: none;
     width: 100%;
 }
 
 .EquationEditor_inputBackground {
-    background-color: #eee;
-    border-radius: 0.5rem;
+    background-color: #c2dada;
     /* rounded-lg */
+    border-radius: 0.5rem;
+}
+
+html.dark .EquationEditor_inputBackground {
+    background-color: #232a2a;
 }
 
 .EquationEditor_dollarSign {
