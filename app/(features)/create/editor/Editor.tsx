@@ -21,15 +21,30 @@ import { $createListItemNode, $createListNode } from '@lexical/list';
 import ImagesPlugin from './plugins/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
+import { useState } from 'react';
+import FloatingTextFormatToolbarPlugin from './plugins/floating-plugins/FloatingTextFormatToolbarPlugin';
 
 export default function Editor() {
+    const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
+    const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
+
+    const onRef = (_floatingAnchorElem: HTMLDivElement) => {
+        if (_floatingAnchorElem !== null) {
+            setFloatingAnchorElem(_floatingAnchorElem);
+        }
+    };
+
     return (
         <LexicalComposer initialConfig={initialConfig}>
 
             <div className='min-h-[92vh] w-full max-w-screen-lg dark:lg:border border-wash-600 rounded-3xl lg:shadow-2xl dark:shadow-none my-4 lg:my-8 p-6 lg:p-12'>
                 <RichTextPlugin
                     contentEditable={
-                        <ContentEditable className='min-h-[92vh] w-full resize-none pb-[92vh] outline-0' />
+                        <div className='relative z-0 overflow-auto resize-x'>
+                            <div ref={onRef} className=' -z-[1] flex-auto relative resize-x'>
+                                <ContentEditable className='min-h-[92vh] w-full resize-none pb-[92vh] outline-0' />
+                            </div>
+                        </div>
                     }
                     ErrorBoundary={LexicalErrorBoundary}
                 />
@@ -44,6 +59,13 @@ export default function Editor() {
                 <HorizontalRulePlugin />
                 <ImagesPlugin />
                 <ListPlugin />
+
+                {floatingAnchorElem && (
+                    <FloatingTextFormatToolbarPlugin
+                        anchorElem={floatingAnchorElem}
+                        setIsLinkEditMode={setIsLinkEditMode}
+                    />
+                )}
             </div>
 
         </LexicalComposer>
