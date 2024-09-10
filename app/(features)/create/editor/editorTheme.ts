@@ -50,7 +50,7 @@ const theme: EditorThemeClasses = {
   hr: 'hr',
   image: 'editor-image',
   inlineImage: 'inline-editor-image',
-  link: "no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-100 transition-colors cursor-pointer",
+  link: "no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-200 transition-colors cursor-pointer",
   list: {
     checklist: '',
     listitem: 'my-0 ps-1 lg:ps-6',

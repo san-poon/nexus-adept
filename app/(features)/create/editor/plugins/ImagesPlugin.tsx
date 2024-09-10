@@ -229,7 +229,7 @@ export default function ImagesPlugin({ captionsEnabled }: {
 
 const TRANSPARENT_IMAGE =
     'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const img = document.createElement('img');
+const img = document?.createElement('img');
 img.src = TRANSPARENT_IMAGE;
 
 function $onDragStart(event: DragEvent): boolean {

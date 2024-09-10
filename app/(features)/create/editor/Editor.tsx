@@ -6,6 +6,7 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { HorizontalRulePlugin } from '@lexical/react/LexicalHorizontalRulePlugin';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -23,6 +24,8 @@ import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
 import { useState } from 'react';
 import FloatingTextFormatToolbarPlugin from './plugins/floating-plugins/FloatingTextFormatToolbarPlugin';
+import FloatingLinkEditorPlugin from './plugins/floating-plugins/FloatingLinkEditorPlugin';
+import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 
 export default function Editor() {
     const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
@@ -38,6 +41,7 @@ export default function Editor() {
         <LexicalComposer initialConfig={initialConfig}>
 
             <div className='min-h-[92vh] w-full max-w-screen-lg dark:lg:border border-wash-600 rounded-3xl lg:shadow-2xl dark:shadow-none my-4 lg:my-8 p-6 lg:p-12'>
+                <AutoLinkPlugin />
                 <RichTextPlugin
                     contentEditable={
                         <div className='relative z-0 overflow-auto resize-x'>
@@ -59,12 +63,20 @@ export default function Editor() {
                 <HorizontalRulePlugin />
                 <ImagesPlugin />
                 <ListPlugin />
+                <LinkPlugin />
 
                 {floatingAnchorElem && (
-                    <FloatingTextFormatToolbarPlugin
-                        anchorElem={floatingAnchorElem}
-                        setIsLinkEditMode={setIsLinkEditMode}
-                    />
+                    <>
+                        <FloatingLinkEditorPlugin
+                            anchorElem={floatingAnchorElem}
+                            isLinkEditMode={isLinkEditMode}
+                            setIsLinkEditMode={setIsLinkEditMode}
+                        />
+                        <FloatingTextFormatToolbarPlugin
+                            anchorElem={floatingAnchorElem}
+                            setIsLinkEditMode={setIsLinkEditMode}
+                        />
+                    </>
                 )}
             </div>
 

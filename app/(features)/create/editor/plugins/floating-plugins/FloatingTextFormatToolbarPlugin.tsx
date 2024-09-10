@@ -300,7 +300,7 @@ function TextFormatFloatingToolbar({
     return (
         <div
             ref={popupCharStylesEditorRef}
-            className="absolute top-0 left-0 z-10 h-10 p-1 flex shadow-2xl  bg-wash-50 dark:bg-black dark:shadow-none will-change-transform "
+            className="absolute top-0 left-0 z-10 h-10 p-1 flex rounded-full shadow-2xl  bg-wash-100 dark:bg-black dark:shadow-none will-change-transform "
         >
             {editor.isEditable() && (
                 <>
@@ -310,8 +310,8 @@ function TextFormatFloatingToolbar({
                             editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
                         }}
                         className={cn(
-                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isBold ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isBold ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                         aria-label="format bold"
                     >
@@ -324,8 +324,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="format italic"
                         className={cn(
-                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isItalic ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isItalic ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <ItalicIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -337,8 +337,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="format underline"
                         className={cn(
-                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isUnderline ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isUnderline ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <UnderlineIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -350,8 +350,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="format strikethrough"
                         className={cn(
-                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isStrikethrough ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isStrikethrough ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <StrikethroughIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -363,8 +363,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="format superscript"
                         className={cn(
-                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isSuperscript ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            " group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isSuperscript ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <SuperscriptIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -376,8 +376,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="format subscript"
                         className={cn(
-                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isSubscript ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isSubscript ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <SubscriptIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -389,8 +389,8 @@ function TextFormatFloatingToolbar({
                         }}
                         aria-label="Insert inline code"
                         className={cn(
-                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isCode ? " bg-emerald-100 dark:dark:bg-emerald-600" : ""
+                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isCode ? " bg-emerald-300 dark:dark:bg-emerald-600" : ""
                         )}
                     >
                         <CodeIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
@@ -400,8 +400,8 @@ function TextFormatFloatingToolbar({
                         onClick={insertLink}
                         aria-label="Insert link"
                         className={cn(
-                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed",
-                            isLink ? " bg-emerald-100 dark:bg-emerald-600" : ""
+                            "group flex border-0 rounded-lg p-2 mr-[2px] cursor-pointer align-middle disabled:cursor-not-allowed hover:bg-emerald-300",
+                            isLink ? " bg-emerald-300 dark:bg-emerald-600" : ""
                         )}
                     >
                         <LinkIcon className="flex  group-disabled:opacity-25 bg-contain size-5 mt-[2px] align-[-0.25em] " />
