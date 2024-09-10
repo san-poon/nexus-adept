@@ -10,17 +10,17 @@ export default function Logo({ className }: { className?: string }) {
         <svg id="ewz9JM4CLZh1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 300 300" shape-rendering="geometricPrecision"
-            text-rendering="geometricPrecision"
+            viewBox="0 0 300 300" shapeRendering="geometricPrecision"
+            textRendering="geometricPrecision"
             project-id="3ef0dfcea68d4771840def0845fb2aa2"
             export-id="47625742ff8249748f48bc9eb1f1d2bf"
             className={cn("w-6 h-6 fill-cyan-600 dark:fill-cyan-400", className)}
         >
             <path d="M61.1734,223.782356c-9.124784,10.094118-7.707488-20.655943-2.287687-47.324914C76.608338,91.531016,131.977297,41.843168,156.273999,50.640404c21.031145,11.383937,34.843204,44.742917-2.636828,119.39321-2.12689,4.905744-13.908709,24.576317-19.271483,28.907225c14.049788-31.678979,63.695416-122.277275,19.310775-142.22179-23.248708-8.342448-85.105187,50.129079-95.861388,166.311144C104.603419,84.327874,101.411289,42.704835,68.215338,77.438833c.691311.125191-7.511008.876275-2.865556-6.705401c52.026837-40.80802,37.322007,51.740404,4.24231,137.843148-8.185956,16.573206-10.128277,18.756322-11.720556,14.472351l-.009809.039037" transform="matrix(1.568459 0 0 1.59981-32.63966-68.220547)"
-                fill="" stroke-width="0.6"
+                fill="" strokeWidth="0.6"
             />
             <path d="M100.881745,177.14274c-4.413294.647851-3.976827,3.674289,1.132056,2.846312l35.028481-5.137565-36.160537,2.291253Z" transform="matrix(1.821058 0 0 3.695433-63.101379-451.06069)"
-                fill="" stroke-width="0.6"
+                fill="" strokeWidth="0.6"
             />
         </svg>
     );
