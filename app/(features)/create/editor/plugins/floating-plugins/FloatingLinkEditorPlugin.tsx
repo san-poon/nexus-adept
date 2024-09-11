@@ -309,7 +309,7 @@ function useFloatingLinkEditorToolbar(
                     focusNode,
                     $isAutoLinkNode,
                 );
-                if ((focusLinkNode || focusAutoLinkNode)) {
+                if (!(focusLinkNode || focusAutoLinkNode)) {
                     console.log(`This statement is executed for every selection.`)
                     setIsLink(false);
                     return;
